@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="KVM,qemu,云计算," />
+  <meta name="keywords" content="云计算," />
 
 
 
@@ -81,20 +81,20 @@
 
 
 <meta name="description" content="在宿主机上编辑虚拟机镜像中的内容有多种方法，我知道的有以下三种：
-1 使用qemu-nbd命令使用qemu-nbd挂载镜像到宿主机目录中。先查看linux内核的nbd模块是否加载。命令如下：1# modinfo nbd
+使用qemu-nbd命令使用qemu-nbd挂载镜像到宿主机目录中。先查看linux内核的nbd模块是否加载。命令如下：1# modinfo nbd
 如果nbd没有加载，则先安装nbd模块">
 <meta property="og:type" content="article">
 <meta property="og:title" content="宿主机上编辑虚拟机镜像">
 <meta property="og:url" content="http://dvd0423.github.io/2016/04/24/宿主机上修改虚拟机镜像/index.html">
 <meta property="og:site_name" content="Davi">
 <meta property="og:description" content="在宿主机上编辑虚拟机镜像中的内容有多种方法，我知道的有以下三种：
-1 使用qemu-nbd命令使用qemu-nbd挂载镜像到宿主机目录中。先查看linux内核的nbd模块是否加载。命令如下：1# modinfo nbd
+使用qemu-nbd命令使用qemu-nbd挂载镜像到宿主机目录中。先查看linux内核的nbd模块是否加载。命令如下：1# modinfo nbd
 如果nbd没有加载，则先安装nbd模块">
-<meta property="og:updated_time" content="2016-04-24T10:40:57.000Z">
+<meta property="og:updated_time" content="2016-04-24T11:30:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="宿主机上编辑虚拟机镜像">
 <meta name="twitter:description" content="在宿主机上编辑虚拟机镜像中的内容有多种方法，我知道的有以下三种：
-1 使用qemu-nbd命令使用qemu-nbd挂载镜像到宿主机目录中。先查看linux内核的nbd模块是否加载。命令如下：1# modinfo nbd
+使用qemu-nbd命令使用qemu-nbd挂载镜像到宿主机目录中。先查看linux内核的nbd模块是否加载。命令如下：1# modinfo nbd
 如果nbd没有加载，则先安装nbd模块">
 
 
@@ -265,11 +265,30 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-24T18:40:57+08:00" content="2016-04-24">
+            <time itemprop="dateCreated" datetime="2016-04-24T19:30:23+08:00" content="2016-04-24">
               2016-04-24
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/云计算/" itemprop="url" rel="index">
+                    <span itemprop="name">云计算</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -301,7 +320,7 @@
 
       
         <p>在宿主机上编辑虚拟机镜像中的内容有多种方法，我知道的有以下三种：</p>
-<h2 id="1-使用qemu-nbd命令"><a href="#1-使用qemu-nbd命令" class="headerlink" title="1 使用qemu-nbd命令"></a>1 使用qemu-nbd命令</h2><p>使用qemu-nbd挂载镜像到宿主机目录中。先查看linux内核的nbd模块是否加载。命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># modinfo nbd</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="使用qemu-nbd命令"><a href="#使用qemu-nbd命令" class="headerlink" title="使用qemu-nbd命令"></a>使用qemu-nbd命令</h2><p>使用qemu-nbd挂载镜像到宿主机目录中。先查看linux内核的nbd模块是否加载。命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># modinfo nbd</span></span><br></pre></td></tr></table></figure></p>
 <p>如果nbd没有加载，则先安装nbd模块<br><a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cd linux-3.17.4</span></span><br><span class="line"><span class="comment"># make CONFIG_BLK_DEV_NBD=m M=drivers/block</span></span><br><span class="line"><span class="comment"># cp drivers/block/nbd.ko /lib/modules/"$(uname -r)"/kernel/drivers/block/</span></span><br><span class="line"><span class="comment"># modprobe nbd max_part=8</span></span><br></pre></td></tr></table></figure></p>
 <p>然后使用qemu-nbd命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># qemu-nbd -c /dev/nbd0 xxx/vm.img</span></span><br></pre></td></tr></table></figure></p>
 <p>如果查看宿主机的/dev目录会发现多个如下的目录文件。<br><strong>nbd0p1 nbd0p2 …</strong><br>每一个目录对应一个虚拟机的分区<br>如果kvm虚拟机使用的是标准分区，则直接使用下列命令就可以挂载<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mount /dev/nbd0p1 /mnt</span></span><br></pre></td></tr></table></figure></p>
@@ -312,8 +331,8 @@
 <p>然后挂载<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mount /dev/centos/root /mnt</span></span><br></pre></td></tr></table></figure></p>
 <p>修改完虚拟机镜像后，可以使用下面命令恢复原来状态<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># umount /mnt</span></span><br><span class="line"><span class="comment"># qemu-nbd -d /dev/nbd0</span></span><br></pre></td></tr></table></figure></p>
 <p>下面两种方式更简单，但是我使用下面两个方法时，虚拟机就会卡住，所以不做详细介绍。百度一下会有很多相关文章。</p>
-<h2 id="2-使用guestfish编辑"><a href="#2-使用guestfish编辑" class="headerlink" title="2 使用guestfish编辑"></a>2 使用guestfish编辑</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum -y install guestfish</span></span><br></pre></td></tr></table></figure>
-<h2 id="3-使用virt-edit"><a href="#3-使用virt-edit" class="headerlink" title="3 使用virt-edit"></a>3 使用virt-edit</h2>
+<h2 id="使用guestfish编辑"><a href="#使用guestfish编辑" class="headerlink" title="使用guestfish编辑"></a>使用guestfish编辑</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum -y install guestfish</span></span><br></pre></td></tr></table></figure>
+<h2 id="使用virt-edit"><a href="#使用virt-edit" class="headerlink" title="使用virt-edit"></a>使用virt-edit</h2>
       
     </div>
     
@@ -333,25 +352,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/KVM-qemu-云计算/" rel="tag">#KVM,qemu,云计算</a>
+            <a href="/tags/云计算/" rel="tag">#云计算</a>
           
         </div>
       
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/04/24/fuck/" rel="next" title="fuck">
-                <i class="fa fa-chevron-left"></i> fuck
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-          </div>
-        </div>
       
 
       
@@ -412,7 +417,7 @@
       <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/default_avatar.jpg"
+               src="/uploads/avatar.jpg"
                alt="Davi" />
           <p class="site-author-name" itemprop="name">Davi</p>
           <p class="site-description motion-element" itemprop="description">记录工作与生活</p>
@@ -420,7 +425,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">1</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -437,7 +442,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -449,12 +454,37 @@
 
         <div class="links-of-author motion-element">
           
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/DVD0423" target="_blank" title="github">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
         </div>
 
         
         
 
         
+        
+          <div class="links-of-blogroll motion-element">
+            <div class="links-of-blogroll-title">
+              <i class="fa fa-globe fa-fw"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="dvd0423.github.io" title="Test" target="_blank">Test</a>
+                </li>
+              
+            </ul>
+          </div>
         
 
       </section>
@@ -466,7 +496,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-使用qemu-nbd命令"><span class="nav-number">1.</span> <span class="nav-text">1 使用qemu-nbd命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-使用guestfish编辑"><span class="nav-number">2.</span> <span class="nav-text">2 使用guestfish编辑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-使用virt-edit"><span class="nav-number">3.</span> <span class="nav-text">3 使用virt-edit</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用qemu-nbd命令"><span class="nav-number">1.</span> <span class="nav-text">使用qemu-nbd命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用guestfish编辑"><span class="nav-number">2.</span> <span class="nav-text">使用guestfish编辑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用virt-edit"><span class="nav-number">3.</span> <span class="nav-text">使用virt-edit</span></a></li></ol></div>
             
           </div>
         </section>
