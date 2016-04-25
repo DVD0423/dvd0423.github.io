@@ -86,7 +86,7 @@
 <meta property="og:url" content="http://dvd0423.github.io/2016/04/25/KVM虚拟机安装错误集锦/index.html">
 <meta property="og:site_name" content="Davi">
 <meta property="og:description" content="1 could not open disk image /root/dvd/vm1.img: Permission denied使用virt-install时出现了如下错误：12ERROR    internal error Process exited while reading console log output: char device redirected to /dev/pts/1qe">
-<meta property="og:updated_time" content="2016-04-25T13:04:20.000Z">
+<meta property="og:updated_time" content="2016-04-25T13:06:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="KVM虚拟机安装错误集锦">
 <meta name="twitter:description" content="1 could not open disk image /root/dvd/vm1.img: Permission denied使用virt-install时出现了如下错误：12ERROR    internal error Process exited while reading console log output: char device redirected to /dev/pts/1qe">
@@ -323,7 +323,8 @@
 
       
         <h3 id="1-could-not-open-disk-image-root-dvd-vm1-img-Permission-denied"><a href="#1-could-not-open-disk-image-root-dvd-vm1-img-Permission-denied" class="headerlink" title="1 could not open disk image /root/dvd/vm1.img: Permission denied"></a>1 could not open disk image /root/dvd/vm1.img: Permission denied</h3><p>使用virt-install时出现了如下错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR    internal error Process exited while reading console log output: char device redirected to /dev/pts/1</span><br><span class="line">qemu-kvm: -drive file=/root/dvd/vm1.img,if=none,id=drive-ide0-0-0,format=raw,cache=none: could not open disk image /root/dvd/vm1.img: Permission denied</span><br></pre></td></tr></table></figure></p>
-<p>&lt;!—more—&gt;<br>错误记录已经很明显了，主要是权限问题。引起的原因主要有两个。</p>
+<a id="more"></a>
+<p>错误记录已经很明显了，主要是权限问题。引起的原因主要有两个。</p>
 <ul>
 <li>1 用户和组属性问题。</li>
 <li>2 读、写、执行的权限问题。</li>

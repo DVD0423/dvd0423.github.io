@@ -286,8 +286,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/运维/" itemprop="url" rel="index">
-                    <span itemprop="name">运维</span>
+                  <a href="/categories/shell/" itemprop="url" rel="index">
+                    <span itemprop="name">shell</span>
                   </a>
                 </span>
 
@@ -327,13 +327,14 @@
 
       
         
-          
-            <p>在linux下安装软件经常出现动态链接库（.so文件）的问题。<br>这时候需要用到==ldconfig==和==ldd==两个命令。</p>
+          <p>在linux下安装软件经常出现动态链接库（.so文件）的问题。<br>这时候需要用到==ldconfig==和==ldd==两个命令。</p>
 <p>如果是安装软件时需要加载动态链接库，除了用-L选项外，还可以在/etc/ld.so.conf.d/中添加一个.conf文件把相关的链接库所在的目录添加进去（注意是目录）。然后用ldconfig命令使其生效。</p>
-<p><strong>ldconfig -p</strong>显示可以搜索到的所有的动态链接库，配合grep可以实现查找功能。<br>&lt;!—more—&gt;<br>如果是检查某个软件用到了哪些动态链接库则用ldd。比如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldd /usr/bin/ssh</span><br></pre></td></tr></table></figure></p>
-<p>显示如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">   linux-vdso.so.1 =&gt;  (0x00007fff36ca2000)</span><br><span class="line">libfipscheck.so.1 =&gt; /lib64/libfipscheck.so.1 (0x00002aeeb9abc000)</span><br><span class="line">libselinux.so.1 =&gt; /lib64/libselinux.so.1 (0x00002aeeb9cc0000)</span><br><span class="line">libcrypto.so.10 =&gt; /usr/lib64/libcrypto.so.10 (0x00002aeeb9edf000)</span><br><span class="line">libutil.so.1 =&gt; /lib64/libutil.so.1 (0x00002aeeba2c2000)</span><br><span class="line">libz.so.1 =&gt; /lib64/libz.so.1 (0x00002aeeba4c6000)</span><br><span class="line">libnsl.so.1 =&gt; /lib64/libnsl.so.1 (0x00002aeeba6dc000)</span><br><span class="line">libcrypt.so.1 =&gt; /lib64/libcrypt.so.1 (0x00002aeeba8f5000)</span><br><span class="line">libresolv.so.2 =&gt; /lib64/libresolv.so.2 (0x00002aeebab2d000)</span><br><span class="line">libgssapi_krb5.so.2 =&gt; /lib64/libgssapi_krb5.so.2 (0x00002aeebad47000)</span><br><span class="line">libkrb5.so.3 =&gt; /lib64/libkrb5.so.3 (0x00002aeebaf8b000)</span><br><span class="line">libk5crypto.so.3 =&gt; /lib64/libk5crypto.so.3 (0x00002aeebb273000)</span><br><span class="line">libcom_err.so.2 =&gt; /lib64/libcom_err.so.2 (0x00002aeebb49f000)</span><br><span class="line">libnss3.so =&gt; /usr/lib64/libnss3.so (0x00002aeebb6a3000)</span><br><span class="line">libc.so.6 =&gt; /lib64/libc.so.6 (0x00002aeebb9e3000)</span><br><span class="line">libplc4.so =&gt; /lib64/libplc4.so (0x00002aeebbd84000)</span><br><span class="line">libdl.so.2 =&gt; /lib64/libdl.so.2 (0x00002aeebbf89000)</span><br><span class="line">/lib64/ld-linux-x86-64.so.2 (0x0000003fe1c00000)</span><br><span class="line">libfreebl3.so =&gt; /lib64/libfreebl3.so (0x00002aeebc18e000)</span><br><span class="line">libkrb5support.so.0 =&gt; /lib64/libkrb5support.so.0 (0x00002aeebc391000)</span><br><span class="line">libkeyutils.so.1 =&gt; /lib64/libkeyutils.so.1 (0x00002aeebc59c000)</span><br><span class="line">libpthread.so.0 =&gt; /lib64/libpthread.so.0 (0x00002aeebc7a0000)</span><br><span class="line">libnssutil3.so =&gt; /usr/lib64/libnssutil3.so (0x00002aeebc9bc000)</span><br><span class="line">libplds4.so =&gt; /lib64/libplds4.so (0x00002aeebcbe8000)</span><br><span class="line">libnspr4.so =&gt; /lib64/libnspr4.so (0x00002aeebcded000)</span><br><span class="line">librt.so.1 =&gt; /lib64/librt.so.1 (0x00002aeebd02b000)</span><br></pre></td></tr></table></figure></p>
-
-          
+<p><strong>ldconfig -p</strong>显示可以搜索到的所有的动态链接库，配合grep可以实现查找功能。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/25/ldconfig与ldd/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -450,20 +451,13 @@
 
       
         
-          
-            <p><strong>最有用的文档是官方文档!</strong><br><strong>最有用的文档是官方文档!</strong><br><strong>最有用的文档是官方文档!</strong></p>
+          <p><strong>最有用的文档是官方文档!</strong><br><strong>最有用的文档是官方文档!</strong><br><strong>最有用的文档是官方文档!</strong></p>
 <h3 id="虚拟机安装"><a href="#虚拟机安装" class="headerlink" title="虚拟机安装"></a>虚拟机安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum -y install qemu-kvm libvirt python-virtinst bridge-utils</span></span><br><span class="line"><span class="comment"># qemu-img create -f qcow2 vm1.img 50G </span></span><br><span class="line"><span class="comment"># virt-install --name=vm$1 --boot cdrom,menu=on --ram=8192 --vcpus=8 --os-type=linux -c /root/dvd/CentOS-7.0-1406-x86_64-DVD.iso --disk path=/root/dvd/vm1.img,size=50,format=qcow2,bus=ide --network bridge=br0 --force --graphics vnc,listen=0.0.0.0,port=5901</span></span><br></pre></td></tr></table></figure>
-<p>&lt;!—more—&gt;</p>
-<h3 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">virsh define vm1</span><br><span class="line">virsh start vm1</span><br><span class="line">virsh stop vm1</span><br><span class="line">virsh undefine vm1</span><br><span class="line">virsh edit vm1</span><br></pre></td></tr></table></figure>
-<h3 id="设置vCPU亲和性："><a href="#设置vCPU亲和性：" class="headerlink" title="设置vCPU亲和性："></a>设置vCPU亲和性：</h3><p><strong>1 编辑xml文件添加如下内容</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;cputune&gt;</span><br><span class="line">        &lt;vcpupin vcpu=&quot;0&quot; cpuset=&quot;0-1,4-6&quot;/&gt;</span><br><span class="line">&lt;/cputune&gt;</span><br></pre></td></tr></table></figure></p>
-<p><strong>2 使用命令:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virsh vcpupin vm1 0 0-1,4-6</span><br></pre></td></tr></table></figure></p>
-<p><strong>3 使用taskset设置整个虚拟机的亲和性</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># taskset -cp 0-8 vm1_pid</span><br></pre></td></tr></table></figure></p>
-<p><strong>4 cgroup设置</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># yum install libcgroup</span><br><span class="line"># yum install libvirt</span><br><span class="line"># service cgconfig restart</span><br><span class="line"># service libvirtd restart</span><br><span class="line"># echo 0-1 &gt; /cgroup/cpuset/libvirt/qemu/vm1/vcpu0/cpuset.cpus</span><br></pre></td></tr></table></figure></p>
-<h3 id="虚拟机快照"><a href="#虚拟机快照" class="headerlink" title="虚拟机快照"></a>虚拟机快照</h3><p>产生：<figure class="highlight plain"><figcaption><span>snapshot-create-as vm1 vm1-before```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">显示：```virsh snapshot-list</span><br></pre></td></tr></table></figure></p>
-<p>恢复：<figure class="highlight plain"><figcaption><span>snapshot-revert vm1 vm1-before```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">### 虚拟机迁移</span><br><span class="line"></span><br><span class="line">先测试  ```virsh -c qemu+ssh://node90/system```  </span><br><span class="line">再迁移  ```virsh --live migrate vm1 qemu+ssh://node90/system</span><br></pre></td></tr></table></figure></p>
-<h3 id="虚拟机克隆"><a href="#虚拟机克隆" class="headerlink" title="虚拟机克隆"></a>虚拟机克隆</h3><pre><code>virt-clone -o vm1 -n vm2 -f /root/dvd/vm2.img
-</code></pre>
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/25/KVM虚拟机设置/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -580,11 +574,13 @@
 
       
         
-          
-            <p>在我大宇宙实验室，每天必须打卡上班，而且每天必须登录实验室网站写每日工作记录，即QA。而我经常忘记写QA，所以想着用Python写一个自动化脚本挂在实验室另一台服务器上，每天12点post一次我的日常工作内容到QA服务器。</p>
-<p>本程序使用requests模块和python3.5。使用chrome开发者工具分析网站行为，可以得出post的cookies生成方式。区区几十行代码就实现了该功能。不得不说Python真是一个生活工具，写爬虫、写自动化小工具，代码简介，上手迅速。<br>&lt;!—more—&gt;<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3.5</span></span><br><span class="line"><span class="comment">#Auth : DVD0423</span></span><br><span class="line"><span class="comment">#Date : 2016-1-29</span></span><br><span class="line"><span class="comment">#Usage: python ./auto_qa.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">	<span class="comment">#qa内容</span></span><br><span class="line">	works = (<span class="string">'写专利'</span>,</span><br><span class="line">			 <span class="string">'做实验'</span>,</span><br><span class="line">			 <span class="string">'写代码'</span>)</span><br><span class="line">	my_work = works[random.randrange(<span class="number">0</span>, <span class="number">3</span>)]</span><br><span class="line">	my_description = my_work</span><br><span class="line">	<span class="comment">#账号</span></span><br><span class="line">	my_id = &#123;<span class="string">'username'</span>: <span class="string">'dvd0423'</span>, <span class="string">'password'</span>:<span class="string">'XXX'</span>&#125;</span><br><span class="line">	</span><br><span class="line">	my_session = requests.Session()</span><br><span class="line">	my_session.post(<span class="string">'http://grid.hust.edu.cn/qa/login.action'</span>, data = my_id)</span><br><span class="line">	my_time = requests.get(<span class="string">'http://grid.hust.edu.cn/qa/getCurrentTime.action'</span>, cookies = my_session.cookies)</span><br><span class="line">	add_url = <span class="string">'http://grid.hust.edu.cn/qa/addEvent.action'</span></span><br><span class="line">	add_data = &#123;<span class="string">'event.title'</span>	: my_work, </span><br><span class="line">				<span class="string">'event.start'</span>	: my_time.text, </span><br><span class="line">				<span class="string">'event.end'</span>		: my_time.text, </span><br><span class="line">				<span class="string">'event.status'</span>	: <span class="string">'1'</span>,</span><br><span class="line">				<span class="string">'event.location'</span>: <span class="string">'self'</span>,</span><br><span class="line">				<span class="string">'event.description'</span>: my_description&#125;</span><br><span class="line"></span><br><span class="line">	my_req = requests.post(add_url, data = add_data, cookies = my_session.cookies)</span><br></pre></td></tr></table></figure></p>
-
-          
+          <p>在我大宇宙实验室，每天必须打卡上班，而且每天必须登录实验室网站写每日工作记录，即QA。而我经常忘记写QA，所以想着用Python写一个自动化脚本挂在实验室另一台服务器上，每天12点post一次我的日常工作内容到QA服务器。</p>
+<p>本程序使用requests模块和python3.5。使用chrome开发者工具分析网站行为，可以得出post的cookies生成方式。区区几十行代码就实现了该功能。不得不说Python真是一个生活工具，写爬虫、写自动化小工具，代码简介，上手迅速。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/25/Python实现实验室自动日报生成器/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -701,22 +697,12 @@
 
       
         
-          
-            <h3 id="1-could-not-open-disk-image-root-dvd-vm1-img-Permission-denied"><a href="#1-could-not-open-disk-image-root-dvd-vm1-img-Permission-denied" class="headerlink" title="1 could not open disk image /root/dvd/vm1.img: Permission denied"></a>1 could not open disk image /root/dvd/vm1.img: Permission denied</h3><p>使用virt-install时出现了如下错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR    internal error Process exited while reading console log output: char device redirected to /dev/pts/1</span><br><span class="line">qemu-kvm: -drive file=/root/dvd/vm1.img,if=none,id=drive-ide0-0-0,format=raw,cache=none: could not open disk image /root/dvd/vm1.img: Permission denied</span><br></pre></td></tr></table></figure></p>
-<p>&lt;!—more—&gt;<br>错误记录已经很明显了，主要是权限问题。引起的原因主要有两个。</p>
-<ul>
-<li>1 用户和组属性问题。</li>
-<li>2 读、写、执行的权限问题。</li>
-</ul>
-<p>更详细的出错日志可以查看/var/log/libvirt/qemu/vm1.img。<br>解决方法：<br> <strong>1</strong> 修改/etc/libvirt/qemu.conf文件，把下面注释的地方去掉，然后把dynamic_ownership的值改为0。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">user = &quot;root&quot;</span><br><span class="line">group = &quot;root&quot;</span><br><span class="line">dynamic_ownership = 0</span><br></pre></td></tr></table></figure></p>
-<p><strong>2</strong> 如果不成功，检查镜像文件相应权限和所有上级目录权限。</p>
-<h3 id="2-Failed-to-connect-socket-to-‘-var-run-libvirt-libvirt-sock’"><a href="#2-Failed-to-connect-socket-to-‘-var-run-libvirt-libvirt-sock’" class="headerlink" title="2 Failed to connect socket to ‘/var/run/libvirt/libvirt-sock’"></a>2 Failed to connect socket to ‘/var/run/libvirt/libvirt-sock’</h3><p>没有打开libvirtd服务。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service libvirtd start</span><br></pre></td></tr></table></figure></p>
-<p>如果libvirtd服务打不开，显示如下错误:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Starting libvirtd daemon: libvirtd: relocation error: libvirtd: symbol numa_nodes_ptr, version libnuma_1.2 not defined in file libnuma.so.1 with link time reference</span><br></pre></td></tr></table></figure></p>
-<p>则目前还没解决。</p>
-<h3 id="3-Unable-to-read-from-monitor-Connection-reset-by-peer"><a href="#3-Unable-to-read-from-monitor-Connection-reset-by-peer" class="headerlink" title="3 Unable to read from monitor: Connection reset by peer"></a>3 Unable to read from monitor: Connection reset by peer</h3><p>网上说用如下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># virsh managedsave--remove vm1</span><br></pre></td></tr></table></figure></p>
-<p>但是我用无效，所以就直接重启物理机。<br>出错原因：在虚拟机运行过程中关闭libvirtd服务。</p>
-
-          
+          <h3 id="1-could-not-open-disk-image-root-dvd-vm1-img-Permission-denied"><a href="#1-could-not-open-disk-image-root-dvd-vm1-img-Permission-denied" class="headerlink" title="1 could not open disk image /root/dvd/vm1.img: Permission denied"></a>1 could not open disk image /root/dvd/vm1.img: Permission denied</h3><p>使用virt-install时出现了如下错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR    internal error Process exited while reading console log output: char device redirected to /dev/pts/1</span><br><span class="line">qemu-kvm: -drive file=/root/dvd/vm1.img,if=none,id=drive-ide0-0-0,format=raw,cache=none: could not open disk image /root/dvd/vm1.img: Permission denied</span><br></pre></td></tr></table></figure></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/25/KVM虚拟机安装错误集锦/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
