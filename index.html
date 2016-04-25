@@ -327,7 +327,7 @@
 
       
         
-          <p>在linux下安装软件经常出现动态链接库（.so文件）的问题。<br>这时候需要用到==ldconfig==和==ldd==两个命令。</p>
+          <p>在linux下安装软件经常出现动态链接库（.so文件）的问题。这时候需要用到<strong>ldconfig</strong>和<strong>ldd</strong>两个命令。</p>
 <p>如果是安装软件时需要加载动态链接库，除了用-L选项外，还可以在/etc/ld.so.conf.d/中添加一个.conf文件把相关的链接库所在的目录添加进去（注意是目录）。然后用ldconfig命令使其生效。</p>
 <p><strong>ldconfig -p</strong>显示可以搜索到的所有的动态链接库，配合grep可以实现查找功能。<br>
           <div class="post-more-link text-center">
@@ -451,8 +451,8 @@
 
       
         
-          <p><strong>最有用的文档是官方文档!</strong><br><strong>最有用的文档是官方文档!</strong><br><strong>最有用的文档是官方文档!</strong></p>
-<h3 id="虚拟机安装"><a href="#虚拟机安装" class="headerlink" title="虚拟机安装"></a>虚拟机安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum -y install qemu-kvm libvirt python-virtinst bridge-utils</span></span><br><span class="line"><span class="comment"># qemu-img create -f qcow2 vm1.img 50G </span></span><br><span class="line"><span class="comment"># virt-install --name=vm$1 --boot cdrom,menu=on --ram=8192 --vcpus=8 --os-type=linux -c /root/dvd/CentOS-7.0-1406-x86_64-DVD.iso --disk path=/root/dvd/vm1.img,size=50,format=qcow2,bus=ide --network bridge=br0 --force --graphics vnc,listen=0.0.0.0,port=5901</span></span><br></pre></td></tr></table></figure>
+          <p><strong>最有用的文档是官方文档!</strong><br><strong>最有用的文档是官方文档!</strong><br><strong>最有用的文档是官方文档!</strong><br>重要的事情说三遍</p>
+<h1 id="1-虚拟机安装"><a href="#1-虚拟机安装" class="headerlink" title="1 虚拟机安装"></a>1 虚拟机安装</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum -y install qemu-kvm libvirt python-virtinst bridge-utils</span></span><br><span class="line"><span class="comment"># qemu-img create -f qcow2 vm1.img 50G </span></span><br><span class="line"><span class="comment"># virt-install --name=vm$1 --boot cdrom,menu=on --ram=8192 --vcpus=8 --os-type=linux -c /root/dvd/CentOS-7.0-1406-x86_64-DVD.iso --disk path=/root/dvd/vm1.img,size=50,format=qcow2,bus=ide --network bridge=br0 --force --graphics vnc,listen=0.0.0.0,port=5901</span></span><br></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/04/25/KVM虚拟机设置/#more" rel="contents">
               阅读全文 &raquo;
@@ -697,7 +697,7 @@
 
       
         
-          <h3 id="1-could-not-open-disk-image-root-dvd-vm1-img-Permission-denied"><a href="#1-could-not-open-disk-image-root-dvd-vm1-img-Permission-denied" class="headerlink" title="1 could not open disk image /root/dvd/vm1.img: Permission denied"></a>1 could not open disk image /root/dvd/vm1.img: Permission denied</h3><p>使用virt-install时出现了如下错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR    internal error Process exited while reading console log output: char device redirected to /dev/pts/1</span><br><span class="line">qemu-kvm: -drive file=/root/dvd/vm1.img,if=none,id=drive-ide0-0-0,format=raw,cache=none: could not open disk image /root/dvd/vm1.img: Permission denied</span><br></pre></td></tr></table></figure></p>
+          <h1 id="1-could-not-open-disk-image-root-dvd-vm1-img-Permission-denied"><a href="#1-could-not-open-disk-image-root-dvd-vm1-img-Permission-denied" class="headerlink" title="1 could not open disk image /root/dvd/vm1.img: Permission denied"></a>1 could not open disk image /root/dvd/vm1.img: Permission denied</h1><p>使用virt-install时出现了如下错误：<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR    internal error Process exited <span class="keyword">while</span> reading console <span class="built_in">log</span> output: <span class="keyword">char</span> device redirected <span class="built_in">to</span> /dev/pts/<span class="number">1</span></span><br><span class="line">qemu-kvm: -drive <span class="built_in">file</span>=/root/dvd/vm1.img,<span class="keyword">if</span>=<span class="literal">none</span>,id=drive-ide0<span class="number">-0</span><span class="number">-0</span>,<span class="built_in">format</span>=raw,cache=<span class="literal">none</span>: could <span class="keyword">not</span> <span class="built_in">open</span> disk image /root/dvd/vm1.img: Permission denied</span><br></pre></td></tr></table></figure></p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/04/25/KVM虚拟机安装错误集锦/#more" rel="contents">
               阅读全文 &raquo;
@@ -820,7 +820,7 @@
       
         
           <p>在宿主机上编辑虚拟机镜像中的内容有多种方法，我知道的有以下三种：</p>
-<h2 id="使用qemu-nbd命令"><a href="#使用qemu-nbd命令" class="headerlink" title="使用qemu-nbd命令"></a>使用qemu-nbd命令</h2><p>使用qemu-nbd挂载镜像到宿主机目录中。先查看linux内核的nbd模块是否加载。命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># modinfo nbd</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="使用qemu-nbd命令"><a href="#使用qemu-nbd命令" class="headerlink" title="使用qemu-nbd命令"></a>使用qemu-nbd命令</h1><p>使用qemu-nbd挂载镜像到宿主机目录中。先查看linux内核的nbd模块是否加载。命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># modinfo nbd</span></span><br></pre></td></tr></table></figure></p>
 <p>如果nbd没有加载，则先安装nbd模块<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/04/24/宿主机上修改虚拟机镜像/#more" rel="contents">
