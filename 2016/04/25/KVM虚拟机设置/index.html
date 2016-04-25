@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="云计算," />
+  <meta name="keywords" content="云计算,KVM,虚拟机," />
 
 
 
@@ -80,22 +80,19 @@
 
 
 
-<meta name="description" content="在宿主机上编辑虚拟机镜像中的内容有多种方法，我知道的有以下三种：
-使用qemu-nbd命令使用qemu-nbd挂载镜像到宿主机目录中。先查看linux内核的nbd模块是否加载。命令如下：1# modinfo nbd
-如果nbd没有加载，则先安装nbd模块">
+<meta name="description" content="最有用的文档是官方文档!最有用的文档是官方文档!最有用的文档是官方文档!
+虚拟机安装123# yum -y install qemu-kvm libvirt python-virtinst bridge-utils# qemu-img create -f qcow2 vm1.img 50G # virt-install --name=vm$1 --boot cdrom,menu=on --ram=">
 <meta property="og:type" content="article">
-<meta property="og:title" content="宿主机上编辑虚拟机镜像">
-<meta property="og:url" content="http://dvd0423.github.io/2016/04/24/宿主机上修改虚拟机镜像/index.html">
+<meta property="og:title" content="KVM虚拟机设置">
+<meta property="og:url" content="http://dvd0423.github.io/2016/04/25/KVM虚拟机设置/index.html">
 <meta property="og:site_name" content="Davi">
-<meta property="og:description" content="在宿主机上编辑虚拟机镜像中的内容有多种方法，我知道的有以下三种：
-使用qemu-nbd命令使用qemu-nbd挂载镜像到宿主机目录中。先查看linux内核的nbd模块是否加载。命令如下：1# modinfo nbd
-如果nbd没有加载，则先安装nbd模块">
-<meta property="og:updated_time" content="2016-04-24T11:30:23.000Z">
+<meta property="og:description" content="最有用的文档是官方文档!最有用的文档是官方文档!最有用的文档是官方文档!
+虚拟机安装123# yum -y install qemu-kvm libvirt python-virtinst bridge-utils# qemu-img create -f qcow2 vm1.img 50G # virt-install --name=vm$1 --boot cdrom,menu=on --ram=">
+<meta property="og:updated_time" content="2016-04-25T12:46:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="宿主机上编辑虚拟机镜像">
-<meta name="twitter:description" content="在宿主机上编辑虚拟机镜像中的内容有多种方法，我知道的有以下三种：
-使用qemu-nbd命令使用qemu-nbd挂载镜像到宿主机目录中。先查看linux内核的nbd模块是否加载。命令如下：1# modinfo nbd
-如果nbd没有加载，则先安装nbd模块">
+<meta name="twitter:title" content="KVM虚拟机设置">
+<meta name="twitter:description" content="最有用的文档是官方文档!最有用的文档是官方文档!最有用的文档是官方文档!
+虚拟机安装123# yum -y install qemu-kvm libvirt python-virtinst bridge-utils# qemu-img create -f qcow2 vm1.img 50G # virt-install --name=vm$1 --boot cdrom,menu=on --ram=">
 
 
 
@@ -113,7 +110,7 @@
   };
 </script>
 
-  <title> 宿主机上编辑虚拟机镜像 | Davi </title>
+  <title> KVM虚拟机设置 | Davi </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -262,7 +259,7 @@
             
             
               
-                宿主机上编辑虚拟机镜像
+                KVM虚拟机设置
               
             
           </h1>
@@ -274,8 +271,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-24T19:30:23+08:00" content="2016-04-24">
-              2016-04-24
+            <time itemprop="dateCreated" datetime="2016-04-25T20:46:20+08:00" content="2016-04-25">
+              2016-04-25
             </time>
           </span>
 
@@ -304,8 +301,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/24/宿主机上修改虚拟机镜像/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/24/宿主机上修改虚拟机镜像/" itemprop="commentsCount"></span>
+                <a href="/2016/04/25/KVM虚拟机设置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/25/KVM虚拟机设置/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -328,20 +325,17 @@
       
 
       
-        <p>在宿主机上编辑虚拟机镜像中的内容有多种方法，我知道的有以下三种：</p>
-<h2 id="使用qemu-nbd命令"><a href="#使用qemu-nbd命令" class="headerlink" title="使用qemu-nbd命令"></a>使用qemu-nbd命令</h2><p>使用qemu-nbd挂载镜像到宿主机目录中。先查看linux内核的nbd模块是否加载。命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># modinfo nbd</span></span><br></pre></td></tr></table></figure></p>
-<p>如果nbd没有加载，则先安装nbd模块<br><a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cd linux-3.17.4</span></span><br><span class="line"><span class="comment"># make CONFIG_BLK_DEV_NBD=m M=drivers/block</span></span><br><span class="line"><span class="comment"># cp drivers/block/nbd.ko /lib/modules/"$(uname -r)"/kernel/drivers/block/</span></span><br><span class="line"><span class="comment"># modprobe nbd max_part=8</span></span><br></pre></td></tr></table></figure></p>
-<p>然后使用qemu-nbd命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># qemu-nbd -c /dev/nbd0 xxx/vm.img</span></span><br></pre></td></tr></table></figure></p>
-<p>如果查看宿主机的/dev目录会发现多个如下的目录文件。<br><strong>nbd0p1 nbd0p2 …</strong><br>每一个目录对应一个虚拟机的分区<br>如果kvm虚拟机使用的是标准分区，则直接使用下列命令就可以挂载<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mount /dev/nbd0p1 /mnt</span></span><br></pre></td></tr></table></figure></p>
-<p>如果使用的是LVM则可能会出现下面的错误<br><strong>mount: unknown filesystem type ‘LVM2_member’</strong><br>处理方法如下，首先安装lvm2工具<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum install lvm2</span></span><br></pre></td></tr></table></figure></p>
-<p>然后用下面命令查看相关内容<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># lvdisplay</span></span><br></pre></td></tr></table></figure></p>
-<p>显示如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">--- Logical volume ---</span><br><span class="line">  LV Path                /dev/centos/root</span><br><span class="line">  LV Name                root</span><br><span class="line">  VG Name                centos</span><br><span class="line">  LV UUID                G9vOCp-kKe0-fH4E-WJ8A-XIBu-XaNo-No21cp</span><br><span class="line">  LV Write Access        read/write</span><br><span class="line">  LV Creation host, time localhost, 2016-02-21 16:47:50 +0800</span><br><span class="line">  LV Status              unenable</span><br><span class="line">  \# open                 1</span><br><span class="line">  LV Size                47.85 GiB</span><br><span class="line">  Current LE             12249</span><br><span class="line">  Segments               1</span><br><span class="line">  Allocation             inherit</span><br><span class="line">  Read ahead sectors     auto</span><br><span class="line">  \- currently set to     256</span><br><span class="line">  Block device           253:0</span><br></pre></td></tr></table></figure></p>
-<p>如果LV Status是unenable，则需要激活逻辑卷<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vgchange -ay /dev/centos</span></span><br></pre></td></tr></table></figure></p>
-<p>然后挂载<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mount /dev/centos/root /mnt</span></span><br></pre></td></tr></table></figure></p>
-<p>修改完虚拟机镜像后，可以使用下面命令恢复原来状态<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># umount /mnt</span></span><br><span class="line"><span class="comment"># qemu-nbd -d /dev/nbd0</span></span><br></pre></td></tr></table></figure></p>
-<p>下面两种方式更简单，但是我使用下面两个方法时，虚拟机就会卡住，所以不做详细介绍。百度一下会有很多相关文章。</p>
-<h2 id="使用guestfish编辑"><a href="#使用guestfish编辑" class="headerlink" title="使用guestfish编辑"></a>使用guestfish编辑</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum -y install guestfish</span></span><br></pre></td></tr></table></figure>
-<h2 id="使用virt-edit"><a href="#使用virt-edit" class="headerlink" title="使用virt-edit"></a>使用virt-edit</h2>
+        <p><strong>最有用的文档是官方文档!</strong><br><strong>最有用的文档是官方文档!</strong><br><strong>最有用的文档是官方文档!</strong></p>
+<h3 id="虚拟机安装"><a href="#虚拟机安装" class="headerlink" title="虚拟机安装"></a>虚拟机安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum -y install qemu-kvm libvirt python-virtinst bridge-utils</span></span><br><span class="line"><span class="comment"># qemu-img create -f qcow2 vm1.img 50G </span></span><br><span class="line"><span class="comment"># virt-install --name=vm$1 --boot cdrom,menu=on --ram=8192 --vcpus=8 --os-type=linux -c /root/dvd/CentOS-7.0-1406-x86_64-DVD.iso --disk path=/root/dvd/vm1.img,size=50,format=qcow2,bus=ide --network bridge=br0 --force --graphics vnc,listen=0.0.0.0,port=5901</span></span><br></pre></td></tr></table></figure>
+<h3 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">virsh define vm1</span><br><span class="line">virsh start vm1</span><br><span class="line">virsh stop vm1</span><br><span class="line">virsh undefine vm1</span><br><span class="line">virsh edit vm1</span><br></pre></td></tr></table></figure>
+<h3 id="设置vCPU亲和性："><a href="#设置vCPU亲和性：" class="headerlink" title="设置vCPU亲和性："></a>设置vCPU亲和性：</h3><p><strong>1 编辑xml文件添加如下内容</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;cputune&gt;</span><br><span class="line">        &lt;vcpupin vcpu=&quot;0&quot; cpuset=&quot;0-1,4-6&quot;/&gt;</span><br><span class="line">&lt;/cputune&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>2 使用命令:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virsh vcpupin vm1 0 0-1,4-6</span><br></pre></td></tr></table></figure></p>
+<p><strong>3 使用taskset设置整个虚拟机的亲和性</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># taskset -cp 0-8 vm1_pid</span><br></pre></td></tr></table></figure></p>
+<p><strong>4 cgroup设置</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># yum install libcgroup</span><br><span class="line"># yum install libvirt</span><br><span class="line"># service cgconfig restart</span><br><span class="line"># service libvirtd restart</span><br><span class="line"># echo 0-1 &gt; /cgroup/cpuset/libvirt/qemu/vm1/vcpu0/cpuset.cpus</span><br></pre></td></tr></table></figure></p>
+<h3 id="虚拟机快照"><a href="#虚拟机快照" class="headerlink" title="虚拟机快照"></a>虚拟机快照</h3><p>产生：<figure class="highlight plain"><figcaption><span>snapshot-create-as vm1 vm1-before```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">显示：```virsh snapshot-list</span><br></pre></td></tr></table></figure></p>
+<p>恢复：<figure class="highlight plain"><figcaption><span>snapshot-revert vm1 vm1-before```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">### 虚拟机迁移</span><br><span class="line"></span><br><span class="line">先测试  ```virsh -c qemu+ssh://node90/system```  </span><br><span class="line">再迁移  ```virsh --live migrate vm1 qemu+ssh://node90/system</span><br></pre></td></tr></table></figure></p>
+<h3 id="虚拟机克隆"><a href="#虚拟机克隆" class="headerlink" title="虚拟机克隆"></a>虚拟机克隆</h3><pre><code>virt-clone -o vm1 -n vm2 -f /root/dvd/vm2.img
+</code></pre>
       
     </div>
     
@@ -363,6 +357,10 @@
           
             <a href="/tags/云计算/" rel="tag">#云计算</a>
           
+            <a href="/tags/KVM/" rel="tag">#KVM</a>
+          
+            <a href="/tags/虚拟机/" rel="tag">#虚拟机</a>
+          
         </div>
       
 
@@ -370,12 +368,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/04/25/Python实现实验室自动日报生成器/" rel="next" title="Python实现实验室自动日报生成器">
+                <i class="fa fa-chevron-left"></i> Python实现实验室自动日报生成器
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/04/25/KVM虚拟机安装错误集锦/" rel="prev" title="KVM虚拟机安装错误集锦">
-                KVM虚拟机安装错误集锦 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/04/25/ldconfig与ldd/" rel="prev" title="ldconfig与ldd">
+                ldconfig与ldd <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -402,8 +404,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/24/宿主机上修改虚拟机镜像/"
-           data-title="宿主机上编辑虚拟机镜像" data-url="http://dvd0423.github.io/2016/04/24/宿主机上修改虚拟机镜像/">
+      <div class="ds-thread" data-thread-key="2016/04/25/KVM虚拟机设置/"
+           data-title="KVM虚拟机设置" data-url="http://dvd0423.github.io/2016/04/25/KVM虚拟机设置/">
       </div>
     
   </div>
@@ -519,7 +521,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用qemu-nbd命令"><span class="nav-number">1.</span> <span class="nav-text">使用qemu-nbd命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用guestfish编辑"><span class="nav-number">2.</span> <span class="nav-text">使用guestfish编辑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用virt-edit"><span class="nav-number">3.</span> <span class="nav-text">使用virt-edit</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机安装"><span class="nav-number">1.</span> <span class="nav-text">虚拟机安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础命令"><span class="nav-number">2.</span> <span class="nav-text">基础命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置vCPU亲和性："><span class="nav-number">3.</span> <span class="nav-text">设置vCPU亲和性：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机快照"><span class="nav-number">4.</span> <span class="nav-text">虚拟机快照</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机克隆"><span class="nav-number">5.</span> <span class="nav-text">虚拟机克隆</span></a></li></ol></div>
             
           </div>
         </section>
