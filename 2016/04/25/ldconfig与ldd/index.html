@@ -90,7 +90,7 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合gr">
 <meta property="og:description" content="在linux下安装软件经常出现动态链接库（.so文件）的问题。这时候需要用到==ldconfig==和==ldd==两个命令。
 如果是安装软件时需要加载动态链接库，除了用-L选项外，还可以在/etc/ld.so.conf.d/中添加一个.conf文件把相关的链接库所在的目录添加进去（注意是目录）。然后用ldconfig命令使其生效。
 ldconfig -p显示可以搜索到的所有的动态链接库，配合gr">
-<meta property="og:updated_time" content="2016-04-25T12:50:14.000Z">
+<meta property="og:updated_time" content="2016-04-25T13:04:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ldconfig与ldd">
 <meta name="twitter:description" content="在linux下安装软件经常出现动态链接库（.so文件）的问题。这时候需要用到==ldconfig==和==ldd==两个命令。
@@ -330,8 +330,7 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合gr">
       
         <p>在linux下安装软件经常出现动态链接库（.so文件）的问题。<br>这时候需要用到==ldconfig==和==ldd==两个命令。</p>
 <p>如果是安装软件时需要加载动态链接库，除了用-L选项外，还可以在/etc/ld.so.conf.d/中添加一个.conf文件把相关的链接库所在的目录添加进去（注意是目录）。然后用ldconfig命令使其生效。</p>
-<p><strong>ldconfig -p</strong>显示可以搜索到的所有的动态链接库，配合grep可以实现查找功能。</p>
-<p>如果是检查某个软件用到了哪些动态链接库则用ldd。比如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldd /usr/bin/ssh</span><br></pre></td></tr></table></figure></p>
+<p><strong>ldconfig -p</strong>显示可以搜索到的所有的动态链接库，配合grep可以实现查找功能。<br>&lt;!—more—&gt;<br>如果是检查某个软件用到了哪些动态链接库则用ldd。比如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldd /usr/bin/ssh</span><br></pre></td></tr></table></figure></p>
 <p>显示如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">   linux-vdso.so.1 =&gt;  (0x00007fff36ca2000)</span><br><span class="line">libfipscheck.so.1 =&gt; /lib64/libfipscheck.so.1 (0x00002aeeb9abc000)</span><br><span class="line">libselinux.so.1 =&gt; /lib64/libselinux.so.1 (0x00002aeeb9cc0000)</span><br><span class="line">libcrypto.so.10 =&gt; /usr/lib64/libcrypto.so.10 (0x00002aeeb9edf000)</span><br><span class="line">libutil.so.1 =&gt; /lib64/libutil.so.1 (0x00002aeeba2c2000)</span><br><span class="line">libz.so.1 =&gt; /lib64/libz.so.1 (0x00002aeeba4c6000)</span><br><span class="line">libnsl.so.1 =&gt; /lib64/libnsl.so.1 (0x00002aeeba6dc000)</span><br><span class="line">libcrypt.so.1 =&gt; /lib64/libcrypt.so.1 (0x00002aeeba8f5000)</span><br><span class="line">libresolv.so.2 =&gt; /lib64/libresolv.so.2 (0x00002aeebab2d000)</span><br><span class="line">libgssapi_krb5.so.2 =&gt; /lib64/libgssapi_krb5.so.2 (0x00002aeebad47000)</span><br><span class="line">libkrb5.so.3 =&gt; /lib64/libkrb5.so.3 (0x00002aeebaf8b000)</span><br><span class="line">libk5crypto.so.3 =&gt; /lib64/libk5crypto.so.3 (0x00002aeebb273000)</span><br><span class="line">libcom_err.so.2 =&gt; /lib64/libcom_err.so.2 (0x00002aeebb49f000)</span><br><span class="line">libnss3.so =&gt; /usr/lib64/libnss3.so (0x00002aeebb6a3000)</span><br><span class="line">libc.so.6 =&gt; /lib64/libc.so.6 (0x00002aeebb9e3000)</span><br><span class="line">libplc4.so =&gt; /lib64/libplc4.so (0x00002aeebbd84000)</span><br><span class="line">libdl.so.2 =&gt; /lib64/libdl.so.2 (0x00002aeebbf89000)</span><br><span class="line">/lib64/ld-linux-x86-64.so.2 (0x0000003fe1c00000)</span><br><span class="line">libfreebl3.so =&gt; /lib64/libfreebl3.so (0x00002aeebc18e000)</span><br><span class="line">libkrb5support.so.0 =&gt; /lib64/libkrb5support.so.0 (0x00002aeebc391000)</span><br><span class="line">libkeyutils.so.1 =&gt; /lib64/libkeyutils.so.1 (0x00002aeebc59c000)</span><br><span class="line">libpthread.so.0 =&gt; /lib64/libpthread.so.0 (0x00002aeebc7a0000)</span><br><span class="line">libnssutil3.so =&gt; /usr/lib64/libnssutil3.so (0x00002aeebc9bc000)</span><br><span class="line">libplds4.so =&gt; /lib64/libplds4.so (0x00002aeebcbe8000)</span><br><span class="line">libnspr4.so =&gt; /lib64/libnspr4.so (0x00002aeebcded000)</span><br><span class="line">librt.so.1 =&gt; /lib64/librt.so.1 (0x00002aeebd02b000)</span><br></pre></td></tr></table></figure></p>
 
       
@@ -450,7 +449,7 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合gr">
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -459,7 +458,7 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合gr">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
