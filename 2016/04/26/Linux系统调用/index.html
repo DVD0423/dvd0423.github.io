@@ -80,19 +80,24 @@
 
 
 
-<meta name="description" content="跟踪系统调用系统调用是linux用户态和内核态信息交互的通道。运行机理主要是通过用户态触发CPU软中断进入内核态，在内核中调用系统调用号对应的相关函数。对于用户程序，可以使用strace命令追踪底层使用了哪些系统调用：1strace -o log.txt path_of_your_program
-系统调用分析下面我们以open这个系统调用为例说明其实现原理。open在内核中函数原型如下：12345">
+<meta name="description" content="跟踪系统调用系统调用是linux用户态和内核态信息交互的通道。运行机理主要是通过用户态触发CPU软中断进入内核态，在内核中调用系统调用号对应的相关函数。对于用户程序，可以使用strace命令追踪底层使用了哪些系统调用：1strace path_of_your_program
+下图是我执行的一个测试结果其中使用的系统调用有：execve、mmap、access、stat、open等。
+系统调用分析下">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux系统调用">
 <meta property="og:url" content="http://dvd0423.github.io/2016/04/26/Linux系统调用/index.html">
 <meta property="og:site_name" content="Davi">
-<meta property="og:description" content="跟踪系统调用系统调用是linux用户态和内核态信息交互的通道。运行机理主要是通过用户态触发CPU软中断进入内核态，在内核中调用系统调用号对应的相关函数。对于用户程序，可以使用strace命令追踪底层使用了哪些系统调用：1strace -o log.txt path_of_your_program
-系统调用分析下面我们以open这个系统调用为例说明其实现原理。open在内核中函数原型如下：12345">
-<meta property="og:updated_time" content="2016-04-26T12:15:28.000Z">
+<meta property="og:description" content="跟踪系统调用系统调用是linux用户态和内核态信息交互的通道。运行机理主要是通过用户态触发CPU软中断进入内核态，在内核中调用系统调用号对应的相关函数。对于用户程序，可以使用strace命令追踪底层使用了哪些系统调用：1strace path_of_your_program
+下图是我执行的一个测试结果其中使用的系统调用有：execve、mmap、access、stat、open等。
+系统调用分析下">
+<meta property="og:image" content="http://7xtdio.com2.z0.glb.clouddn.com/strace-log.png">
+<meta property="og:updated_time" content="2016-04-26T12:22:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux系统调用">
-<meta name="twitter:description" content="跟踪系统调用系统调用是linux用户态和内核态信息交互的通道。运行机理主要是通过用户态触发CPU软中断进入内核态，在内核中调用系统调用号对应的相关函数。对于用户程序，可以使用strace命令追踪底层使用了哪些系统调用：1strace -o log.txt path_of_your_program
-系统调用分析下面我们以open这个系统调用为例说明其实现原理。open在内核中函数原型如下：12345">
+<meta name="twitter:description" content="跟踪系统调用系统调用是linux用户态和内核态信息交互的通道。运行机理主要是通过用户态触发CPU软中断进入内核态，在内核中调用系统调用号对应的相关函数。对于用户程序，可以使用strace命令追踪底层使用了哪些系统调用：1strace path_of_your_program
+下图是我执行的一个测试结果其中使用的系统调用有：execve、mmap、access、stat、open等。
+系统调用分析下">
+<meta name="twitter:image" content="http://7xtdio.com2.z0.glb.clouddn.com/strace-log.png">
 
 
 
@@ -325,7 +330,8 @@
       
 
       
-        <h1 id="跟踪系统调用"><a href="#跟踪系统调用" class="headerlink" title="跟踪系统调用"></a>跟踪系统调用</h1><p>系统调用是linux用户态和内核态信息交互的通道。运行机理主要是通过用户态触发CPU软中断进入内核态，在内核中调用系统调用号对应的相关函数。对于用户程序，可以使用strace命令追踪底层使用了哪些系统调用：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strace -o log<span class="selector-class">.txt</span> path_of_your_program</span><br></pre></td></tr></table></figure></p>
+        <h1 id="跟踪系统调用"><a href="#跟踪系统调用" class="headerlink" title="跟踪系统调用"></a>跟踪系统调用</h1><p>系统调用是linux用户态和内核态信息交互的通道。运行机理主要是通过用户态触发CPU软中断进入内核态，在内核中调用系统调用号对应的相关函数。对于用户程序，可以使用strace命令追踪底层使用了哪些系统调用：<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">strace </span>path_of_your_program</span><br></pre></td></tr></table></figure></p>
+<p>下图是我执行的一个测试结果<br><img src="http://7xtdio.com2.z0.glb.clouddn.com/strace-log.png" alt="strace"><br>其中使用的系统调用有：execve、mmap、access、stat、open等。</p>
 <h1 id="系统调用分析"><a href="#系统调用分析" class="headerlink" title="系统调用分析"></a>系统调用分析</h1><p>下面我们以<strong>open</strong>这个系统调用为例说明其实现原理。open在内核中函数原型如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SYSCALL_DEFINE3(open, <span class="keyword">const</span> <span class="keyword">char</span> __user *, filename, <span class="keyword">int</span>, flags, <span class="keyword">umode_t</span>, mode)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (force_o_largefile())</span><br><span class="line">        flags |= O_LARGEFILE;</span><br><span class="line"></span><br><span class="line">    return do_sys_open(AT_FDCWD, filename, flags, mode);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>而在用户空间触发open系统调用的函数为:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">open</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *filename, <span class="keyword">int</span> flags, <span class="keyword">int</span> mode)</span></span>;</span><br></pre></td></tr></table></figure></p>
 <p>当然也可以使用<em>syscall()</em>函数实现，上面的open函数等价于：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line">#define __NR_restart_syscall    0</span><br><span class="line">#define __NR_exit    1</span><br><span class="line">#define __NR_fork    2</span><br><span class="line">#define __NR_read    3</span><br><span class="line">#define __NR_write   4</span><br><span class="line">#define __NR_open    5</span><br><span class="line">...</span><br><span class="line">*/</span></span><br><span class="line">syscall(num,<span class="keyword">const</span> <span class="keyword">char</span> *, filename, <span class="keyword">int</span>, flags, <span class="keyword">int</span>, mode);    <span class="comment">//num是调用号，这里是5，后面的参数和open一样</span></span><br></pre></td></tr></table></figure></p>
