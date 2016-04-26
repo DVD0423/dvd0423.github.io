@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="linux,shell," />
+  <meta name="keywords" content="linux," />
 
 
 
@@ -80,22 +80,19 @@
 
 
 
-<meta name="description" content="在linux下安装软件经常出现动态链接库（.so文件）的问题。这时候需要用到ldconfig和ldd两个命令。
-如果是安装软件时需要加载动态链接库，除了用-L选项外，还可以在/etc/ld.so.conf.d/中添加一个.conf文件把相关的链接库所在的目录添加进去（注意是目录）。然后用ldconfig命令使其生效。
-ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以实现查找">
+<meta name="description" content="跟踪系统调用系统调用是linux用户态和内核态信息交互的通道。运行机理主要是通过用户态触发CPU软中断进入内核态，在内核中调用系统调用号对应的相关函数。对于用户程序，可以使用strace命令追踪底层使用了哪些系统调用：1strace -o log.txt path_of_your_program
+系统调用分析下面我们以open这个系统调用为例说明其实现原理。open在内核中函数原型如下：12345">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ldconfig与ldd">
-<meta property="og:url" content="http://dvd0423.github.io/2016/04/25/ldconfig与ldd/index.html">
+<meta property="og:title" content="Linux系统调用">
+<meta property="og:url" content="http://dvd0423.github.io/2016/04/26/Linux系统调用/index.html">
 <meta property="og:site_name" content="Davi">
-<meta property="og:description" content="在linux下安装软件经常出现动态链接库（.so文件）的问题。这时候需要用到ldconfig和ldd两个命令。
-如果是安装软件时需要加载动态链接库，除了用-L选项外，还可以在/etc/ld.so.conf.d/中添加一个.conf文件把相关的链接库所在的目录添加进去（注意是目录）。然后用ldconfig命令使其生效。
-ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以实现查找">
-<meta property="og:updated_time" content="2016-04-26T12:15:22.000Z">
+<meta property="og:description" content="跟踪系统调用系统调用是linux用户态和内核态信息交互的通道。运行机理主要是通过用户态触发CPU软中断进入内核态，在内核中调用系统调用号对应的相关函数。对于用户程序，可以使用strace命令追踪底层使用了哪些系统调用：1strace -o log.txt path_of_your_program
+系统调用分析下面我们以open这个系统调用为例说明其实现原理。open在内核中函数原型如下：12345">
+<meta property="og:updated_time" content="2016-04-26T12:15:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ldconfig与ldd">
-<meta name="twitter:description" content="在linux下安装软件经常出现动态链接库（.so文件）的问题。这时候需要用到ldconfig和ldd两个命令。
-如果是安装软件时需要加载动态链接库，除了用-L选项外，还可以在/etc/ld.so.conf.d/中添加一个.conf文件把相关的链接库所在的目录添加进去（注意是目录）。然后用ldconfig命令使其生效。
-ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以实现查找">
+<meta name="twitter:title" content="Linux系统调用">
+<meta name="twitter:description" content="跟踪系统调用系统调用是linux用户态和内核态信息交互的通道。运行机理主要是通过用户态触发CPU软中断进入内核态，在内核中调用系统调用号对应的相关函数。对于用户程序，可以使用strace命令追踪底层使用了哪些系统调用：1strace -o log.txt path_of_your_program
+系统调用分析下面我们以open这个系统调用为例说明其实现原理。open在内核中函数原型如下：12345">
 
 
 
@@ -113,7 +110,7 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
   };
 </script>
 
-  <title> ldconfig与ldd | Davi </title>
+  <title> Linux系统调用 | Davi </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -262,7 +259,7 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
             
             
               
-                ldconfig与ldd
+                Linux系统调用
               
             
           </h1>
@@ -274,8 +271,8 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-25T20:50:14+08:00" content="2016-04-25">
-              2016-04-25
+            <time itemprop="dateCreated" datetime="2016-04-26T19:17:17+08:00" content="2016-04-26">
+              2016-04-26
             </time>
           </span>
 
@@ -288,8 +285,8 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/shell/" itemprop="url" rel="index">
-                    <span itemprop="name">shell</span>
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
                   </a>
                 </span>
 
@@ -304,8 +301,8 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/25/ldconfig与ldd/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/25/ldconfig与ldd/" itemprop="commentsCount"></span>
+                <a href="/2016/04/26/Linux系统调用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/26/Linux系统调用/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -328,10 +325,24 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
       
 
       
-        <p>在linux下安装软件经常出现动态链接库（.so文件）的问题。这时候需要用到<strong>ldconfig</strong>和<strong>ldd</strong>两个命令。</p>
-<p>如果是安装软件时需要加载动态链接库，除了用-L选项外，还可以在/etc/ld.so.conf.d/中添加一个.conf文件把相关的链接库所在的目录添加进去（注意是目录）。然后用ldconfig命令使其生效。</p>
-<p><strong>ldconfig -p</strong>显示可以搜索到的所有的动态链接库，配合grep可以实现查找功能。<br><a id="more"></a><br>如果想检查某个软件用到了哪些动态链接库则用ldd。比如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ldd /usr/bin/ssh</span></span><br></pre></td></tr></table></figure></p>
-<p>显示如下：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">   linux-vdso<span class="selector-class">.so</span>.<span class="number">1</span> =&gt;  (<span class="number">0</span>x00007fff36ca2000)</span><br><span class="line">libfipscheck<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/libfipscheck<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeeb9abc000)</span><br><span class="line">libselinux<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/libselinux<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeeb9cc0000)</span><br><span class="line">libcrypto<span class="selector-class">.so</span>.<span class="number">10</span> =&gt; /usr/lib64/libcrypto<span class="selector-class">.so</span>.<span class="number">10</span> (<span class="number">0</span>x00002aeeb9edf000)</span><br><span class="line">libutil<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/libutil<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeeba2c2000)</span><br><span class="line">libz<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/libz<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeeba4c6000)</span><br><span class="line">libnsl<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/libnsl<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeeba6dc000)</span><br><span class="line">libcrypt<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/libcrypt<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeeba8f5000)</span><br><span class="line">libresolv<span class="selector-class">.so</span>.<span class="number">2</span> =&gt; /lib64/libresolv<span class="selector-class">.so</span>.<span class="number">2</span> (<span class="number">0</span>x00002aeebab2d000)</span><br><span class="line">libgssapi_krb5<span class="selector-class">.so</span>.<span class="number">2</span> =&gt; /lib64/libgssapi_krb5<span class="selector-class">.so</span>.<span class="number">2</span> (<span class="number">0</span>x00002aeebad47000)</span><br><span class="line">libkrb5<span class="selector-class">.so</span>.<span class="number">3</span> =&gt; /lib64/libkrb5<span class="selector-class">.so</span>.<span class="number">3</span> (<span class="number">0</span>x00002aeebaf8b000)</span><br><span class="line">libk5crypto<span class="selector-class">.so</span>.<span class="number">3</span> =&gt; /lib64/libk5crypto<span class="selector-class">.so</span>.<span class="number">3</span> (<span class="number">0</span>x00002aeebb273000)</span><br><span class="line">libcom_err<span class="selector-class">.so</span>.<span class="number">2</span> =&gt; /lib64/libcom_err<span class="selector-class">.so</span>.<span class="number">2</span> (<span class="number">0</span>x00002aeebb49f000)</span><br><span class="line">libnss3<span class="selector-class">.so</span> =&gt; /usr/lib64/libnss3<span class="selector-class">.so</span> (<span class="number">0</span>x00002aeebb6a3000)</span><br><span class="line">libc<span class="selector-class">.so</span>.<span class="number">6</span> =&gt; /lib64/libc<span class="selector-class">.so</span>.<span class="number">6</span> (<span class="number">0</span>x00002aeebb9e3000)</span><br><span class="line">libplc4<span class="selector-class">.so</span> =&gt; /lib64/libplc4<span class="selector-class">.so</span> (<span class="number">0</span>x00002aeebbd84000)</span><br><span class="line">libdl<span class="selector-class">.so</span>.<span class="number">2</span> =&gt; /lib64/libdl<span class="selector-class">.so</span>.<span class="number">2</span> (<span class="number">0</span>x00002aeebbf89000)</span><br><span class="line">/lib64/ld-linux-x86-<span class="number">64</span><span class="selector-class">.so</span>.<span class="number">2</span> (<span class="number">0</span>x0000003fe1c00000)</span><br><span class="line">libfreebl3<span class="selector-class">.so</span> =&gt; /lib64/libfreebl3<span class="selector-class">.so</span> (<span class="number">0</span>x00002aeebc18e000)</span><br><span class="line">libkrb5support<span class="selector-class">.so</span>.<span class="number">0</span> =&gt; /lib64/libkrb5support<span class="selector-class">.so</span>.<span class="number">0</span> (<span class="number">0</span>x00002aeebc391000)</span><br><span class="line">libkeyutils<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/libkeyutils<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeebc59c000)</span><br><span class="line">libpthread<span class="selector-class">.so</span>.<span class="number">0</span> =&gt; /lib64/libpthread<span class="selector-class">.so</span>.<span class="number">0</span> (<span class="number">0</span>x00002aeebc7a0000)</span><br><span class="line">libnssutil3<span class="selector-class">.so</span> =&gt; /usr/lib64/libnssutil3<span class="selector-class">.so</span> (<span class="number">0</span>x00002aeebc9bc000)</span><br><span class="line">libplds4<span class="selector-class">.so</span> =&gt; /lib64/libplds4<span class="selector-class">.so</span> (<span class="number">0</span>x00002aeebcbe8000)</span><br><span class="line">libnspr4<span class="selector-class">.so</span> =&gt; /lib64/libnspr4<span class="selector-class">.so</span> (<span class="number">0</span>x00002aeebcded000)</span><br><span class="line">librt<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/librt<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeebd02b000)</span><br></pre></td></tr></table></figure></p>
+        <h1 id="跟踪系统调用"><a href="#跟踪系统调用" class="headerlink" title="跟踪系统调用"></a>跟踪系统调用</h1><p>系统调用是linux用户态和内核态信息交互的通道。运行机理主要是通过用户态触发CPU软中断进入内核态，在内核中调用系统调用号对应的相关函数。对于用户程序，可以使用strace命令追踪底层使用了哪些系统调用：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strace -o log<span class="selector-class">.txt</span> path_of_your_program</span><br></pre></td></tr></table></figure></p>
+<h1 id="系统调用分析"><a href="#系统调用分析" class="headerlink" title="系统调用分析"></a>系统调用分析</h1><p>下面我们以<strong>open</strong>这个系统调用为例说明其实现原理。open在内核中函数原型如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SYSCALL_DEFINE3(open, <span class="keyword">const</span> <span class="keyword">char</span> __user *, filename, <span class="keyword">int</span>, flags, <span class="keyword">umode_t</span>, mode)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (force_o_largefile())</span><br><span class="line">        flags |= O_LARGEFILE;</span><br><span class="line"></span><br><span class="line">    return do_sys_open(AT_FDCWD, filename, flags, mode);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>而在用户空间触发open系统调用的函数为:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">open</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *filename, <span class="keyword">int</span> flags, <span class="keyword">int</span> mode)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>当然也可以使用<em>syscall()</em>函数实现，上面的open函数等价于：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line">#define __NR_restart_syscall    0</span><br><span class="line">#define __NR_exit    1</span><br><span class="line">#define __NR_fork    2</span><br><span class="line">#define __NR_read    3</span><br><span class="line">#define __NR_write   4</span><br><span class="line">#define __NR_open    5</span><br><span class="line">...</span><br><span class="line">*/</span></span><br><span class="line">syscall(num,<span class="keyword">const</span> <span class="keyword">char</span> *, filename, <span class="keyword">int</span>, flags, <span class="keyword">int</span>, mode);    <span class="comment">//num是调用号，这里是5，后面的参数和open一样</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="添加系统调用"><a href="#添加系统调用" class="headerlink" title="添加系统调用"></a>添加系统调用</h1><p>如果要添加自己的系统调用，主要分4步：</p>
+<ul>
+<li><p>首先要在系统调用表/arch/sh/include/uapi/asm/unistd_64.h中添加调用号，并将总调用数加1。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __NR_firstsyscall     380        <span class="comment">//添加的部分</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NR_syscalls     　　   381        <span class="comment">//总的系统调用个数，本来为380</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>其次要在系统调用表syscall_table.s中添加相应的表项。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ENTRY(sys_call_table)</span><br><span class="line">        .<span class="keyword">long</span> sys_restart_syscall    <span class="comment">/* 0 - old "setup()" system call,</span><br><span class="line">                     　　　　　　　　　　* used for restarting */</span></span><br><span class="line">        ...</span><br><span class="line">        .<span class="keyword">long</span> sys_kcmp</span><br><span class="line">    　　 .<span class="keyword">long</span> sys_finit_module</span><br><span class="line">        <span class="comment">/*添加自己的*/</span></span><br><span class="line">        .<span class="keyword">long</span> sys_firstsyscall        <span class="comment">/*380*/</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第三在内核中实现系统调用的具体程序。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SYSCALL_DEFINE3(firstsyscall, <span class="keyword">int</span>, value)&#123;</span><br><span class="line">    printk(<span class="string">"fuckDW"</span>);</span><br><span class="line">    return value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重新编译内核，然后使用syscall及相关参数调用内核的firstsyscall函数。</p>
+</li>
+</ul>
 
       
     </div>
@@ -354,8 +365,6 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
           
             <a href="/tags/linux/" rel="tag">#linux</a>
           
-            <a href="/tags/shell/" rel="tag">#shell</a>
-          
         </div>
       
 
@@ -363,16 +372,16 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/25/Python实现实验室自动日报生成器/" rel="next" title="Python实现实验室自动日报生成器">
-                <i class="fa fa-chevron-left"></i> Python实现实验室自动日报生成器
+              <a href="/2016/04/26/KVM虚拟机设置/" rel="next" title="KVM虚拟机设置">
+                <i class="fa fa-chevron-left"></i> KVM虚拟机设置
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/04/26/KVM虚拟机设置/" rel="prev" title="KVM虚拟机设置">
-                KVM虚拟机设置 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/04/26/Linux模块编程/" rel="prev" title="Linux模块编程">
+                Linux模块编程 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -399,8 +408,8 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/25/ldconfig与ldd/"
-           data-title="ldconfig与ldd" data-url="http://dvd0423.github.io/2016/04/25/ldconfig与ldd/">
+      <div class="ds-thread" data-thread-key="2016/04/26/Linux系统调用/"
+           data-title="Linux系统调用" data-url="http://dvd0423.github.io/2016/04/26/Linux系统调用/">
       </div>
     
   </div>
@@ -516,7 +525,7 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#跟踪系统调用"><span class="nav-number">1.</span> <span class="nav-text">跟踪系统调用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统调用分析"><span class="nav-number">2.</span> <span class="nav-text">系统调用分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加系统调用"><span class="nav-number">3.</span> <span class="nav-text">添加系统调用</span></a></li></ol></div>
             
           </div>
         </section>

@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="linux,shell," />
+  <meta name="keywords" content="linux," />
 
 
 
@@ -80,22 +80,21 @@
 
 
 
-<meta name="description" content="在linux下安装软件经常出现动态链接库（.so文件）的问题。这时候需要用到ldconfig和ldd两个命令。
-如果是安装软件时需要加载动态链接库，除了用-L选项外，还可以在/etc/ld.so.conf.d/中添加一个.conf文件把相关的链接库所在的目录添加进去（注意是目录）。然后用ldconfig命令使其生效。
-ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以实现查找">
+<meta name="description" content="我第一次使用linux模块编程的主要目的是想在内核态读取eth0网卡的数据信息。linux模块要实现两个关键函数：模块加载函数和模块注销函数
+具体的形式如下面代码所示：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748/* * mode1.c */#include &amp;lt;l">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ldconfig与ldd">
-<meta property="og:url" content="http://dvd0423.github.io/2016/04/25/ldconfig与ldd/index.html">
+<meta property="og:title" content="Linux模块编程">
+<meta property="og:url" content="http://dvd0423.github.io/2016/04/26/Linux模块编程/index.html">
 <meta property="og:site_name" content="Davi">
-<meta property="og:description" content="在linux下安装软件经常出现动态链接库（.so文件）的问题。这时候需要用到ldconfig和ldd两个命令。
-如果是安装软件时需要加载动态链接库，除了用-L选项外，还可以在/etc/ld.so.conf.d/中添加一个.conf文件把相关的链接库所在的目录添加进去（注意是目录）。然后用ldconfig命令使其生效。
-ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以实现查找">
-<meta property="og:updated_time" content="2016-04-26T12:15:22.000Z">
+<meta property="og:description" content="我第一次使用linux模块编程的主要目的是想在内核态读取eth0网卡的数据信息。linux模块要实现两个关键函数：模块加载函数和模块注销函数
+具体的形式如下面代码所示：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748/* * mode1.c */#include &amp;lt;l">
+<meta property="og:image" content="http://7xtdio.com2.z0.glb.clouddn.com/dmesg.jpeg">
+<meta property="og:updated_time" content="2016-04-26T12:15:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ldconfig与ldd">
-<meta name="twitter:description" content="在linux下安装软件经常出现动态链接库（.so文件）的问题。这时候需要用到ldconfig和ldd两个命令。
-如果是安装软件时需要加载动态链接库，除了用-L选项外，还可以在/etc/ld.so.conf.d/中添加一个.conf文件把相关的链接库所在的目录添加进去（注意是目录）。然后用ldconfig命令使其生效。
-ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以实现查找">
+<meta name="twitter:title" content="Linux模块编程">
+<meta name="twitter:description" content="我第一次使用linux模块编程的主要目的是想在内核态读取eth0网卡的数据信息。linux模块要实现两个关键函数：模块加载函数和模块注销函数
+具体的形式如下面代码所示：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748/* * mode1.c */#include &amp;lt;l">
+<meta name="twitter:image" content="http://7xtdio.com2.z0.glb.clouddn.com/dmesg.jpeg">
 
 
 
@@ -113,7 +112,7 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
   };
 </script>
 
-  <title> ldconfig与ldd | Davi </title>
+  <title> Linux模块编程 | Davi </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -262,7 +261,7 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
             
             
               
-                ldconfig与ldd
+                Linux模块编程
               
             
           </h1>
@@ -274,8 +273,8 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-25T20:50:14+08:00" content="2016-04-25">
-              2016-04-25
+            <time itemprop="dateCreated" datetime="2016-04-26T19:52:52+08:00" content="2016-04-26">
+              2016-04-26
             </time>
           </span>
 
@@ -288,8 +287,8 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/shell/" itemprop="url" rel="index">
-                    <span itemprop="name">shell</span>
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
                   </a>
                 </span>
 
@@ -304,8 +303,8 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/25/ldconfig与ldd/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/25/ldconfig与ldd/" itemprop="commentsCount"></span>
+                <a href="/2016/04/26/Linux模块编程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/26/Linux模块编程/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -328,10 +327,13 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
       
 
       
-        <p>在linux下安装软件经常出现动态链接库（.so文件）的问题。这时候需要用到<strong>ldconfig</strong>和<strong>ldd</strong>两个命令。</p>
-<p>如果是安装软件时需要加载动态链接库，除了用-L选项外，还可以在/etc/ld.so.conf.d/中添加一个.conf文件把相关的链接库所在的目录添加进去（注意是目录）。然后用ldconfig命令使其生效。</p>
-<p><strong>ldconfig -p</strong>显示可以搜索到的所有的动态链接库，配合grep可以实现查找功能。<br><a id="more"></a><br>如果想检查某个软件用到了哪些动态链接库则用ldd。比如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ldd /usr/bin/ssh</span></span><br></pre></td></tr></table></figure></p>
-<p>显示如下：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">   linux-vdso<span class="selector-class">.so</span>.<span class="number">1</span> =&gt;  (<span class="number">0</span>x00007fff36ca2000)</span><br><span class="line">libfipscheck<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/libfipscheck<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeeb9abc000)</span><br><span class="line">libselinux<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/libselinux<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeeb9cc0000)</span><br><span class="line">libcrypto<span class="selector-class">.so</span>.<span class="number">10</span> =&gt; /usr/lib64/libcrypto<span class="selector-class">.so</span>.<span class="number">10</span> (<span class="number">0</span>x00002aeeb9edf000)</span><br><span class="line">libutil<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/libutil<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeeba2c2000)</span><br><span class="line">libz<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/libz<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeeba4c6000)</span><br><span class="line">libnsl<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/libnsl<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeeba6dc000)</span><br><span class="line">libcrypt<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/libcrypt<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeeba8f5000)</span><br><span class="line">libresolv<span class="selector-class">.so</span>.<span class="number">2</span> =&gt; /lib64/libresolv<span class="selector-class">.so</span>.<span class="number">2</span> (<span class="number">0</span>x00002aeebab2d000)</span><br><span class="line">libgssapi_krb5<span class="selector-class">.so</span>.<span class="number">2</span> =&gt; /lib64/libgssapi_krb5<span class="selector-class">.so</span>.<span class="number">2</span> (<span class="number">0</span>x00002aeebad47000)</span><br><span class="line">libkrb5<span class="selector-class">.so</span>.<span class="number">3</span> =&gt; /lib64/libkrb5<span class="selector-class">.so</span>.<span class="number">3</span> (<span class="number">0</span>x00002aeebaf8b000)</span><br><span class="line">libk5crypto<span class="selector-class">.so</span>.<span class="number">3</span> =&gt; /lib64/libk5crypto<span class="selector-class">.so</span>.<span class="number">3</span> (<span class="number">0</span>x00002aeebb273000)</span><br><span class="line">libcom_err<span class="selector-class">.so</span>.<span class="number">2</span> =&gt; /lib64/libcom_err<span class="selector-class">.so</span>.<span class="number">2</span> (<span class="number">0</span>x00002aeebb49f000)</span><br><span class="line">libnss3<span class="selector-class">.so</span> =&gt; /usr/lib64/libnss3<span class="selector-class">.so</span> (<span class="number">0</span>x00002aeebb6a3000)</span><br><span class="line">libc<span class="selector-class">.so</span>.<span class="number">6</span> =&gt; /lib64/libc<span class="selector-class">.so</span>.<span class="number">6</span> (<span class="number">0</span>x00002aeebb9e3000)</span><br><span class="line">libplc4<span class="selector-class">.so</span> =&gt; /lib64/libplc4<span class="selector-class">.so</span> (<span class="number">0</span>x00002aeebbd84000)</span><br><span class="line">libdl<span class="selector-class">.so</span>.<span class="number">2</span> =&gt; /lib64/libdl<span class="selector-class">.so</span>.<span class="number">2</span> (<span class="number">0</span>x00002aeebbf89000)</span><br><span class="line">/lib64/ld-linux-x86-<span class="number">64</span><span class="selector-class">.so</span>.<span class="number">2</span> (<span class="number">0</span>x0000003fe1c00000)</span><br><span class="line">libfreebl3<span class="selector-class">.so</span> =&gt; /lib64/libfreebl3<span class="selector-class">.so</span> (<span class="number">0</span>x00002aeebc18e000)</span><br><span class="line">libkrb5support<span class="selector-class">.so</span>.<span class="number">0</span> =&gt; /lib64/libkrb5support<span class="selector-class">.so</span>.<span class="number">0</span> (<span class="number">0</span>x00002aeebc391000)</span><br><span class="line">libkeyutils<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/libkeyutils<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeebc59c000)</span><br><span class="line">libpthread<span class="selector-class">.so</span>.<span class="number">0</span> =&gt; /lib64/libpthread<span class="selector-class">.so</span>.<span class="number">0</span> (<span class="number">0</span>x00002aeebc7a0000)</span><br><span class="line">libnssutil3<span class="selector-class">.so</span> =&gt; /usr/lib64/libnssutil3<span class="selector-class">.so</span> (<span class="number">0</span>x00002aeebc9bc000)</span><br><span class="line">libplds4<span class="selector-class">.so</span> =&gt; /lib64/libplds4<span class="selector-class">.so</span> (<span class="number">0</span>x00002aeebcbe8000)</span><br><span class="line">libnspr4<span class="selector-class">.so</span> =&gt; /lib64/libnspr4<span class="selector-class">.so</span> (<span class="number">0</span>x00002aeebcded000)</span><br><span class="line">librt<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/librt<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeebd02b000)</span><br></pre></td></tr></table></figure></p>
+        <p>我第一次使用linux模块编程的主要目的是想在内核态读取eth0网卡的数据信息。linux模块要实现两个关键函数：模块加载函数和模块注销函数</p>
+<p>具体的形式如下面代码所示：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line"> * mode1.c</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/init.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/module.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/kernel.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/netdevice.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;net/net_namespace.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/netdevice.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/list.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">MODULE_LICENSE(<span class="string">"GPL"</span>);    <span class="comment">//许可声明，要加进来</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line"> *EXPORT_SYMBOL(init_net)声明init_net是全局变量，模块内可以调用。这里用hello world函数就可以代替下面的get_devs()函数，看不懂不要紧，这不是重点。</span><br><span class="line"> *printf对应内核中的printk函数</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">get_devs</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">struct</span> net_device *a_dev = dev_get_by_name(&amp;init_net, <span class="string">"eth0"</span>);      <span class="comment">//得到名为eth0的网络设备  </span></span><br><span class="line">    <span class="keyword">struct</span> list_head *p;</span><br><span class="line">    <span class="keyword">struct</span> net_device *temp_dev;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    list_for_each(p, &amp;(a_dev-&gt;dev_list))&#123;</span><br><span class="line">        temp_dev = list_entry(p, struct net_device, dev_list);</span><br><span class="line">        </span><br><span class="line">        printk(<span class="string">"%d\t%s\n"</span>, (++i), temp_dev-&gt;name);</span><br><span class="line">    &#125;</span><br><span class="line">    dev_put(a_dev);</span><br><span class="line">    return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//加载模块时运行的函数</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> __<span class="function">init <span class="title">mode4_init</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    printk(<span class="string">"Module 4 Init!\n"</span>);</span><br><span class="line">    get_devs();</span><br><span class="line">    return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//注销模块时运行的函数</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">void</span> __<span class="function"><span class="built_in">exit</span> <span class="title">mode4_exit</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    printk(<span class="string">"Module 4 Exit!\n"</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module_init(mode4_init);<span class="comment">//加载模块到内核</span></span><br><span class="line">module_exit(mode4_exit);<span class="comment">//注销模块</span></span><br></pre></td></tr></table></figure></p>
+<p>写完模块程序之后，再编写Makefile文件<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">obj-m += mode1.o</span><br><span class="line">PWD:=$(shell pwd)</span><br><span class="line">KDIR:=/usr/src/kernels/$(shell uname -r)/</span><br><span class="line"></span><br><span class="line">all:</span><br><span class="line">    $(MAKE) -C $(KDIR) M=$(PWD) modules</span><br><span class="line"></span><br><span class="line">clean:</span><br><span class="line">    $(MAKE) -C $(KDIR) M=$(PWD) clean</span><br></pre></td></tr></table></figure></p>
+<p>然后在命令行下使用输入如下命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># make</span><br><span class="line"># insmod mode4.ko        　　   //加载模块</span><br><span class="line"># dmesg                        //显示如下信息，保存在目录/var/log/dmesg中</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://7xtdio.com2.z0.glb.clouddn.com/dmesg.jpeg" alt="dmesg"></p>
+<p>模块的注销使用如下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># rmmod mode4.ko                 //卸载模块,显示Module 4 Exit！</span><br><span class="line"># make clean                     //清除编译文件</span><br></pre></td></tr></table></figure></p>
+<p>用<strong>module_param()</strong>或<strong>module_param_array()</strong>宏还可以给模块传递命令行参数。具体实现看源码吧~~</p>
 
       
     </div>
@@ -354,8 +356,6 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
           
             <a href="/tags/linux/" rel="tag">#linux</a>
           
-            <a href="/tags/shell/" rel="tag">#shell</a>
-          
         </div>
       
 
@@ -363,17 +363,13 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/25/Python实现实验室自动日报生成器/" rel="next" title="Python实现实验室自动日报生成器">
-                <i class="fa fa-chevron-left"></i> Python实现实验室自动日报生成器
+              <a href="/2016/04/26/Linux系统调用/" rel="next" title="Linux系统调用">
+                <i class="fa fa-chevron-left"></i> Linux系统调用
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/26/KVM虚拟机设置/" rel="prev" title="KVM虚拟机设置">
-                KVM虚拟机设置 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -399,8 +395,8 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/25/ldconfig与ldd/"
-           data-title="ldconfig与ldd" data-url="http://dvd0423.github.io/2016/04/25/ldconfig与ldd/">
+      <div class="ds-thread" data-thread-key="2016/04/26/Linux模块编程/"
+           data-title="Linux模块编程" data-url="http://dvd0423.github.io/2016/04/26/Linux模块编程/">
       </div>
     
   </div>
