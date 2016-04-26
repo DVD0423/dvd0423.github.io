@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="KVM,云计算,虚拟机," />
+  <meta name="keywords" content="虚拟机,KVM,云计算," />
 
 
 
@@ -84,11 +84,11 @@
 1 虚拟机安装123# yum -y install qemu-kvm libvirt python-virtinst bridge-utils# qemu-img create -f qcow2 vm1.img 50G # virt-install --name=vm$1 --boot cdrom,menu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="KVM虚拟机设置">
-<meta property="og:url" content="http://dvd0423.github.io/2016/04/25/KVM虚拟机设置/index.html">
+<meta property="og:url" content="http://dvd0423.github.io/2016/04/26/KVM虚拟机设置/index.html">
 <meta property="og:site_name" content="Davi">
 <meta property="og:description" content="最有用的文档是官方文档!最有用的文档是官方文档!最有用的文档是官方文档!重要的事情说三遍
 1 虚拟机安装123# yum -y install qemu-kvm libvirt python-virtinst bridge-utils# qemu-img create -f qcow2 vm1.img 50G # virt-install --name=vm$1 --boot cdrom,menu">
-<meta property="og:updated_time" content="2016-04-25T14:19:33.000Z">
+<meta property="og:updated_time" content="2016-04-26T11:09:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="KVM虚拟机设置">
 <meta name="twitter:description" content="最有用的文档是官方文档!最有用的文档是官方文档!最有用的文档是官方文档!重要的事情说三遍
@@ -271,8 +271,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-25T22:19:33+08:00" content="2016-04-25">
-              2016-04-25
+            <time itemprop="dateCreated" datetime="2016-04-26T19:09:28+08:00" content="2016-04-26">
+              2016-04-26
             </time>
           </span>
 
@@ -301,8 +301,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/25/KVM虚拟机设置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/25/KVM虚拟机设置/" itemprop="commentsCount"></span>
+                <a href="/2016/04/26/KVM虚拟机设置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/26/KVM虚拟机设置/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -338,10 +338,11 @@
 <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virsh snapshot-<span class="built_in">list</span></span><br></pre></td></tr></table></figure>
 <p>恢复：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virsh snapshot-revert vm1 vm1-<span class="keyword">before</span></span><br></pre></td></tr></table></figure></p>
 <h1 id="5-虚拟机迁移"><a href="#5-虚拟机迁移" class="headerlink" title="5 虚拟机迁移"></a>5 虚拟机迁移</h1><p>先测试是否能迁移：</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">virsh -c qemu+<span class="attribute">ssh</span>:<span class="comment">//node90/system</span></span><br><span class="line"><span class="built_in">``</span>`  </span><br><span class="line"></span><br><span class="line">再使用如下命令迁移：</span><br></pre></td></tr></table></figure>
-<p>virsh –live migrate vm1 qemu+ssh://node90/system<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta"># 6 虚拟机克隆</span></span><br></pre></td></tr></table></figure></p>
-<p>virt-clone -o vm1 -n vm2 -f /root/dvd/vm2.img<br>```    </p>
-
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virsh -c qemu+<span class="string">ssh:</span><span class="comment">//node90/system</span></span><br></pre></td></tr></table></figure>
+<p>再使用如下命令迁移： </p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virsh --live migrate v<span class="name">m1</span> qemu+ssh:<span class="comment">//node90/system</span></span><br></pre></td></tr></table></figure>
+<h1 id="6-虚拟机克隆"><a href="#6-虚拟机克隆" class="headerlink" title="6 虚拟机克隆"></a>6 虚拟机克隆</h1><pre><code>virt-clone -o vm1 -n vm2 -f /root/dvd/vm2.img
+</code></pre>
       
     </div>
     
@@ -361,11 +362,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/虚拟机/" rel="tag">#虚拟机</a>
+          
             <a href="/tags/KVM/" rel="tag">#KVM</a>
           
             <a href="/tags/云计算/" rel="tag">#云计算</a>
-          
-            <a href="/tags/虚拟机/" rel="tag">#虚拟机</a>
           
         </div>
       
@@ -406,8 +407,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/25/KVM虚拟机设置/"
-           data-title="KVM虚拟机设置" data-url="http://dvd0423.github.io/2016/04/25/KVM虚拟机设置/">
+      <div class="ds-thread" data-thread-key="2016/04/26/KVM虚拟机设置/"
+           data-title="KVM虚拟机设置" data-url="http://dvd0423.github.io/2016/04/26/KVM虚拟机设置/">
       </div>
     
   </div>
@@ -523,7 +524,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-虚拟机安装"><span class="nav-number">1.</span> <span class="nav-text">1 虚拟机安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-基础命令"><span class="nav-number">2.</span> <span class="nav-text">2 基础命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-设置vCPU亲和性："><span class="nav-number">3.</span> <span class="nav-text">3 设置vCPU亲和性：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-编辑xml文件添加如下内容"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 编辑xml文件添加如下内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-使用命令"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 使用命令:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-使用taskset设置整个虚拟机的亲和性"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 使用taskset设置整个虚拟机的亲和性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-cgroup设置"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 cgroup设置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-虚拟机快照"><span class="nav-number">4.</span> <span class="nav-text">4 虚拟机快照</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-虚拟机迁移"><span class="nav-number">5.</span> <span class="nav-text">5 虚拟机迁移</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-虚拟机安装"><span class="nav-number">1.</span> <span class="nav-text">1 虚拟机安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-基础命令"><span class="nav-number">2.</span> <span class="nav-text">2 基础命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-设置vCPU亲和性："><span class="nav-number">3.</span> <span class="nav-text">3 设置vCPU亲和性：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-编辑xml文件添加如下内容"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 编辑xml文件添加如下内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-使用命令"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 使用命令:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-使用taskset设置整个虚拟机的亲和性"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 使用taskset设置整个虚拟机的亲和性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-cgroup设置"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 cgroup设置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-虚拟机快照"><span class="nav-number">4.</span> <span class="nav-text">4 虚拟机快照</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-虚拟机迁移"><span class="nav-number">5.</span> <span class="nav-text">5 虚拟机迁移</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-虚拟机克隆"><span class="nav-number">6.</span> <span class="nav-text">6 虚拟机克隆</span></a></li></ol></div>
             
           </div>
         </section>
