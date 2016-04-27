@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="linux," />
+  <meta name="keywords" content="python,web," />
 
 
 
@@ -80,18 +80,19 @@
 
 
 
-<meta name="description" content="我第一次使用linux模块编程的主要目的是想在内核态读取eth0网卡的数据信息。linux模块要实现两个关键函数：模块加载函数和模块注销函数">
+<meta name="description" content="在我大宇宙实验室，每天必须打卡上班，而且每天必须登录实验室网站写每日工作记录，即QA。而我经常忘记写QA，所以想着用Python写一个自动化脚本挂在实验室另一台服务器上，每天12点post一次我的日常工作内容到QA服务器。
+本程序使用requests模块和python3.5。使用chrome开发者工具分析网站行为，可以得出post的cookies生成方式。区区几十行代码就实现了该功能。不得不说Py">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux模块编程">
-<meta property="og:url" content="http://dvd0423.github.io/2016/04/26/Linux模块编程/index.html">
+<meta property="og:title" content="Python实现实验室自动日报生成器">
+<meta property="og:url" content="http://dvd0423.github.io/2016/04/27/Python实现实验室自动日报生成器/index.html">
 <meta property="og:site_name" content="Davi">
-<meta property="og:description" content="我第一次使用linux模块编程的主要目的是想在内核态读取eth0网卡的数据信息。linux模块要实现两个关键函数：模块加载函数和模块注销函数">
-<meta property="og:image" content="http://7xtdio.com2.z0.glb.clouddn.com/dmesg.jpeg">
-<meta property="og:updated_time" content="2016-04-26T12:25:37.000Z">
+<meta property="og:description" content="在我大宇宙实验室，每天必须打卡上班，而且每天必须登录实验室网站写每日工作记录，即QA。而我经常忘记写QA，所以想着用Python写一个自动化脚本挂在实验室另一台服务器上，每天12点post一次我的日常工作内容到QA服务器。
+本程序使用requests模块和python3.5。使用chrome开发者工具分析网站行为，可以得出post的cookies生成方式。区区几十行代码就实现了该功能。不得不说Py">
+<meta property="og:updated_time" content="2016-04-27T03:29:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux模块编程">
-<meta name="twitter:description" content="我第一次使用linux模块编程的主要目的是想在内核态读取eth0网卡的数据信息。linux模块要实现两个关键函数：模块加载函数和模块注销函数">
-<meta name="twitter:image" content="http://7xtdio.com2.z0.glb.clouddn.com/dmesg.jpeg">
+<meta name="twitter:title" content="Python实现实验室自动日报生成器">
+<meta name="twitter:description" content="在我大宇宙实验室，每天必须打卡上班，而且每天必须登录实验室网站写每日工作记录，即QA。而我经常忘记写QA，所以想着用Python写一个自动化脚本挂在实验室另一台服务器上，每天12点post一次我的日常工作内容到QA服务器。
+本程序使用requests模块和python3.5。使用chrome开发者工具分析网站行为，可以得出post的cookies生成方式。区区几十行代码就实现了该功能。不得不说Py">
 
 
 
@@ -109,7 +110,7 @@
   };
 </script>
 
-  <title> Linux模块编程 | Davi </title>
+  <title> Python实现实验室自动日报生成器 | Davi </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -258,7 +259,7 @@
             
             
               
-                Linux模块编程
+                Python实现实验室自动日报生成器
               
             
           </h1>
@@ -270,8 +271,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-26T19:52:52+08:00" content="2016-04-26">
-              2016-04-26
+            <time itemprop="dateCreated" datetime="2016-04-27T11:29:42+08:00" content="2016-04-27">
+              2016-04-27
             </time>
           </span>
 
@@ -284,8 +285,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
                   </a>
                 </span>
 
@@ -300,8 +301,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/26/Linux模块编程/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/26/Linux模块编程/" itemprop="commentsCount"></span>
+                <a href="/2016/04/27/Python实现实验室自动日报生成器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/27/Python实现实验室自动日报生成器/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -324,12 +325,8 @@
       
 
       
-        <p>我第一次使用linux模块编程的主要目的是想在内核态读取eth0网卡的数据信息。linux模块要实现两个关键函数：模块加载函数和模块注销函数<br><a id="more"></a><br>具体的形式如下面代码所示：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line"> * mode1.c</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/init.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/module.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/kernel.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/netdevice.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;net/net_namespace.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/netdevice.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/list.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">MODULE_LICENSE(<span class="string">"GPL"</span>);    <span class="comment">//许可声明，要加进来</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line"> *EXPORT_SYMBOL(init_net)声明init_net是全局变量，模块内可以调用。这里用hello world函数就可以代替下面的get_devs()函数，看不懂不要紧，这不是重点。</span><br><span class="line"> *printf对应内核中的printk函数</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">get_devs</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">struct</span> net_device *a_dev = dev_get_by_name(&amp;init_net, <span class="string">"eth0"</span>);      <span class="comment">//得到名为eth0的网络设备  </span></span><br><span class="line">    <span class="keyword">struct</span> list_head *p;</span><br><span class="line">    <span class="keyword">struct</span> net_device *temp_dev;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    list_for_each(p, &amp;(a_dev-&gt;dev_list))&#123;</span><br><span class="line">        temp_dev = list_entry(p, struct net_device, dev_list);</span><br><span class="line">        </span><br><span class="line">        printk(<span class="string">"%d\t%s\n"</span>, (++i), temp_dev-&gt;name);</span><br><span class="line">    &#125;</span><br><span class="line">    dev_put(a_dev);</span><br><span class="line">    return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//加载模块时运行的函数</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> __<span class="function">init <span class="title">mode4_init</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    printk(<span class="string">"Module 4 Init!\n"</span>);</span><br><span class="line">    get_devs();</span><br><span class="line">    return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//注销模块时运行的函数</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">void</span> __<span class="function"><span class="built_in">exit</span> <span class="title">mode4_exit</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    printk(<span class="string">"Module 4 Exit!\n"</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module_init(mode4_init);<span class="comment">//加载模块到内核</span></span><br><span class="line">module_exit(mode4_exit);<span class="comment">//注销模块</span></span><br></pre></td></tr></table></figure></p>
-<p>写完模块程序之后，再编写Makefile文件<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">obj-m += mode1.o</span><br><span class="line">PWD:=$(shell pwd)</span><br><span class="line">KDIR:=/usr/src/kernels/$(shell uname -r)/</span><br><span class="line"></span><br><span class="line">all:</span><br><span class="line">    $(MAKE) -C $(KDIR) M=$(PWD) modules</span><br><span class="line"></span><br><span class="line">clean:</span><br><span class="line">    $(MAKE) -C $(KDIR) M=$(PWD) clean</span><br></pre></td></tr></table></figure></p>
-<p>然后在命令行下使用输入如下命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># make</span><br><span class="line"># insmod mode4.ko        　　   //加载模块</span><br><span class="line"># dmesg                        //显示如下信息，保存在目录/var/log/dmesg中</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://7xtdio.com2.z0.glb.clouddn.com/dmesg.jpeg" alt="dmesg"></p>
-<p>模块的注销使用如下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># rmmod mode4.ko                 //卸载模块,显示Module 4 Exit！</span><br><span class="line"># make clean                     //清除编译文件</span><br></pre></td></tr></table></figure></p>
-<p>用<strong>module_param()</strong>或<strong>module_param_array()</strong>宏还可以给模块传递命令行参数。具体实现看源码吧~~</p>
+        <p>在我大宇宙实验室，每天必须打卡上班，而且每天必须登录实验室网站写每日工作记录，即QA。而我经常忘记写QA，所以想着用Python写一个自动化脚本挂在实验室另一台服务器上，每天12点post一次我的日常工作内容到QA服务器。</p>
+<p>本程序使用requests模块和python3.5。使用chrome开发者工具分析网站行为，可以得出post的cookies生成方式。区区几十行代码就实现了该功能。不得不说Python真是一个生活工具，写爬虫、写自动化小工具，代码简洁，上手迅速。<br><a id="more"></a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3.5</span></span><br><span class="line"><span class="comment">#Auth : Davi</span></span><br><span class="line"><span class="comment">#Date : 2016-1-29</span></span><br><span class="line"><span class="comment">#Usage: python ./auto_qa.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">	<span class="comment">#qa内容</span></span><br><span class="line">	works = (<span class="string">'写专利'</span>,</span><br><span class="line">			 <span class="string">'做实验'</span>,</span><br><span class="line">			 <span class="string">'写代码'</span>)</span><br><span class="line">	my_work = works[random.randrange(<span class="number">0</span>, <span class="number">3</span>)]</span><br><span class="line">	my_description = my_work</span><br><span class="line">	<span class="comment">#账号</span></span><br><span class="line">	my_id = &#123;<span class="string">'username'</span>: <span class="string">'dvd0423'</span>, <span class="string">'password'</span>:<span class="string">'XXX'</span>&#125;</span><br><span class="line">	</span><br><span class="line">	my_session = requests.Session()</span><br><span class="line">	my_session.post(<span class="string">'http://grid.hust.edu.cn/qa/login.action'</span>, data = my_id)</span><br><span class="line">	my_time = requests.get(<span class="string">'http://grid.hust.edu.cn/qa/getCurrentTime.action'</span>, cookies = my_session.cookies)</span><br><span class="line">	add_url = <span class="string">'http://grid.hust.edu.cn/qa/addEvent.action'</span></span><br><span class="line">	add_data = &#123;<span class="string">'event.title'</span>	: my_work, </span><br><span class="line">				<span class="string">'event.start'</span>	: my_time.text, </span><br><span class="line">				<span class="string">'event.end'</span>		: my_time.text, </span><br><span class="line">				<span class="string">'event.status'</span>	: <span class="string">'1'</span>,</span><br><span class="line">				<span class="string">'event.location'</span>: <span class="string">'self'</span>,</span><br><span class="line">				<span class="string">'event.description'</span>: my_description&#125;</span><br><span class="line"></span><br><span class="line">	my_req = requests.post(add_url, data = add_data, cookies = my_session.cookies)</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -350,7 +347,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/linux/" rel="tag">#linux</a>
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+            <a href="/tags/web/" rel="tag">#web</a>
           
         </div>
       
@@ -359,17 +358,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/26/Linux系统调用/" rel="next" title="Linux系统调用">
-                <i class="fa fa-chevron-left"></i> Linux系统调用
+              <a href="/2016/04/26/Linux模块编程/" rel="next" title="Linux模块编程">
+                <i class="fa fa-chevron-left"></i> Linux模块编程
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/27/Python实现实验室自动日报生成器/" rel="prev" title="Python实现实验室自动日报生成器">
-                Python实现实验室自动日报生成器 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -395,8 +390,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/26/Linux模块编程/"
-           data-title="Linux模块编程" data-url="http://dvd0423.github.io/2016/04/26/Linux模块编程/">
+      <div class="ds-thread" data-thread-key="2016/04/27/Python实现实验室自动日报生成器/"
+           data-title="Python实现实验室自动日报生成器" data-url="http://dvd0423.github.io/2016/04/27/Python实现实验室自动日报生成器/">
       </div>
     
   </div>
