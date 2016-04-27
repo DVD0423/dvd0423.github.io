@@ -258,6 +258,140 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/27/位操作技巧/" itemprop="url">
+                  位操作技巧
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-27T22:22:06+08:00" content="2016-04-27">
+              2016-04-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/27/位操作技巧/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/27/位操作技巧/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>bit操作</p>
+<p>bit操作使用得当可以达到代码优化和性能加速的目的。下面将介绍一些可读性比较不错的bit操作技巧。对于那些可读性差的bit操作，本文不做描述。<br>计算机中的数据用补码表示。正数的符号位为0，负数的符号位为1。对于正数，补码、反码和原码的表示相同。对于负数，反码是原码逐位取反，符号位保持不变；补码是反码加1。+0与-0补码形式一样。</p>
+<h1 id="1-判断整数的正负"><a href="#1-判断整数的正负" class="headerlink" title="1 判断整数的正负"></a>1 判断整数的正负</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> v;</span><br><span class="line"><span class="keyword">int</span> sign;</span><br><span class="line"><span class="comment">//省去了if，else的代码，看起来更简洁</span></span><br><span class="line">sign = -(v &lt; <span class="number">0</span>);</span><br><span class="line"><span class="comment">//右移31位或者63位，省去了条件判断，效率更高</span></span><br><span class="line">sign = v &gt;&gt; (sizeof(int) * <span class="number">8</span> - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//下面的操作相当于：if v &lt; 0 then -1, else +1</span></span><br><span class="line">sign = +<span class="number">1</span> | v &gt;&gt; (sizeof(int) * <span class="number">8</span> - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//if v = 0 then 0, else if v &lt; 0 then -1, else +1</span></span><br><span class="line">sign = (v != <span class="number">0</span>) | v &gt;&gt; (sizeof(int) * <span class="number">8</span> - <span class="number">1</span>);</span><br><span class="line"><span class="comment">//下面等价于上面，但可读性更好</span></span><br><span class="line">sign = (v &gt; <span class="number">0</span>) - (v &lt; <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="2-判断两个整数的符号是否相反"><a href="#2-判断两个整数的符号是否相反" class="headerlink" title="2 判断两个整数的符号是否相反"></a>2 判断两个整数的符号是否相反</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x, y;</span><br><span class="line"><span class="comment">//异或操作，x与y符号不同，则x^y的符号位为1，flag为1</span></span><br><span class="line"> <span class="keyword">bool</span> flag = ((x ^ y) &lt; <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="3-奇偶性"><a href="#3-奇偶性" class="headerlink" title="3 奇偶性"></a>3 奇偶性</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> v;</span><br><span class="line"><span class="comment">//if odd then 0, else 1</span></span><br><span class="line"><span class="keyword">bool</span> r = !(v &amp; <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="4-判断整数是否为2的幂"><a href="#4-判断整数是否为2的幂" class="headerlink" title="4 判断整数是否为2的幂"></a>4 判断整数是否为2的幂</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> v;</span><br><span class="line"><span class="keyword">bool</span> f;</span><br><span class="line"><span class="comment">//if then </span></span><br><span class="line">f = !(v &amp;（v<span class="number">-1</span>)) &amp;&amp; v;</span><br></pre></td></tr></table></figure>
+<p>如果v的2进制为（0 0 0 0 1 0 0 0）：<br><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">v                 = <span class="number">0 0 0 0</span> <span class="number">1 0 0 0</span></span><br><span class="line">v-<span class="number">1</span>               = <span class="number">0 0 0 0</span> <span class="number">0 1 1 1</span></span><br><span class="line">v &amp; (v-<span class="number">1</span>)         = <span class="number">0 0 0 0</span> <span class="number">0 0 0 0</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="5-求整数的绝对值"><a href="#5-求整数的绝对值" class="headerlink" title="5 求整数的绝对值"></a>5 求整数的绝对值</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> v;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> r;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mask = v &gt;&gt; (sizeof(int) * <span class="number">8</span> <span class="number">-1</span>);</span><br><span class="line">r = (v ^ mask) - mask;</span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line">r = (v + mask) ^ mask;</span><br></pre></td></tr></table></figure>
+<p>对于32位系统，正数的掩码mask是0x00000000，负数的掩码mask是0xffffffff。</p>
+<p>如果v=-8，则2进制形式为：<strong>1…0 0 0 1 0 0 0</strong><br><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">v                 = <span class="number">1</span>...<span class="number">0 0 0 1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span></span><br><span class="line">mask              = <span class="number">1</span>...<span class="number">1 1 1 1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span></span><br><span class="line">v ^ mask          = <span class="number">0</span>...<span class="number">1 1 1 0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span></span><br><span class="line">(v ^ mask) - mask = <span class="number">0</span>...<span class="number">0 0 0 1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="6-整数平均值"><a href="#6-整数平均值" class="headerlink" title="6 整数平均值"></a>6 整数平均值</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x, y;</span><br><span class="line"><span class="keyword">int</span> r = ((x &amp; y) + (x ^ y)) &gt;&gt; <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p>上面的操作避免了溢出问题。而x + y等价于((x &amp; y) + (x ^ y))。</p>
+<h1 id="7-Swap-x-y"><a href="#7-Swap-x-y" class="headerlink" title="7 Swap(x, y)"></a>7 Swap(x, y)</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//(&amp;a == &amp;b) || ((a -= b), (b += a), (a = b - a))</span></span><br><span class="line">(&amp;a == &amp;b) || ((a ^= b), (b ^= a), (a ^= b))</span><br></pre></td></tr></table></figure>
+<p>以上两个操作都避免了占用额外空间，但是(&amp;a == &amp;b) || ((a -= b), (b += a), (a = b - a))操作有溢出风险。</p>
+<h1 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h1><p><a href="http://graphics.stanford.edu/~seander/bithacks.html#OperationCounting" target="_blank" rel="external">Bit Twiddling Hacks</a></p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/27/Python实现实验室自动日报生成器/" itemprop="url">
                   Python实现实验室自动日报生成器
                 </a>
@@ -1138,7 +1272,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1146,7 +1280,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1155,7 +1289,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

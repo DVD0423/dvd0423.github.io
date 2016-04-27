@@ -1,0 +1,676 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="算法,位操作,bit," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="bit操作
+bit操作使用得当可以达到代码优化和性能加速的目的。下面将介绍一些可读性比较不错的bit操作技巧。对于那些可读性差的bit操作，本文不做描述。计算机中的数据用补码表示。正数的符号位为0，负数的符号位为1。对于正数，补码、反码和原码的表示相同。对于负数，反码是原码逐位取反，符号位保持不变；补码是反码加1。+0与-0补码形式一样。
+1 判断整数的正负1234567891011121314i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="位操作技巧">
+<meta property="og:url" content="http://dvd0423.github.io/2016/04/27/位操作技巧/index.html">
+<meta property="og:site_name" content="Davi">
+<meta property="og:description" content="bit操作
+bit操作使用得当可以达到代码优化和性能加速的目的。下面将介绍一些可读性比较不错的bit操作技巧。对于那些可读性差的bit操作，本文不做描述。计算机中的数据用补码表示。正数的符号位为0，负数的符号位为1。对于正数，补码、反码和原码的表示相同。对于负数，反码是原码逐位取反，符号位保持不变；补码是反码加1。+0与-0补码形式一样。
+1 判断整数的正负1234567891011121314i">
+<meta property="og:updated_time" content="2016-04-27T14:24:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="位操作技巧">
+<meta name="twitter:description" content="bit操作
+bit操作使用得当可以达到代码优化和性能加速的目的。下面将介绍一些可读性比较不错的bit操作技巧。对于那些可读性差的bit操作，本文不做描述。计算机中的数据用补码表示。正数的符号位为0，负数的符号位为1。对于正数，补码、反码和原码的表示相同。对于负数，反码是原码逐位取反，符号位保持不变；补码是反码加1。+0与-0补码形式一样。
+1 判断整数的正负1234567891011121314i">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 位操作技巧 | Davi </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-76872881-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Davi</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">记录工作与生活</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                位操作技巧
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-27T22:22:06+08:00" content="2016-04-27">
+              2016-04-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/27/位操作技巧/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/27/位操作技巧/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>bit操作</p>
+<p>bit操作使用得当可以达到代码优化和性能加速的目的。下面将介绍一些可读性比较不错的bit操作技巧。对于那些可读性差的bit操作，本文不做描述。<br>计算机中的数据用补码表示。正数的符号位为0，负数的符号位为1。对于正数，补码、反码和原码的表示相同。对于负数，反码是原码逐位取反，符号位保持不变；补码是反码加1。+0与-0补码形式一样。</p>
+<h1 id="1-判断整数的正负"><a href="#1-判断整数的正负" class="headerlink" title="1 判断整数的正负"></a>1 判断整数的正负</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> v;</span><br><span class="line"><span class="keyword">int</span> sign;</span><br><span class="line"><span class="comment">//省去了if，else的代码，看起来更简洁</span></span><br><span class="line">sign = -(v &lt; <span class="number">0</span>);</span><br><span class="line"><span class="comment">//右移31位或者63位，省去了条件判断，效率更高</span></span><br><span class="line">sign = v &gt;&gt; (sizeof(int) * <span class="number">8</span> - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//下面的操作相当于：if v &lt; 0 then -1, else +1</span></span><br><span class="line">sign = +<span class="number">1</span> | v &gt;&gt; (sizeof(int) * <span class="number">8</span> - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//if v = 0 then 0, else if v &lt; 0 then -1, else +1</span></span><br><span class="line">sign = (v != <span class="number">0</span>) | v &gt;&gt; (sizeof(int) * <span class="number">8</span> - <span class="number">1</span>);</span><br><span class="line"><span class="comment">//下面等价于上面，但可读性更好</span></span><br><span class="line">sign = (v &gt; <span class="number">0</span>) - (v &lt; <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="2-判断两个整数的符号是否相反"><a href="#2-判断两个整数的符号是否相反" class="headerlink" title="2 判断两个整数的符号是否相反"></a>2 判断两个整数的符号是否相反</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x, y;</span><br><span class="line"><span class="comment">//异或操作，x与y符号不同，则x^y的符号位为1，flag为1</span></span><br><span class="line"> <span class="keyword">bool</span> flag = ((x ^ y) &lt; <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="3-奇偶性"><a href="#3-奇偶性" class="headerlink" title="3 奇偶性"></a>3 奇偶性</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> v;</span><br><span class="line"><span class="comment">//if odd then 0, else 1</span></span><br><span class="line"><span class="keyword">bool</span> r = !(v &amp; <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="4-判断整数是否为2的幂"><a href="#4-判断整数是否为2的幂" class="headerlink" title="4 判断整数是否为2的幂"></a>4 判断整数是否为2的幂</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> v;</span><br><span class="line"><span class="keyword">bool</span> f;</span><br><span class="line"><span class="comment">//if then </span></span><br><span class="line">f = !(v &amp;（v<span class="number">-1</span>)) &amp;&amp; v;</span><br></pre></td></tr></table></figure>
+<p>如果v的2进制为（0 0 0 0 1 0 0 0）：<br><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">v                 = <span class="number">0 0 0 0</span> <span class="number">1 0 0 0</span></span><br><span class="line">v-<span class="number">1</span>               = <span class="number">0 0 0 0</span> <span class="number">0 1 1 1</span></span><br><span class="line">v &amp; (v-<span class="number">1</span>)         = <span class="number">0 0 0 0</span> <span class="number">0 0 0 0</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="5-求整数的绝对值"><a href="#5-求整数的绝对值" class="headerlink" title="5 求整数的绝对值"></a>5 求整数的绝对值</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> v;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> r;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mask = v &gt;&gt; (sizeof(int) * <span class="number">8</span> <span class="number">-1</span>);</span><br><span class="line">r = (v ^ mask) - mask;</span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line">r = (v + mask) ^ mask;</span><br></pre></td></tr></table></figure>
+<p>对于32位系统，正数的掩码mask是0x00000000，负数的掩码mask是0xffffffff。</p>
+<p>如果v=-8，则2进制形式为：<strong>1…0 0 0 1 0 0 0</strong><br><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">v                 = <span class="number">1</span>...<span class="number">0 0 0 1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span></span><br><span class="line">mask              = <span class="number">1</span>...<span class="number">1 1 1 1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span></span><br><span class="line">v ^ mask          = <span class="number">0</span>...<span class="number">1 1 1 0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span></span><br><span class="line">(v ^ mask) - mask = <span class="number">0</span>...<span class="number">0 0 0 1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="6-整数平均值"><a href="#6-整数平均值" class="headerlink" title="6 整数平均值"></a>6 整数平均值</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x, y;</span><br><span class="line"><span class="keyword">int</span> r = ((x &amp; y) + (x ^ y)) &gt;&gt; <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p>上面的操作避免了溢出问题。而x + y等价于((x &amp; y) + (x ^ y))。</p>
+<h1 id="7-Swap-x-y"><a href="#7-Swap-x-y" class="headerlink" title="7 Swap(x, y)"></a>7 Swap(x, y)</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//(&amp;a == &amp;b) || ((a -= b), (b += a), (a = b - a))</span></span><br><span class="line">(&amp;a == &amp;b) || ((a ^= b), (b ^= a), (a ^= b))</span><br></pre></td></tr></table></figure>
+<p>以上两个操作都避免了占用额外空间，但是(&amp;a == &amp;b) || ((a -= b), (b += a), (a = b - a))操作有溢出风险。</p>
+<h1 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h1><p><a href="http://graphics.stanford.edu/~seander/bithacks.html#OperationCounting" target="_blank" rel="external">Bit Twiddling Hacks</a></p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag">#算法</a>
+          
+            <a href="/tags/位操作/" rel="tag">#位操作</a>
+          
+            <a href="/tags/bit/" rel="tag">#bit</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/27/Python实现实验室自动日报生成器/" rel="next" title="Python实现实验室自动日报生成器">
+                <i class="fa fa-chevron-left"></i> Python实现实验室自动日报生成器
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/27/位操作技巧/"
+           data-title="位操作技巧" data-url="http://dvd0423.github.io/2016/04/27/位操作技巧/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Davi" />
+          <p class="site-author-name" itemprop="name">Davi</p>
+          <p class="site-description motion-element" itemprop="description">记录工作与生活</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/DVD0423" target="_blank" title="github">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element">
+            <div class="links-of-blogroll-title">
+              <i class="fa fa-globe fa-fw"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="dvd0423.github.io" title="Test" target="_blank">Test</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-判断整数的正负"><span class="nav-number">1.</span> <span class="nav-text">1 判断整数的正负</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-判断两个整数的符号是否相反"><span class="nav-number">2.</span> <span class="nav-text">2 判断两个整数的符号是否相反</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-奇偶性"><span class="nav-number">3.</span> <span class="nav-text">3 奇偶性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-判断整数是否为2的幂"><span class="nav-number">4.</span> <span class="nav-text">4 判断整数是否为2的幂</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-求整数的绝对值"><span class="nav-number">5.</span> <span class="nav-text">5 求整数的绝对值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-整数平均值"><span class="nav-number">6.</span> <span class="nav-text">6 整数平均值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-Swap-x-y"><span class="nav-number">7.</span> <span class="nav-text">7 Swap(x, y)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献："><span class="nav-number">8.</span> <span class="nav-text">参考文献：</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Davi</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"dvd0423"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
