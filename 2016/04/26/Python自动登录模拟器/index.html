@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="python,web,模拟登陆," />
 
 
 
@@ -80,16 +80,16 @@
 
 
 
-<meta name="description" content="记录工作与生活">
+<meta name="description" content="在我大宇宙实验室，每天必须打卡上班，而且每天必须登录实验室网站写每日工作报告。而我经常忘记写日报，所以想着用Python写一个自动化脚本模拟登录行为，然后随机填写日志内容。再把这个脚本挂在实验室另一台服务器上，每天12点post一次我的日常工作内容到服务器。　　本程序使用requests模块和python3.5。使用chrome开发者工具分析网站行为，可以得出post的cookies生成方式。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="shell编程技巧">
-<meta property="og:url" content="http://dvd0423.github.io/2016/04/29/shell编程技巧/index.html">
+<meta property="og:title" content="Python自动登录模拟器">
+<meta property="og:url" content="http://dvd0423.github.io/2016/04/26/Python自动登录模拟器/index.html">
 <meta property="og:site_name" content="Davi">
-<meta property="og:description" content="记录工作与生活">
-<meta property="og:updated_time" content="2016-04-29T08:18:39.000Z">
+<meta property="og:description" content="在我大宇宙实验室，每天必须打卡上班，而且每天必须登录实验室网站写每日工作报告。而我经常忘记写日报，所以想着用Python写一个自动化脚本模拟登录行为，然后随机填写日志内容。再把这个脚本挂在实验室另一台服务器上，每天12点post一次我的日常工作内容到服务器。　　本程序使用requests模块和python3.5。使用chrome开发者工具分析网站行为，可以得出post的cookies生成方式。">
+<meta property="og:updated_time" content="2016-04-29T08:19:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="shell编程技巧">
-<meta name="twitter:description" content="记录工作与生活">
+<meta name="twitter:title" content="Python自动登录模拟器">
+<meta name="twitter:description" content="在我大宇宙实验室，每天必须打卡上班，而且每天必须登录实验室网站写每日工作报告。而我经常忘记写日报，所以想着用Python写一个自动化脚本模拟登录行为，然后随机填写日志内容。再把这个脚本挂在实验室另一台服务器上，每天12点post一次我的日常工作内容到服务器。　　本程序使用requests模块和python3.5。使用chrome开发者工具分析网站行为，可以得出post的cookies生成方式。">
 
 
 
@@ -107,7 +107,7 @@
   };
 </script>
 
-  <title> shell编程技巧 | Davi </title>
+  <title> Python自动登录模拟器 | Davi </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -256,7 +256,7 @@
             
             
               
-                shell编程技巧
+                Python自动登录模拟器
               
             
           </h1>
@@ -268,19 +268,38 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-29T14:49:45+08:00" content="2016-04-29">
-              2016-04-29
+            <time itemprop="dateCreated" datetime="2016-04-26T15:56:08+08:00" content="2016-04-26">
+              2016-04-26
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/编程之趣/" itemprop="url" rel="index">
+                    <span itemprop="name">编程之趣</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/29/shell编程技巧/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/29/shell编程技巧/" itemprop="commentsCount"></span>
+                <a href="/2016/04/26/Python自动登录模拟器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/26/Python自动登录模拟器/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -303,7 +322,8 @@
       
 
       
-        
+        <p>　　在我大宇宙实验室，每天必须打卡上班，而且每天必须登录实验室网站写每日工作报告。而我经常忘记写日报，所以想着用Python写一个自动化脚本模拟登录行为，然后随机填写日志内容。再把这个脚本挂在实验室另一台服务器上，每天12点post一次我的日常工作内容到服务器。<br>　　本程序使用requests模块和python3.5。使用chrome开发者工具分析网站行为，可以得出post的cookies生成方式。区区几十行代码就实现了该功能。不得不说Python真是一个生活工具，写爬虫、写自动化小工具，代码简介，上手迅速。<br><a id="more"></a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3.5</span></span><br><span class="line"><span class="comment">#Auth : Davi</span></span><br><span class="line"><span class="comment">#Date : 2016-1-29</span></span><br><span class="line"><span class="comment">#Usage: python ./auto_qa.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">	<span class="comment">#qa内容</span></span><br><span class="line">	works = (<span class="string">'写专利'</span>,</span><br><span class="line">			 <span class="string">'做实验'</span>,</span><br><span class="line">			 <span class="string">'写代码'</span>)</span><br><span class="line">	my_work = works[random.randrange(<span class="number">0</span>, <span class="number">3</span>)]</span><br><span class="line">	my_description = my_work</span><br><span class="line">	<span class="comment">#账号</span></span><br><span class="line">	my_id = &#123;<span class="string">'username'</span>: <span class="string">'dvd0423'</span>, <span class="string">'password'</span>:<span class="string">'XXX'</span>&#125;</span><br><span class="line">	</span><br><span class="line">	my_session = requests.Session()</span><br><span class="line">	my_session.post(<span class="string">'http://grid.hust.edu.cn/qa/login.action'</span>, data = my_id)</span><br><span class="line">	my_time = requests.get(<span class="string">'http://grid.hust.edu.cn/qa/getCurrentTime.action'</span>, cookies = my_session.cookies)</span><br><span class="line">	add_url = <span class="string">'http://grid.hust.edu.cn/qa/addEvent.action'</span></span><br><span class="line">	add_data = &#123;<span class="string">'event.title'</span>	: my_work, </span><br><span class="line">				<span class="string">'event.start'</span>	: my_time.text, </span><br><span class="line">				<span class="string">'event.end'</span>		: my_time.text, </span><br><span class="line">				<span class="string">'event.status'</span>	: <span class="string">'1'</span>,</span><br><span class="line">				<span class="string">'event.location'</span>: <span class="string">'self'</span>,</span><br><span class="line">				<span class="string">'event.description'</span>: my_description&#125;</span><br><span class="line"></span><br><span class="line">	my_req = requests.post(add_url, data = add_data, cookies = my_session.cookies)</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
     
@@ -321,18 +341,32 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+            <a href="/tags/web/" rel="tag">#web</a>
+          
+            <a href="/tags/模拟登陆/" rel="tag">#模拟登陆</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/28/Python爬取美拍视频/" rel="next" title="Python爬取美拍视频">
-                <i class="fa fa-chevron-left"></i> Python爬取美拍视频
+              <a href="/2016/04/25/ldconfig与ldd/" rel="next" title="ldconfig与ldd">
+                <i class="fa fa-chevron-left"></i> ldconfig与ldd
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/26/KVM虚拟机设置/" rel="prev" title="KVM虚拟机设置">
+                KVM虚拟机设置 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -358,8 +392,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/29/shell编程技巧/"
-           data-title="shell编程技巧" data-url="http://dvd0423.github.io/2016/04/29/shell编程技巧/">
+      <div class="ds-thread" data-thread-key="2016/04/26/Python自动登录模拟器/"
+           data-title="Python自动登录模拟器" data-url="http://dvd0423.github.io/2016/04/26/Python自动登录模拟器/">
       </div>
     
   </div>

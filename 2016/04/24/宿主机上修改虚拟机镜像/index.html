@@ -81,21 +81,21 @@
 
 
 <meta name="description" content="在宿主机上编辑虚拟机镜像中的内容有多种方法，我知道的有以下三种：
-使用qemu-nbd命令使用qemu-nbd挂载镜像到宿主机目录中。先查看linux内核的nbd模块是否加载。命令如下：1# modinfo nbd
-如果nbd没有加载，则先安装nbd模块">
+1 使用qemu-nbd命令使用qemu-nbd挂载镜像到宿主机目录中。先查看linux内核的nbd模块是否加载。命令如下：1# modinfo nbd
+如果nbd没有加载，则先安装nbd模块：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="宿主机上编辑虚拟机镜像">
 <meta property="og:url" content="http://dvd0423.github.io/2016/04/24/宿主机上修改虚拟机镜像/index.html">
 <meta property="og:site_name" content="Davi">
 <meta property="og:description" content="在宿主机上编辑虚拟机镜像中的内容有多种方法，我知道的有以下三种：
-使用qemu-nbd命令使用qemu-nbd挂载镜像到宿主机目录中。先查看linux内核的nbd模块是否加载。命令如下：1# modinfo nbd
-如果nbd没有加载，则先安装nbd模块">
-<meta property="og:updated_time" content="2016-04-26T12:15:26.000Z">
+1 使用qemu-nbd命令使用qemu-nbd挂载镜像到宿主机目录中。先查看linux内核的nbd模块是否加载。命令如下：1# modinfo nbd
+如果nbd没有加载，则先安装nbd模块：">
+<meta property="og:updated_time" content="2016-04-29T08:26:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="宿主机上编辑虚拟机镜像">
 <meta name="twitter:description" content="在宿主机上编辑虚拟机镜像中的内容有多种方法，我知道的有以下三种：
-使用qemu-nbd命令使用qemu-nbd挂载镜像到宿主机目录中。先查看linux内核的nbd模块是否加载。命令如下：1# modinfo nbd
-如果nbd没有加载，则先安装nbd模块">
+1 使用qemu-nbd命令使用qemu-nbd挂载镜像到宿主机目录中。先查看linux内核的nbd模块是否加载。命令如下：1# modinfo nbd
+如果nbd没有加载，则先安装nbd模块：">
 
 
 
@@ -329,10 +329,10 @@
 
       
         <p>在宿主机上编辑虚拟机镜像中的内容有多种方法，我知道的有以下三种：</p>
-<h1 id="使用qemu-nbd命令"><a href="#使用qemu-nbd命令" class="headerlink" title="使用qemu-nbd命令"></a>使用qemu-nbd命令</h1><p>使用qemu-nbd挂载镜像到宿主机目录中。先查看linux内核的nbd模块是否加载。命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># modinfo nbd</span></span><br></pre></td></tr></table></figure></p>
-<p>如果nbd没有加载，则先安装nbd模块<br><a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cd linux-3.17.4</span></span><br><span class="line"><span class="comment"># make CONFIG_BLK_DEV_NBD=m M=drivers/block</span></span><br><span class="line"><span class="comment"># cp drivers/block/nbd.ko /lib/modules/"$(uname -r)"/kernel/drivers/block/</span></span><br><span class="line"><span class="comment"># modprobe nbd max_part=8</span></span><br></pre></td></tr></table></figure></p>
-<p>然后使用qemu-nbd命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># qemu-nbd -c /dev/nbd0 xxx/vm.img</span></span><br></pre></td></tr></table></figure></p>
-<p>如果查看宿主机的/dev目录会发现多个如下的目录文件。<br><strong>nbd0p1 nbd0p2 …</strong><br>每一个目录对应一个虚拟机的分区<br>如果kvm虚拟机使用的是标准分区，则直接使用下列命令就可以挂载<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mount /dev/nbd0p1 /mnt</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="1-使用qemu-nbd命令"><a href="#1-使用qemu-nbd命令" class="headerlink" title="1 使用qemu-nbd命令"></a>1 使用qemu-nbd命令</h1><p>使用qemu-nbd挂载镜像到宿主机目录中。先查看linux内核的nbd模块是否加载。命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># modinfo nbd</span></span><br></pre></td></tr></table></figure></p>
+<p>如果nbd没有加载，则先安装nbd模块：<br><a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cd linux-3.17.4</span></span><br><span class="line"><span class="comment"># make CONFIG_BLK_DEV_NBD=m M=drivers/block</span></span><br><span class="line"><span class="comment"># cp drivers/block/nbd.ko /lib/modules/"$(uname -r)"/kernel/drivers/block/</span></span><br><span class="line"><span class="comment"># modprobe nbd max_part=8</span></span><br></pre></td></tr></table></figure></p>
+<p>然后使用qemu-nbd命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># qemu-nbd -c /dev/nbd0 xxx/vm.img</span></span><br></pre></td></tr></table></figure></p>
+<p>如果查看宿主机的/dev目录会发现多个如下的目录文件。<br><strong>nbd0p1 nbd0p2 …</strong><br>每一个目录对应一个虚拟机的分区。<br>如果kvm虚拟机使用的是标准分区，则直接使用下列命令就可以挂载：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mount /dev/nbd0p1 /mnt</span></span><br></pre></td></tr></table></figure></p>
 <p>如果使用的是LVM则可能会出现下面的错误：<br><strong>mount: unknown filesystem type ‘LVM2_member’</strong><br>这时需要安装lvm2工具：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum install lvm2</span></span><br></pre></td></tr></table></figure></p>
 <p>然后用下面命令查看相关内容：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># lvdisplay</span></span><br></pre></td></tr></table></figure></p>
 <p>显示如下：<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">--- Logical volume ---</span><br><span class="line">  <span class="keyword">LV</span> Path                /dev/centos/root</span><br><span class="line">  <span class="keyword">LV</span> Name                root</span><br><span class="line">  VG Name                centos</span><br><span class="line">  <span class="keyword">LV</span> UUID                G9vOCp-kKe0-fH4E-WJ8A-XIBu-XaNo-No21cp</span><br><span class="line">  <span class="keyword">LV</span> Write Access        <span class="keyword">read</span>/write</span><br><span class="line">  <span class="keyword">LV</span> Creation host, time localhost, 2016-02-21 16:47:50 +0800</span><br><span class="line">  <span class="keyword">LV</span> Status              unenable</span><br><span class="line">  # <span class="keyword">open</span>                 1</span><br><span class="line">  <span class="keyword">LV</span> Size                47.85 GiB</span><br><span class="line">  Current LE             12249</span><br><span class="line">  Segments               1</span><br><span class="line">  Allocation             inherit</span><br><span class="line">  <span class="keyword">Read</span> ahead sectors     auto</span><br><span class="line">  - currently <span class="keyword">set</span> to     256</span><br><span class="line">  Block device           253:0</span><br></pre></td></tr></table></figure></p>
@@ -340,8 +340,8 @@
 <p>然后挂载:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mount /dev/centos/root /mnt</span></span><br></pre></td></tr></table></figure></p>
 <p>修改完虚拟机镜像后，可以使用下面命令恢复原来状态<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># umount /mnt</span></span><br><span class="line"><span class="comment"># qemu-nbd -d /dev/nbd0</span></span><br></pre></td></tr></table></figure></p>
 <p>下面两种方式更简单，但是我使用下面两个方法时，虚拟机就会卡住，所以不做详细介绍。百度一下会有很多相关文章。</p>
-<h1 id="使用guestfish编辑"><a href="#使用guestfish编辑" class="headerlink" title="使用guestfish编辑"></a>使用guestfish编辑</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum -y install guestfish</span></span><br></pre></td></tr></table></figure>
-<h1 id="使用virt-edit"><a href="#使用virt-edit" class="headerlink" title="使用virt-edit"></a>使用virt-edit</h1>
+<h1 id="2-使用guestfish编辑"><a href="#2-使用guestfish编辑" class="headerlink" title="2 使用guestfish编辑"></a>2 使用guestfish编辑</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum -y install guestfish</span></span><br></pre></td></tr></table></figure>
+<h1 id="3-使用virt-edit"><a href="#3-使用virt-edit" class="headerlink" title="3 使用virt-edit"></a>3 使用virt-edit</h1>
       
     </div>
     
@@ -448,7 +448,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -456,7 +456,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -465,7 +465,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -519,7 +519,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用qemu-nbd命令"><span class="nav-number">1.</span> <span class="nav-text">使用qemu-nbd命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用guestfish编辑"><span class="nav-number">2.</span> <span class="nav-text">使用guestfish编辑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用virt-edit"><span class="nav-number">3.</span> <span class="nav-text">使用virt-edit</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-使用qemu-nbd命令"><span class="nav-number">1.</span> <span class="nav-text">1 使用qemu-nbd命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-使用guestfish编辑"><span class="nav-number">2.</span> <span class="nav-text">2 使用guestfish编辑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-使用virt-edit"><span class="nav-number">3.</span> <span class="nav-text">3 使用virt-edit</span></a></li></ol></div>
             
           </div>
         </section>

@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="linux," />
+  <meta name="keywords" content="linux - 系统调用," />
 
 
 
@@ -80,17 +80,17 @@
 
 
 
-<meta name="description" content="跟踪系统调用系统调用是linux用户态和内核态信息交互的通道。运行机理主要是通过用户态触发CPU软中断进入内核态，在内核中调用系统调用号对应的相关函数。对于用户程序，可以使用strace命令追踪底层使用了哪些系统调用：">
+<meta name="description" content="1 跟踪系统调用系统调用是linux用户态和内核态信息交互的通道。运行机理主要是通过用户态触发CPU软中断进入内核态，在内核中调用系统调用号对应的相关函数。对于用户程序，可以使用strace命令追踪底层使用了哪些系统调用：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux系统调用">
 <meta property="og:url" content="http://dvd0423.github.io/2016/04/26/Linux系统调用/index.html">
 <meta property="og:site_name" content="Davi">
-<meta property="og:description" content="跟踪系统调用系统调用是linux用户态和内核态信息交互的通道。运行机理主要是通过用户态触发CPU软中断进入内核态，在内核中调用系统调用号对应的相关函数。对于用户程序，可以使用strace命令追踪底层使用了哪些系统调用：">
+<meta property="og:description" content="1 跟踪系统调用系统调用是linux用户态和内核态信息交互的通道。运行机理主要是通过用户态触发CPU软中断进入内核态，在内核中调用系统调用号对应的相关函数。对于用户程序，可以使用strace命令追踪底层使用了哪些系统调用：">
 <meta property="og:image" content="http://7xtdio.com2.z0.glb.clouddn.com/strace-log.png">
-<meta property="og:updated_time" content="2016-04-26T12:25:35.000Z">
+<meta property="og:updated_time" content="2016-04-29T08:23:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux系统调用">
-<meta name="twitter:description" content="跟踪系统调用系统调用是linux用户态和内核态信息交互的通道。运行机理主要是通过用户态触发CPU软中断进入内核态，在内核中调用系统调用号对应的相关函数。对于用户程序，可以使用strace命令追踪底层使用了哪些系统调用：">
+<meta name="twitter:description" content="1 跟踪系统调用系统调用是linux用户态和内核态信息交互的通道。运行机理主要是通过用户态触发CPU软中断进入内核态，在内核中调用系统调用号对应的相关函数。对于用户程序，可以使用strace命令追踪底层使用了哪些系统调用：">
 <meta name="twitter:image" content="http://7xtdio.com2.z0.glb.clouddn.com/strace-log.png">
 
 
@@ -284,8 +284,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
                   </a>
                 </span>
 
@@ -324,12 +324,12 @@
       
 
       
-        <h1 id="跟踪系统调用"><a href="#跟踪系统调用" class="headerlink" title="跟踪系统调用"></a>跟踪系统调用</h1><p>系统调用是linux用户态和内核态信息交互的通道。运行机理主要是通过用户态触发CPU软中断进入内核态，在内核中调用系统调用号对应的相关函数。对于用户程序，可以使用strace命令追踪底层使用了哪些系统调用：<br><a id="more"></a><br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">strace </span>path_of_your_program</span><br></pre></td></tr></table></figure></p>
+        <h1 id="1-跟踪系统调用"><a href="#1-跟踪系统调用" class="headerlink" title="1 跟踪系统调用"></a>1 跟踪系统调用</h1><p>系统调用是linux用户态和内核态信息交互的通道。运行机理主要是通过用户态触发CPU软中断进入内核态，在内核中调用系统调用号对应的相关函数。对于用户程序，可以使用strace命令追踪底层使用了哪些系统调用：<br><a id="more"></a><br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">strace </span>path_of_your_program</span><br></pre></td></tr></table></figure></p>
 <p>下图是我执行的一个测试结果<br><img src="http://7xtdio.com2.z0.glb.clouddn.com/strace-log.png" alt="strace"><br>其中使用的系统调用有：execve、mmap、access、stat、open等。</p>
-<h1 id="系统调用分析"><a href="#系统调用分析" class="headerlink" title="系统调用分析"></a>系统调用分析</h1><p>下面我们以<strong>open</strong>这个系统调用为例说明其实现原理。open在内核中函数原型如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SYSCALL_DEFINE3(open, <span class="keyword">const</span> <span class="keyword">char</span> __user *, filename, <span class="keyword">int</span>, flags, <span class="keyword">umode_t</span>, mode)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (force_o_largefile())</span><br><span class="line">        flags |= O_LARGEFILE;</span><br><span class="line"></span><br><span class="line">    return do_sys_open(AT_FDCWD, filename, flags, mode);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="2-系统调用分析"><a href="#2-系统调用分析" class="headerlink" title="2 系统调用分析"></a>2 系统调用分析</h1><p>下面我们以<strong>open</strong>这个系统调用为例说明其实现原理。open在内核中函数原型如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SYSCALL_DEFINE3(open, <span class="keyword">const</span> <span class="keyword">char</span> __user *, filename, <span class="keyword">int</span>, flags, <span class="keyword">umode_t</span>, mode)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (force_o_largefile())</span><br><span class="line">        flags |= O_LARGEFILE;</span><br><span class="line"></span><br><span class="line">    return do_sys_open(AT_FDCWD, filename, flags, mode);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>而在用户空间触发open系统调用的函数为:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">open</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *filename, <span class="keyword">int</span> flags, <span class="keyword">int</span> mode)</span></span>;</span><br></pre></td></tr></table></figure></p>
 <p>当然也可以使用<em>syscall()</em>函数实现，上面的open函数等价于：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line">#define __NR_restart_syscall    0</span><br><span class="line">#define __NR_exit    1</span><br><span class="line">#define __NR_fork    2</span><br><span class="line">#define __NR_read    3</span><br><span class="line">#define __NR_write   4</span><br><span class="line">#define __NR_open    5</span><br><span class="line">...</span><br><span class="line">*/</span></span><br><span class="line">syscall(num,<span class="keyword">const</span> <span class="keyword">char</span> *, filename, <span class="keyword">int</span>, flags, <span class="keyword">int</span>, mode);    <span class="comment">//num是调用号，这里是5，后面的参数和open一样</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="添加系统调用"><a href="#添加系统调用" class="headerlink" title="添加系统调用"></a>添加系统调用</h1><p>如果要添加自己的系统调用，主要分4步：</p>
+<h1 id="3-添加系统调用"><a href="#3-添加系统调用" class="headerlink" title="3 添加系统调用"></a>3 添加系统调用</h1><p>如果要添加自己的系统调用，主要分4步：</p>
 <ul>
 <li><p>首先要在系统调用表/arch/sh/include/uapi/asm/unistd_64.h中添加调用号，并将总调用数加1。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __NR_firstsyscall     380        <span class="comment">//添加的部分</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NR_syscalls     　　   381        <span class="comment">//总的系统调用个数，本来为380</span></span></span><br></pre></td></tr></table></figure>
@@ -340,7 +340,7 @@
 <li><p>第三在内核中实现系统调用的具体程序。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SYSCALL_DEFINE3(firstsyscall, <span class="keyword">int</span>, value)&#123;</span><br><span class="line">    printk(<span class="string">"fuckDW"</span>);</span><br><span class="line">    return value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>重新编译内核，然后使用syscall及相关参数调用内核的firstsyscall函数。</p>
+<li><p>最后，重新编译内核，然后使用syscall及相关参数调用内核的firstsyscall函数。</p>
 </li>
 </ul>
 
@@ -363,7 +363,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/linux/" rel="tag">#linux</a>
+            <a href="/tags/linux-系统调用/" rel="tag">#linux - 系统调用</a>
           
         </div>
       
@@ -454,7 +454,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -462,7 +462,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -471,7 +471,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -525,7 +525,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#跟踪系统调用"><span class="nav-number">1.</span> <span class="nav-text">跟踪系统调用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统调用分析"><span class="nav-number">2.</span> <span class="nav-text">系统调用分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加系统调用"><span class="nav-number">3.</span> <span class="nav-text">添加系统调用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-跟踪系统调用"><span class="nav-number">1.</span> <span class="nav-text">1 跟踪系统调用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-系统调用分析"><span class="nav-number">2.</span> <span class="nav-text">2 系统调用分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-添加系统调用"><span class="nav-number">3.</span> <span class="nav-text">3 添加系统调用</span></a></li></ol></div>
             
           </div>
         </section>
