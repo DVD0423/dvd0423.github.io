@@ -90,7 +90,7 @@
 <meta property="og:description" content="在宿主机上编辑虚拟机镜像中的内容有多种方法，我知道的有以下三种：
 1 使用qemu-nbd命令使用qemu-nbd挂载镜像到宿主机目录中。先查看linux内核的nbd模块是否加载。命令如下：1# modinfo nbd
 如果nbd没有加载，则先安装nbd模块：">
-<meta property="og:updated_time" content="2016-04-29T08:26:02.000Z">
+<meta property="og:updated_time" content="2016-04-29T13:25:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="宿主机上编辑虚拟机镜像">
 <meta name="twitter:description" content="在宿主机上编辑虚拟机镜像中的内容有多种方法，我知道的有以下三种：
@@ -336,7 +336,7 @@
 
       
         <p>在宿主机上编辑虚拟机镜像中的内容有多种方法，我知道的有以下三种：</p>
-<h1 id="1-使用qemu-nbd命令"><a href="#1-使用qemu-nbd命令" class="headerlink" title="1 使用qemu-nbd命令"></a>1 使用qemu-nbd命令</h1><p>使用qemu-nbd挂载镜像到宿主机目录中。先查看linux内核的nbd模块是否加载。命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># modinfo nbd</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="1-使用qemu-nbd命令"><a href="#1-使用qemu-nbd命令" class="headerlink" title="1 使用qemu-nbd命令"></a>1 使用qemu-nbd命令</h2><p>使用qemu-nbd挂载镜像到宿主机目录中。先查看linux内核的nbd模块是否加载。命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># modinfo nbd</span></span><br></pre></td></tr></table></figure></p>
 <p>如果nbd没有加载，则先安装nbd模块：<br><a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cd linux-3.17.4</span></span><br><span class="line"><span class="comment"># make CONFIG_BLK_DEV_NBD=m M=drivers/block</span></span><br><span class="line"><span class="comment"># cp drivers/block/nbd.ko /lib/modules/"$(uname -r)"/kernel/drivers/block/</span></span><br><span class="line"><span class="comment"># modprobe nbd max_part=8</span></span><br></pre></td></tr></table></figure></p>
 <p>然后使用qemu-nbd命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># qemu-nbd -c /dev/nbd0 xxx/vm.img</span></span><br></pre></td></tr></table></figure></p>
 <p>如果查看宿主机的/dev目录会发现多个如下的目录文件。<br><strong>nbd0p1 nbd0p2 …</strong><br>每一个目录对应一个虚拟机的分区。<br>如果kvm虚拟机使用的是标准分区，则直接使用下列命令就可以挂载：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mount /dev/nbd0p1 /mnt</span></span><br></pre></td></tr></table></figure></p>
@@ -347,8 +347,8 @@
 <p>然后挂载:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mount /dev/centos/root /mnt</span></span><br></pre></td></tr></table></figure></p>
 <p>修改完虚拟机镜像后，可以使用下面命令恢复原来状态<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># umount /mnt</span></span><br><span class="line"><span class="comment"># qemu-nbd -d /dev/nbd0</span></span><br></pre></td></tr></table></figure></p>
 <p>下面两种方式更简单，但是我使用下面两个方法时，虚拟机就会卡住，所以不做详细介绍。百度一下会有很多相关文章。</p>
-<h1 id="2-使用guestfish编辑"><a href="#2-使用guestfish编辑" class="headerlink" title="2 使用guestfish编辑"></a>2 使用guestfish编辑</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum -y install guestfish</span></span><br></pre></td></tr></table></figure>
-<h1 id="3-使用virt-edit"><a href="#3-使用virt-edit" class="headerlink" title="3 使用virt-edit"></a>3 使用virt-edit</h1>
+<h2 id="2-使用guestfish编辑"><a href="#2-使用guestfish编辑" class="headerlink" title="2 使用guestfish编辑"></a>2 使用guestfish编辑</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum -y install guestfish</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-使用virt-edit"><a href="#3-使用virt-edit" class="headerlink" title="3 使用virt-edit"></a>3 使用virt-edit</h2>
       
     </div>
     
@@ -529,7 +529,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-使用qemu-nbd命令"><span class="nav-number">1.</span> <span class="nav-text">1 使用qemu-nbd命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-使用guestfish编辑"><span class="nav-number">2.</span> <span class="nav-text">2 使用guestfish编辑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-使用virt-edit"><span class="nav-number">3.</span> <span class="nav-text">3 使用virt-edit</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-使用qemu-nbd命令"><span class="nav-number">1.</span> <span class="nav-text">1 使用qemu-nbd命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-使用guestfish编辑"><span class="nav-number">2.</span> <span class="nav-text">2 使用guestfish编辑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-使用virt-edit"><span class="nav-number">3.</span> <span class="nav-text">3 使用virt-edit</span></a></li></ol></div>
             
           </div>
         </section>
