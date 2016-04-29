@@ -1,0 +1,670 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="美拍,爬虫,python," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="前段时间看到美拍上有很多hiphop街舞视频，所以想下载下来学习一下。于是就产生了用python批量下载的想法。花了一个下午分析了美拍网站的html信息和视频加载机制。成功实现了爬取带“hiphop”关键字的视频。
+1 看美拍视频的操作流程　　首先我们要明白：爬虫的目的就是用机器模仿人工操作，实现web的自动化请求（Request）与响应（Response）。因此我们首先要做的是熟悉人工操作的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python爬取美拍视频">
+<meta property="og:url" content="http://dvd0423.github.io/2016/04/28/Python爬取美拍视频/index.html">
+<meta property="og:site_name" content="Davi">
+<meta property="og:description" content="前段时间看到美拍上有很多hiphop街舞视频，所以想下载下来学习一下。于是就产生了用python批量下载的想法。花了一个下午分析了美拍网站的html信息和视频加载机制。成功实现了爬取带“hiphop”关键字的视频。
+1 看美拍视频的操作流程　　首先我们要明白：爬虫的目的就是用机器模仿人工操作，实现web的自动化请求（Request）与响应（Response）。因此我们首先要做的是熟悉人工操作的">
+<meta property="og:updated_time" content="2016-04-28T13:10:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python爬取美拍视频">
+<meta name="twitter:description" content="前段时间看到美拍上有很多hiphop街舞视频，所以想下载下来学习一下。于是就产生了用python批量下载的想法。花了一个下午分析了美拍网站的html信息和视频加载机制。成功实现了爬取带“hiphop”关键字的视频。
+1 看美拍视频的操作流程　　首先我们要明白：爬虫的目的就是用机器模仿人工操作，实现web的自动化请求（Request）与响应（Response）。因此我们首先要做的是熟悉人工操作的">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Python爬取美拍视频 | Davi </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-76872881-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Davi</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">记录工作与生活</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Python爬取美拍视频
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-28T12:30:34+08:00" content="2016-04-28">
+              2016-04-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/28/Python爬取美拍视频/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/28/Python爬取美拍视频/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>　　前段时间看到美拍上有很多hiphop街舞视频，所以想下载下来学习一下。于是就产生了用python批量下载的想法。花了一个下午分析了美拍网站的html信息和视频加载机制。成功实现了爬取带“hiphop”关键字的视频。</p>
+<h1 id="1-看美拍视频的操作流程"><a href="#1-看美拍视频的操作流程" class="headerlink" title="1 看美拍视频的操作流程"></a>1 看美拍视频的操作流程</h1><p>　　首先我们要明白：爬虫的目的就是用机器模仿人工操作，实现web的自动化请求（Request）与响应（Response）。因此我们首先要做的是熟悉人工操作的执行流程。<br>　　第一步当然是先打开美拍首页，点击进入舞蹈相关页面，地址是<a href="http://www.meipai.com/square/63。在视频多列模式下，美拍一页只能容纳24个视频，**如果需要看到更多的视频需要把页面往下拉**，这时会触发ajax异步刷新机制，实现页面的局部刷新，从而get到更多的视频。当页面连续刷新8次时，就达到了页面底部，这时不在刷新更多的视频，也就是说一个页面所列出的视频是有限的，最多为8" target="_blank" rel="external">http://www.meipai.com/square/63。在视频多列模式下，美拍一页只能容纳24个视频，**如果需要看到更多的视频需要把页面往下拉**，这时会触发ajax异步刷新机制，实现页面的局部刷新，从而get到更多的视频。当页面连续刷新8次时，就达到了页面底部，这时不在刷新更多的视频，也就是说一个页面所列出的视频是有限的，最多为8</a> <em> 24个。但是页面底部会出现第一页、第二页的选项。所以，<em>*如果要继续看到更多的视频需要点击下一页按钮</em></em>。<br>　　只要重复上面的操作就可以欣赏到美拍上的所有舞蹈视频。这一章节都是很简单的操作，却也是一个爬虫成形最关键的地方。
+　　</p>
+<h1 id="2-具体视频url的分析与获取"><a href="#2-具体视频url的分析与获取" class="headerlink" title="2 具体视频url的分析与获取"></a>2 具体视频url的分析与获取</h1><p>　　从上面的人工操作流程可以看出，如果想遍历所有的舞蹈视频需要用python模拟两个操作：<strong>下拉页面</strong>和<strong>点击下一页按钮</strong>。<br>　　下面我们需要使用Chrome开发者工具查看在“下拉页面”和“点击下一页按钮”时，浏览器都有哪些变化。在执行下拉操作时，浏览器的变化如下图所示<img src="" alt=""><br>　　其中hot_timeline是XHR类型的页面，只有在ajax异步请求时才出现。图上的红线标注了具体的RequestURL链接地址。从上面可以看到这个get请求主要有4个参数：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">page  :</span> <span class="number">3</span></span><br><span class="line"><span class="string">count :</span> <span class="number">24</span></span><br><span class="line"><span class="string">tid   :</span> <span class="number">5872239354896137479</span> </span><br><span class="line"><span class="string">maxid :</span> <span class="number">508506966</span></span><br></pre></td></tr></table></figure></p>
+<p>其中page对应了第几页，count固定为24，tid和maxid的获取是关键。通过查看网页源码可以发现tid对应了下图的topic_id，maxid对应了medias_id。<br><img src="" alt=""><br>确定了get请求的4个参数后就可以使用<a href="http://docs.python-requests.org/en/master/" target="_blank" rel="external">requests</a>模块获得hot_timeline的内容。通过chrome开发者工具的preview选项可以确定hot_timeline的具体内容是json文件，如下图所示。<br>其中有一个mp4的链接地址，这就是我们要找的视频地址，然后通过json内的caption_complete字符串是否有‘hiphop’关键字可以确定该视频是不是我们要找到视频。</p>
+<p>当点击下一页按钮时，RequestsURL地址上p
+　　</p>
+<h1 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3 代码实现"></a>3 代码实现</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment">#Auth : Davi</span></span><br><span class="line"><span class="comment">#Date : 2016-3-2</span></span><br><span class="line"><span class="comment">#Func : 爬取美拍的所有hiphop街舞视频</span></span><br><span class="line"><span class="comment">#Usage: python ./crawler_for_meipai.py video_num key_words</span></span><br><span class="line"><span class="comment">#@video_num 要爬取的视频的总个数，默认是1</span></span><br><span class="line"><span class="comment">#@key_words 爬取视频的关键词，默认是'hiphop'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">download_video</span><span class="params">(url, video_name)</span>:</span></span><br><span class="line">	print(<span class="string">"Download the %dth video ...\n"</span> % video_name)</span><br><span class="line">	filename = <span class="string">"./"</span> + video_name + <span class="string">".mp4"</span></span><br><span class="line">	<span class="keyword">with</span> open(filename, <span class="string">'wb'</span>) <span class="keyword">as</span> fd:</span><br><span class="line">		fd.write(requests.get(url).content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_crawler</span><span class="params">(video_num = <span class="number">1</span>, key_words = <span class="string">'hiphop'</span>)</span>:</span></span><br><span class="line">	<span class="comment">#舞蹈对应的url</span></span><br><span class="line">	my_url = <span class="string">"http://www.meipai.com/square/63"</span></span><br><span class="line">	<span class="comment">#获得页面内容</span></span><br><span class="line">	req = requests.get(my_url)</span><br><span class="line">	<span class="comment">#定位topic_id和medias_id的位置</span></span><br><span class="line">	index1 = req.text.find(<span class="string">"topic_id:"</span>)</span><br><span class="line">	index2 = req.text.find(<span class="string">"is_new:"</span>)</span><br><span class="line">	str1 = r.text[index1:index2]</span><br><span class="line">	tmp_list = str1.split(<span class="string">"'"</span>)</span><br><span class="line">	</span><br><span class="line">	topic_id =  tmp_list[<span class="number">1</span>].encode(<span class="string">'utf-8'</span>)</span><br><span class="line">	medias_id = tmp_list[<span class="number">3</span>].encode(<span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment">#组建get请求，遍历相关视频</span></span><br><span class="line">	page_num = <span class="number">0</span></span><br><span class="line">	video_i = <span class="number">1</span></span><br><span class="line">	<span class="keyword">while</span> video_i &lt; video_num:</span><br><span class="line">		page_num += <span class="number">1</span></span><br><span class="line">		payload = &#123;<span class="string">'page'</span>: page_num, <span class="string">'count'</span>: <span class="string">'24'</span>, <span class="string">'tid'</span>: topic_id, <span class="string">'maxid'</span>: medias_id&#125;</span><br><span class="line">		hot_timeline = requests.get(<span class="string">"http://www.meipai.com/topics/hot_timeline"</span>, payload)</span><br><span class="line">		<span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">24</span>):</span><br><span class="line">			<span class="keyword">if</span> video_i &lt;= video_num <span class="keyword">and</span> hot_timeline.json()[<span class="string">'medias'</span>][j][<span class="string">'caption_complete'</span>].encode(<span class="string">'utf-8'</span>).lower().find(key_words) != <span class="number">-1</span>:</span><br><span class="line">				valid_url = hot_timeline.json()[<span class="string">'medias'</span>][j][<span class="string">'video'</span>]</span><br><span class="line">				download_video(valid_url, video_i)</span><br><span class="line">				video_i += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">	<span class="comment">#指定爬取的视频个数和舞蹈视频类型</span></span><br><span class="line">	<span class="keyword">if</span> len(sys.argv) == <span class="number">3</span> :</span><br><span class="line">		my_crawler(sys.argv[<span class="number">1</span>], sys.argv[<span class="number">2</span>])</span><br><span class="line">	<span class="keyword">elif</span> len(sys.argv) == <span class="number">1</span> :</span><br><span class="line">		my_crawler()</span><br><span class="line">	<span class="keyword">else</span> :</span><br><span class="line">		print(<span class="string">"Usage : python ./crawler_for_meipai.py num key_words"</span>)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/美拍/" rel="tag">#美拍</a>
+          
+            <a href="/tags/爬虫/" rel="tag">#爬虫</a>
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/27/位操作技巧/" rel="next" title="位操作技巧">
+                <i class="fa fa-chevron-left"></i> 位操作技巧
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/28/Python实现实验室自动日报生成器/" rel="prev" title="Python爬取美拍视频">
+                Python爬取美拍视频 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/28/Python爬取美拍视频/"
+           data-title="Python爬取美拍视频" data-url="http://dvd0423.github.io/2016/04/28/Python爬取美拍视频/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Davi" />
+          <p class="site-author-name" itemprop="name">Davi</p>
+          <p class="site-description motion-element" itemprop="description">记录工作与生活</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/DVD0423" target="_blank" title="github">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element">
+            <div class="links-of-blogroll-title">
+              <i class="fa fa-globe fa-fw"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="dvd0423.github.io" title="Test" target="_blank">Test</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-看美拍视频的操作流程"><span class="nav-number">1.</span> <span class="nav-text">1 看美拍视频的操作流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-具体视频url的分析与获取"><span class="nav-number">2.</span> <span class="nav-text">2 具体视频url的分析与获取</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-代码实现"><span class="nav-number">3.</span> <span class="nav-text">3 代码实现</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Davi</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"dvd0423"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
