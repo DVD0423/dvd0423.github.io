@@ -81,23 +81,23 @@
 
 
 <meta name="description" content="前段时间看到美拍上有很多hiphop街舞视频，所以想下载下来学习一下。于是就产生了用python批量下载的想法。花了一个下午分析了美拍网站的html信息和视频加载机制。成功实现了爬取带“hiphop”关键字的视频。
-1 看美拍视频的操作流程首先我们要明白：爬虫的目的就是用机器模仿人工操作，实现web的自动化请求（Request）与响应（Response）。因此我们首先要做的是熟悉人工操作的执行">
+1 用美拍看视频的过程首先我们要明白：爬虫的目的就是用机器模仿人工操作，实现web的自动化请求（Request）与响应（Response）。因此我们首先要做的是熟悉人工操作的执行流">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python爬取美拍视频">
-<meta property="og:url" content="http://dvd0423.github.io/2016/04/28/Python爬取美拍视频/index.html">
+<meta property="og:url" content="http://davi.space/2016/04/28/Python爬取美拍视频/index.html">
 <meta property="og:site_name" content="Davi">
 <meta property="og:description" content="前段时间看到美拍上有很多hiphop街舞视频，所以想下载下来学习一下。于是就产生了用python批量下载的想法。花了一个下午分析了美拍网站的html信息和视频加载机制。成功实现了爬取带“hiphop”关键字的视频。
-1 看美拍视频的操作流程首先我们要明白：爬虫的目的就是用机器模仿人工操作，实现web的自动化请求（Request）与响应（Response）。因此我们首先要做的是熟悉人工操作的执行">
+1 用美拍看视频的过程首先我们要明白：爬虫的目的就是用机器模仿人工操作，实现web的自动化请求（Request）与响应（Response）。因此我们首先要做的是熟悉人工操作的执行流">
 <meta property="og:image" content="http://7xtdio.com2.z0.glb.clouddn.com/2016-4-28-1.jpeg">
 <meta property="og:image" content="http://7xtdio.com2.z0.glb.clouddn.com/2016-4-28-2.jpeg">
 <meta property="og:image" content="http://7xtdio.com2.z0.glb.clouddn.com/2016-4-28-3.png">
 <meta property="og:image" content="http://7xtdio.com2.z0.glb.clouddn.com/2016-4-28-4.jpeg">
 <meta property="og:image" content="http://7xtdio.com2.z0.glb.clouddn.com/2016-4-28-6.jpeg">
-<meta property="og:updated_time" content="2016-04-29T13:25:03.000Z">
+<meta property="og:updated_time" content="2016-04-29T13:28:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python爬取美拍视频">
 <meta name="twitter:description" content="前段时间看到美拍上有很多hiphop街舞视频，所以想下载下来学习一下。于是就产生了用python批量下载的想法。花了一个下午分析了美拍网站的html信息和视频加载机制。成功实现了爬取带“hiphop”关键字的视频。
-1 看美拍视频的操作流程首先我们要明白：爬虫的目的就是用机器模仿人工操作，实现web的自动化请求（Request）与响应（Response）。因此我们首先要做的是熟悉人工操作的执行">
+1 用美拍看视频的过程首先我们要明白：爬虫的目的就是用机器模仿人工操作，实现web的自动化请求（Request）与响应（Response）。因此我们首先要做的是熟悉人工操作的执行流">
 <meta name="twitter:image" content="http://7xtdio.com2.z0.glb.clouddn.com/2016-4-28-1.jpeg">
 
 
@@ -339,7 +339,7 @@
 
       
         <p>　　前段时间看到美拍上有很多hiphop街舞视频，所以想下载下来学习一下。于是就产生了用python批量下载的想法。花了一个下午分析了美拍网站的html信息和视频加载机制。成功实现了爬取带“hiphop”关键字的视频。</p>
-<h2 id="1-看美拍视频的操作流程"><a href="#1-看美拍视频的操作流程" class="headerlink" title="1 看美拍视频的操作流程"></a>1 看美拍视频的操作流程</h2><p>首先我们要明白：爬虫的目的就是用机器模仿人工操作，实现web的自动化请求（Request）与响应（Response）。因此我们首先要做的是熟悉人工操作的执行流程。<br>第一步当然是先打开美拍首页，点击进入舞蹈相关页面。在视频多列模式下，美拍一页只能容纳24个视频，<strong>如果需要看到更多的视频需要把页面往下拉</strong>，这时会触发ajax异步刷新机制，实现页面的局部刷新，从而get到更多的视频。当页面连续刷新6次时，就达到了页面底部，这时不再刷新更多的视频，也就是说一个页面所列出的视频是有限的，最多为6*24个。但是页面底部会出现第一页、第二页的选项。所以，<strong>如果要继续看到更多的视频需要点击下一页按钮</strong>。<br>只要重复上面的操作就可以欣赏到美拍上的所有舞蹈视频。这一章节虽然全都是废话，却是一个爬虫成形最关键的地方。<br><a id="more"></a></p>
+<h2 id="1-用美拍看视频的过程"><a href="#1-用美拍看视频的过程" class="headerlink" title="1 用美拍看视频的过程"></a>1 用美拍看视频的过程</h2><p>首先我们要明白：爬虫的目的就是用机器模仿人工操作，实现web的自动化请求（Request）与响应（Response）。因此我们首先要做的是熟悉人工操作的执行流程。<br>第一步当然是先打开美拍首页，点击进入舞蹈相关页面。在视频多列模式下，美拍一页只能容纳24个视频，<strong>如果需要看到更多的视频需要把页面往下拉</strong>，这时会触发ajax异步刷新机制，实现页面的局部刷新，从而get到更多的视频。当页面连续刷新6次时，就达到了页面底部，这时不再刷新更多的视频，也就是说一个页面所列出的视频是有限的，最多为6*24个。但是页面底部会出现第一页、第二页的选项。所以，<strong>如果要继续看到更多的视频需要点击下一页按钮</strong>。<br>只要重复上面的操作就可以欣赏到美拍上的所有舞蹈视频。这一章节虽然全都是废话，却是一个爬虫成形最关键的地方。<br><a id="more"></a></p>
 <h2 id="2-具体视频url的分析与获取"><a href="#2-具体视频url的分析与获取" class="headerlink" title="2 具体视频url的分析与获取"></a>2 具体视频url的分析与获取</h2><p>从上面的人工操作流程可以看出，如果想遍历所有的舞蹈视频需要用python模拟两个操作：<strong>下拉页面</strong>和<strong>点击下一页按钮</strong>。下面我们需要使用Chrome开发者工具查看在“下拉页面”和“点击下一页按钮”时，浏览器都有哪些变化。</p>
 <h2 id="2-1-下拉页面"><a href="#2-1-下拉页面" class="headerlink" title="2.1 下拉页面"></a>2.1 下拉页面</h2><p><img src="http://7xtdio.com2.z0.glb.clouddn.com/2016-4-28-1.jpeg" alt="图1"><br>在执行下拉操作时，浏览器的变化如上图所示<br>其中hot_timeline是XHR类型的页面，只有在ajax异步请求时才出现。图上的红线标注了具体的RequestURL链接地址。从上面可以看到这个get请求主要有4个参数：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">page  :</span> <span class="number">3</span></span><br><span class="line"><span class="string">count :</span> <span class="number">24</span></span><br><span class="line"><span class="string">tid   :</span> <span class="number">5872239354896137479</span> </span><br><span class="line"><span class="string">maxid :</span> <span class="number">508506966</span></span><br></pre></td></tr></table></figure></p>
 <p>其中page对应了第几次下拉操作，count固定为24，tid是视频分类id，maxid是每个page中视频的id的最大阈值，也就是上一页的最后一个视频id。如下图的网页源码所示，tid对应了图中的topic_id，maxid的初值对应了medias_id。其中topic_id就是舞蹈这个分类的id号，是固定的，medias_id就是第一个舞蹈类视频的id。<br><img src="http://7xtdio.com2.z0.glb.clouddn.com/2016-4-28-2.jpeg" alt="图2"><br>确定了get请求的4个参数后就可以使用<a href="http://docs.python-requests.org/en/master/" target="_blank" rel="external">requests</a>模块获得hot_timeline的内容。通过chrome开发者工具的preview选项可以看到hot_timeline的具体内容是json文件，如下图所示。<br><img src="http://7xtdio.com2.z0.glb.clouddn.com/2016-4-28-3.png" alt="图3"><br><img src="http://7xtdio.com2.z0.glb.clouddn.com/2016-4-28-4.jpeg" alt="图4"><br>其中有一个mp4的链接地址，这就是我们要找的视频地址，然后通过json内的caption_complete字符串是否有‘hiphop’关键字可以确定该视频是不是我们要找到视频。当然更复杂的过滤操作可以综合考虑评论内容、点赞数、发布者关注数等内容。</p>
@@ -421,7 +421,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/04/28/Python爬取美拍视频/"
-           data-title="Python爬取美拍视频" data-url="http://dvd0423.github.io/2016/04/28/Python爬取美拍视频/">
+           data-title="Python爬取美拍视频" data-url="http://davi.space/2016/04/28/Python爬取美拍视频/">
       </div>
     
   </div>
@@ -461,7 +461,7 @@
                src="/uploads/avatar.jpg"
                alt="Davi" />
           <p class="site-author-name" itemprop="name">Davi</p>
-          <p class="site-description motion-element" itemprop="description">记录工作与生活</p>
+          <p class="site-description motion-element" itemprop="description">程序人生</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -537,7 +537,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-看美拍视频的操作流程"><span class="nav-number">1.</span> <span class="nav-text">1 看美拍视频的操作流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-具体视频url的分析与获取"><span class="nav-number">2.</span> <span class="nav-text">2 具体视频url的分析与获取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-下拉页面"><span class="nav-number">3.</span> <span class="nav-text">2.1 下拉页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-点击下一页按钮"><span class="nav-number">4.</span> <span class="nav-text">2.2 点击下一页按钮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-代码实现"><span class="nav-number">5.</span> <span class="nav-text">3 代码实现</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-用美拍看视频的过程"><span class="nav-number">1.</span> <span class="nav-text">1 用美拍看视频的过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-具体视频url的分析与获取"><span class="nav-number">2.</span> <span class="nav-text">2 具体视频url的分析与获取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-下拉页面"><span class="nav-number">3.</span> <span class="nav-text">2.1 下拉页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-点击下一页按钮"><span class="nav-number">4.</span> <span class="nav-text">2.2 点击下一页按钮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-代码实现"><span class="nav-number">5.</span> <span class="nav-text">3 代码实现</span></a></li></ol></div>
             
           </div>
         </section>
