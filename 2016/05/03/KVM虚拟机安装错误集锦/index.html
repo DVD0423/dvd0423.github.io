@@ -83,10 +83,10 @@
 <meta name="description" content="1 could not open disk image /root/dvd/vm1.img: Permission denied使用virt-install时出现了如下错误：12ERROR    internal error Process exited while reading console log output: char device redirected to /dev/pts/1qe">
 <meta property="og:type" content="article">
 <meta property="og:title" content="KVM虚拟机安装错误集锦">
-<meta property="og:url" content="http://davi.space/2016/04/25/KVM虚拟机安装错误集锦/index.html">
+<meta property="og:url" content="http://davi.space/2016/05/03/KVM虚拟机安装错误集锦/index.html">
 <meta property="og:site_name" content="Davi">
 <meta property="og:description" content="1 could not open disk image /root/dvd/vm1.img: Permission denied使用virt-install时出现了如下错误：12ERROR    internal error Process exited while reading console log output: char device redirected to /dev/pts/1qe">
-<meta property="og:updated_time" content="2016-04-29T13:25:00.000Z">
+<meta property="og:updated_time" content="2016-05-03T13:14:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="KVM虚拟机安装错误集锦">
 <meta name="twitter:description" content="1 could not open disk image /root/dvd/vm1.img: Permission denied使用virt-install时出现了如下错误：12ERROR    internal error Process exited while reading console log output: char device redirected to /dev/pts/1qe">
@@ -275,8 +275,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-25T20:38:18+08:00" content="2016-04-25">
-              2016-04-25
+            <time itemprop="dateCreated" datetime="2016-05-03T21:14:29+08:00" content="2016-05-03">
+              2016-05-03
             </time>
           </span>
 
@@ -305,8 +305,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/25/KVM虚拟机安装错误集锦/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/25/KVM虚拟机安装错误集锦/" itemprop="commentsCount"></span>
+                <a href="/2016/05/03/KVM虚拟机安装错误集锦/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/03/KVM虚拟机安装错误集锦/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -343,7 +343,7 @@
 <p>则目前还没解决。</p>
 <h2 id="3-Unable-to-read-from-monitor-Connection-reset-by-peer"><a href="#3-Unable-to-read-from-monitor-Connection-reset-by-peer" class="headerlink" title="3 Unable to read from monitor: Connection reset by peer"></a>3 Unable to read from monitor: Connection reset by peer</h2><p>网上说用如下命令：<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># virsh managedsave--remove vm1</span></span><br></pre></td></tr></table></figure></p>
 <p>但是我用无效，所以就直接重启物理机。<br>出错原因：在虚拟机运行过程中关闭libvirtd服务。</p>
-<h2 id="4-使用virt-install时出现了如下错误"><a href="#4-使用virt-install时出现了如下错误" class="headerlink" title="4 使用virt-install时出现了如下错误"></a>4 使用virt-install时出现了如下错误</h2><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR    internal error Process exited <span class="keyword">while</span> reading console <span class="built_in">log</span> output: <span class="keyword">char</span> device redirected <span class="built_in">to</span> /dev/pts/<span class="number">1</span></span><br><span class="line">qemu-kvm: -drive <span class="built_in">file</span>=/root/dvd/vm1.img,<span class="keyword">if</span>=<span class="literal">none</span>,id=drive-ide0<span class="number">-0</span><span class="number">-0</span>,<span class="built_in">format</span>=raw,cache=<span class="literal">none</span>: could <span class="keyword">not</span> <span class="built_in">open</span> disk image /root/dvd/vm1.img: Permission denied</span><br></pre></td></tr></table></figure>
+<h2 id="4-could-not-open-disk-image-root-dvd-vm1-img-Permission-denied"><a href="#4-could-not-open-disk-image-root-dvd-vm1-img-Permission-denied" class="headerlink" title="4  could not open disk image /root/dvd/vm1.img: Permission denied"></a>4  could not open disk image /root/dvd/vm1.img: Permission denied</h2><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR    internal error Process exited <span class="keyword">while</span> reading console <span class="built_in">log</span> output: <span class="keyword">char</span> device redirected <span class="built_in">to</span> /dev/pts/<span class="number">1</span></span><br><span class="line">qemu-kvm: -drive <span class="built_in">file</span>=/root/dvd/vm1.img,<span class="keyword">if</span>=<span class="literal">none</span>,id=drive-ide0<span class="number">-0</span><span class="number">-0</span>,<span class="built_in">format</span>=raw,cache=<span class="literal">none</span>: could <span class="keyword">not</span> <span class="built_in">open</span> disk image /root/dvd/vm1.img: Permission denied</span><br></pre></td></tr></table></figure>
 <p>错误记录已经很明显了，主要是权限问题。更详细的出错日志可以查看/var/log/libvirt/qemu/vm1.img。</p>
 <p>解决方法，首先修改/etc/libvirt/qemu.conf文件，把下面注释的地方去掉，然后把dynamic_ownership的值改为0。<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">user</span> = <span class="string">"root"</span></span><br><span class="line"><span class="attr">group</span> = <span class="string">"root"</span></span><br><span class="line"><span class="attr">dynamic_ownership</span> = <span class="number">0</span></span><br></pre></td></tr></table></figure></p>
 <p>如果不成功，检查镜像文件相应权限和所有上级目录权限。</p>
@@ -378,17 +378,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/24/宿主机上修改虚拟机镜像/" rel="next" title="宿主机上编辑虚拟机镜像">
-                <i class="fa fa-chevron-left"></i> 宿主机上编辑虚拟机镜像
+              <a href="/2016/05/03/KVM虚拟机设置/" rel="next" title="KVM虚拟机设置">
+                <i class="fa fa-chevron-left"></i> KVM虚拟机设置
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/25/ldconfig与ldd/" rel="prev" title="ldconfig与ldd">
-                ldconfig与ldd <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -417,8 +413,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/25/KVM虚拟机安装错误集锦/"
-           data-title="KVM虚拟机安装错误集锦" data-url="http://davi.space/2016/04/25/KVM虚拟机安装错误集锦/">
+      <div class="ds-thread" data-thread-key="2016/05/03/KVM虚拟机安装错误集锦/"
+           data-title="KVM虚拟机安装错误集锦" data-url="http://davi.space/2016/05/03/KVM虚拟机安装错误集锦/">
       </div>
     
   </div>
@@ -534,7 +530,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-could-not-open-disk-image-root-dvd-vm1-img-Permission-denied"><span class="nav-text">1 could not open disk image /root/dvd/vm1.img: Permission denied</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Failed-to-connect-socket-to-‘-var-run-libvirt-libvirt-sock’"><span class="nav-text">2 Failed to connect socket to ‘/var/run/libvirt/libvirt-sock’</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Unable-to-read-from-monitor-Connection-reset-by-peer"><span class="nav-text">3 Unable to read from monitor: Connection reset by peer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-使用virt-install时出现了如下错误"><span class="nav-text">4 使用virt-install时出现了如下错误</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-could-not-open-disk-image-root-dvd-vm1-img-Permission-denied"><span class="nav-text">1 could not open disk image /root/dvd/vm1.img: Permission denied</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Failed-to-connect-socket-to-‘-var-run-libvirt-libvirt-sock’"><span class="nav-text">2 Failed to connect socket to ‘/var/run/libvirt/libvirt-sock’</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Unable-to-read-from-monitor-Connection-reset-by-peer"><span class="nav-text">3 Unable to read from monitor: Connection reset by peer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-could-not-open-disk-image-root-dvd-vm1-img-Permission-denied"><span class="nav-text">4  could not open disk image /root/dvd/vm1.img: Permission denied</span></a></li></ol></div>
             
           </div>
         </section>

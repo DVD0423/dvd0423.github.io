@@ -4,15 +4,35 @@
 
     
   <url>
+    <loc>http://davi.space/2016/05/03/KVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/</loc>
+    <lastmod>2016-05-03T13:14:29.000Z</lastmod>
+    <data>
+        <display>
+        <title>KVM虚拟机安装错误集锦</title>
+        <pubTime>2016-05-03T13:14:29.000Z</pubTime>
+        
+        <tag>KVM</tag>
+         
+        <tag>virsh</tag>
+         
+         
+           
+             
+              <breadCrumb title="云计算" url="http://davi.space/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://davi.space/2016/04/28/Python%E7%88%AC%E5%8F%96%E7%BE%8E%E6%8B%8D%E8%A7%86%E9%A2%91/</loc>
-    <lastmod>2016-04-30T05:48:10.000Z</lastmod>
+    <lastmod>2016-05-03T13:13:09.000Z</lastmod>
     <data>
         <display>
         <title>Python爬取美拍视频</title>
         <pubTime>2016-04-28T04:30:34.000Z</pubTime>
         
-        <tag>requests</tag>
-         
         <tag>爬虫</tag>
          
         <tag>python</tag>
@@ -23,6 +43,78 @@
            
              
               <breadCrumb title="编程之趣" url="http://davi.space/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B6%A3/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://davi.space/2016/04/26/Python%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95%E6%A8%A1%E6%8B%9F%E5%99%A8/</loc>
+    <lastmod>2016-05-03T13:12:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>Python自动登录模拟器</title>
+        <pubTime>2016-04-26T07:56:08.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>web</tag>
+         
+        <tag>模拟登陆</tag>
+         
+         
+           
+             
+              <breadCrumb title="编程之趣" url="http://davi.space/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B6%A3/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://davi.space/2016/04/27/%E4%BD%8D%E6%93%8D%E4%BD%9C%E6%8A%80%E5%B7%A7/</loc>
+    <lastmod>2016-05-03T13:11:50.000Z</lastmod>
+    <data>
+        <display>
+        <title>位操作技巧</title>
+        <pubTime>2016-04-27T07:56:20.000Z</pubTime>
+        
+        <tag>bit</tag>
+         
+        <tag>位操作</tag>
+         
+        <tag>算法</tag>
+         
+         
+           
+             
+              <breadCrumb title="编程之美" url="http://davi.space/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E7%BE%8E/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://davi.space/2016/05/03/KVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%AE%BE%E7%BD%AE/</loc>
+    <lastmod>2016-05-03T13:07:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>KVM虚拟机设置</title>
+        <pubTime>2016-05-03T13:07:39.000Z</pubTime>
+        
+        <tag>虚拟机</tag>
+         
+        <tag>KVM</tag>
+         
+        <tag>virsh</tag>
+         
+         
+           
+             
+              <breadCrumb title="云计算" url="http://davi.space/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/"/>
           
         </display>
     </data>
@@ -50,30 +142,6 @@
 
     
   <url>
-    <loc>http://davi.space/2016/04/26/KVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%AE%BE%E7%BD%AE/</loc>
-    <lastmod>2016-04-29T13:25:01.000Z</lastmod>
-    <data>
-        <display>
-        <title>KVM虚拟机设置</title>
-        <pubTime>2016-04-26T11:09:28.000Z</pubTime>
-        
-        <tag>虚拟机</tag>
-         
-        <tag>KVM</tag>
-         
-        <tag>virsh</tag>
-         
-         
-           
-             
-              <breadCrumb title="云计算" url="http://davi.space/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://davi.space/2016/04/24/%E5%AE%BF%E4%B8%BB%E6%9C%BA%E4%B8%8A%E4%BF%AE%E6%94%B9%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%95%9C%E5%83%8F/</loc>
     <lastmod>2016-04-29T13:25:00.000Z</lastmod>
     <data>
@@ -93,77 +161,7 @@
     </url>
 
     
-  <url>
-    <loc>http://davi.space/2016/04/25/KVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/</loc>
-    <lastmod>2016-04-29T13:25:00.000Z</lastmod>
-    <data>
-        <display>
-        <title>KVM虚拟机安装错误集锦</title>
-        <pubTime>2016-04-25T12:38:18.000Z</pubTime>
-        
-        <tag>KVM</tag>
-         
-        <tag>virsh</tag>
-         
-         
-           
-             
-              <breadCrumb title="云计算" url="http://davi.space/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
-  <url>
-    <loc>http://davi.space/2016/04/27/%E4%BD%8D%E6%93%8D%E4%BD%9C%E6%8A%80%E5%B7%A7/</loc>
-    <lastmod>2016-04-29T13:21:02.000Z</lastmod>
-    <data>
-        <display>
-        <title>位操作技巧</title>
-        <pubTime>2016-04-27T07:56:20.000Z</pubTime>
-        
-        <tag>bit</tag>
-         
-        <tag>位操作</tag>
-         
-        <tag>算法</tag>
-         
-         
-           
-             
-              <breadCrumb title="编程之美" url="http://davi.space/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E7%BE%8E/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-    
-    
-  <url>
-    <loc>http://davi.space/2016/04/26/Python%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95%E6%A8%A1%E6%8B%9F%E5%99%A8/</loc>
-    <lastmod>2016-04-29T12:03:09.000Z</lastmod>
-    <data>
-        <display>
-        <title>Python自动登录模拟器</title>
-        <pubTime>2016-04-26T07:56:08.000Z</pubTime>
-        
-        <tag>python</tag>
-         
-        <tag>web</tag>
-         
-        <tag>模拟登陆</tag>
-         
-         
-           
-             
-              <breadCrumb title="编程之趣" url="http://davi.space/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B6%A3/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>http://davi.space/2016/04/29/shell%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/</loc>
