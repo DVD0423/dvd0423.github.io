@@ -4,6 +4,30 @@
 
     
   <url>
+    <loc>http://davi.space/2016/04/27/%E4%BD%8D%E6%93%8D%E4%BD%9C%E6%8A%80%E5%B7%A7/</loc>
+    <lastmod>2016-05-03T13:19:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>位操作技巧</title>
+        <pubTime>2016-04-27T07:56:20.000Z</pubTime>
+        
+        <tag>bit</tag>
+         
+        <tag>位操作</tag>
+         
+        <tag>算法</tag>
+         
+         
+           
+             
+              <breadCrumb title="编程之美" url="http://davi.space/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E7%BE%8E/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://davi.space/2016/04/28/Python%E7%88%AC%E5%8F%96%E7%BE%8E%E6%8B%8D%E8%A7%86%E9%A2%91/</loc>
     <lastmod>2016-05-03T13:17:19.000Z</lastmod>
     <data>
@@ -67,30 +91,6 @@
            
              
               <breadCrumb title="编程之趣" url="http://davi.space/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B6%A3/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://davi.space/2016/04/27/%E4%BD%8D%E6%93%8D%E4%BD%9C%E6%8A%80%E5%B7%A7/</loc>
-    <lastmod>2016-05-03T13:11:50.000Z</lastmod>
-    <data>
-        <display>
-        <title>位操作技巧</title>
-        <pubTime>2016-04-27T07:56:20.000Z</pubTime>
-        
-        <tag>bit</tag>
-         
-        <tag>位操作</tag>
-         
-        <tag>算法</tag>
-         
-         
-           
-             
-              <breadCrumb title="编程之美" url="http://davi.space/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E7%BE%8E/"/>
           
         </display>
     </data>
