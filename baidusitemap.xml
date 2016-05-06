@@ -3,6 +3,58 @@
 
 
     
+  <url>
+    <loc>http://davi.space/2016/05/06/ldconfig%E4%B8%8Eldd/</loc>
+    <lastmod>2016-05-06T03:52:24.000Z</lastmod>
+    <data>
+        <display>
+        <title>undefined reference to **</title>
+        <pubTime>2016-05-06T03:52:24.000Z</pubTime>
+        
+        <tag>链接</tag>
+         
+        <tag>.so</tag>
+         
+        <tag>ldconfig</tag>
+         
+        <tag>ldd</tag>
+         
+         
+           
+             
+              <breadCrumb title="Linux开发" url="http://davi.space/categories/Linux%E5%BC%80%E5%8F%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://davi.space/2016/04/25/undefined%20reference%20to%20**/</loc>
+    <lastmod>2016-05-06T03:51:49.000Z</lastmod>
+    <data>
+        <display>
+        <title>undefined reference to **</title>
+        <pubTime>2016-04-25T12:50:14.000Z</pubTime>
+        
+        <tag>链接</tag>
+         
+        <tag>.so</tag>
+         
+        <tag>ldconfig</tag>
+         
+        <tag>ldd</tag>
+         
+         
+           
+             
+              <breadCrumb title="Linux开发" url="http://davi.space/categories/Linux%E5%BC%80%E5%8F%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>http://davi.space/2016/04/27/%E4%BD%8D%E6%93%8D%E4%BD%9C%E6%8A%80%E5%B7%A7/</loc>
@@ -176,30 +228,6 @@
         <tag>脚本</tag>
          
         <tag>bash</tag>
-         
-         
-           
-             
-              <breadCrumb title="Linux开发" url="http://davi.space/categories/Linux%E5%BC%80%E5%8F%91/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://davi.space/2016/04/25/ldconfig%E4%B8%8Eldd/</loc>
-    <lastmod>2016-04-29T08:41:30.000Z</lastmod>
-    <data>
-        <display>
-        <title>ldconfig与ldd</title>
-        <pubTime>2016-04-25T12:50:14.000Z</pubTime>
-        
-        <tag>链接</tag>
-         
-        <tag>.so文件</tag>
-         
-        <tag>动态链接库</tag>
          
          
            

@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="链接,.so文件,动态链接库," />
+  <meta name="keywords" content="链接,.so,ldconfig,ldd," />
 
 
 
@@ -80,22 +80,19 @@
 
 
 
-<meta name="description" content="在linux下安装软件经常出现动态链接库（.so文件）的问题。这时候需要用到ldconfig和ldd两个命令。
-如果是安装软件时需要加载动态链接库，除了用-L选项外，还可以在/etc/ld.so.conf.d/中添加一个.conf文件把相关的链接库所在的目录添加进去（注意是目录）。然后用ldconfig命令使其生效。
-ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以实现查找">
+<meta name="description" content="在linux下安装软件经常出现undefined reference to X 的问题。主要原因是系统找不到 X函数对应的链接库。这种问题一般分为两类。一类是找不到系统自带的函数；另一类是找不到软件自定义的函数。
+1234util.c:(.text+0x3d): undefined reference to &apos;fmod&apos;  util.c:(.text+0x64): undefined refere">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ldconfig与ldd">
-<meta property="og:url" content="http://davi.space/2016/04/25/ldconfig与ldd/index.html">
+<meta property="og:title" content="undefined reference to **">
+<meta property="og:url" content="http://davi.space/2016/05/06/ldconfig与ldd/index.html">
 <meta property="og:site_name" content="Davi">
-<meta property="og:description" content="在linux下安装软件经常出现动态链接库（.so文件）的问题。这时候需要用到ldconfig和ldd两个命令。
-如果是安装软件时需要加载动态链接库，除了用-L选项外，还可以在/etc/ld.so.conf.d/中添加一个.conf文件把相关的链接库所在的目录添加进去（注意是目录）。然后用ldconfig命令使其生效。
-ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以实现查找">
-<meta property="og:updated_time" content="2016-04-29T08:41:30.000Z">
+<meta property="og:description" content="在linux下安装软件经常出现undefined reference to X 的问题。主要原因是系统找不到 X函数对应的链接库。这种问题一般分为两类。一类是找不到系统自带的函数；另一类是找不到软件自定义的函数。
+1234util.c:(.text+0x3d): undefined reference to &apos;fmod&apos;  util.c:(.text+0x64): undefined refere">
+<meta property="og:updated_time" content="2016-05-06T03:52:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ldconfig与ldd">
-<meta name="twitter:description" content="在linux下安装软件经常出现动态链接库（.so文件）的问题。这时候需要用到ldconfig和ldd两个命令。
-如果是安装软件时需要加载动态链接库，除了用-L选项外，还可以在/etc/ld.so.conf.d/中添加一个.conf文件把相关的链接库所在的目录添加进去（注意是目录）。然后用ldconfig命令使其生效。
-ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以实现查找">
+<meta name="twitter:title" content="undefined reference to **">
+<meta name="twitter:description" content="在linux下安装软件经常出现undefined reference to X 的问题。主要原因是系统找不到 X函数对应的链接库。这种问题一般分为两类。一类是找不到系统自带的函数；另一类是找不到软件自定义的函数。
+1234util.c:(.text+0x3d): undefined reference to &apos;fmod&apos;  util.c:(.text+0x64): undefined refere">
 
 
 
@@ -113,7 +110,7 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
   };
 </script>
 
-  <title> ldconfig与ldd | Davi </title>
+  <title> undefined reference to ** | Davi </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -269,7 +266,7 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
             
             
               
-                ldconfig与ldd
+                undefined reference to **
               
             
           </h1>
@@ -281,8 +278,8 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-25T20:50:14+08:00" content="2016-04-25">
-              2016-04-25
+            <time itemprop="dateCreated" datetime="2016-05-06T11:52:24+08:00" content="2016-05-06">
+              2016-05-06
             </time>
           </span>
 
@@ -311,8 +308,8 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/25/ldconfig与ldd/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/25/ldconfig与ldd/" itemprop="commentsCount"></span>
+                <a href="/2016/05/06/ldconfig与ldd/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/06/ldconfig与ldd/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -335,10 +332,17 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
       
 
       
-        <p>在linux下安装软件经常出现动态链接库（.so文件）的问题。这时候需要用到<strong>ldconfig</strong>和<strong>ldd</strong>两个命令。</p>
-<p>如果是安装软件时需要加载动态链接库，除了用-L选项外，还可以在/etc/ld.so.conf.d/中添加一个.conf文件把相关的链接库所在的目录添加进去（注意是目录）。然后用ldconfig命令使其生效。</p>
-<p><strong>ldconfig -p</strong>显示可以搜索到的所有的动态链接库，配合grep可以实现查找功能。<br><a id="more"></a><br>如果想检查某个软件用到了哪些动态链接库则用ldd。比如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ldd /usr/bin/ssh</span></span><br></pre></td></tr></table></figure></p>
+        <p>在linux下安装软件经常出现<strong>undefined reference to X</strong> 的问题。主要原因是系统找不到 X函数对应的链接库。这种问题一般分为两类。一类是找不到系统自带的函数；另一类是找不到软件自定义的函数。</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">util.c:(.<span class="built_in">text</span>+<span class="number">0x3d</span>): undefined <span class="keyword">reference</span> <span class="keyword">to</span> 'fmod'  </span><br><span class="line">util.c:(.<span class="built_in">text</span>+<span class="number">0x64</span>): undefined <span class="keyword">reference</span> <span class="keyword">to</span> 'fmod'  </span><br><span class="line">util.c:(.<span class="built_in">text</span>+<span class="number">0xb3</span>): undefined <span class="keyword">reference</span> <span class="keyword">to</span> 'fmod'  </span><br><span class="line">util.c:(.<span class="built_in">text</span>+<span class="number">0xd4</span>): undefined <span class="keyword">reference</span> <span class="keyword">to</span> 'fmod'</span><br></pre></td></tr></table></figure>
+<p>比如<strong>undefined reference to ‘fmod’</strong> 原因就是没加系统自带的数学库。在编译时需要带上相关参数：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc hell<span class="selector-class">.c</span> -o hello -lm</span><br></pre></td></tr></table></figure></p>
+<p>其中-lm表示m.so代表数学库，还有-lpthread代表线程库等等。</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">testNDperm.c:(.<span class="built_in">text</span>+<span class="number">0x137</span>): undefined <span class="keyword">reference</span> <span class="keyword">to</span> 'Perm_new'  </span><br><span class="line">testNDperm.c:(.<span class="built_in">text</span>+<span class="number">0x14f</span>): undefined <span class="keyword">reference</span> <span class="keyword">to</span> 'Perm_initWithTypeAndSize'  </span><br><span class="line">testNDperm.c:(.<span class="built_in">text</span>+<span class="number">0x1b0</span>): undefined <span class="keyword">reference</span> <span class="keyword">to</span> 'mkNDperm'  </span><br><span class="line">testNDperm.c:(.<span class="built_in">text</span>+<span class="number">0x20b</span>): undefined <span class="keyword">reference</span> <span class="keyword">to</span> 'Perm_writeForHumanEye'</span><br></pre></td></tr></table></figure>
+<p>对于软件自带的函数，比如<strong>undefined reference to ‘Perm_new’</strong>，在编译时可以使用如下命令<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc hell<span class="selector-class">.c</span> -o hello -L path_of_your_lib</span><br></pre></td></tr></table></figure></p>
+<p>其中-L参数后面是包含函数<strong>Perm_new</strong>的链接库的目录路径。除了用-L选项外，还可以在/etc/ld.so.conf.d/中添加一个.conf文件把相关的链接库所在的目录添加进去（注意是目录）。然后用<strong>ldconfig</strong>命令使其生效。</p>
+<p><strong>ldconfig -p</strong>显示可以搜索到的所有的动态链接库，配合grep可以实现查找功能。<br><a id="more"></a><br>如果想检查某个软件用到了哪些动态链接库则可用<strong>ldd</strong>命令，下面命令可以查找ssh用到的链接库：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ldd /usr/bin/ssh</span></span><br></pre></td></tr></table></figure></p>
 <p>显示如下：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">   linux-vdso<span class="selector-class">.so</span>.<span class="number">1</span> =&gt;  (<span class="number">0</span>x00007fff36ca2000)</span><br><span class="line">libfipscheck<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/libfipscheck<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeeb9abc000)</span><br><span class="line">libselinux<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/libselinux<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeeb9cc0000)</span><br><span class="line">libcrypto<span class="selector-class">.so</span>.<span class="number">10</span> =&gt; /usr/lib64/libcrypto<span class="selector-class">.so</span>.<span class="number">10</span> (<span class="number">0</span>x00002aeeb9edf000)</span><br><span class="line">libutil<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/libutil<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeeba2c2000)</span><br><span class="line">libz<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/libz<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeeba4c6000)</span><br><span class="line">libnsl<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/libnsl<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeeba6dc000)</span><br><span class="line">libcrypt<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/libcrypt<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeeba8f5000)</span><br><span class="line">libresolv<span class="selector-class">.so</span>.<span class="number">2</span> =&gt; /lib64/libresolv<span class="selector-class">.so</span>.<span class="number">2</span> (<span class="number">0</span>x00002aeebab2d000)</span><br><span class="line">libgssapi_krb5<span class="selector-class">.so</span>.<span class="number">2</span> =&gt; /lib64/libgssapi_krb5<span class="selector-class">.so</span>.<span class="number">2</span> (<span class="number">0</span>x00002aeebad47000)</span><br><span class="line">libkrb5<span class="selector-class">.so</span>.<span class="number">3</span> =&gt; /lib64/libkrb5<span class="selector-class">.so</span>.<span class="number">3</span> (<span class="number">0</span>x00002aeebaf8b000)</span><br><span class="line">libk5crypto<span class="selector-class">.so</span>.<span class="number">3</span> =&gt; /lib64/libk5crypto<span class="selector-class">.so</span>.<span class="number">3</span> (<span class="number">0</span>x00002aeebb273000)</span><br><span class="line">libcom_err<span class="selector-class">.so</span>.<span class="number">2</span> =&gt; /lib64/libcom_err<span class="selector-class">.so</span>.<span class="number">2</span> (<span class="number">0</span>x00002aeebb49f000)</span><br><span class="line">libnss3<span class="selector-class">.so</span> =&gt; /usr/lib64/libnss3<span class="selector-class">.so</span> (<span class="number">0</span>x00002aeebb6a3000)</span><br><span class="line">libc<span class="selector-class">.so</span>.<span class="number">6</span> =&gt; /lib64/libc<span class="selector-class">.so</span>.<span class="number">6</span> (<span class="number">0</span>x00002aeebb9e3000)</span><br><span class="line">libplc4<span class="selector-class">.so</span> =&gt; /lib64/libplc4<span class="selector-class">.so</span> (<span class="number">0</span>x00002aeebbd84000)</span><br><span class="line">libdl<span class="selector-class">.so</span>.<span class="number">2</span> =&gt; /lib64/libdl<span class="selector-class">.so</span>.<span class="number">2</span> (<span class="number">0</span>x00002aeebbf89000)</span><br><span class="line">/lib64/ld-linux-x86-<span class="number">64</span><span class="selector-class">.so</span>.<span class="number">2</span> (<span class="number">0</span>x0000003fe1c00000)</span><br><span class="line">libfreebl3<span class="selector-class">.so</span> =&gt; /lib64/libfreebl3<span class="selector-class">.so</span> (<span class="number">0</span>x00002aeebc18e000)</span><br><span class="line">libkrb5support<span class="selector-class">.so</span>.<span class="number">0</span> =&gt; /lib64/libkrb5support<span class="selector-class">.so</span>.<span class="number">0</span> (<span class="number">0</span>x00002aeebc391000)</span><br><span class="line">libkeyutils<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/libkeyutils<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeebc59c000)</span><br><span class="line">libpthread<span class="selector-class">.so</span>.<span class="number">0</span> =&gt; /lib64/libpthread<span class="selector-class">.so</span>.<span class="number">0</span> (<span class="number">0</span>x00002aeebc7a0000)</span><br><span class="line">libnssutil3<span class="selector-class">.so</span> =&gt; /usr/lib64/libnssutil3<span class="selector-class">.so</span> (<span class="number">0</span>x00002aeebc9bc000)</span><br><span class="line">libplds4<span class="selector-class">.so</span> =&gt; /lib64/libplds4<span class="selector-class">.so</span> (<span class="number">0</span>x00002aeebcbe8000)</span><br><span class="line">libnspr4<span class="selector-class">.so</span> =&gt; /lib64/libnspr4<span class="selector-class">.so</span> (<span class="number">0</span>x00002aeebcded000)</span><br><span class="line">librt<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/librt<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeebd02b000)</span><br></pre></td></tr></table></figure></p>
+<p>如果出现下面这种问题，处理方法同上。但如果系统确实找不到相应的库文件，则可以使用<strong>yum -y install xxx</strong>安装。</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/usr/</span>bin/<span class="string">ld:</span> cannot find -lXXX</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -361,9 +365,11 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
           
             <a href="/tags/链接/" rel="tag">#链接</a>
           
-            <a href="/tags/so文件/" rel="tag">#.so文件</a>
+            <a href="/tags/so/" rel="tag">#.so</a>
           
-            <a href="/tags/动态链接库/" rel="tag">#动态链接库</a>
+            <a href="/tags/ldconfig/" rel="tag">#ldconfig</a>
+          
+            <a href="/tags/ldd/" rel="tag">#ldd</a>
           
         </div>
       
@@ -372,17 +378,13 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/24/宿主机上修改虚拟机镜像/" rel="next" title="宿主机上编辑虚拟机镜像">
-                <i class="fa fa-chevron-left"></i> 宿主机上编辑虚拟机镜像
+              <a href="/2016/05/03/KVM虚拟机安装错误集锦/" rel="next" title="KVM虚拟机安装错误集锦">
+                <i class="fa fa-chevron-left"></i> KVM虚拟机安装错误集锦
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/26/Python自动登录模拟器/" rel="prev" title="Python自动登录模拟器">
-                Python自动登录模拟器 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -408,8 +410,8 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/25/ldconfig与ldd/"
-           data-title="ldconfig与ldd" data-url="http://davi.space/2016/04/25/ldconfig与ldd/">
+      <div class="ds-thread" data-thread-key="2016/05/06/ldconfig与ldd/"
+           data-title="undefined reference to **" data-url="http://davi.space/2016/05/06/ldconfig与ldd/">
       </div>
     
   </div>
@@ -454,7 +456,7 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -471,7 +473,7 @@ ldconfig -p显示可以搜索到的所有的动态链接库，配合grep可以�
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
