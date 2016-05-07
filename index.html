@@ -764,9 +764,87 @@
 <li><p>计算</p>
 <figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var=<span class="symbol">$</span>((运算内容))</span><br><span class="line">echo <span class="symbol">$</span>(( <span class="number">13</span> % <span class="number">3</span> ))</span><br><span class="line"><span class="keyword">sum</span>=<span class="symbol">$</span>((<span class="symbol">$</span><span class="number">1</span> * <span class="symbol">$</span><span class="number">2</span>))</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>test命令<br>| 变量名          | 意义          |<br>| ————- |————-  |<br>| -e | 文件名是否存在 |<br>| -f | 文件是否存在 |<br>| -d | 目录是否存在 |<br>| test file1 -nt file2 | newer than |<br>| test file1 -ot file2 | older than |<br>| test file1 -ef file2 | 同一个文件 |<br>| test n1 -eq n2 | equal |<br>| test n1 -ne n2 | no equal |<br>| test n1 -gt n2 | greater than |<br>| test n1 -lt n2 | less than |<br>| test n1 -ge n2 | >= |<br>| test n1 -le n2 | &lt;= |<br>| test -z string | string为空则为true|<br>| test -n string | string非空则为true|<br>| -o | &#124;&#124; |<br>| -a | &amp;&amp; |<br>| ! | 非 |</p>
+<li><p>test命令</p>
 </li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-e</td>
+<td>文件名是否存在</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>文件是否存在</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>目录是否存在</td>
+</tr>
+<tr>
+<td>test file1 -nt file2</td>
+<td>newer than</td>
+</tr>
+<tr>
+<td>test file1 -ot file2</td>
+<td>older than</td>
+</tr>
+<tr>
+<td>test file1 -ef file2</td>
+<td>同一个文件</td>
+</tr>
+<tr>
+<td>test n1 -eq n2</td>
+<td>equal</td>
+</tr>
+<tr>
+<td>test n1 -ne n2</td>
+<td>no equal</td>
+</tr>
+<tr>
+<td>test n1 -gt n2</td>
+<td>greater than</td>
+</tr>
+<tr>
+<td>test n1 -lt n2</td>
+<td>less than</td>
+</tr>
+<tr>
+<td>test n1 -ge n2</td>
+<td>>=</td>
+</tr>
+<tr>
+<td>test n1 -le n2</td>
+<td>&lt;=</td>
+</tr>
+<tr>
+<td>test -z string</td>
+<td>string为空则为true</td>
+</tr>
+<tr>
+<td>test -n string</td>
+<td>string非空则为true</td>
+</tr>
+<tr>
+<td>-o</td>
+<td>&#124;&#124;</td>
+</tr>
+<tr>
+<td>-a</td>
+<td>&amp;&amp;</td>
+</tr>
+<tr>
+<td>!</td>
+<td>非</td>
+</tr>
+</tbody>
+</table>
 <ul>
 <li><p>if… else…</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ <span class="keyword">...</span> ]; then</span><br><span class="line">    <span class="keyword">...</span></span><br><span class="line">elif [ <span class="keyword">...</span> ] ; then</span><br><span class="line">    <span class="keyword">...</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="keyword">...</span></span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
