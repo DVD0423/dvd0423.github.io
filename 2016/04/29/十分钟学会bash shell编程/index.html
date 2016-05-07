@@ -92,7 +92,7 @@
 123d=8echo &apos;$d&apos;   //display: $decho &quot;$d&quot;   //display: 8
 使用命令给变量赋值方式：$(命令)或者`命令`1var=`ls ./`
 为变量增加变量内容可以使用:123PATH=&quot;$PATH&quot;:/home/bin//或者PATH=$&amp;#123;PATH&amp;#125;:">
-<meta property="og:updated_time" content="2016-05-07T06:17:04.000Z">
+<meta property="og:updated_time" content="2016-05-07T06:29:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="十分钟学会bash shell编程">
 <meta name="twitter:description" content="1 变量命名规则双引号内的特殊字符，如$，会被翻译；而单引号内的所有字符保持不变。
@@ -339,7 +339,7 @@
 
       
         <h3 id="1-变量命名规则"><a href="#1-变量命名规则" class="headerlink" title="1 变量命名规则"></a>1 变量命名规则</h3><p>双引号内的特殊字符，如$，会被翻译；而单引号内的所有字符保持不变。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">d=8</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'$d'</span>   //display: <span class="variable">$d</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$d</span>"</span>   //display: 8</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">d=8</span><br><span class="line">echo '$d'   //display: $d</span><br><span class="line">echo "$d"   //display: 8</span><br></pre></td></tr></table></figure>
 <p>使用命令给变量赋值方式：$(命令)或者`命令`<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span>=<span class="string">`ls ./`</span></span><br></pre></td></tr></table></figure></p>
 <p>为变量增加变量内容可以使用:<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PATH=<span class="string">"$PATH"</span>:/<span class="built_in">home</span>/bin</span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line">PATH=$&#123;PATH&#125;:/<span class="built_in">home</span>/bin</span><br></pre></td></tr></table></figure></p>
 <p>变量默认是字符串，整数的定义<code>declare -i var</code>；常量的定义：<code>declare -r var</code><br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">declare</span> -i <span class="built_in">sum</span>=<span class="number">100</span>+<span class="number">300</span></span><br><span class="line">echo $<span class="built_in">sum</span>   //<span class="built_in">display</span>: <span class="number">400</span></span><br><span class="line"><span class="built_in">declare</span> -r <span class="built_in">sum</span>  //<span class="built_in">sum</span>变为只读属性</span><br></pre></td></tr></table></figure></p>
@@ -464,23 +464,19 @@
 <td></td>
 </tr>
 <tr>
-<td>ls \</td>
-<td>sed ‘2,5d’</td>
+<td>ls &#124; sed ‘2,5d’</td>
 <td>删除2-5行</td>
 </tr>
 <tr>
-<td>ls \</td>
-<td>sed ‘2a fuck DW’</td>
+<td>ls &#124; sed ‘2a fuck DW’</td>
 <td>在第二行加入字符串<em>fuck DW</em></td>
 </tr>
 <tr>
-<td>ls \</td>
-<td>sed ‘2,5c fuckDW’</td>
+<td>ls &#124; sed ‘2,5c fuckDW’</td>
 <td>把2-5行替换成<em>fuckDW</em></td>
 </tr>
 <tr>
-<td>ls \</td>
-<td>sed -n ‘2,7p’</td>
+<td>ls &#124; sed -n ‘2,7p’</td>
 <td>显示2-7行，一般p和<strong>-n</strong>参数一起使用</td>
 </tr>
 <tr>
@@ -526,89 +522,9 @@
 <li><p>计算</p>
 <figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var=<span class="symbol">$</span>((运算内容))</span><br><span class="line">echo <span class="symbol">$</span>(( <span class="number">13</span> % <span class="number">3</span> ))</span><br><span class="line"><span class="keyword">sum</span>=<span class="symbol">$</span>((<span class="symbol">$</span><span class="number">1</span> * <span class="symbol">$</span><span class="number">2</span>))</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>test命令</p>
+<li><p>test命令<br>| 变量名          | 意义          |<br>| ————- |————-  |<br>| -e | 文件名是否存在 |<br>| -f | 文件是否存在 |<br>| -d | 目录是否存在 |<br>| test file1 -nt file2 | newer than |<br>| test file1 -ot file2 | older than |<br>| test file1 -ef file2 | 同一个文件 |<br>| test n1 -eq n2 | equal |<br>| test n1 -ne n2 | no equal |<br>| test n1 -gt n2 | greater than |<br>| test n1 -lt n2 | less than |<br>| test n1 -ge n2 | >= |<br>| test n1 -le n2 | &lt;= |<br>| test -z string | string为空则为true|<br>| test -n string | string非空则为true|<br>| -o | &#124;&#124; |<br>| -a | &amp;&amp; |<br>| ! | 非 |</p>
 </li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>变量名</th>
-<th>意义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>-e</td>
-<td>文件名是否存在</td>
-</tr>
-<tr>
-<td>-f</td>
-<td>文件是否存在</td>
-</tr>
-<tr>
-<td>-d</td>
-<td>目录是否存在</td>
-</tr>
-<tr>
-<td>test file1 -nt file2</td>
-<td>newer than</td>
-</tr>
-<tr>
-<td>test file1 -ot file2</td>
-<td>older than</td>
-</tr>
-<tr>
-<td>test file1 -ef file2</td>
-<td>同一个文件</td>
-</tr>
-<tr>
-<td>test n1 -eq n2</td>
-<td>equal</td>
-</tr>
-<tr>
-<td>test n1 -ne n2</td>
-<td>no equal</td>
-</tr>
-<tr>
-<td>test n1 -gt n2</td>
-<td>greater than</td>
-</tr>
-<tr>
-<td>test n1 -lt n2</td>
-<td>less than</td>
-</tr>
-<tr>
-<td>test n1 -ge n2</td>
-<td>>=</td>
-</tr>
-<tr>
-<td>test n1 -le n2</td>
-<td>&lt;=</td>
-</tr>
-<tr>
-<td>test -z string</td>
-<td>string为空则为true</td>
-</tr>
-<tr>
-<td>test -n string</td>
-<td>string非空则为true</td>
-</tr>
-<tr>
-<td>-o</td>
-<td>\</td>
-<td>\</td>
-<td></td>
-</tr>
-<tr>
-<td>-a</td>
-<td>&amp;&amp;</td>
-</tr>
-<tr>
-<td>!</td>
-<td>非</td>
-</tr>
-</tbody>
-</table>
 <ul>
 <li><p>if… else…</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ <span class="keyword">...</span> ]; then</span><br><span class="line">    <span class="keyword">...</span></span><br><span class="line">elif [ <span class="keyword">...</span> ] ; then</span><br><span class="line">    <span class="keyword">...</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="keyword">...</span></span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
@@ -617,15 +533,12 @@
 <figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> $var <span class="keyword">in</span></span><br><span class="line"><span class="string">"第一个变量值"</span>)</span><br><span class="line">    <span class="attr">...</span></span><br><span class="line">    ;;</span><br><span class="line"><span class="string">"two"</span>)</span><br><span class="line">    <span class="attr">...</span></span><br><span class="line">    ;;</span><br><span class="line">*)</span><br><span class="line">    <span class="attr">...</span></span><br><span class="line">    ;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>loop</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> [ ... ]</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    ...</span><br><span class="line">done</span><br><span class="line">//<span class="keyword">or</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">var</span> <span class="keyword">in</span> `seq <span class="number">1</span> <span class="number">100</span>`//<span class="keyword">for</span> <span class="built_in">var</span> <span class="keyword">in</span> con1 con2 ...</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    ...</span><br><span class="line">done</span><br><span class="line">//<span class="keyword">or</span></span><br><span class="line"><span class="keyword">for</span> (( i=<span class="number">1</span>; i &lt; $<span class="built_in">var</span>; i=i+<span class="number">1</span> ))</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">sum</span>=$( ($<span class="built_in">sum</span> +$i) )</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>function</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function <span class="function"><span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">    程序</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> [ ... ]</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="keyword">var</span> <span class="keyword">in</span> `<span class="built_in">seq</span> <span class="number">1</span> <span class="number">100</span>`//<span class="keyword">for</span> <span class="keyword">var</span> <span class="keyword">in</span> con1 con2 ...</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    ...</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
-<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (( i=<span class="number">1</span>; i &lt; <span class="symbol">$</span>var; i=i+<span class="number">1</span> ))</span><br><span class="line">do</span><br><span class="line">    <span class="keyword">sum</span>=<span class="symbol">$</span>( (<span class="symbol">$</span><span class="keyword">sum</span> +<span class="symbol">$</span>i) )</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
-<ul>
-<li>function</li>
-</ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function <span class="function"><span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">    程序</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
