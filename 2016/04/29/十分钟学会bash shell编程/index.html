@@ -82,23 +82,20 @@
 
 <meta name="description" content="1 变量命名规则双引号内的特殊字符，如$，会被翻译；而单引号内的所有字符保持不变。
 123d=8echo &apos;$d&apos;   //display: $decho &quot;$d&quot;   //display: 8
-使用命令给变量赋值方式：$(命令)或者`命令`1var=`ls ./`
-为变量增加变量内容可以使用:123PATH=&quot;$PATH&quot;:/home/bin//或者PATH=$&amp;#123;PATH&amp;#125;:">
+使用命令给变量赋值方式：$(命令)或者`命令`1var=`ls ./`">
 <meta property="og:type" content="article">
 <meta property="og:title" content="十分钟学会bash shell编程">
 <meta property="og:url" content="http://davi.space/2016/04/29/十分钟学会bash shell编程/index.html">
 <meta property="og:site_name" content="Davi">
 <meta property="og:description" content="1 变量命名规则双引号内的特殊字符，如$，会被翻译；而单引号内的所有字符保持不变。
 123d=8echo &apos;$d&apos;   //display: $decho &quot;$d&quot;   //display: 8
-使用命令给变量赋值方式：$(命令)或者`命令`1var=`ls ./`
-为变量增加变量内容可以使用:123PATH=&quot;$PATH&quot;:/home/bin//或者PATH=$&amp;#123;PATH&amp;#125;:">
-<meta property="og:updated_time" content="2016-05-07T06:33:49.000Z">
+使用命令给变量赋值方式：$(命令)或者`命令`1var=`ls ./`">
+<meta property="og:updated_time" content="2016-05-07T06:38:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="十分钟学会bash shell编程">
 <meta name="twitter:description" content="1 变量命名规则双引号内的特殊字符，如$，会被翻译；而单引号内的所有字符保持不变。
 123d=8echo &apos;$d&apos;   //display: $decho &quot;$d&quot;   //display: 8
-使用命令给变量赋值方式：$(命令)或者`命令`1var=`ls ./`
-为变量增加变量内容可以使用:123PATH=&quot;$PATH&quot;:/home/bin//或者PATH=$&amp;#123;PATH&amp;#125;:">
+使用命令给变量赋值方式：$(命令)或者`命令`1var=`ls ./`">
 
 
 
@@ -341,6 +338,7 @@
         <h3 id="1-变量命名规则"><a href="#1-变量命名规则" class="headerlink" title="1 变量命名规则"></a>1 变量命名规则</h3><p>双引号内的特殊字符，如$，会被翻译；而单引号内的所有字符保持不变。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">d=8</span><br><span class="line">echo '$d'   //display: $d</span><br><span class="line">echo "$d"   //display: 8</span><br></pre></td></tr></table></figure>
 <p>使用命令给变量赋值方式：$(命令)或者`命令`<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span>=<span class="string">`ls ./`</span></span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <p>为变量增加变量内容可以使用:<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PATH=<span class="string">"$PATH"</span>:/<span class="built_in">home</span>/bin</span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line">PATH=$&#123;PATH&#125;:/<span class="built_in">home</span>/bin</span><br></pre></td></tr></table></figure></p>
 <p>变量默认是字符串，整数的定义<code>declare -i var</code>；常量的定义：<code>declare -r var</code><br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">declare</span> -i <span class="built_in">sum</span>=<span class="number">100</span>+<span class="number">300</span></span><br><span class="line">echo $<span class="built_in">sum</span>   //<span class="built_in">display</span>: <span class="number">400</span></span><br><span class="line"><span class="built_in">declare</span> -r <span class="built_in">sum</span>  //<span class="built_in">sum</span>变为只读属性</span><br></pre></td></tr></table></figure></p>
 <h3 id="2-输入输出"><a href="#2-输入输出" class="headerlink" title="2 输入输出"></a>2 输入输出</h3><p>变量输入：<code>read var</code><br>提示输入：<code>read -p &quot;input&quot; filename</code></p>
