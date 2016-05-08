@@ -1,0 +1,678 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="链接,.so,ldconfig,ldd," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="在linux下安装软件经常出现undefined reference to X 的问题。主要原因是系统找不到 X函数对应的链接库。这种问题一般分为两类。一类是找不到系统自带的函数；另一类是找不到软件自定义的函数。
+1234util.c:(.text+0x3d): undefined reference to &apos;fmod&apos;  util.c:(.text+0x64): undefined refere">
+<meta property="og:type" content="article">
+<meta property="og:title" content="undefined reference to **">
+<meta property="og:url" content="http://davi.space/2016/04/23/undefined reference to **/index.html">
+<meta property="og:site_name" content="Davi">
+<meta property="og:description" content="在linux下安装软件经常出现undefined reference to X 的问题。主要原因是系统找不到 X函数对应的链接库。这种问题一般分为两类。一类是找不到系统自带的函数；另一类是找不到软件自定义的函数。
+1234util.c:(.text+0x3d): undefined reference to &apos;fmod&apos;  util.c:(.text+0x64): undefined refere">
+<meta property="og:updated_time" content="2016-05-08T05:51:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="undefined reference to **">
+<meta name="twitter:description" content="在linux下安装软件经常出现undefined reference to X 的问题。主要原因是系统找不到 X函数对应的链接库。这种问题一般分为两类。一类是找不到系统自带的函数；另一类是找不到软件自定义的函数。
+1234util.c:(.text+0x3d): undefined reference to &apos;fmod&apos;  util.c:(.text+0x64): undefined refere">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> undefined reference to ** | Davi </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s11.cnzz.com/z_stat.php?id=1258885771&web_id=1258885771" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Davi</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">记录工作与生活</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'umBxWx-jxqcZ2as51Akz','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                undefined reference to **
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-23T13:03:41+08:00" content="2016-04-23">
+              2016-04-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/23/undefined reference to **/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/23/undefined reference to **/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在linux下安装软件经常出现<strong>undefined reference to X</strong> 的问题。主要原因是系统找不到 X函数对应的链接库。这种问题一般分为两类。一类是找不到系统自带的函数；另一类是找不到软件自定义的函数。</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">util.c:(.<span class="built_in">text</span>+<span class="number">0x3d</span>): undefined <span class="keyword">reference</span> <span class="keyword">to</span> 'fmod'  </span><br><span class="line">util.c:(.<span class="built_in">text</span>+<span class="number">0x64</span>): undefined <span class="keyword">reference</span> <span class="keyword">to</span> 'fmod'  </span><br><span class="line">util.c:(.<span class="built_in">text</span>+<span class="number">0xb3</span>): undefined <span class="keyword">reference</span> <span class="keyword">to</span> 'fmod'  </span><br><span class="line">util.c:(.<span class="built_in">text</span>+<span class="number">0xd4</span>): undefined <span class="keyword">reference</span> <span class="keyword">to</span> 'fmod'</span><br></pre></td></tr></table></figure>
+<p>比如<strong>undefined reference to ‘fmod’</strong> 原因就是没加系统自带的数学库。在编译时需要带上相关参数：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc hell<span class="selector-class">.c</span> -o hello -lm</span><br></pre></td></tr></table></figure></p>
+<p>其中-lm表示m.so代表数学库，还有-lpthread代表线程库等等。</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">testNDperm.c:(.<span class="built_in">text</span>+<span class="number">0x137</span>): undefined <span class="keyword">reference</span> <span class="keyword">to</span> 'Perm_new'  </span><br><span class="line">testNDperm.c:(.<span class="built_in">text</span>+<span class="number">0x14f</span>): undefined <span class="keyword">reference</span> <span class="keyword">to</span> 'Perm_initWithTypeAndSize'  </span><br><span class="line">testNDperm.c:(.<span class="built_in">text</span>+<span class="number">0x1b0</span>): undefined <span class="keyword">reference</span> <span class="keyword">to</span> 'mkNDperm'  </span><br><span class="line">testNDperm.c:(.<span class="built_in">text</span>+<span class="number">0x20b</span>): undefined <span class="keyword">reference</span> <span class="keyword">to</span> 'Perm_writeForHumanEye'</span><br></pre></td></tr></table></figure>
+<p>对于软件自带的函数，比如<strong>undefined reference to ‘Perm_new’</strong>，在编译时可以使用如下命令<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc hell<span class="selector-class">.c</span> -o hello -L path_of_your_lib</span><br></pre></td></tr></table></figure></p>
+<p>其中-L参数后面是包含函数<strong>Perm_new</strong>的链接库的目录路径。除了用-L选项外，还可以在/etc/ld.so.conf.d/中添加一个.conf文件把相关的链接库所在的目录添加进去（注意是目录）。然后用<strong>ldconfig</strong>命令使其生效。</p>
+<p><strong>ldconfig -p</strong>显示可以搜索到的所有的动态链接库，配合grep可以实现查找功能。<br><a id="more"></a><br>如果想检查某个软件用到了哪些动态链接库则可用<strong>ldd</strong>命令，下面命令可以查找ssh用到的链接库：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ldd /usr/bin/ssh</span></span><br></pre></td></tr></table></figure></p>
+<p>显示如下：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">   linux-vdso<span class="selector-class">.so</span>.<span class="number">1</span> =&gt;  (<span class="number">0</span>x00007fff36ca2000)</span><br><span class="line">libfipscheck<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/libfipscheck<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeeb9abc000)</span><br><span class="line">libselinux<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/libselinux<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeeb9cc0000)</span><br><span class="line">libcrypto<span class="selector-class">.so</span>.<span class="number">10</span> =&gt; /usr/lib64/libcrypto<span class="selector-class">.so</span>.<span class="number">10</span> (<span class="number">0</span>x00002aeeb9edf000)</span><br><span class="line">libutil<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/libutil<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeeba2c2000)</span><br><span class="line">libz<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/libz<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeeba4c6000)</span><br><span class="line">libnsl<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/libnsl<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeeba6dc000)</span><br><span class="line">libcrypt<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/libcrypt<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeeba8f5000)</span><br><span class="line">libresolv<span class="selector-class">.so</span>.<span class="number">2</span> =&gt; /lib64/libresolv<span class="selector-class">.so</span>.<span class="number">2</span> (<span class="number">0</span>x00002aeebab2d000)</span><br><span class="line">libgssapi_krb5<span class="selector-class">.so</span>.<span class="number">2</span> =&gt; /lib64/libgssapi_krb5<span class="selector-class">.so</span>.<span class="number">2</span> (<span class="number">0</span>x00002aeebad47000)</span><br><span class="line">libkrb5<span class="selector-class">.so</span>.<span class="number">3</span> =&gt; /lib64/libkrb5<span class="selector-class">.so</span>.<span class="number">3</span> (<span class="number">0</span>x00002aeebaf8b000)</span><br><span class="line">libk5crypto<span class="selector-class">.so</span>.<span class="number">3</span> =&gt; /lib64/libk5crypto<span class="selector-class">.so</span>.<span class="number">3</span> (<span class="number">0</span>x00002aeebb273000)</span><br><span class="line">libcom_err<span class="selector-class">.so</span>.<span class="number">2</span> =&gt; /lib64/libcom_err<span class="selector-class">.so</span>.<span class="number">2</span> (<span class="number">0</span>x00002aeebb49f000)</span><br><span class="line">libnss3<span class="selector-class">.so</span> =&gt; /usr/lib64/libnss3<span class="selector-class">.so</span> (<span class="number">0</span>x00002aeebb6a3000)</span><br><span class="line">libc<span class="selector-class">.so</span>.<span class="number">6</span> =&gt; /lib64/libc<span class="selector-class">.so</span>.<span class="number">6</span> (<span class="number">0</span>x00002aeebb9e3000)</span><br><span class="line">libplc4<span class="selector-class">.so</span> =&gt; /lib64/libplc4<span class="selector-class">.so</span> (<span class="number">0</span>x00002aeebbd84000)</span><br><span class="line">libdl<span class="selector-class">.so</span>.<span class="number">2</span> =&gt; /lib64/libdl<span class="selector-class">.so</span>.<span class="number">2</span> (<span class="number">0</span>x00002aeebbf89000)</span><br><span class="line">/lib64/ld-linux-x86-<span class="number">64</span><span class="selector-class">.so</span>.<span class="number">2</span> (<span class="number">0</span>x0000003fe1c00000)</span><br><span class="line">libfreebl3<span class="selector-class">.so</span> =&gt; /lib64/libfreebl3<span class="selector-class">.so</span> (<span class="number">0</span>x00002aeebc18e000)</span><br><span class="line">libkrb5support<span class="selector-class">.so</span>.<span class="number">0</span> =&gt; /lib64/libkrb5support<span class="selector-class">.so</span>.<span class="number">0</span> (<span class="number">0</span>x00002aeebc391000)</span><br><span class="line">libkeyutils<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/libkeyutils<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeebc59c000)</span><br><span class="line">libpthread<span class="selector-class">.so</span>.<span class="number">0</span> =&gt; /lib64/libpthread<span class="selector-class">.so</span>.<span class="number">0</span> (<span class="number">0</span>x00002aeebc7a0000)</span><br><span class="line">libnssutil3<span class="selector-class">.so</span> =&gt; /usr/lib64/libnssutil3<span class="selector-class">.so</span> (<span class="number">0</span>x00002aeebc9bc000)</span><br><span class="line">libplds4<span class="selector-class">.so</span> =&gt; /lib64/libplds4<span class="selector-class">.so</span> (<span class="number">0</span>x00002aeebcbe8000)</span><br><span class="line">libnspr4<span class="selector-class">.so</span> =&gt; /lib64/libnspr4<span class="selector-class">.so</span> (<span class="number">0</span>x00002aeebcded000)</span><br><span class="line">librt<span class="selector-class">.so</span>.<span class="number">1</span> =&gt; /lib64/librt<span class="selector-class">.so</span>.<span class="number">1</span> (<span class="number">0</span>x00002aeebd02b000)</span><br></pre></td></tr></table></figure></p>
+<p>如果出现下面这种问题，处理方法同上。但如果系统确实找不到相应的库文件，则可以使用<strong>yum -y install xxx</strong>安装。</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/usr/</span>bin/<span class="string">ld:</span> cannot find -lXXX</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/链接/" rel="tag">#链接</a>
+          
+            <a href="/tags/so/" rel="tag">#.so</a>
+          
+            <a href="/tags/ldconfig/" rel="tag">#ldconfig</a>
+          
+            <a href="/tags/ldd/" rel="tag">#ldd</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/24/KVM虚拟机安装错误集锦/" rel="prev" title="KVM虚拟机安装错误集锦">
+                KVM虚拟机安装错误集锦 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/23/undefined reference to **/"
+           data-title="undefined reference to **" data-url="http://davi.space/2016/04/23/undefined reference to **/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Davi" />
+          <p class="site-author-name" itemprop="name">Davi</p>
+          <p class="site-description motion-element" itemprop="description">程序人生</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/DVD0423" target="_blank" title="github">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element">
+            <div class="links-of-blogroll-title">
+              <i class="fa fa-globe fa-fw"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="dvd0423.github.io" title="Test" target="_blank">Test</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Davi</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"dvd0423"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

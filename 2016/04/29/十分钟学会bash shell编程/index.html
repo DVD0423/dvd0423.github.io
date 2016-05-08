@@ -81,20 +81,20 @@
 
 
 <meta name="description" content="1 变量命名规则双引号内的特殊字符，如$，会被翻译；而单引号内的所有字符保持不变。
-123d=8echo &apos;$d&apos;   //display: $decho &quot;$d&quot;   //display: 8
+123d=8echo &apos;$d&apos;   #display: $decho &quot;$d&quot;   #display: 8
 使用命令给变量赋值方式：$(命令)或者`命令`1var=`ls ./`">
 <meta property="og:type" content="article">
 <meta property="og:title" content="十分钟学会bash shell编程">
 <meta property="og:url" content="http://davi.space/2016/04/29/十分钟学会bash shell编程/index.html">
 <meta property="og:site_name" content="Davi">
 <meta property="og:description" content="1 变量命名规则双引号内的特殊字符，如$，会被翻译；而单引号内的所有字符保持不变。
-123d=8echo &apos;$d&apos;   //display: $decho &quot;$d&quot;   //display: 8
+123d=8echo &apos;$d&apos;   #display: $decho &quot;$d&quot;   #display: 8
 使用命令给变量赋值方式：$(命令)或者`命令`1var=`ls ./`">
-<meta property="og:updated_time" content="2016-05-07T06:38:11.000Z">
+<meta property="og:updated_time" content="2016-05-08T05:55:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="十分钟学会bash shell编程">
 <meta name="twitter:description" content="1 变量命名规则双引号内的特殊字符，如$，会被翻译；而单引号内的所有字符保持不变。
-123d=8echo &apos;$d&apos;   //display: $decho &quot;$d&quot;   //display: 8
+123d=8echo &apos;$d&apos;   #display: $decho &quot;$d&quot;   #display: 8
 使用命令给变量赋值方式：$(命令)或者`命令`1var=`ls ./`">
 
 
@@ -336,7 +336,7 @@
 
       
         <h3 id="1-变量命名规则"><a href="#1-变量命名规则" class="headerlink" title="1 变量命名规则"></a>1 变量命名规则</h3><p>双引号内的特殊字符，如$，会被翻译；而单引号内的所有字符保持不变。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">d=8</span><br><span class="line">echo '$d'   //display: $d</span><br><span class="line">echo "$d"   //display: 8</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">d=8</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'$d'</span>   <span class="comment">#display: $d</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$d</span>"</span>   <span class="comment">#display: 8</span></span><br></pre></td></tr></table></figure>
 <p>使用命令给变量赋值方式：$(命令)或者`命令`<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span>=<span class="string">`ls ./`</span></span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
 <p>为变量增加变量内容可以使用:<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PATH=<span class="string">"$PATH"</span>:/<span class="built_in">home</span>/bin</span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line">PATH=$&#123;PATH&#125;:/<span class="built_in">home</span>/bin</span><br></pre></td></tr></table></figure></p>
@@ -413,7 +413,7 @@
 <td>word在行尾</td>
 </tr>
 <tr>
-<td>‘\.\$’</td>
+<td>‘\.&#36;’</td>
 <td>显示以”.”为结尾的行</td>
 </tr>
 <tr>
@@ -457,9 +457,6 @@
 <tr>
 <td>-i</td>
 <td>直接修改读取的文件内容，而不是由屏幕输出;<code>sed -i &#39;$a # this is a test&#39; myfile.txt</code>在文件最后添加字符串<strong># this is a test</strong></td>
-</tr>
-<tr>
-<td></td>
 </tr>
 <tr>
 <td>ls &#124; sed ‘2,5d’</td>
@@ -517,10 +514,10 @@
 </table>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一行不会被特殊处理，第一行的分隔符是“ ”</span></span><br><span class="line"><span class="keyword">cat</span> /etc/passwd | awk '&#123;FS=<span class="string">":"</span>&#125; <span class="variable">$3</span> &lt; 10 &#123;<span class="keyword">print</span> <span class="variable">$1</span> <span class="string">"\t"</span> <span class="variable">$3&#125;</span>'</span><br><span class="line"><span class="comment">//第一行会被特殊处理</span></span><br><span class="line"><span class="keyword">cat</span> /etc/passwd | awk 'BEGIN &#123;FS=<span class="string">":"</span>&#125; <span class="variable">$3</span> &lt; 10 &#123;<span class="keyword">print</span> <span class="variable">$1</span> <span class="string">"\t"</span> <span class="variable">$3&#125;</span>'</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">cat</span> diff.txt | awk 'NR==1&#123;printf <span class="string">"%10s %10s\n"</span>, <span class="variable">$1</span>, <span class="variable">$2&#125;</span></span><br><span class="line">NR&gt;=2&#123;<span class="keyword">total</span> = <span class="variable">$2</span> + <span class="variable">$3</span> + <span class="variable">$4</span> </span><br><span class="line">printf <span class="string">"%10s %10s\n"</span>, <span class="variable">$2</span>, <span class="keyword">total</span>&#125;'</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">cat</span> diff.txt | awk '&#123;<span class="keyword">if</span> (NR==1) printf <span class="string">"%10s %10s\n"</span>, <span class="variable">$1</span>, <span class="variable">$2&#125;</span></span><br><span class="line">&#123;<span class="keyword">if</span> (NR&gt;=2) <span class="keyword">total</span> = <span class="variable">$2</span> + <span class="variable">$3</span> + <span class="variable">$4</span> </span><br><span class="line">printf <span class="string">"%10s %10s\n"</span>, <span class="variable">$2</span>, <span class="keyword">total</span>&#125;'</span><br></pre></td></tr></table></figure>
 <h3 id="9-shell-script编程"><a href="#9-shell-script编程" class="headerlink" title="9 shell script编程"></a>9 shell script编程</h3><ul>
-<li><p>计算</p>
+<li><p><strong>计算</strong></p>
 <figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var=<span class="symbol">$</span>((运算内容))</span><br><span class="line">echo <span class="symbol">$</span>(( <span class="number">13</span> % <span class="number">3</span> ))</span><br><span class="line"><span class="keyword">sum</span>=<span class="symbol">$</span>((<span class="symbol">$</span><span class="number">1</span> * <span class="symbol">$</span><span class="number">2</span>))</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>test命令</p>
+<li><p><strong>test命令</strong></p>
 </li>
 </ul>
 <table>
@@ -602,16 +599,16 @@
 </tbody>
 </table>
 <ul>
-<li><p>if… else…</p>
+<li><p><strong>if… else…</strong></p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ <span class="keyword">...</span> ]; then</span><br><span class="line">    <span class="keyword">...</span></span><br><span class="line">elif [ <span class="keyword">...</span> ] ; then</span><br><span class="line">    <span class="keyword">...</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="keyword">...</span></span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>case…esac</p>
+<li><p><strong>case…esac</strong></p>
 <figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> $var <span class="keyword">in</span></span><br><span class="line"><span class="string">"第一个变量值"</span>)</span><br><span class="line">    <span class="attr">...</span></span><br><span class="line">    ;;</span><br><span class="line"><span class="string">"two"</span>)</span><br><span class="line">    <span class="attr">...</span></span><br><span class="line">    ;;</span><br><span class="line">*)</span><br><span class="line">    <span class="attr">...</span></span><br><span class="line">    ;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>loop</p>
-<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> [ ... ]</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    ...</span><br><span class="line">done</span><br><span class="line">//<span class="keyword">or</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">var</span> <span class="keyword">in</span> `seq <span class="number">1</span> <span class="number">100</span>`//<span class="keyword">for</span> <span class="built_in">var</span> <span class="keyword">in</span> con1 con2 ...</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    ...</span><br><span class="line">done</span><br><span class="line">//<span class="keyword">or</span></span><br><span class="line"><span class="keyword">for</span> (( i=<span class="number">1</span>; i &lt; $<span class="built_in">var</span>; i=i+<span class="number">1</span> ))</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">sum</span>=$( ($<span class="built_in">sum</span> +$i) )</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<li><p><strong>loop</strong></p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#<span class="keyword">while</span> [ <span class="literal">true</span> ]; <span class="keyword">do</span></span><br><span class="line"><span class="keyword">while</span> [ ... ]</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    ...</span><br><span class="line">done</span><br><span class="line">#<span class="keyword">or</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">var</span> <span class="keyword">in</span> `seq <span class="number">1</span> <span class="number">100</span>`//<span class="keyword">for</span> <span class="built_in">var</span> <span class="keyword">in</span> con1 con2 ...</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    ...</span><br><span class="line">done</span><br><span class="line">#<span class="keyword">or</span></span><br><span class="line"><span class="keyword">for</span> (( i=<span class="number">1</span>; i &lt; $<span class="built_in">var</span>; i=i+<span class="number">1</span> ))</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">sum</span>=$( ($<span class="built_in">sum</span> +$i) )</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>function</p>
+<li><p><strong>function</strong></p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function <span class="function"><span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">    程序</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
@@ -656,7 +653,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/05/03/KVM虚拟机设置/" rel="prev" title="KVM虚拟机设置">
+              <a href="/2016/04/30/KVM虚拟机设置/" rel="prev" title="KVM虚拟机设置">
                 KVM虚拟机设置 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -730,7 +727,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -738,7 +735,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -747,7 +744,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
