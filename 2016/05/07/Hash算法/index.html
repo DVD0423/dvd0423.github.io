@@ -80,19 +80,19 @@
 
 
 
-<meta name="description" content="hash查找函数一般过程如下
-12345678initialize the internal state;  for (each block of the input)  &amp;#123;    combine (the internal state, the current input block);    mix( the internal state);  &amp;#125;  value = pos">
+<meta name="description" content="hash查找函数一般过程如下。
+12345678initialize the internal state;  for (each block of the input)  &amp;#123;    combine (the internal state, the current input block);    mix( the internal state);  &amp;#125;  value = po">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hash算法">
 <meta property="og:url" content="http://davi.space/2016/05/07/Hash算法/index.html">
 <meta property="og:site_name" content="Davi">
-<meta property="og:description" content="hash查找函数一般过程如下
-12345678initialize the internal state;  for (each block of the input)  &amp;#123;    combine (the internal state, the current input block);    mix( the internal state);  &amp;#125;  value = pos">
-<meta property="og:updated_time" content="2016-05-15T04:56:06.000Z">
+<meta property="og:description" content="hash查找函数一般过程如下。
+12345678initialize the internal state;  for (each block of the input)  &amp;#123;    combine (the internal state, the current input block);    mix( the internal state);  &amp;#125;  value = po">
+<meta property="og:updated_time" content="2016-05-15T04:59:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hash算法">
-<meta name="twitter:description" content="hash查找函数一般过程如下
-12345678initialize the internal state;  for (each block of the input)  &amp;#123;    combine (the internal state, the current input block);    mix( the internal state);  &amp;#125;  value = pos">
+<meta name="twitter:description" content="hash查找函数一般过程如下。
+12345678initialize the internal state;  for (each block of the input)  &amp;#123;    combine (the internal state, the current input block);    mix( the internal state);  &amp;#125;  value = po">
 
 
 
@@ -332,8 +332,9 @@
       
 
       
-        <p>hash查找函数一般过程如下</p>
+        <p>hash查找函数一般过程如下。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">initialize the internal state;</span><br><span class="line">  <span class="keyword">for</span> (each block of the input)</span><br><span class="line">  &#123;</span><br><span class="line">    combine (the internal state, the current input block);</span><br><span class="line">    mix( the internal state);</span><br><span class="line">  &#125;</span><br><span class="line">  value = postprocess( the internal state );</span><br><span class="line">  return (value)</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h2 id="1-additive-hash"><a href="#1-additive-hash" class="headerlink" title="1 additive hash"></a>1 additive hash</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ub4 -- 4 bytes unsigned  </span></span><br><span class="line"><span class="function">ub4 <span class="title">additive</span><span class="params">( <span class="keyword">char</span> *key, size_t len, ub4 prime)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">  ub4    hash;</span><br><span class="line">  <span class="keyword">size_t</span> i;</span><br><span class="line">  <span class="keyword">for</span> (hash=(ub4)len, i=<span class="number">0</span>; i&lt;len; ++i) hash = hash+key[i];</span><br><span class="line">  return (hash % prime);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="2-rotating-hash"><a href="#2-rotating-hash" class="headerlink" title="2 rotating hash"></a>2 rotating hash</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ub4 <span class="title">rotating</span><span class="params">( <span class="keyword">char</span> *key, size_t len, ub4 prime)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">  ub4    hash;</span><br><span class="line">  <span class="keyword">size_t</span> i;</span><br><span class="line">  <span class="keyword">for</span> (hash=(ub4)len, i=<span class="number">0</span>; i&lt;len; ++i)</span><br><span class="line">    hash = (hash&lt;&lt;<span class="number">5</span>)^(hash&gt;&gt;<span class="number">27</span>)^key[i];</span><br><span class="line">  return (hash % prime);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="3-Pearson-hash"><a href="#3-Pearson-hash" class="headerlink" title="3 Pearson hash"></a>3 Pearson hash</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">char</span> <span class="title">pearson</span><span class="params">( <span class="keyword">char</span> *key, size_t len, <span class="keyword">char</span> tab[<span class="number">256</span>])</span></span><br><span class="line"></span>&#123;</span><br><span class="line">  <span class="keyword">char</span>   hash;</span><br><span class="line">  <span class="keyword">size_t</span> i;</span><br><span class="line">  <span class="keyword">for</span> (i=<span class="number">0</span>, hash=<span class="number">0</span>; i&lt;len; ++i) </span><br><span class="line">    hash=tab[hash^key[i]];</span><br><span class="line">  return (hash);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
