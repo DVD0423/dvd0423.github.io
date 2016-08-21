@@ -325,64 +325,17 @@
 
       
         
-          
-            <p>1 为字符串使用固定大小栈缓冲区，而不是动态分配，创建资源库，以减少分配对象的开销</p>
+          <p>1 为字符串使用固定大小栈缓冲区，而不是动态分配，创建资源库，以减少分配对象的开销</p>
 <p>2 c语言中实现C++作用：</p>
-<p>头文件：<br>    内部使用的接口一个文件，对外接口单独头文件</p>
+<p>模块内部使用的接口一个文件，对外接口单独头文件</p>
 <p>static全局变量相当于类的私有变量，可以通过一个对外接口访问，以此限制对其直接操作</p>
 <p>static函数不需要放在头文件中，因为它只在本文件内可见，最好在c文件的头部声明</p>
-<p>回调函数实现方法</p>
-<p>3 由于unsigned类型有负值溢出问题，所以不提倡使用unsigned类型</p>
-<p>4 用#define ARRAYSIZE(x) (sizeof(x)/sizeof(x[0]))获得数组大小</p>
-<p>5 #var 将var字符串化<br>  a##b 把a和b结合</p>
-<pre><code>#define TOCHAR(x) #@x 把x转为字符
-
-#define __STR(x) #x
-#define STR(x) __STR(x)
-
-  上面这样做的原因是x可能是:  a##b
-</code></pre><p>6 <strong>FILE</strong> <strong>LINE</strong> <strong>func</strong> <strong>DATE</strong> <strong>TIME</strong></p>
-<p>7 #ifndef __cplusplus<br>    extern “c” {</p>
-<p>  #endif<br>        …</p>
-<p>  #ifndef __cplusplus<br>    }</p>
-<p>  #endif</p>
-<p>8 ptr是具体结构体实体内的成员指针，type是结构体名，member是结构体成员名 </p>
-<pre><code>#define offsetof(type, member) ((size_t) (((char *)&amp;((type *)0)-&gt;member)))
-#define container_of(ptr, type, member) (type *)((char *)(ptr) - (char *) &amp;((type *)0)-&gt;member)
-</code></pre><p>  下面两个用于类似内核中list_head的结构体中。</p>
-<pre><code>#define list_entry(ptr, type, member) container_of(ptr, type, member)
-//pos结构体实体指针名（是一个变量），head指结构体实体内部的链表结构体指针（上面的ptr），member指链表结构在结构体中的成员名
-#define list_for_each_entry(pos, head, member)    \
-    for( pos = list_entry((head)-&gt;next, typeof(*pos), member); \
-        &amp;pos-&gt;member != (head);    \
-        pos = list_entry(pos-&gt;member.next, typeof(*pos), member))
-</code></pre><p>9 定时器</p>
-<p>10 <strong>attribute</strong><br>关键字<strong>attribute</strong> 也可以对结构体（struct ）或共用体（union ）进行属性设置。大致有六个参数值可以被设定，<br>即：aligned, packed, transparent_union, unused, deprecated 和 may_alias 。</p>
-<pre><code>__attribute__((aligned(1024)))    //以1024字节对齐
-__attribute__ ((packed))    //不对齐，最小空间
-</code></pre><p>11 volatile 防止编译器优化</p>
-<p>12 <strong>VA_ARGS</strong>    //可变参数宏，前面加上##的目的在于当可变参数个数为0时，##起到把多余的“,”去掉的作用，否则编译出错</p>
-<pre><code>snprintf( buffer, DEBUG_BUFFER_MAX, &quot;[%s] &quot;format&quot; File:%s, Line:%d\n&quot;, moduleName, ##__VA_ARGS__, __FILE__, __LINE__ );
-
-#define debug(...) printf(__VA_ARGS__)  \\可变参数宏
-
-debug(&quot;test&quot;)            printf(&quot;test&quot;)
-debug(&quot;year = %d&quot;, y)    printf(&quot;year = %d&quot;)
-</code></pre><p>13 ptr += sprintf(ptr, “%s#”, t);    //相当于c++的字符串连接<br>   snprintf</p>
-<p>14 va_list<br>   va_start<br>   va_arg<br>   va_end</p>
-<p>   int test(int v, …)<br>   {<br>       int ret = 0;<br>       int i = v;<br>       va_list ap;<br>       va_start(ap, v);<br>       while(i &gt; 0){<br>           ret += va_arg(ap, int);<br>           –i;<br>       }<br>       va_end(ap);<br>       return ret /= v;<br>   }</p>
-<p>15 memset_s代替memset</p>
-<p>16 #define INTSIZEOF(n)  ((sizeof(n)+sizeof(int)-1) &amp; ~(sizeof(int)-1))</p>
-<p>17 </p>
-<p>18 static inline</p>
-<p>19 __thread 线程私有全局变量</p>
-<pre><code>__thread int var = 1;
-</code></pre><p>20 <strong>typeof</strong>() 是gcc对c语言的一个保留字，声明变量类型</p>
-<pre><code>__typeof__(int *) x；//int * x;
-__typeof__(*x) y;    //int y;
-</code></pre><p>   还有一个是typeof()</p>
-
-          
+<p>回调函数实现方法<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/21/C语言基础/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -481,15 +434,17 @@ __typeof__(*x) y;    //int y;
       
         
           
-            <p>1 char <em> strchr(str, ch);//查找ch第一次出现的指针偏移<br>  strrchr<br>2 char </em> strcat(des, src);//拼接</p>
+            <p>1 char * strchr(str, ch);//查找ch第一次出现的指针偏移</p>
+<p>&ensp;&ensp;&ensp;strrchr</p>
+<p>2 char * strcat(des, src);//拼接</p>
 <p>3 strncmp, strncpy, strnicmp–不区分大小写的比较</p>
-<p>4 char * strnset(str, ch, n); //设置前n个字符<br>  strnset//全设<br>5 int strcspn(str, substr); //在str中找第一个出现在substr字符集里的字符<br>  int strspn(stc, substr); //第一个不是substr的字符位置</p>
+<p>4 char * strnset(str, ch, n); //设置前n个字符<br>&ensp;&ensp;&ensp;strnset//全设<br>5 int strcspn(str, substr); //在str中找第一个出现在substr字符集里的字符<br>&ensp;&ensp;&ensp;int strspn(stc, substr); //第一个不是substr的字符位置</p>
 <p>6 char * strpbrk(str, substr); //同5，返回指针偏移</p>
-<p>6 char * strdup(src);    //和free配对使用，感觉没必要存在</p>
-<p>7 char * strrev(str);  //串翻转</p>
-<p>8 char * strstr(str, substr); //查字符串</p>
-<p>9 char * strtok(str1, substr); //字符串分段</p>
-<p>10 char * swab(src, des, n); //交换前n字节</p>
+<p>7 char * strdup(src);    //和free配对使用，感觉没必要存在</p>
+<p>8 char * strrev(str);  //串翻转</p>
+<p>9 char * strstr(str, substr); //查字符串</p>
+<p>10 char * strtok(str1, substr); //字符串分段</p>
+<p>11 char * swab(src, des, n); //交换前n字节</p>
 
           
         

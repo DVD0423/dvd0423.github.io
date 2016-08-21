@@ -82,32 +82,29 @@
 
 <meta name="description" content="1 为字符串使用固定大小栈缓冲区，而不是动态分配，创建资源库，以减少分配对象的开销
 2 c语言中实现C++作用：
-头文件：    内部使用的接口一个文件，对外接口单独头文件
+模块内部使用的接口一个文件，对外接口单独头文件
 static全局变量相当于类的私有变量，可以通过一个对外接口访问，以此限制对其直接操作
 static函数不需要放在头文件中，因为它只在本文件内可见，最好在c文件的头部声明
-回调函数实现方法
-3 由于unsigned类型有负值溢">
+回调函数实现方法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C语言基础">
 <meta property="og:url" content="http://davi.space/2016/08/21/C语言基础/index.html">
 <meta property="og:site_name" content="Davi">
 <meta property="og:description" content="1 为字符串使用固定大小栈缓冲区，而不是动态分配，创建资源库，以减少分配对象的开销
 2 c语言中实现C++作用：
-头文件：    内部使用的接口一个文件，对外接口单独头文件
+模块内部使用的接口一个文件，对外接口单独头文件
 static全局变量相当于类的私有变量，可以通过一个对外接口访问，以此限制对其直接操作
 static函数不需要放在头文件中，因为它只在本文件内可见，最好在c文件的头部声明
-回调函数实现方法
-3 由于unsigned类型有负值溢">
-<meta property="og:updated_time" content="2016-08-21T07:08:53.000Z">
+回调函数实现方法">
+<meta property="og:updated_time" content="2016-08-21T07:54:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言基础">
 <meta name="twitter:description" content="1 为字符串使用固定大小栈缓冲区，而不是动态分配，创建资源库，以减少分配对象的开销
 2 c语言中实现C++作用：
-头文件：    内部使用的接口一个文件，对外接口单独头文件
+模块内部使用的接口一个文件，对外接口单独头文件
 static全局变量相当于类的私有变量，可以通过一个对外接口访问，以此限制对其直接操作
 static函数不需要放在头文件中，因为它只在本文件内可见，最好在c文件的头部声明
-回调函数实现方法
-3 由于unsigned类型有负值溢">
+回调函数实现方法">
 
 
 
@@ -340,59 +337,42 @@ static函数不需要放在头文件中，因为它只在本文件内可见，�
       
         <p>1 为字符串使用固定大小栈缓冲区，而不是动态分配，创建资源库，以减少分配对象的开销</p>
 <p>2 c语言中实现C++作用：</p>
-<p>头文件：<br>    内部使用的接口一个文件，对外接口单独头文件</p>
+<p>模块内部使用的接口一个文件，对外接口单独头文件</p>
 <p>static全局变量相当于类的私有变量，可以通过一个对外接口访问，以此限制对其直接操作</p>
 <p>static函数不需要放在头文件中，因为它只在本文件内可见，最好在c文件的头部声明</p>
-<p>回调函数实现方法</p>
+<p>回调函数实现方法<br><a id="more"></a></p>
 <p>3 由于unsigned类型有负值溢出问题，所以不提倡使用unsigned类型</p>
 <p>4 用#define ARRAYSIZE(x) (sizeof(x)/sizeof(x[0]))获得数组大小</p>
-<p>5 #var 将var字符串化<br>  a##b 把a和b结合</p>
+<p>5 #var 将var字符串化</p>
+<p>  a##b 把a和b结合</p>
 <pre><code>#define TOCHAR(x) #@x 把x转为字符
 
 #define __STR(x) #x
 #define STR(x) __STR(x)
 
   上面这样做的原因是x可能是:  a##b
-</code></pre><p>6 <strong>FILE</strong> <strong>LINE</strong> <strong>func</strong> <strong>DATE</strong> <strong>TIME</strong></p>
-<p>7 #ifndef __cplusplus<br>    extern “c” {</p>
-<p>  #endif<br>        …</p>
-<p>  #ifndef __cplusplus<br>    }</p>
-<p>  #endif</p>
-<p>8 ptr是具体结构体实体内的成员指针，type是结构体名，member是结构体成员名 </p>
-<pre><code>#define offsetof(type, member) ((size_t) (((char *)&amp;((type *)0)-&gt;member)))
-#define container_of(ptr, type, member) (type *)((char *)(ptr) - (char *) &amp;((type *)0)-&gt;member)
-</code></pre><p>  下面两个用于类似内核中list_head的结构体中。</p>
-<pre><code>#define list_entry(ptr, type, member) container_of(ptr, type, member)
-//pos结构体实体指针名（是一个变量），head指结构体实体内部的链表结构体指针（上面的ptr），member指链表结构在结构体中的成员名
-#define list_for_each_entry(pos, head, member)    \
-    for( pos = list_entry((head)-&gt;next, typeof(*pos), member); \
-        &amp;pos-&gt;member != (head);    \
-        pos = list_entry(pos-&gt;member.next, typeof(*pos), member))
-</code></pre><p>9 定时器</p>
-<p>10 <strong>attribute</strong><br>关键字<strong>attribute</strong> 也可以对结构体（struct ）或共用体（union ）进行属性设置。大致有六个参数值可以被设定，<br>即：aligned, packed, transparent_union, unused, deprecated 和 may_alias 。</p>
+</code></pre><p>6 __FILE__ 、__LINE__ 、__func__ 、__DATE__ 、__TIME__</p>
+<p>7<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __cplusplus</span></span><br><span class="line">    <span class="keyword">extern</span> <span class="string">"c"</span> &#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">	...</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __cplusplus</span></span><br><span class="line">	&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure></p>
+<p>8 ptr是具体结构体实体内的成员指针，type是结构体名，member是结构体成员名<br><figure class="highlight moonscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">	#define offsetof(<span class="built_in">type</span>, member) (<span class="function"><span class="params">(size_t)</span> ((<span class="params">(char *)</span>&amp;(<span class="params">(<span class="built_in">type</span> *)</span>0)-&gt;</span>member)))</span><br><span class="line">	#define container_of(ptr, <span class="built_in">type</span>, member) (<span class="built_in">type</span> *)(<span class="function"><span class="params">(char *)(ptr)</span> - <span class="params">(char *)</span> &amp;(<span class="params">(<span class="built_in">type</span> *)</span>0)-&gt;</span>member)</span><br><span class="line">```	</span><br><span class="line">  下面两个用于类似内核中list_head的结构体中。</span><br></pre></td></tr></table></figure></p>
+<p>#define list_entry(ptr, type, member) container_of(ptr, type, member)<br>//pos结构体实体指针名（是一个变量），head指结构体实体内部的链表结构体指针（上面的ptr），member指链表结构在结构体中的成员名</p>
+<p>#define list_for_each_entry(pos, head, member)    \<br>    for( pos = list_entry((head)-&gt;next, typeof(<em>pos), member); \<br>        &amp;pos-&gt;member != (head);    \<br>        pos = list_entry(pos-&gt;member.next, typeof(</em>pos), member))<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">9 定时器</span><br><span class="line"></span><br><span class="line">10 <span class="symbol">\_</span><span class="symbol">\_</span>attribute<span class="symbol">\_</span><span class="symbol">\_</span> </span><br><span class="line"></span><br><span class="line">关键字<span class="symbol">\_</span><span class="symbol">\_</span>attribute<span class="symbol">\_</span><span class="symbol">\_</span> 也可以对结构体（struct ）或共用体（union ）进行属性设置。大致有六个参数值可以被设定，</span><br><span class="line">即：aligned, packed, transparent_union, unused, deprecated 和 may_alias 。</span><br></pre></td></tr></table></figure></p>
 <pre><code>__attribute__((aligned(1024)))    //以1024字节对齐
 __attribute__ ((packed))    //不对齐，最小空间
-</code></pre><p>11 volatile 防止编译器优化</p>
-<p>12 <strong>VA_ARGS</strong>    //可变参数宏，前面加上##的目的在于当可变参数个数为0时，##起到把多余的“,”去掉的作用，否则编译出错</p>
-<pre><code>snprintf( buffer, DEBUG_BUFFER_MAX, &quot;[%s] &quot;format&quot; File:%s, Line:%d\n&quot;, moduleName, ##__VA_ARGS__, __FILE__, __LINE__ );
-
-#define debug(...) printf(__VA_ARGS__)  \\可变参数宏
-
-debug(&quot;test&quot;)            printf(&quot;test&quot;)
-debug(&quot;year = %d&quot;, y)    printf(&quot;year = %d&quot;)
-</code></pre><p>13 ptr += sprintf(ptr, “%s#”, t);    //相当于c++的字符串连接<br>   snprintf</p>
-<p>14 va_list<br>   va_start<br>   va_arg<br>   va_end</p>
-<p>   int test(int v, …)<br>   {<br>       int ret = 0;<br>       int i = v;<br>       va_list ap;<br>       va_start(ap, v);<br>       while(i &gt; 0){<br>           ret += va_arg(ap, int);<br>           –i;<br>       }<br>       va_end(ap);<br>       return ret /= v;<br>   }</p>
+</code></pre><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">11 volatile 防止编译器优化</span><br><span class="line"></span><br><span class="line">12 \_\_VA\_ARGS\_\_	可变参数宏，前面加上##的目的在于当可变参数个数为<span class="selector-tag">0</span>时，##起到把多余的“,”去掉的作用，否则编译出错</span><br><span class="line">```	</span><br><span class="line">	<span class="selector-tag">snprintf</span>( buffer, DEBUG_BUFFER_MAX, <span class="string">"[%s] "</span>format<span class="string">" File:%s, Line:%d\n"</span>, \</span><br><span class="line">    moduleName, ##__VA_ARGS__, __FILE__, __LINE__ );</span><br><span class="line">	</span><br><span class="line">	<span class="selector-id">#define</span> <span class="selector-tag">debug</span>(...) <span class="selector-tag">printf</span>(__VA_ARGS__)  \\可变参数宏</span><br><span class="line">	</span><br><span class="line">	<span class="selector-tag">debug</span>(<span class="string">"test"</span>)			<span class="selector-tag">printf</span>(<span class="string">"test"</span>)</span><br><span class="line">	<span class="selector-tag">debug</span>(<span class="string">"year = %d"</span>, y)	<span class="selector-tag">printf</span>(<span class="string">"year = %d"</span>)</span><br></pre></td></tr></table></figure>
+<p>13 ptr += sprintf(ptr, “%s#”, t);    //相当于c++的字符串连接</p>
+<p>&ensp;&ensp;&ensp;&ensp;&ensp;snprintf</p>
+<p>14 可变参数实现</p>
+<p>va_list</p>
+<p>va_start</p>
+<p>va_arg</p>
+<p>va_end</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">int <span class="keyword">test</span>(int v, ...)</span><br><span class="line">&#123;</span><br><span class="line">	int <span class="keyword">ret</span> = 0;</span><br><span class="line">	int i = v;</span><br><span class="line">	va_list <span class="keyword">ap</span>;</span><br><span class="line">	va_start(<span class="keyword">ap</span>, v);</span><br><span class="line">	<span class="keyword">while</span>(i &gt; 0)&#123;</span><br><span class="line">		<span class="keyword">ret</span> += va_arg(<span class="keyword">ap</span>, int);</span><br><span class="line">		--i;</span><br><span class="line">	&#125;</span><br><span class="line">	va_end(<span class="keyword">ap</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">ret</span> /= v;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>15 memset_s代替memset</p>
-<p>16 #define INTSIZEOF(n)  ((sizeof(n)+sizeof(int)-1) &amp; ~(sizeof(int)-1))</p>
-<p>17 </p>
-<p>18 static inline</p>
-<p>19 __thread 线程私有全局变量</p>
-<pre><code>__thread int var = 1;
-</code></pre><p>20 <strong>typeof</strong>() 是gcc对c语言的一个保留字，声明变量类型</p>
-<pre><code>__typeof__(int *) x；//int * x;
-__typeof__(*x) y;    //int y;
-</code></pre><p>   还有一个是typeof()</p>
+<p>16 #define &ensp;INTSIZEOF(n) &ensp;&ensp; ((sizeof(n)+sizeof(int)-1) &amp; ~(sizeof(int)-1))</p>
+<p>17 static inline</p>
+<p>18 __thread 线程私有全局变量<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__thread <span class="keyword">int</span> <span class="keyword">var</span> = <span class="number">1</span>;</span><br></pre></td></tr></table></figure></p>
+<p>19 __typeof__() 是gcc对c语言的一个保留字，声明变量类型<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">__typeof__<span class="comment">(int *)</span> x；<span class="comment">//int * x;</span></span><br><span class="line">__typeof__<span class="comment">(*x)</span> y;	<span class="comment">//int y;</span></span><br></pre></td></tr></table></figure></p>
+<p>   还有一个是typeof()</p>
 
       
     </div>
