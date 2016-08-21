@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="KVM,virsh," />
+  <meta name="keywords" content="C语言基础," />
 
 
 
@@ -80,16 +80,34 @@
 
 
 
-<meta name="description" content="1 could not open disk image /root/dvd/vm1.img: Permission denied使用virt-install时出现了如下错误：12ERROR    internal error Process exited while reading console log output: char device redirected to /dev/pts/1qe">
+<meta name="description" content="1 为字符串使用固定大小栈缓冲区，而不是动态分配，创建资源库，以减少分配对象的开销
+2 c语言中实现C++作用：
+头文件：    内部使用的接口一个文件，对外接口单独头文件
+static全局变量相当于类的私有变量，可以通过一个对外接口访问，以此限制对其直接操作
+static函数不需要放在头文件中，因为它只在本文件内可见，最好在c文件的头部声明
+回调函数实现方法
+3 由于unsigned类型有负值溢">
 <meta property="og:type" content="article">
-<meta property="og:title" content="KVM虚拟机安装错误集锦">
-<meta property="og:url" content="http://davi.space/2016/05/03/KVM虚拟机安装错误集锦/index.html">
+<meta property="og:title" content="C语言基础">
+<meta property="og:url" content="http://davi.space/2016/08/21/C语言基础/index.html">
 <meta property="og:site_name" content="Davi">
-<meta property="og:description" content="1 could not open disk image /root/dvd/vm1.img: Permission denied使用virt-install时出现了如下错误：12ERROR    internal error Process exited while reading console log output: char device redirected to /dev/pts/1qe">
-<meta property="og:updated_time" content="2016-05-03T13:14:29.000Z">
+<meta property="og:description" content="1 为字符串使用固定大小栈缓冲区，而不是动态分配，创建资源库，以减少分配对象的开销
+2 c语言中实现C++作用：
+头文件：    内部使用的接口一个文件，对外接口单独头文件
+static全局变量相当于类的私有变量，可以通过一个对外接口访问，以此限制对其直接操作
+static函数不需要放在头文件中，因为它只在本文件内可见，最好在c文件的头部声明
+回调函数实现方法
+3 由于unsigned类型有负值溢">
+<meta property="og:updated_time" content="2016-08-21T07:08:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="KVM虚拟机安装错误集锦">
-<meta name="twitter:description" content="1 could not open disk image /root/dvd/vm1.img: Permission denied使用virt-install时出现了如下错误：12ERROR    internal error Process exited while reading console log output: char device redirected to /dev/pts/1qe">
+<meta name="twitter:title" content="C语言基础">
+<meta name="twitter:description" content="1 为字符串使用固定大小栈缓冲区，而不是动态分配，创建资源库，以减少分配对象的开销
+2 c语言中实现C++作用：
+头文件：    内部使用的接口一个文件，对外接口单独头文件
+static全局变量相当于类的私有变量，可以通过一个对外接口访问，以此限制对其直接操作
+static函数不需要放在头文件中，因为它只在本文件内可见，最好在c文件的头部声明
+回调函数实现方法
+3 由于unsigned类型有负值溢">
 
 
 
@@ -107,7 +125,7 @@
   };
 </script>
 
-  <title> KVM虚拟机安装错误集锦 | Davi </title>
+  <title> C语言基础 | Davi </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -182,6 +200,16 @@
               <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -263,7 +291,7 @@
             
             
               
-                KVM虚拟机安装错误集锦
+                C语言基础
               
             
           </h1>
@@ -275,38 +303,19 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-03T21:14:29+08:00" content="2016-05-03">
-              2016-05-03
+            <time itemprop="dateCreated" datetime="2016-08-21T15:06:52+08:00" content="2016-08-21">
+              2016-08-21
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/云计算/" itemprop="url" rel="index">
-                    <span itemprop="name">云计算</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/03/KVM虚拟机安装错误集锦/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/03/KVM虚拟机安装错误集锦/" itemprop="commentsCount"></span>
+                <a href="/2016/08/21/C语言基础/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/21/C语言基础/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -329,24 +338,61 @@
       
 
       
-        <h2 id="1-could-not-open-disk-image-root-dvd-vm1-img-Permission-denied"><a href="#1-could-not-open-disk-image-root-dvd-vm1-img-Permission-denied" class="headerlink" title="1 could not open disk image /root/dvd/vm1.img: Permission denied"></a>1 could not open disk image /root/dvd/vm1.img: Permission denied</h2><p>使用virt-install时出现了如下错误：<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR    internal error Process exited <span class="keyword">while</span> reading console <span class="built_in">log</span> output: <span class="keyword">char</span> device redirected <span class="built_in">to</span> /dev/pts/<span class="number">1</span></span><br><span class="line">qemu-kvm: -drive <span class="built_in">file</span>=/root/dvd/vm1.img,<span class="keyword">if</span>=<span class="literal">none</span>,id=drive-ide0<span class="number">-0</span><span class="number">-0</span>,<span class="built_in">format</span>=raw,cache=<span class="literal">none</span>: could <span class="keyword">not</span> <span class="built_in">open</span> disk image /root/dvd/vm1.img: Permission denied</span><br></pre></td></tr></table></figure></p>
-<a id="more"></a>
-<p>错误记录已经很明显了，主要是权限问题。引起的原因主要有两个。</p>
-<ul>
-<li>1 用户和组属性问题。</li>
-<li>2 读、写、执行的权限问题。</li>
-</ul>
-<p>更详细的出错日志可以查看/var/log/libvirt/qemu/vm1.img。<br>解决方法：<br> <strong>1</strong> 修改/etc/libvirt/qemu.conf文件，把下面注释的地方去掉，然后把dynamic_ownership的值改为0。<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">user</span> = <span class="string">"root"</span></span><br><span class="line"><span class="attr">group</span> = <span class="string">"root"</span></span><br><span class="line"><span class="attr">dynamic_ownership</span> = <span class="number">0</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>2</strong> 如果不成功，检查镜像文件相应权限和所有上级目录权限。</p>
-<h2 id="2-Failed-to-connect-socket-to-‘-var-run-libvirt-libvirt-sock’"><a href="#2-Failed-to-connect-socket-to-‘-var-run-libvirt-libvirt-sock’" class="headerlink" title="2 Failed to connect socket to ‘/var/run/libvirt/libvirt-sock’"></a>2 Failed to connect socket to ‘/var/run/libvirt/libvirt-sock’</h2><p>没有打开libvirtd服务。<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service libvirtd <span class="literal">start</span></span><br></pre></td></tr></table></figure></p>
-<p>如果libvirtd服务打不开，显示如下错误:<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Starting libvirtd daemon: libvirtd: relocation <span class="keyword">error</span>: libvirtd: symbol numa_nodes_ptr, <span class="built_in">version</span> libnuma_1<span class="number">.2</span> <span class="keyword">not</span> defined <span class="keyword">in</span> <span class="built_in">file</span> libnuma.so<span class="number">.1</span> <span class="keyword">with</span> link <span class="built_in">time</span> <span class="keyword">reference</span></span><br></pre></td></tr></table></figure></p>
-<p>则目前还没解决。</p>
-<h2 id="3-Unable-to-read-from-monitor-Connection-reset-by-peer"><a href="#3-Unable-to-read-from-monitor-Connection-reset-by-peer" class="headerlink" title="3 Unable to read from monitor: Connection reset by peer"></a>3 Unable to read from monitor: Connection reset by peer</h2><p>网上说用如下命令：<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># virsh managedsave--remove vm1</span></span><br></pre></td></tr></table></figure></p>
-<p>但是我用无效，所以就直接重启物理机。<br>出错原因：在虚拟机运行过程中关闭libvirtd服务。</p>
-<h2 id="4-could-not-open-disk-image-root-dvd-vm1-img-Permission-denied"><a href="#4-could-not-open-disk-image-root-dvd-vm1-img-Permission-denied" class="headerlink" title="4  could not open disk image /root/dvd/vm1.img: Permission denied"></a>4  could not open disk image /root/dvd/vm1.img: Permission denied</h2><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR    internal error Process exited <span class="keyword">while</span> reading console <span class="built_in">log</span> output: <span class="keyword">char</span> device redirected <span class="built_in">to</span> /dev/pts/<span class="number">1</span></span><br><span class="line">qemu-kvm: -drive <span class="built_in">file</span>=/root/dvd/vm1.img,<span class="keyword">if</span>=<span class="literal">none</span>,id=drive-ide0<span class="number">-0</span><span class="number">-0</span>,<span class="built_in">format</span>=raw,cache=<span class="literal">none</span>: could <span class="keyword">not</span> <span class="built_in">open</span> disk image /root/dvd/vm1.img: Permission denied</span><br></pre></td></tr></table></figure>
-<p>错误记录已经很明显了，主要是权限问题。更详细的出错日志可以查看/var/log/libvirt/qemu/vm1.img。</p>
-<p>解决方法，首先修改/etc/libvirt/qemu.conf文件，把下面注释的地方去掉，然后把dynamic_ownership的值改为0。<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">user</span> = <span class="string">"root"</span></span><br><span class="line"><span class="attr">group</span> = <span class="string">"root"</span></span><br><span class="line"><span class="attr">dynamic_ownership</span> = <span class="number">0</span></span><br></pre></td></tr></table></figure></p>
-<p>如果不成功，检查镜像文件相应权限和所有上级目录权限。</p>
+        <p>1 为字符串使用固定大小栈缓冲区，而不是动态分配，创建资源库，以减少分配对象的开销</p>
+<p>2 c语言中实现C++作用：</p>
+<p>头文件：<br>    内部使用的接口一个文件，对外接口单独头文件</p>
+<p>static全局变量相当于类的私有变量，可以通过一个对外接口访问，以此限制对其直接操作</p>
+<p>static函数不需要放在头文件中，因为它只在本文件内可见，最好在c文件的头部声明</p>
+<p>回调函数实现方法</p>
+<p>3 由于unsigned类型有负值溢出问题，所以不提倡使用unsigned类型</p>
+<p>4 用#define ARRAYSIZE(x) (sizeof(x)/sizeof(x[0]))获得数组大小</p>
+<p>5 #var 将var字符串化<br>  a##b 把a和b结合</p>
+<pre><code>#define TOCHAR(x) #@x 把x转为字符
+
+#define __STR(x) #x
+#define STR(x) __STR(x)
+
+  上面这样做的原因是x可能是:  a##b
+</code></pre><p>6 <strong>FILE</strong> <strong>LINE</strong> <strong>func</strong> <strong>DATE</strong> <strong>TIME</strong></p>
+<p>7 #ifndef __cplusplus<br>    extern “c” {</p>
+<p>  #endif<br>        …</p>
+<p>  #ifndef __cplusplus<br>    }</p>
+<p>  #endif</p>
+<p>8 ptr是具体结构体实体内的成员指针，type是结构体名，member是结构体成员名 </p>
+<pre><code>#define offsetof(type, member) ((size_t) (((char *)&amp;((type *)0)-&gt;member)))
+#define container_of(ptr, type, member) (type *)((char *)(ptr) - (char *) &amp;((type *)0)-&gt;member)
+</code></pre><p>  下面两个用于类似内核中list_head的结构体中。</p>
+<pre><code>#define list_entry(ptr, type, member) container_of(ptr, type, member)
+//pos结构体实体指针名（是一个变量），head指结构体实体内部的链表结构体指针（上面的ptr），member指链表结构在结构体中的成员名
+#define list_for_each_entry(pos, head, member)    \
+    for( pos = list_entry((head)-&gt;next, typeof(*pos), member); \
+        &amp;pos-&gt;member != (head);    \
+        pos = list_entry(pos-&gt;member.next, typeof(*pos), member))
+</code></pre><p>9 定时器</p>
+<p>10 <strong>attribute</strong><br>关键字<strong>attribute</strong> 也可以对结构体（struct ）或共用体（union ）进行属性设置。大致有六个参数值可以被设定，<br>即：aligned, packed, transparent_union, unused, deprecated 和 may_alias 。</p>
+<pre><code>__attribute__((aligned(1024)))    //以1024字节对齐
+__attribute__ ((packed))    //不对齐，最小空间
+</code></pre><p>11 volatile 防止编译器优化</p>
+<p>12 <strong>VA_ARGS</strong>    //可变参数宏，前面加上##的目的在于当可变参数个数为0时，##起到把多余的“,”去掉的作用，否则编译出错</p>
+<pre><code>snprintf( buffer, DEBUG_BUFFER_MAX, &quot;[%s] &quot;format&quot; File:%s, Line:%d\n&quot;, moduleName, ##__VA_ARGS__, __FILE__, __LINE__ );
+
+#define debug(...) printf(__VA_ARGS__)  \\可变参数宏
+
+debug(&quot;test&quot;)            printf(&quot;test&quot;)
+debug(&quot;year = %d&quot;, y)    printf(&quot;year = %d&quot;)
+</code></pre><p>13 ptr += sprintf(ptr, “%s#”, t);    //相当于c++的字符串连接<br>   snprintf</p>
+<p>14 va_list<br>   va_start<br>   va_arg<br>   va_end</p>
+<p>   int test(int v, …)<br>   {<br>       int ret = 0;<br>       int i = v;<br>       va_list ap;<br>       va_start(ap, v);<br>       while(i &gt; 0){<br>           ret += va_arg(ap, int);<br>           –i;<br>       }<br>       va_end(ap);<br>       return ret /= v;<br>   }</p>
+<p>15 memset_s代替memset</p>
+<p>16 #define INTSIZEOF(n)  ((sizeof(n)+sizeof(int)-1) &amp; ~(sizeof(int)-1))</p>
+<p>17 </p>
+<p>18 static inline</p>
+<p>19 __thread 线程私有全局变量</p>
+<pre><code>__thread int var = 1;
+</code></pre><p>20 <strong>typeof</strong>() 是gcc对c语言的一个保留字，声明变量类型</p>
+<pre><code>__typeof__(int *) x；//int * x;
+__typeof__(*x) y;    //int y;
+</code></pre><p>   还有一个是typeof()</p>
 
       
     </div>
@@ -367,9 +413,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/KVM/" rel="tag">#KVM</a>
-          
-            <a href="/tags/virsh/" rel="tag">#virsh</a>
+            <a href="/tags/C语言基础/" rel="tag">#C语言基础</a>
           
         </div>
       
@@ -378,8 +422,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/03/KVM虚拟机设置/" rel="next" title="KVM虚拟机设置">
-                <i class="fa fa-chevron-left"></i> KVM虚拟机设置
+              <a href="/2016/08/13/string库/" rel="next" title="string库">
+                <i class="fa fa-chevron-left"></i> string库
               </a>
             
           </div>
@@ -410,8 +454,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/03/KVM虚拟机安装错误集锦/"
-           data-title="KVM虚拟机安装错误集锦" data-url="http://davi.space/2016/05/03/KVM虚拟机安装错误集锦/">
+      <div class="ds-thread" data-thread-key="2016/08/21/C语言基础/"
+           data-title="C语言基础" data-url="http://davi.space/2016/08/21/C语言基础/">
       </div>
     
   </div>
@@ -456,24 +500,24 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           
             <div class="site-state-item site-state-categories">
-              
-                <span class="site-state-item-count">4</span>
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
-              
+              </a>
             </div>
           
 
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -527,7 +571,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-could-not-open-disk-image-root-dvd-vm1-img-Permission-denied"><span class="nav-text">1 could not open disk image /root/dvd/vm1.img: Permission denied</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Failed-to-connect-socket-to-‘-var-run-libvirt-libvirt-sock’"><span class="nav-text">2 Failed to connect socket to ‘/var/run/libvirt/libvirt-sock’</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Unable-to-read-from-monitor-Connection-reset-by-peer"><span class="nav-text">3 Unable to read from monitor: Connection reset by peer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-could-not-open-disk-image-root-dvd-vm1-img-Permission-denied"><span class="nav-text">4  could not open disk image /root/dvd/vm1.img: Permission denied</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>

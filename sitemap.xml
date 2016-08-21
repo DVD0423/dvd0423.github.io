@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://davi.space/2016/04/28/Python%E7%88%AC%E5%8F%96%E7%BE%8E%E6%8B%8D%E8%A7%86%E9%A2%91/</loc>
+    
+    <lastmod>2016-08-21T07:27:25.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://davi.space/2016/08/13/string%E5%BA%93/</loc>
+    
+    <lastmod>2016-08-21T07:25:27.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://davi.space/2016/08/21/C%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/</loc>
+    
+    <lastmod>2016-08-21T07:08:53.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://davi.space/2016/05/07/Hash%E7%AE%97%E6%B3%95/</loc>
     
     <lastmod>2016-05-15T05:04:16.000Z</lastmod>
@@ -11,7 +32,7 @@
   <url>
     <loc>http://davi.space/2016/04/27/%E4%BD%8D%E6%93%8D%E4%BD%9C%E6%8A%80%E5%B7%A7/</loc>
     
-    <lastmod>2016-05-15T04:08:34.000Z</lastmod>
+    <lastmod>2016-05-15T04:59:43.000Z</lastmod>
     
   </url>
   
@@ -33,13 +54,6 @@
     <loc>http://davi.space/2016/04/26/Python%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95%E6%A8%A1%E6%8B%9F%E5%99%A8/</loc>
     
     <lastmod>2016-05-08T05:55:00.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://davi.space/2016/05/08/Paxos%E7%AE%97%E6%B3%95/</loc>
-    
-    <lastmod>2016-05-08T05:54:19.000Z</lastmod>
     
   </url>
   
@@ -75,13 +89,6 @@
     <loc>http://davi.space/about/index.html</loc>
     
     <lastmod>2016-05-03T13:23:26.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://davi.space/2016/04/28/Python%E7%88%AC%E5%8F%96%E7%BE%8E%E6%8B%8D%E8%A7%86%E9%A2%91/</loc>
-    
-    <lastmod>2016-05-03T13:17:19.000Z</lastmod>
     
   </url>
   
