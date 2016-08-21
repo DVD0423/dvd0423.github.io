@@ -327,10 +327,10 @@
         
           <p>1 为字符串使用固定大小栈缓冲区，而不是动态分配，创建资源库，以减少分配对象的开销</p>
 <p>2 c语言中实现C++作用：</p>
-<p>模块内部使用的接口一个文件，对外接口单独头文件</p>
-<p>static全局变量相当于类的私有变量，可以通过一个对外接口访问，以此限制对其直接操作</p>
-<p>static函数不需要放在头文件中，因为它只在本文件内可见，最好在c文件的头部声明</p>
-<p>回调函数实现方法<br>
+<p>&ensp;&ensp;模块内部使用的接口一个文件，对外接口单独头文件</p>
+<p>&ensp;&ensp;static全局变量相当于类的私有变量，可以通过一个对外接口访问，以此限制对其直接操作</p>
+<p>&ensp;&ensp;static函数不需要放在头文件中，因为它只在本文件内可见，最好在c文件的头部声明</p>
+<p>&ensp;&ensp;回调函数实现方法.</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/08/21/C语言基础/#more" rel="contents">
               阅读全文 &raquo;
@@ -433,20 +433,16 @@
 
       
         
-          
-            <p>1 char * strchr(str, ch);//查找ch第一次出现的指针偏移</p>
-<p>&ensp;&ensp;&ensp;strrchr</p>
+          <p>1 char * strchr(str, ch);//查找ch第一次出现的指针偏移</p>
+<p>&ensp;&ensp;strrchr</p>
 <p>2 char * strcat(des, src);//拼接</p>
 <p>3 strncmp, strncpy, strnicmp–不区分大小写的比较</p>
-<p>4 char * strnset(str, ch, n); //设置前n个字符<br>&ensp;&ensp;&ensp;strnset//全设<br>5 int strcspn(str, substr); //在str中找第一个出现在substr字符集里的字符<br>&ensp;&ensp;&ensp;int strspn(stc, substr); //第一个不是substr的字符位置</p>
-<p>6 char * strpbrk(str, substr); //同5，返回指针偏移</p>
-<p>7 char * strdup(src);    //和free配对使用，感觉没必要存在</p>
-<p>8 char * strrev(str);  //串翻转</p>
-<p>9 char * strstr(str, substr); //查字符串</p>
-<p>10 char * strtok(str1, substr); //字符串分段</p>
-<p>11 char * swab(src, des, n); //交换前n字节</p>
-
-          
+<p>4 char * strnset(str, ch, n); //设置前n个字符<br>&ensp;&ensp;strnset//全设</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/13/string库/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
