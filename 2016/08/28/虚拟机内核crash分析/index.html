@@ -80,34 +80,28 @@
 
 
 
-<meta name="description" content="在云计算领域，虚拟机crash成为常态，本位系统介绍了通过串口打印虚拟机信息的方法。
+<meta name="description" content="在云计算领域，虚拟机crash成为常态，串口输出是分析内核崩溃的手段之一，本文系统介绍了通过串口打印虚拟机信息的方法。
 0 基础概念
 /dev/ttySn 或者/dev/ttysn是串口终端
 
-/dev/pty是伪终端，伪终端成对出现，对master的操作会反映到slave上。master在客户端，/dev/ptyp0；slave在服务器上，用/dev/ttyp0表示。对master的操作会反映到slave上。
-
-/dev/tty">
+/dev/pty是伪终端，伪终端成对出现，对master的操作会反映到slave上。master在客户端，/dev/ptyp0；slave在服务器上，用/dev/ttyp0表示。对master的操作会反映到">
 <meta property="og:type" content="article">
 <meta property="og:title" content="虚拟机内核crash分析">
 <meta property="og:url" content="http://davi.space/2016/08/28/虚拟机内核crash分析/index.html">
 <meta property="og:site_name" content="Davi">
-<meta property="og:description" content="在云计算领域，虚拟机crash成为常态，本位系统介绍了通过串口打印虚拟机信息的方法。
+<meta property="og:description" content="在云计算领域，虚拟机crash成为常态，串口输出是分析内核崩溃的手段之一，本文系统介绍了通过串口打印虚拟机信息的方法。
 0 基础概念
 /dev/ttySn 或者/dev/ttysn是串口终端
 
-/dev/pty是伪终端，伪终端成对出现，对master的操作会反映到slave上。master在客户端，/dev/ptyp0；slave在服务器上，用/dev/ttyp0表示。对master的操作会反映到slave上。
-
-/dev/tty">
-<meta property="og:updated_time" content="2016-08-28T12:00:09.000Z">
+/dev/pty是伪终端，伪终端成对出现，对master的操作会反映到slave上。master在客户端，/dev/ptyp0；slave在服务器上，用/dev/ttyp0表示。对master的操作会反映到">
+<meta property="og:updated_time" content="2016-08-28T12:34:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="虚拟机内核crash分析">
-<meta name="twitter:description" content="在云计算领域，虚拟机crash成为常态，本位系统介绍了通过串口打印虚拟机信息的方法。
+<meta name="twitter:description" content="在云计算领域，虚拟机crash成为常态，串口输出是分析内核崩溃的手段之一，本文系统介绍了通过串口打印虚拟机信息的方法。
 0 基础概念
 /dev/ttySn 或者/dev/ttysn是串口终端
 
-/dev/pty是伪终端，伪终端成对出现，对master的操作会反映到slave上。master在客户端，/dev/ptyp0；slave在服务器上，用/dev/ttyp0表示。对master的操作会反映到slave上。
-
-/dev/tty">
+/dev/pty是伪终端，伪终端成对出现，对master的操作会反映到slave上。master在客户端，/dev/ptyp0；slave在服务器上，用/dev/ttyp0表示。对master的操作会反映到">
 
 
 
@@ -357,7 +351,7 @@
       
 
       
-        <p>在云计算领域，虚拟机crash成为常态，本位系统介绍了通过串口打印虚拟机信息的方法。</p>
+        <p>在云计算领域，虚拟机crash成为常态，串口输出是分析内核崩溃的手段之一，本文系统介绍了通过串口打印虚拟机信息的方法。</p>
 <h3 id="0-基础概念"><a href="#0-基础概念" class="headerlink" title="0 基础概念"></a>0 基础概念</h3><ol>
 <li><p>/dev/ttySn 或者/dev/ttysn是串口终端</p>
 </li>
