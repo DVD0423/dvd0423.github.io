@@ -5,12 +5,40 @@
     
   <url>
     <loc>http://davi.space/2016/08/28/%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%B2%E5%8F%A3%E9%85%8D%E7%BD%AE/</loc>
-    <lastmod>2016-08-28T09:06:19.000Z</lastmod>
+    <lastmod>2016-08-28T10:31:19.000Z</lastmod>
     <data>
         <display>
-        <title>虚拟机串口配置</title>
+        <title>虚拟机内核crash分析</title>
         <pubTime>2016-08-28T04:58:40.000Z</pubTime>
         
+        <tag>虚拟机串口</tag>
+         
+        <tag>core dump</tag>
+         
+        <tag>虚拟机终端</tag>
+         
+         
+           
+             
+              <breadCrumb title="Linux开发" url="http://davi.space/categories/Linux%E5%BC%80%E5%8F%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://davi.space/2016/08/28/Linux%E6%93%8D%E4%BD%9C%E6%8A%80%E5%B7%A7/</loc>
+    <lastmod>2016-08-28T09:27:04.000Z</lastmod>
+    <data>
+        <display>
+        <title>Linux操作技巧</title>
+        <pubTime>2016-08-28T04:56:16.000Z</pubTime>
+        
+        <tag>linux环境</tag>
+         
+        <tag>问题定位</tag>
+         
          
            
              
@@ -114,28 +142,6 @@
         <pubTime>2016-08-13T14:13:21.000Z</pubTime>
         
         <tag>string.c</tag>
-         
-         
-           
-             
-              <breadCrumb title="Linux开发" url="http://davi.space/categories/Linux%E5%BC%80%E5%8F%91/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://davi.space/2016/08/28/Linux%E6%93%8D%E4%BD%9C%E6%8A%80%E5%B7%A7/</loc>
-    <lastmod>2016-08-28T08:23:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>Linux操作技巧</title>
-        <pubTime>2016-08-28T04:56:16.000Z</pubTime>
-        
-        <tag>linux环境</tag>
-         
-        <tag>问题定位</tag>
          
          
            

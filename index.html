@@ -401,7 +401,7 @@
               
                 
                 <a class="post-title-link" href="/2016/08/28/虚拟机串口配置/" itemprop="url">
-                  虚拟机串口配置
+                  虚拟机内核crash分析
                 </a>
               
             
@@ -470,15 +470,18 @@
       
         
           <p>先放着，有时间整理</p>
-<p>sysrq</p>
-<p>/proc/sys/kernel/sysrq</p>
-<p>/proc/sysrq-trigger</p>
-<p>/etc/sysctl.conf</p>
-<p>sysctl -a | grep oom    查找Out of memory相关的内核panic，设置值为1</p>
-<p>串口配置输出信息到宿主机文件中<br><a href="http://libvirt.org/formatdomain.html">http://libvirt.org/formatdomain.html</a></p>
-<p>宿主机段编辑虚拟机xml文件，添加如下内容：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">serial</span> <span class="attr">type</span>=<span class="string">'file'</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">source</span> <span class="attr">path</span>=<span class="string">'/root/dvd_file'</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">target</span> <span class="attr">port</span>=<span class="string">'0'</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">serial</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>虚拟机中<br>
+<h3 id="0-基础概念"><a href="#0-基础概念" class="headerlink" title="0 基础概念"></a>0 基础概念</h3><ol>
+<li><p>/dev/ttySn 或者/dev/ttysn是串口终端</p>
+</li>
+<li><p>/dev/pty是伪终端，伪终端成对出现，对master的操作会反映到slave上。master在客户端，/dev/ptyp0；slave在服务器上，用/dev/ttyp0表示。对master的操作会反映到slave上。</p>
+</li>
+<li><p>/dev/tty1-6 虚拟控制终端，常用的就是tty3和tty5。tty0是他们的别名。</p>
+</li>
+<li><p>/dev/console 控制台终端，计算机显示器设备。</p>
+</li>
+<li><p>/dev/tty 当前进程的控制终端，可以是以上任何一种终端</p>
+</li>
+</ol>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/08/28/虚拟机串口配置/#more" rel="contents">
               阅读全文 &raquo;
@@ -601,7 +604,7 @@
       
         
           <p>不定时更新……</p>
-<p>1 rpm -ivh <em> –oldpackage<br>&ensp;&ensp;rpm -qa | grep </em><br>&ensp;&ensp;rpm -e xxx</p>
+<p>1 rpm -ivh * –oldpackage    安装老版本（回退），-U参数是更新，<br>&ensp;&ensp; rpm -qa | grep …<br>&ensp;&ensp;rpm -e …</p>
 <p>2 modprobe 智能解决模块依赖问题；insmod只加载单个模块</p>
 <p>3 内核问题定位工具：虚拟机串口输出、crash工具、objdump反汇编</p>
 <p>4 性能分析工具：</p>
@@ -1581,7 +1584,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
