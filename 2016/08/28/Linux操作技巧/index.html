@@ -81,36 +81,24 @@
 
 
 <meta name="description" content="不定时更新……
-1 rpm -ivh * –oldpackage    安装老版本（回退），-U参数是更新，&amp;ensp;&amp;ensp; rpm -qa | grep …&amp;ensp;&amp;ensp;rpm -e …
+1 rpm -ivh … –oldpackage    安装老版本并保留新版(也就是回退的功能)，&amp;ensp;&amp;ensp;rpm -Uvh …更新软件&amp;ensp;&amp;ensp;rpm -qa | grep …&amp;ensp;&amp;ensp;rpm -e …
 2 modprobe 智能解决模块依赖问题；insmod只加载单个模块
-3 内核问题定位工具：虚拟机串口输出、crash工具、objdump反汇编
-4 性能分析工具：
-
-进程树结构
-lsof通">
+3 内核问题定位工具：虚拟机串口输出、crash工具、objdu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux操作技巧">
 <meta property="og:url" content="http://davi.space/2016/08/28/Linux操作技巧/index.html">
 <meta property="og:site_name" content="Davi">
 <meta property="og:description" content="不定时更新……
-1 rpm -ivh * –oldpackage    安装老版本（回退），-U参数是更新，&amp;ensp;&amp;ensp; rpm -qa | grep …&amp;ensp;&amp;ensp;rpm -e …
+1 rpm -ivh … –oldpackage    安装老版本并保留新版(也就是回退的功能)，&amp;ensp;&amp;ensp;rpm -Uvh …更新软件&amp;ensp;&amp;ensp;rpm -qa | grep …&amp;ensp;&amp;ensp;rpm -e …
 2 modprobe 智能解决模块依赖问题；insmod只加载单个模块
-3 内核问题定位工具：虚拟机串口输出、crash工具、objdump反汇编
-4 性能分析工具：
-
-进程树结构
-lsof通">
-<meta property="og:updated_time" content="2016-08-28T09:27:04.000Z">
+3 内核问题定位工具：虚拟机串口输出、crash工具、objdu">
+<meta property="og:updated_time" content="2016-08-28T12:07:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux操作技巧">
 <meta name="twitter:description" content="不定时更新……
-1 rpm -ivh * –oldpackage    安装老版本（回退），-U参数是更新，&amp;ensp;&amp;ensp; rpm -qa | grep …&amp;ensp;&amp;ensp;rpm -e …
+1 rpm -ivh … –oldpackage    安装老版本并保留新版(也就是回退的功能)，&amp;ensp;&amp;ensp;rpm -Uvh …更新软件&amp;ensp;&amp;ensp;rpm -qa | grep …&amp;ensp;&amp;ensp;rpm -e …
 2 modprobe 智能解决模块依赖问题；insmod只加载单个模块
-3 内核问题定位工具：虚拟机串口输出、crash工具、objdump反汇编
-4 性能分析工具：
-
-进程树结构
-lsof通">
+3 内核问题定位工具：虚拟机串口输出、crash工具、objdu">
 
 
 
@@ -361,43 +349,17 @@ lsof通">
 
       
         <p>不定时更新……</p>
-<p>1 rpm -ivh * –oldpackage    安装老版本（回退），-U参数是更新，<br>&ensp;&ensp; rpm -qa | grep …<br>&ensp;&ensp;rpm -e …</p>
+<p>1 rpm -ivh … –oldpackage    安装老版本并保留新版(也就是回退的功能)，<br>&ensp;&ensp;rpm -Uvh …更新软件<br>&ensp;&ensp;rpm -qa | grep …<br>&ensp;&ensp;rpm -e …</p>
 <p>2 modprobe 智能解决模块依赖问题；insmod只加载单个模块</p>
 <p>3 内核问题定位工具：虚拟机串口输出、crash工具、objdump反汇编</p>
-<p>4 性能分析工具：</p>
-<ul>
-<li>进程树结构</li>
-<li>lsof通过进程找文件</li>
-<li>pidof通过进程名找pid</li>
-<li>fuser通过文件找进程</li>
-<li>free内存</li>
-<li>vmstat系统资源</li>
-<li>netstat网络</li>
-</ul>
+<p>4 性能分析工具：<br>&ensp;&ensp;进程树结构<br>&ensp;&ensp;lsof通过进程找文件<br>&ensp;&ensp;pidof通过进程名找pid<br>&ensp;&ensp;fuser通过文件找进程<br>&ensp;&ensp;free内存<br>&ensp;&ensp;vmstat系统资源<br>&ensp;&ensp;netstat网络</p>
 <a id="more"></a>
-<p>5 网络连接解决方法：</p>
-<ul>
-<li>/etc/udev/rules.s/70…查看网卡配置和ifcfg是否一致</li>
-<li>ifcfg配置；</li>
-<li>gateway配置</li>
-<li>关闭iptables</li>
-<li>关闭NetworkManager</li>
-<li>ssh限制</li>
-</ul>
+<p>5 网络连接解决方法：<br>&ensp;&ensp;/etc/udev/rules.s/70…查看网卡配置和ifcfg是否一致<br>&ensp;&ensp;ifcfg配置；<br>&ensp;&ensp;gateway配置<br>&ensp;&ensp;关闭iptables<br>&ensp;&ensp;关闭NetworkManager<br>&ensp;&ensp;ssh限制</p>
 <p>6 查看linux操作系统类型<br>&ensp;&ensp;rpm -qf /etc/issuse</p>
-<p>7 根据MAC找IP </p>
-<ul>
-<li>arp -a</li>
-<li>cat /proc/net/arp | grep ‘…’</li>
-</ul>
+<p>7 根据MAC找IP<br>&ensp;&ensp;arp -a<br>&ensp;&ensp;cat /proc/net/arp | grep ‘…’</p>
 <p>8 SIGINT ctr+c中断<br>&ensp;&ensp;SIGTERM kill软中断</p>
 <p>9 调整dmesg日志级别<br>&ensp;&ensp;echo 1 1 1 1 &gt; /proc/sys/kernel/printk    </p>
-<p>10 下载</p>
-<ul>
-<li>wget</li>
-<li>curl</li>
-<li>git clone</li>
-</ul>
+<p>10 下载<br>&ensp;&ensp;wget<br>&ensp;&ensp;curl<br>&ensp;&ensp;git clone</p>
 <p>11 跟踪网络路径：tracepath</p>
 <p>12 ctags -R .<br>&ensp;&ensp;&ensp;cscope -Rbq -f path/xxx.out  </p>
 
@@ -521,7 +483,7 @@ lsof通">
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>

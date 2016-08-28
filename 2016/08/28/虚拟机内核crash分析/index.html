@@ -80,34 +80,34 @@
 
 
 
-<meta name="description" content="先放着，有时间整理
+<meta name="description" content="在云计算领域，虚拟机crash成为常态，本位系统介绍了通过串口打印虚拟机信息的方法。
 0 基础概念
 /dev/ttySn 或者/dev/ttysn是串口终端
 
 /dev/pty是伪终端，伪终端成对出现，对master的操作会反映到slave上。master在客户端，/dev/ptyp0；slave在服务器上，用/dev/ttyp0表示。对master的操作会反映到slave上。
 
-/dev/tty1-6 虚拟控制终端，常用的就是tty3和tty5。tty0是他们">
+/dev/tty">
 <meta property="og:type" content="article">
 <meta property="og:title" content="虚拟机内核crash分析">
 <meta property="og:url" content="http://davi.space/2016/08/28/虚拟机内核crash分析/index.html">
 <meta property="og:site_name" content="Davi">
-<meta property="og:description" content="先放着，有时间整理
+<meta property="og:description" content="在云计算领域，虚拟机crash成为常态，本位系统介绍了通过串口打印虚拟机信息的方法。
 0 基础概念
 /dev/ttySn 或者/dev/ttysn是串口终端
 
 /dev/pty是伪终端，伪终端成对出现，对master的操作会反映到slave上。master在客户端，/dev/ptyp0；slave在服务器上，用/dev/ttyp0表示。对master的操作会反映到slave上。
 
-/dev/tty1-6 虚拟控制终端，常用的就是tty3和tty5。tty0是他们">
-<meta property="og:updated_time" content="2016-08-28T10:36:15.000Z">
+/dev/tty">
+<meta property="og:updated_time" content="2016-08-28T12:00:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="虚拟机内核crash分析">
-<meta name="twitter:description" content="先放着，有时间整理
+<meta name="twitter:description" content="在云计算领域，虚拟机crash成为常态，本位系统介绍了通过串口打印虚拟机信息的方法。
 0 基础概念
 /dev/ttySn 或者/dev/ttysn是串口终端
 
 /dev/pty是伪终端，伪终端成对出现，对master的操作会反映到slave上。master在客户端，/dev/ptyp0；slave在服务器上，用/dev/ttyp0表示。对master的操作会反映到slave上。
 
-/dev/tty1-6 虚拟控制终端，常用的就是tty3和tty5。tty0是他们">
+/dev/tty">
 
 
 
@@ -357,7 +357,7 @@
       
 
       
-        <p>先放着，有时间整理</p>
+        <p>在云计算领域，虚拟机crash成为常态，本位系统介绍了通过串口打印虚拟机信息的方法。</p>
 <h3 id="0-基础概念"><a href="#0-基础概念" class="headerlink" title="0 基础概念"></a>0 基础概念</h3><ol>
 <li><p>/dev/ttySn 或者/dev/ttysn是串口终端</p>
 </li>
@@ -371,21 +371,22 @@
 </li>
 </ol>
 <a id="more"></a>
-<h3 id="1-使用virsh-console命令"><a href="#1-使用virsh-console命令" class="headerlink" title="1 使用virsh console命令"></a>1 使用virsh console命令</h3><p>在使用virsh console之前要做配置，不然界面会卡在那里</p>
+<h3 id="1-使用virsh-console命令"><a href="#1-使用virsh-console命令" class="headerlink" title="1 使用virsh console命令"></a>1 使用virsh console命令</h3><p>在使用virsh console之前虚拟机内部要做相关配置，不然命令输入之后界面会卡在那里。具体的配置步骤如下：</p>
 <ol>
-<li><p>echo ttyS0 &gt;&gt; /etc/securetty    设置安全权限</p>
+<li><p>设置安全权限：echo ttyS0 &gt;&gt; /etc/securetty    </p>
 </li>
-<li><p>vim /etc/grub.conf添加如下启动项，关于启动项的设置可以查看内核源码中的Documentation/kernel-parameters.txt。</p>
+<li><p>在/etc/grub.conf中的kernel那一行添加如下启动项，关于启动项的设置可以查看内核源码中的Documentation/kernel-parameters.txt。</p>
 <figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>=ttyS0,<span class="number">115200</span></span><br><span class="line">//earlycon一Output early <span class="built_in">console</span> device <span class="keyword">and</span> options.</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>vim /etc/inittab添加：</p>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">S0:</span><span class="number">12345</span><span class="symbol">:respawn</span><span class="symbol">:/sbin/agetty</span> ttyS<span class="number">0</span> <span class="number">115200</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>然后重启，virsh console有效。</p>
-<h3 id="2-虚拟机启动项配置"><a href="#2-虚拟机启动项配置" class="headerlink" title="2 虚拟机启动项配置"></a>2 虚拟机启动项配置</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">earlyprintk=ttyS0,<span class="number">115200</span> <span class="comment">//dmesg信息打印到串口</span></span><br><span class="line"><span class="comment">/*串口做终端*/</span></span><br><span class="line">earlycon=uart8250,io,<span class="number">0x3f8</span>,<span class="number">115200</span>	<span class="comment">//Output early console device and options.</span></span><br><span class="line"><span class="built_in">console</span>=uart8250,io,<span class="number">0x3f8</span>,<span class="number">115200</span>	<span class="comment">//Output console device and options</span></span><br><span class="line"><span class="built_in">console</span>=ttyS0,<span class="number">115200</span> 	<span class="comment">//同上</span></span><br><span class="line"><span class="built_in">console</span>=ttyn 	<span class="comment">//虚拟控制终端</span></span><br></pre></td></tr></table></figure>
-<h3 id="3-宿主机端配置虚拟机串口"><a href="#3-宿主机端配置虚拟机串口" class="headerlink" title="3 宿主机端配置虚拟机串口"></a>3 宿主机端配置虚拟机串口</h3><p>虚拟机配置的信息可以查看文档<a href="http://libvirt.org/formatdomain.html" target="_blank" rel="external">libvirt虚拟机XML配置</a></p>
-<p>串口信息输出到文件，以便内核crash查看，编辑虚拟机的XML配置文件，添加如下内容：</p>
+<p>然后重启虚拟机，使配置生效。</p>
+<h3 id="2-虚拟机启动项配置"><a href="#2-虚拟机启动项配置" class="headerlink" title="2 虚拟机启动项配置"></a>2 虚拟机启动项配置</h3><p>在启动项kernel那一行可以添加如下参数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">earlyprintk=ttyS0,<span class="number">115200</span> <span class="comment">//dmesg信息打印到串口</span></span><br><span class="line"><span class="comment">/*串口做终端*/</span></span><br><span class="line">earlycon=uart8250,io,<span class="number">0x3f8</span>,<span class="number">115200</span>	<span class="comment">//Output early console device and options.</span></span><br><span class="line"><span class="built_in">console</span>=uart8250,io,<span class="number">0x3f8</span>,<span class="number">115200</span>	<span class="comment">//Output console device and options</span></span><br><span class="line"><span class="built_in">console</span>=ttyS0,<span class="number">115200</span> 	<span class="comment">//同上</span></span><br><span class="line"><span class="built_in">console</span>=ttyn 	<span class="comment">//虚拟控制终端</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-宿主机端配置虚拟机串口"><a href="#3-宿主机端配置虚拟机串口" class="headerlink" title="3 宿主机端配置虚拟机串口"></a>3 宿主机端配置虚拟机串口</h3><p>虚拟机配置的信息可以查看文档 《<a href="http://libvirt.org/formatdomain.html" target="_blank" rel="external">libvirt虚拟机XML配置</a>》</p>
+<p>编辑虚拟机的XML配置文件，添加如下内容使虚拟机的串口信息输出到文件，以便内核panic后查看crash原因：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">serial</span> <span class="attr">type</span>=<span class="string">'file'</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">source</span> <span class="attr">path</span>=<span class="string">'/root/dvd_file'</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">target</span> <span class="attr">port</span>=<span class="string">'0'</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">serial</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h3 id="4-sysrq-trigger文件"><a href="#4-sysrq-trigger文件" class="headerlink" title="4 sysrq-trigger文件"></a>4 sysrq-trigger文件</h3><p>相关文档在内核源码的Documentation/sysrq.txt中。</p>
 <figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> b &gt; /proc/sysrq-<span class="built_in">trigger</span> 	立即重启</span><br><span class="line"><span class="built_in">echo</span> o &gt; /proc/sysrq-<span class="built_in">trigger</span> 	立即关闭</span><br><span class="line"><span class="built_in">echo</span> m &gt; /proc/sysrq-<span class="built_in">trigger</span> 	导出内存信息终端（/var/<span class="built_in">log</span>/message中也有，dmesg查看）</span><br><span class="line"><span class="built_in">echo</span> t &gt; /proc/sysrq-<span class="built_in">trigger</span> 	导出线程信息</span><br><span class="line"><span class="built_in">echo</span> p &gt; /proc/sysrq-<span class="built_in">trigger</span> 	导出CPU寄存器和标志位信息</span><br><span class="line"><span class="built_in">echo</span> c &gt; /proc/sysrq-<span class="built_in">trigger</span> 	故意让系统崩溃</span><br><span class="line"><span class="built_in">echo</span> f &gt; /proc/sysrq-<span class="built_in">trigger</span> 	触发Oom异常</span><br><span class="line"><span class="built_in">echo</span> e &gt; /proc/sysrq-<span class="built_in">trigger</span> 	对所有进程（除了init）用SIGTERM</span><br><span class="line"><span class="built_in">echo</span> i &gt; /proc/sysrq-<span class="built_in">trigger</span>    对所有进程（除了init）用SIGKILL</span><br></pre></td></tr></table></figure>
@@ -519,7 +520,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
