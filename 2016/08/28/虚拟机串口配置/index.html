@@ -80,16 +80,37 @@
 
 
 
-<meta name="description">
+<meta name="description" content="先放着，有时间整理
+sysrq
+/proc/sys/kernel/sysrq
+/proc/sysrq-trigger
+/etc/sysctl.conf
+sysctl -a | grep oom    查找Out of memory相关的内核panic，设置值为1
+串口配置输出信息到宿主机文件中http://libvirt.org/formatdomain.html
+宿主机段编辑虚拟机xml文件，添">
 <meta property="og:type" content="article">
 <meta property="og:title" content="虚拟机串口配置">
 <meta property="og:url" content="http://davi.space/2016/08/28/虚拟机串口配置/index.html">
 <meta property="og:site_name" content="Davi">
-<meta property="og:description">
-<meta property="og:updated_time" content="2016-08-28T08:09:20.000Z">
+<meta property="og:description" content="先放着，有时间整理
+sysrq
+/proc/sys/kernel/sysrq
+/proc/sysrq-trigger
+/etc/sysctl.conf
+sysctl -a | grep oom    查找Out of memory相关的内核panic，设置值为1
+串口配置输出信息到宿主机文件中http://libvirt.org/formatdomain.html
+宿主机段编辑虚拟机xml文件，添">
+<meta property="og:updated_time" content="2016-08-28T09:06:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="虚拟机串口配置">
-<meta name="twitter:description">
+<meta name="twitter:description" content="先放着，有时间整理
+sysrq
+/proc/sys/kernel/sysrq
+/proc/sysrq-trigger
+/etc/sysctl.conf
+sysctl -a | grep oom    查找Out of memory相关的内核panic，设置值为1
+串口配置输出信息到宿主机文件中http://libvirt.org/formatdomain.html
+宿主机段编辑虚拟机xml文件，添">
 
 
 
@@ -339,7 +360,16 @@
       
 
       
-        <a id="more"></a>
+        <p>先放着，有时间整理</p>
+<p>sysrq</p>
+<p>/proc/sys/kernel/sysrq</p>
+<p>/proc/sysrq-trigger</p>
+<p>/etc/sysctl.conf</p>
+<p>sysctl -a | grep oom    查找Out of memory相关的内核panic，设置值为1</p>
+<p>串口配置输出信息到宿主机文件中<br><a href="http://libvirt.org/formatdomain.html" target="_blank" rel="external">http://libvirt.org/formatdomain.html</a></p>
+<p>宿主机段编辑虚拟机xml文件，添加如下内容：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">serial</span> <span class="attr">type</span>=<span class="string">'file'</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">source</span> <span class="attr">path</span>=<span class="string">'/root/dvd_file'</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">target</span> <span class="attr">port</span>=<span class="string">'0'</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">serial</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>虚拟机中<br><a id="more"></a></p>
 
       
     </div>

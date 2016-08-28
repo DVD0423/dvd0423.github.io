@@ -348,8 +348,6 @@
 <h3 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1 问题描述"></a>1 问题描述</h3><p>当两个运行相同程序的进程的pid后12位相同时，产品就会出bug。<br>在分布式系统中区别进程的方式有多种，一个是建立一个集中管理的节点，但是这个又涉及到管理节点的可靠性问题，相当于一个小的分布式系统，这种方案太麻烦。另一个是根据ip地址和进程号直接可以hash存储，且没有冲突。</p>
 <p>我们的系统由于字节限制只能使用28位做为key，其中16位用来存ip，还有12位存pid的后12位，这样就存在风险：后12位相同的进程产生的key会冲突，导致系统错误。</p>
 <p>我做的就是复现这种现象。</p>
-<h3 id="2-解决思路"><a href="#2-解决思路" class="headerlink" title="2 解决思路"></a>2 解决思路</h3><p>对于这个问题的复现，我的方法是先开启一个进程A，然后设置一个信号函数，等待接收另一个pid和它低12位相同的进程的信号。另一个进程B不断fork新进程C。当新进程C低12位满足要求时发送信号给原先挂起的进程A,接着进程C用exec注入我们产品的程序。同时，进程A一旦收到信号就用exec注入我们产品的程序。这样A和C就会同时执行，然后系统出错，问题复现。</p>
-<p>本来以为直接用shell不断在后台fork新进程就可以了，但程序执行时间很短所以不容易复现。最后用了信号机制，当然，也许有更好的方法~~</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/08/28/入职后解决的第一个疑难问题/#more" rel="contents">
               阅读全文 &raquo;
@@ -471,10 +469,21 @@
 
       
         
-          
-            <a id="more"></a>
-
-          
+          <p>先放着，有时间整理</p>
+<p>sysrq</p>
+<p>/proc/sys/kernel/sysrq</p>
+<p>/proc/sysrq-trigger</p>
+<p>/etc/sysctl.conf</p>
+<p>sysctl -a | grep oom    查找Out of memory相关的内核panic，设置值为1</p>
+<p>串口配置输出信息到宿主机文件中<br><a href="http://libvirt.org/formatdomain.html">http://libvirt.org/formatdomain.html</a></p>
+<p>宿主机段编辑虚拟机xml文件，添加如下内容：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">serial</span> <span class="attr">type</span>=<span class="string">'file'</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">source</span> <span class="attr">path</span>=<span class="string">'/root/dvd_file'</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">target</span> <span class="attr">port</span>=<span class="string">'0'</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">serial</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>虚拟机中<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/28/虚拟机串口配置/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
