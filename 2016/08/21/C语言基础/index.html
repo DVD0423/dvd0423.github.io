@@ -81,12 +81,8 @@
 
 
 <meta name="description" content="不定时更新……
-
-为字符串使用固定大小栈缓冲区，而不是动态分配，创建资源库，以减少分配对象的开销。池的思想。
-
-c语言中实现C++作用：
-
-
+1 为字符串使用固定大小栈缓冲区，而不是动态分配，创建资源库，以减少分配对象的开销。池的思想。
+2 c语言中实现C++作用：
 &amp;ensp;&amp;ensp;模块内部使用的接口一个文件，对外接口单独头文件
 &amp;ensp;&amp;ensp;static全局变量相当于类的私有变量，可以通过一个对外接口访问，以此限制对其直接操作
 &amp;ensp;&amp;ensp;static函数不需要放在头文件中，因为它只在本文">
@@ -95,25 +91,17 @@ c语言中实现C++作用：
 <meta property="og:url" content="http://davi.space/2016/08/21/C语言基础/index.html">
 <meta property="og:site_name" content="Davi">
 <meta property="og:description" content="不定时更新……
-
-为字符串使用固定大小栈缓冲区，而不是动态分配，创建资源库，以减少分配对象的开销。池的思想。
-
-c语言中实现C++作用：
-
-
+1 为字符串使用固定大小栈缓冲区，而不是动态分配，创建资源库，以减少分配对象的开销。池的思想。
+2 c语言中实现C++作用：
 &amp;ensp;&amp;ensp;模块内部使用的接口一个文件，对外接口单独头文件
 &amp;ensp;&amp;ensp;static全局变量相当于类的私有变量，可以通过一个对外接口访问，以此限制对其直接操作
 &amp;ensp;&amp;ensp;static函数不需要放在头文件中，因为它只在本文">
-<meta property="og:updated_time" content="2016-08-28T08:02:02.000Z">
+<meta property="og:updated_time" content="2016-08-28T08:15:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言基础">
 <meta name="twitter:description" content="不定时更新……
-
-为字符串使用固定大小栈缓冲区，而不是动态分配，创建资源库，以减少分配对象的开销。池的思想。
-
-c语言中实现C++作用：
-
-
+1 为字符串使用固定大小栈缓冲区，而不是动态分配，创建资源库，以减少分配对象的开销。池的思想。
+2 c语言中实现C++作用：
 &amp;ensp;&amp;ensp;模块内部使用的接口一个文件，对外接口单独头文件
 &amp;ensp;&amp;ensp;static全局变量相当于类的私有变量，可以通过一个对外接口访问，以此限制对其直接操作
 &amp;ensp;&amp;ensp;static函数不需要放在头文件中，因为它只在本文">
@@ -367,93 +355,52 @@ c语言中实现C++作用：
 
       
         <p>不定时更新……</p>
-<ol>
-<li><p>为字符串使用固定大小栈缓冲区，而不是动态分配，创建资源库，以减少分配对象的开销。池的思想。</p>
-</li>
-<li><p>c语言中实现C++作用：</p>
-</li>
-</ol>
+<p>1 为字符串使用固定大小栈缓冲区，而不是动态分配，创建资源库，以减少分配对象的开销。池的思想。</p>
+<p>2 c语言中实现C++作用：</p>
 <p>&ensp;&ensp;模块内部使用的接口一个文件，对外接口单独头文件</p>
 <p>&ensp;&ensp;static全局变量相当于类的私有变量，可以通过一个对外接口访问，以此限制对其直接操作</p>
 <p>&ensp;&ensp;static函数不需要放在头文件中，因为它只在本文件内可见，最好在c文件的头部声明</p>
 <p>&ensp;&ensp;回调函数实现方法.</p>
 <a id="more"></a>
-<ol>
-<li><p>由于unsigned类型有负值溢出问题，所以不提倡使用unsigned类型</p>
-</li>
-<li><p>用#define ARRAYSIZE(x) (sizeof(x)/sizeof(x[0]))获得数组大小</p>
-</li>
-<li><p>#、##</p>
-</li>
-</ol>
+<p>3 由于unsigned类型有负值溢出问题，所以不提倡使用unsigned类型</p>
+<p>4 用#define ARRAYSIZE(x) (sizeof(x)/sizeof(x[0]))获得数组大小</p>
+<p>5 #、##</p>
 <p>&ensp;&ensp;#var 将var字符串化</p>
 <p>&ensp;&ensp;a##b 把a和b结合</p>
 <figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">#define</span> TOCHAR(<span class="keyword">x</span>) #@<span class="keyword">x</span> 把<span class="keyword">x</span>转为字符</span><br><span class="line"></span><br><span class="line"><span class="keyword">#define</span> __STR(<span class="keyword">x</span>) #<span class="keyword">x</span></span><br><span class="line"><span class="keyword">#define</span> STR(<span class="keyword">x</span>) __STR(<span class="keyword">x</span>)</span><br></pre></td></tr></table></figure>
 <p>上面这样做的原因是: x可能是a##b</p>
-<ol>
-<li><p>__FILE__ 、__LINE__ 、__func__ 、__DATE__ 、__TIME__</p>
-</li>
-<li><p>c++扩展</p>
-</li>
-</ol>
+<p>6 __FILE__ 、__LINE__ 、__func__ 、__DATE__ 、__TIME__</p>
+<p>7 c++扩展</p>
 <figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __cplusplus</span></span><br><span class="line">    <span class="keyword">extern</span> <span class="string">"c"</span> &#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">	...</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __cplusplus</span></span><br><span class="line">	&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<ol>
-<li>ptr是具体结构体实体内的成员指针，type是结构体名，member是结构体成员名 </li>
-</ol>
+<p>8 ptr是具体结构体实体内的成员指针，type是结构体名，member是结构体成员名 </p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> offsetof(type, member) ((size_t) (((char *)&amp;((type *)0)-&gt;member)))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> container_of(ptr, type, member) \</span><br><span class="line">(type *)((char *)(ptr) - (char *) &amp;((type *)0)-&gt;member))</span></span><br><span class="line"><span class="comment">//下面两个用于类似内核中list_head的结构体中。</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> list_entry(ptr, type, member) container_of(ptr, type, member)</span></span><br><span class="line"><span class="comment">//pos结构体实体指针名（是一个变量），head指结构体实体内部的链表结构体指针（上面的ptr），member指链表结构在结构体中的成员名</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> list_for_each_entry(pos, head, member)	\</span><br><span class="line">	for( pos = list_entry((head)-&gt;next, typeof(*pos), member); \</span><br><span class="line">		&amp;pos-&gt;member != (head);	\</span><br><span class="line">		pos = list_entry(pos-&gt;member.next, typeof(*pos), member))</span></span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>定时器</p>
-</li>
-<li><p>__attribute__ </p>
-</li>
-</ol>
+<p>9 定时器</p>
+<p>10 __attribute__ </p>
 <p>关键字__attribute__ 也可以对结构体（struct ）或共用体（union ）进行属性设置。大致有六个参数值可以被设定，<br>即：aligned, packed, transparent_union, unused, deprecated 和 may_alias</p>
 <figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">__attribute__<span class="comment">((aligned(1024)</span>))	<span class="comment">//以1024字节对齐</span></span><br><span class="line">__attribute__ <span class="comment">((packed)</span>)	<span class="comment">//不对齐，最小空间</span></span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>volatile 防止编译器优化</p>
-</li>
-<li><p>__VA_ARGS__    可变参数宏，前面加上##的目的在于当可变参数个数为0时，##起到把多余的“,”去掉的作用，否则编译出错</p>
-</li>
-</ol>
+<p>11 volatile 防止编译器优化</p>
+<p>12 __VA_ARGS__    可变参数宏，前面加上##的目的在于当可变参数个数为0时，##起到把多余的“,”去掉的作用，否则编译出错</p>
 <figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">snprintf( buffer, DEBUG_BUFFER_MAX, <span class="string">"[%s] "</span><span class="keyword">format</span><span class="string">" File:%s, Line:%d\n"</span>, \</span><br><span class="line">   moduleName, <span class="comment">##__VA_ARGS__, __FILE__, __LINE__ );</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#define debug(...) printf(__VA_ARGS__)  \\可变参数宏</span></span><br><span class="line"></span><br><span class="line">debug(<span class="string">"test"</span>)			<span class="keyword">printf</span>(<span class="string">"test"</span>)</span><br><span class="line">debug(<span class="string">"year = %d"</span>, <span class="keyword">y</span>)	<span class="keyword">printf</span>(<span class="string">"year = %d"</span>)</span><br></pre></td></tr></table></figure>
-<ol>
-<li>ptr += sprintf(ptr, “%s#”, t);    //相当于c++的字符串连接</li>
-</ol>
+<p>13 ptr += sprintf(ptr, “%s#”, t);    //相当于c++的字符串连接</p>
 <p>&ensp;&ensp;&ensp;snprintf</p>
-<ol>
-<li>可变参数实现</li>
-</ol>
+<p>14 可变参数实现</p>
 <p>&ensp;&ensp;&ensp;va_list</p>
 <p>&ensp;&ensp;&ensp;va_start</p>
 <p>&ensp;&ensp;&ensp;va_arg</p>
 <p>&ensp;&ensp;&ensp;va_end</p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">int <span class="keyword">test</span>(int v, ...)</span><br><span class="line">&#123;</span><br><span class="line">	int <span class="keyword">ret</span> = 0;</span><br><span class="line">	int i = v;</span><br><span class="line">	va_list <span class="keyword">ap</span>;</span><br><span class="line">	va_start(<span class="keyword">ap</span>, v);</span><br><span class="line">	<span class="keyword">while</span>(i &gt; 0)&#123;</span><br><span class="line">		<span class="keyword">ret</span> += va_arg(<span class="keyword">ap</span>, int);</span><br><span class="line">		--i;</span><br><span class="line">	&#125;</span><br><span class="line">	va_end(<span class="keyword">ap</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">ret</span> /= v;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>memset_s代替memset</p>
-</li>
-<li><p>#define &ensp;INTSIZEOF(n) &ensp;&ensp; ((sizeof(n)+sizeof(int)-1) &amp; ~(sizeof(int)-1))</p>
-</li>
-<li><p>static inline</p>
-</li>
-<li><p>__thread 线程私有全局变量</p>
-</li>
-</ol>
+<p>15 memset_s代替memset</p>
+<p>16 #define &ensp;INTSIZEOF(n) &ensp;&ensp; ((sizeof(n)+sizeof(int)-1) &amp; ~(sizeof(int)-1))</p>
+<p>17 static inline</p>
+<p>18 __thread 线程私有全局变量</p>
 <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__thread <span class="keyword">int</span> <span class="keyword">var</span> = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>__typeof__() 是gcc对c语言的一个保留字，声明变量类型</li>
-</ol>
+<p>19 __typeof__() 是gcc对c语言的一个保留字，声明变量类型</p>
 <figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">__typeof__<span class="comment">(int *)</span> x；	<span class="comment">//int * x;</span></span><br><span class="line">__typeof__<span class="comment">(*x)</span> y;	<span class="comment">//int y;</span></span><br></pre></td></tr></table></figure>
 <p>还有一个是typeof()</p>
-<ol>
-<li><p>有时候程序添加c99库之后却报错，原因可能是BSD和SYSTEM V的问题<br>&ensp;&ensp;&ensp;gcc -D_GNU_SOURCE -std=c99 …</p>
-</li>
-<li><p>atof、atoi、atol等是不带进制的转换；strtod、strtol、strtoul等是带进制的转换。</p>
-</li>
-<li><p>getopt_long参数处理函数</p>
-</li>
-<li><p><regex.h>是c语言正则表达式库</regex.h></p>
-</li>
-</ol>
+<p>20 有时候程序添加c99库之后却报错，原因可能是BSD和SYSTEM V的问题<br>&ensp;&ensp;&ensp;gcc -D_GNU_SOURCE -std=c99 …</p>
+<p>21 atof、atoi、atol等是不带进制的转换；strtod、strtol、strtoul等是带进制的转换。</p>
+<p>22 getopt_long参数处理函数</p>
+<p>23 <regex.h>是c语言正则表达式库</regex.h></p>
 
       
     </div>
