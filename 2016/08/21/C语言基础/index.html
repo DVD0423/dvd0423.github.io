@@ -96,7 +96,7 @@
 &amp;ensp;&amp;ensp;模块内部使用的接口一个文件，对外接口单独头文件
 &amp;ensp;&amp;ensp;static全局变量相当于类的私有变量，可以通过一个对外接口访问，以此限制对其直接操作
 &amp;ensp;&amp;ensp;static函数不需要放在头文件中，因为它只在本文">
-<meta property="og:updated_time" content="2016-08-28T08:15:20.000Z">
+<meta property="og:updated_time" content="2016-08-28T08:46:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言基础">
 <meta name="twitter:description" content="不定时更新……
@@ -381,13 +381,10 @@
 <p>11 volatile 防止编译器优化</p>
 <p>12 __VA_ARGS__    可变参数宏，前面加上##的目的在于当可变参数个数为0时，##起到把多余的“,”去掉的作用，否则编译出错</p>
 <figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">snprintf( buffer, DEBUG_BUFFER_MAX, <span class="string">"[%s] "</span><span class="keyword">format</span><span class="string">" File:%s, Line:%d\n"</span>, \</span><br><span class="line">   moduleName, <span class="comment">##__VA_ARGS__, __FILE__, __LINE__ );</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#define debug(...) printf(__VA_ARGS__)  \\可变参数宏</span></span><br><span class="line"></span><br><span class="line">debug(<span class="string">"test"</span>)			<span class="keyword">printf</span>(<span class="string">"test"</span>)</span><br><span class="line">debug(<span class="string">"year = %d"</span>, <span class="keyword">y</span>)	<span class="keyword">printf</span>(<span class="string">"year = %d"</span>)</span><br></pre></td></tr></table></figure>
-<p>13 ptr += sprintf(ptr, “%s#”, t);    //相当于c++的字符串连接</p>
+<p>13 sprintf(ptr, “%s#”, t);    //相当于c++的字符串连接 ptr +=</p>
 <p>&ensp;&ensp;&ensp;snprintf</p>
 <p>14 可变参数实现</p>
-<p>&ensp;&ensp;&ensp;va_list</p>
-<p>&ensp;&ensp;&ensp;va_start</p>
-<p>&ensp;&ensp;&ensp;va_arg</p>
-<p>&ensp;&ensp;&ensp;va_end</p>
+<p>&ensp;&ensp;&ensp;va_list<br>&ensp;&ensp;&ensp;va_start<br>&ensp;&ensp;&ensp;va_arg<br>&ensp;&ensp;&ensp;va_end</p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">int <span class="keyword">test</span>(int v, ...)</span><br><span class="line">&#123;</span><br><span class="line">	int <span class="keyword">ret</span> = 0;</span><br><span class="line">	int i = v;</span><br><span class="line">	va_list <span class="keyword">ap</span>;</span><br><span class="line">	va_start(<span class="keyword">ap</span>, v);</span><br><span class="line">	<span class="keyword">while</span>(i &gt; 0)&#123;</span><br><span class="line">		<span class="keyword">ret</span> += va_arg(<span class="keyword">ap</span>, int);</span><br><span class="line">		--i;</span><br><span class="line">	&#125;</span><br><span class="line">	va_end(<span class="keyword">ap</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">ret</span> /= v;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>15 memset_s代替memset</p>
 <p>16 #define &ensp;INTSIZEOF(n) &ensp;&ensp; ((sizeof(n)+sizeof(int)-1) &amp; ~(sizeof(int)-1))</p>

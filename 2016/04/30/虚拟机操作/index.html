@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="Davi">
 <meta property="og:description" content="最有用的文档是官方文档!最有用的文档是官方文档!最有用的文档是官方文档!重要的事情说三遍!!!
 1 虚拟机安装123# yum -y install qemu-kvm libvirt python-virtinst bridge-utils# qemu-img create -f qcow2 vm1.img 50G # virt-install --name=vm$1 --boot cdrom,m">
-<meta property="og:updated_time" content="2016-08-28T06:35:50.000Z">
+<meta property="og:updated_time" content="2016-08-28T08:43:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="虚拟机操作">
 <meta name="twitter:description" content="最有用的文档是官方文档!最有用的文档是官方文档!最有用的文档是官方文档!重要的事情说三遍!!!
@@ -356,7 +356,7 @@
 <p>恢复：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virsh snapshot-revert vm1 vm1-<span class="keyword">before</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="5-虚拟机迁移"><a href="#5-虚拟机迁移" class="headerlink" title="5 虚拟机迁移"></a>5 虚拟机迁移</h2><p>先测试是否能迁移：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virsh -c qemu+<span class="string">ssh:</span><span class="comment">//node90/system</span></span><br></pre></td></tr></table></figure></p>
 <p>再使用如下命令迁移：<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virsh --live migrate v<span class="name">m1</span> qemu+ssh:<span class="comment">//node90/system</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="6-虚拟机克隆"><a href="#6-虚拟机克隆" class="headerlink" title="6 虚拟机克隆"></a>6 虚拟机克隆</h2><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">virt-<span class="keyword">clone</span> <span class="title">-o</span> vm1 -n vm2 -f /root/dvd/vm2.img</span><br><span class="line">```    </span><br><span class="line"><span class="comment">## 7 添加网卡</span></span><br><span class="line">找到xml里网卡设置的位置，直接拷贝，然后改mac地址</span><br><span class="line"></span><br><span class="line"><span class="comment">## 9 dump虚拟机信息</span></span><br></pre></td></tr></table></figure>
+<h2 id="6-虚拟机克隆"><a href="#6-虚拟机克隆" class="headerlink" title="6 虚拟机克隆"></a>6 虚拟机克隆</h2><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">virt-<span class="keyword">clone</span> <span class="title">-o</span> vm1 -n vm2 -f /root/dvd/vm2.img</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"><span class="comment">## 7 添加网卡</span></span><br><span class="line">找到xml里网卡设置的位置，直接拷贝，然后改mac地址</span><br><span class="line"></span><br><span class="line"><span class="comment">## 8 dump虚拟机信息</span></span><br></pre></td></tr></table></figure>
 <p>virsh dump vmX file<br>```</p>
 
       
@@ -397,8 +397,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/05/04/宿主机上修改虚拟机镜像/" rel="prev" title="挂载虚拟机镜像">
-                挂载虚拟机镜像 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/05/04/宿主机上修改虚拟机镜像/" rel="prev" title="宿主机上修改虚拟机镜像">
+                宿主机上修改虚拟机镜像 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
