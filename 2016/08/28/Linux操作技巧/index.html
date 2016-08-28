@@ -81,60 +81,42 @@
 
 
 <meta name="description" content="不定时更新……
-
-rpm -ivh  –oldpackage&amp;ensp;&amp;ensp;rpm -qa | grep &amp;ensp;&amp;ensp;rpm -e xxx
-
-modprobe 智能解决模块依赖问题；insmod只加载单个模块
-
-内核问题定位工具：虚拟机串口输出、crash工具、objdump反汇编
-
-性能分析工具：
-
-
+1 rpm -ivh  –oldpackage&amp;ensp;&amp;ensp;rpm -qa | grep &amp;ensp;&amp;ensp;rpm -e xxx
+2 modprobe 智能解决模块依赖问题；insmod只加载单个模块
+3 内核问题定位工具：虚拟机串口输出、crash工具、objdump反汇编
+4 性能分析工具：
 
 进程树结构
 lsof通过进程找文件
 pidof通过进程名找pid
-fus">
+f">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux操作技巧">
 <meta property="og:url" content="http://davi.space/2016/08/28/Linux操作技巧/index.html">
 <meta property="og:site_name" content="Davi">
 <meta property="og:description" content="不定时更新……
-
-rpm -ivh  –oldpackage&amp;ensp;&amp;ensp;rpm -qa | grep &amp;ensp;&amp;ensp;rpm -e xxx
-
-modprobe 智能解决模块依赖问题；insmod只加载单个模块
-
-内核问题定位工具：虚拟机串口输出、crash工具、objdump反汇编
-
-性能分析工具：
-
-
+1 rpm -ivh  –oldpackage&amp;ensp;&amp;ensp;rpm -qa | grep &amp;ensp;&amp;ensp;rpm -e xxx
+2 modprobe 智能解决模块依赖问题；insmod只加载单个模块
+3 内核问题定位工具：虚拟机串口输出、crash工具、objdump反汇编
+4 性能分析工具：
 
 进程树结构
 lsof通过进程找文件
 pidof通过进程名找pid
-fus">
-<meta property="og:updated_time" content="2016-08-28T08:08:40.000Z">
+f">
+<meta property="og:updated_time" content="2016-08-28T08:23:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux操作技巧">
 <meta name="twitter:description" content="不定时更新……
-
-rpm -ivh  –oldpackage&amp;ensp;&amp;ensp;rpm -qa | grep &amp;ensp;&amp;ensp;rpm -e xxx
-
-modprobe 智能解决模块依赖问题；insmod只加载单个模块
-
-内核问题定位工具：虚拟机串口输出、crash工具、objdump反汇编
-
-性能分析工具：
-
-
+1 rpm -ivh  –oldpackage&amp;ensp;&amp;ensp;rpm -qa | grep &amp;ensp;&amp;ensp;rpm -e xxx
+2 modprobe 智能解决模块依赖问题；insmod只加载单个模块
+3 内核问题定位工具：虚拟机串口输出、crash工具、objdump反汇编
+4 性能分析工具：
 
 进程树结构
 lsof通过进程找文件
 pidof通过进程名找pid
-fus">
+f">
 
 
 
@@ -385,16 +367,10 @@ fus">
 
       
         <p>不定时更新……</p>
-<ol>
-<li><p>rpm -ivh <em> –oldpackage<br>&ensp;&ensp;rpm -qa | grep </em><br>&ensp;&ensp;rpm -e xxx</p>
-</li>
-<li><p>modprobe 智能解决模块依赖问题；insmod只加载单个模块</p>
-</li>
-<li><p>内核问题定位工具：虚拟机串口输出、crash工具、objdump反汇编</p>
-</li>
-<li><p>性能分析工具：</p>
-</li>
-</ol>
+<p>1 rpm -ivh <em> –oldpackage<br>&ensp;&ensp;rpm -qa | grep </em><br>&ensp;&ensp;rpm -e xxx</p>
+<p>2 modprobe 智能解决模块依赖问题；insmod只加载单个模块</p>
+<p>3 内核问题定位工具：虚拟机串口输出、crash工具、objdump反汇编</p>
+<p>4 性能分析工具：</p>
 <ul>
 <li>进程树结构</li>
 <li>lsof通过进程找文件</li>
@@ -405,9 +381,7 @@ fus">
 <li>netstat网络</li>
 </ul>
 <a id="more"></a>
-<ol>
-<li>网络连接解决方法：</li>
-</ol>
+<p>5 网络连接解决方法：</p>
 <ul>
 <li>/etc/udev/rules.s/70…查看网卡配置和ifcfg是否一致</li>
 <li>ifcfg配置；</li>
@@ -416,35 +390,22 @@ fus">
 <li>关闭NetworkManager</li>
 <li>ssh限制</li>
 </ul>
-<ol>
-<li><p>查看linux操作系统类型<br>&ensp;&ensp;rpm -qf /etc/issuse</p>
-</li>
-<li><p>根据MAC找IP </p>
-</li>
-</ol>
+<p>6 查看linux操作系统类型<br>&ensp;&ensp;rpm -qf /etc/issuse</p>
+<p>7 根据MAC找IP </p>
 <ul>
 <li>arp -a</li>
 <li>cat /proc/net/arp | grep ‘…’</li>
 </ul>
-<ol>
-<li><p>SIGINT ctr+c中断<br>&ensp;&ensp;SIGTERM kill软中断</p>
-</li>
-<li><p>调整日志级别<br>&ensp;&ensp;echo 1 1 1 1 /proc/sys/kernel/printk    </p>
-</li>
-<li><p>下载</p>
-</li>
-</ol>
+<p>8 SIGINT ctr+c中断<br>&ensp;&ensp;SIGTERM kill软中断</p>
+<p>9 调整dmesg日志级别<br>&ensp;&ensp;echo 1 1 1 1 &gt; /proc/sys/kernel/printk    </p>
+<p>10 下载</p>
 <ul>
 <li>wget</li>
 <li>curl</li>
 <li>git clone</li>
 </ul>
-<ol>
-<li><p>跟踪网络路径：tracepath</p>
-</li>
-<li><p>ctags -R .<br>cscope -Rbq -f path/xxx.out  </p>
-</li>
-</ol>
+<p>11 跟踪网络路径：tracepath</p>
+<p>12 ctags -R .<br>&ensp;&ensp;&ensp;cscope -Rbq -f path/xxx.out  </p>
 
       
     </div>
