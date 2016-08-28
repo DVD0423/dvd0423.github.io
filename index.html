@@ -347,7 +347,7 @@
           <p>前两天复现了一个部门疑难问题单，奖励了两百块钱，做为刚入职一个多月的新员工，感觉好爽~~</p>
 <h3 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1 问题描述"></a>1 问题描述</h3><p>当两个运行相同程序的进程的pid后12位相同时，产品就会出bug，主要是hash冲突。</p>
 <h3 id="2-解决思路"><a href="#2-解决思路" class="headerlink" title="2 解决思路"></a>2 解决思路</h3><p>对于这个问题的复现，我的方法是先开启一个进程A，然后设置一个信号函数，等待接收另一个pid和它低12位相同的进程的信号。另一个进程B不断fork新进程C。当新进程C低12位满足要求时发送信号给原先挂起的进程A,接着进程C用exec注入我们产品的程序。同时，进程A一旦收到信号就用exec注入我们产品的程序。这样A和C就会同时执行，然后系统出错，问题复现。</p>
-<p>本来以为直接用shell不断在后台fork新进程就可以了，但程序执行时间很短所以不容易复现。最后用了信号机制，当然，也许有更好的方法~~<br>
+<p>本来以为直接用shell不断在后台fork新进程就可以了，但程序执行时间很短所以不容易复现。最后用了信号机制，当然，也许有更好的方法~~</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/08/28/入职后解决的第一个疑难问题/#more" rel="contents">
               阅读全文 &raquo;
@@ -470,7 +470,8 @@
       
         
           
-            
+            <a id="more"></a>
+
           
         
       
@@ -588,8 +589,7 @@
 
       
         
-          
-            <p>不定时更新……</p>
+          <p>不定时更新……</p>
 <ol>
 <li><p>rpm -ivh <em> –oldpackage<br>&ensp;&ensp;rpm -qa | grep </em><br>&ensp;&ensp;rpm -e xxx</p>
 </li>
@@ -609,48 +609,11 @@
 <li>vmstat系统资源</li>
 <li>netstat网络</li>
 </ul>
-<ol>
-<li>网络连接解决方法：</li>
-</ol>
-<ul>
-<li>/etc/udev/rules.s/70…查看网卡配置和ifcfg是否一致</li>
-<li>ifcfg配置；</li>
-<li>gateway配置</li>
-<li>关闭iptables</li>
-<li>关闭NetworkManager</li>
-<li>ssh限制</li>
-</ul>
-<ol>
-<li><p>查看linux操作系统类型<br>&ensp;&ensp;rpm -qf /etc/issuse</p>
-</li>
-<li><p>根据MAC找IP </p>
-</li>
-</ol>
-<ul>
-<li>arp -a</li>
-<li>cat /proc/net/arp | grep ‘…’</li>
-</ul>
-<ol>
-<li><p>SIGINT ctr+c中断<br>&ensp;&ensp;SIGTERM kill软中断</p>
-</li>
-<li><p>调整日志级别<br>&ensp;&ensp;echo 1 1 1 1 /proc/sys/kernel/printk    </p>
-</li>
-<li><p>下载</p>
-</li>
-</ol>
-<ul>
-<li>wget</li>
-<li>curl</li>
-<li>git clone</li>
-</ul>
-<ol>
-<li><p>跟踪网络路径：tracepath</p>
-</li>
-<li><p>ctags -R .<br>cscope -Rbq -f path/xxx.out  </p>
-</li>
-</ol>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/28/Linux操作技巧/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
