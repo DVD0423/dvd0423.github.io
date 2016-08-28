@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="虚拟机,KVM,virsh," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -80,19 +80,16 @@
 
 
 
-<meta name="description" content="最有用的文档是官方文档!最有用的文档是官方文档!最有用的文档是官方文档!重要的事情说三遍!!!
-1 虚拟机安装123# yum -y install qemu-kvm libvirt python-virtinst bridge-utils# qemu-img create -f qcow2 vm1.img 50G # virt-install --name=vm$1 --boot cdrom,m">
+<meta name="description" content="程序人生">
 <meta property="og:type" content="article">
-<meta property="og:title" content="KVM虚拟机设置">
-<meta property="og:url" content="http://davi.space/2016/04/30/KVM虚拟机设置/index.html">
+<meta property="og:title" content="虚拟机串口配置">
+<meta property="og:url" content="http://davi.space/2016/08/28/虚拟机串口配置/index.html">
 <meta property="og:site_name" content="Davi">
-<meta property="og:description" content="最有用的文档是官方文档!最有用的文档是官方文档!最有用的文档是官方文档!重要的事情说三遍!!!
-1 虚拟机安装123# yum -y install qemu-kvm libvirt python-virtinst bridge-utils# qemu-img create -f qcow2 vm1.img 50G # virt-install --name=vm$1 --boot cdrom,m">
-<meta property="og:updated_time" content="2016-05-08T05:52:19.000Z">
+<meta property="og:description" content="程序人生">
+<meta property="og:updated_time" content="2016-08-28T04:58:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="KVM虚拟机设置">
-<meta name="twitter:description" content="最有用的文档是官方文档!最有用的文档是官方文档!最有用的文档是官方文档!重要的事情说三遍!!!
-1 虚拟机安装123# yum -y install qemu-kvm libvirt python-virtinst bridge-utils# qemu-img create -f qcow2 vm1.img 50G # virt-install --name=vm$1 --boot cdrom,m">
+<meta name="twitter:title" content="虚拟机串口配置">
+<meta name="twitter:description" content="程序人生">
 
 
 
@@ -110,7 +107,7 @@
   };
 </script>
 
-  <title> KVM虚拟机设置 | Davi </title>
+  <title> 虚拟机串口配置 | Davi </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -276,7 +273,7 @@
             
             
               
-                KVM虚拟机设置
+                虚拟机串口配置
               
             
           </h1>
@@ -288,38 +285,19 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-30T13:03:41+08:00" content="2016-04-30">
-              2016-04-30
+            <time itemprop="dateCreated" datetime="2016-08-28T12:58:40+08:00" content="2016-08-28">
+              2016-08-28
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/云计算/" itemprop="url" rel="index">
-                    <span itemprop="name">云计算</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/30/KVM虚拟机设置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/30/KVM虚拟机设置/" itemprop="commentsCount"></span>
+                <a href="/2016/08/28/虚拟机串口配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/28/虚拟机串口配置/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -342,22 +320,7 @@
       
 
       
-        <p><strong>最有用的文档是官方文档!</strong><br><strong>最有用的文档是官方文档!</strong><br><strong>最有用的文档是官方文档!</strong><br>重要的事情说三遍!!!</p>
-<h2 id="1-虚拟机安装"><a href="#1-虚拟机安装" class="headerlink" title="1 虚拟机安装"></a>1 虚拟机安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum -y install qemu-kvm libvirt python-virtinst bridge-utils</span></span><br><span class="line"><span class="comment"># qemu-img create -f qcow2 vm1.img 50G </span></span><br><span class="line"><span class="comment"># virt-install --name=vm$1 --boot cdrom,menu=on --ram=8192 --vcpus=8 --os-type=linux -c /root/dvd/CentOS-7.0-1406-x86_64-DVD.iso --disk path=/root/dvd/vm1.img,size=50,format=qcow2,bus=ide --network bridge=br0 --force --graphics vnc,listen=0.0.0.0,port=5901</span></span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h2 id="2-基础命令"><a href="#2-基础命令" class="headerlink" title="2 基础命令"></a>2 基础命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">virsh define vm1</span><br><span class="line">virsh start vm1</span><br><span class="line">virsh stop vm1</span><br><span class="line">virsh undefine vm1</span><br><span class="line">virsh edit vm1</span><br></pre></td></tr></table></figure>
-<h2 id="3-设置vCPU亲和性："><a href="#3-设置vCPU亲和性：" class="headerlink" title="3 设置vCPU亲和性："></a>3 设置vCPU亲和性：</h2><h3 id="3-1-编辑xml文件添加如下内容"><a href="#3-1-编辑xml文件添加如下内容" class="headerlink" title="3.1 编辑xml文件添加如下内容"></a>3.1 编辑xml文件添加如下内容</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">cputune</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">vcpupin</span> <span class="attr">vcpu</span>=<span class="string">"0"</span> <span class="attr">cpuset</span>=<span class="string">"0-1,4-6"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">cputune</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="3-2-使用命令"><a href="#3-2-使用命令" class="headerlink" title="3.2 使用命令:"></a>3.2 使用命令:</h3><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virsh vcpupin vm<span class="number">1 0 0-1</span>,<span class="number">4</span>-<span class="number">6</span></span><br></pre></td></tr></table></figure>
-<h3 id="3-3-使用taskset设置整个虚拟机的亲和性"><a href="#3-3-使用taskset设置整个虚拟机的亲和性" class="headerlink" title="3.3 使用taskset设置整个虚拟机的亲和性"></a>3.3 使用taskset设置整个虚拟机的亲和性</h3><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr"># taskset -cp 0</span><span class="number">-8</span> v<span class="name">m1</span>_pid</span><br></pre></td></tr></table></figure>
-<h3 id="3-4-cgroup设置"><a href="#3-4-cgroup设置" class="headerlink" title="3.4 cgroup设置"></a>3.4 cgroup设置</h3><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># yum install libcgroup</span></span><br><span class="line"><span class="meta"># yum install libvirt</span></span><br><span class="line"><span class="meta"># service cgconfig restart</span></span><br><span class="line"><span class="meta"># service libvirtd restart</span></span><br><span class="line"><span class="meta"># echo 0-1 &gt; /cgroup/cpuset/libvirt/qemu/vm1/vcpu0/cpuset.cpus</span></span><br></pre></td></tr></table></figure>
-<h2 id="4-虚拟机快照"><a href="#4-虚拟机快照" class="headerlink" title="4 虚拟机快照"></a>4 虚拟机快照</h2><p>产生：<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virsh snapshot-<span class="built_in">create</span>-<span class="keyword">as</span> vm1 vm1-<span class="keyword">before</span></span><br></pre></td></tr></table></figure></p>
-<p>显示：</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virsh snapshot-<span class="built_in">list</span></span><br></pre></td></tr></table></figure>
-<p>恢复：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virsh snapshot-revert vm1 vm1-<span class="keyword">before</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="5-虚拟机迁移"><a href="#5-虚拟机迁移" class="headerlink" title="5 虚拟机迁移"></a>5 虚拟机迁移</h2><p>先测试是否能迁移：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virsh -c qemu+<span class="string">ssh:</span><span class="comment">//node90/system</span></span><br></pre></td></tr></table></figure></p>
-<p>再使用如下命令迁移：<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virsh --live migrate v<span class="name">m1</span> qemu+ssh:<span class="comment">//node90/system</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="6-虚拟机克隆"><a href="#6-虚拟机克隆" class="headerlink" title="6 虚拟机克隆"></a>6 虚拟机克隆</h2><pre><code>virt-clone -o vm1 -n vm2 -f /root/dvd/vm2.img
-</code></pre>
+        
       
     </div>
     
@@ -375,31 +338,21 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/虚拟机/" rel="tag">#虚拟机</a>
-          
-            <a href="/tags/KVM/" rel="tag">#KVM</a>
-          
-            <a href="/tags/virsh/" rel="tag">#virsh</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/29/十分钟学会bash shell编程/" rel="next" title="十分钟学会bash shell编程">
-                <i class="fa fa-chevron-left"></i> 十分钟学会bash shell编程
+              <a href="/2016/08/28/Linux操作技巧/" rel="next" title="Linux操作技巧">
+                <i class="fa fa-chevron-left"></i> Linux操作技巧
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/05/04/宿主机上修改虚拟机镜像/" rel="prev" title="宿主机上编辑虚拟机镜像">
-                宿主机上编辑虚拟机镜像 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/08/28/入职后解决的第一个疑难问题/" rel="prev" title="入职后解决的第一个疑难问题">
+                入职后解决的第一个疑难问题 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -426,8 +379,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/30/KVM虚拟机设置/"
-           data-title="KVM虚拟机设置" data-url="http://davi.space/2016/04/30/KVM虚拟机设置/">
+      <div class="ds-thread" data-thread-key="2016/08/28/虚拟机串口配置/"
+           data-title="虚拟机串口配置" data-url="http://davi.space/2016/08/28/虚拟机串口配置/">
       </div>
     
   </div>
@@ -472,7 +425,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -480,7 +433,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -489,7 +442,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -543,7 +496,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-虚拟机安装"><span class="nav-text">1 虚拟机安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-基础命令"><span class="nav-text">2 基础命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-设置vCPU亲和性："><span class="nav-text">3 设置vCPU亲和性：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-编辑xml文件添加如下内容"><span class="nav-text">3.1 编辑xml文件添加如下内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-使用命令"><span class="nav-text">3.2 使用命令:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-使用taskset设置整个虚拟机的亲和性"><span class="nav-text">3.3 使用taskset设置整个虚拟机的亲和性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-cgroup设置"><span class="nav-text">3.4 cgroup设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-虚拟机快照"><span class="nav-text">4 虚拟机快照</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-虚拟机迁移"><span class="nav-text">5 虚拟机迁移</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-虚拟机克隆"><span class="nav-text">6 虚拟机克隆</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>

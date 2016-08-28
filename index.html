@@ -275,6 +275,407 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/28/入职后解决的第一个疑难问题/" itemprop="url">
+                  入职后解决的第一个疑难问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-28T13:10:29+08:00" content="2016-08-28">
+              2016-08-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/28/入职后解决的第一个疑难问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/28/入职后解决的第一个疑难问题/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>前两天复现了一个部门疑难问题单，奖励了两百块钱，做为刚入职一个多月的新员工，感觉好爽~~</p>
+<h3 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1 问题描述"></a>1 问题描述</h3><p>当两个运行相同程序的进程的pid后12位相同时，产品就会出bug，主要是hash冲突。</p>
+<h3 id="2-解决思路"><a href="#2-解决思路" class="headerlink" title="2 解决思路"></a>2 解决思路</h3><p>对于这个问题的复现，我的方法是先开启一个进程A，然后设置一个信号函数，等待接收另一个pid和它低12位相同的进程的信号。另一个进程B不断fork新进程C。当新进程C低12位满足要求时发送信号给原先挂起的进程A,接着进程C用exec注入我们产品的程序。同时，进程A一旦收到信号就用exec注入我们产品的程序。这样A和C就会同时执行，然后系统出错，问题复现。</p>
+<p>本来以为直接用shell不断在后台fork新进程就可以了，但程序执行时间很短所以不容易复现。最后用了信号机制，当然，也许有更好的方法~~<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/28/入职后解决的第一个疑难问题/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/28/虚拟机串口配置/" itemprop="url">
+                  虚拟机串口配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-28T12:58:40+08:00" content="2016-08-28">
+              2016-08-28
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/28/虚拟机串口配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/28/虚拟机串口配置/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/28/Linux操作技巧/" itemprop="url">
+                  Linux操作技巧
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-28T12:56:16+08:00" content="2016-08-28">
+              2016-08-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/28/Linux操作技巧/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/28/Linux操作技巧/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>不定时更新……</p>
+<ol>
+<li><p>rpm -ivh <em> –oldpackage<br>&ensp;&ensp;rpm -qa | grep </em><br>&ensp;&ensp;rpm -e xxx</p>
+</li>
+<li><p>modprobe 智能解决模块依赖问题；insmod只加载单个模块</p>
+</li>
+<li><p>内核问题定位工具：虚拟机串口输出、crash工具、objdump反汇编</p>
+</li>
+<li><p>性能分析工具：</p>
+</li>
+</ol>
+<ul>
+<li>进程树结构</li>
+<li>lsof通过进程找文件</li>
+<li>pidof通过进程名找pid</li>
+<li>fuser通过文件找进程</li>
+<li>free内存</li>
+<li>vmstat系统资源</li>
+<li>netstat网络</li>
+</ul>
+<ol>
+<li>网络连接解决方法：</li>
+</ol>
+<ul>
+<li>/etc/udev/rules.s/70…查看网卡配置和ifcfg是否一致</li>
+<li>ifcfg配置；</li>
+<li>gateway配置</li>
+<li>关闭iptables</li>
+<li>关闭NetworkManager</li>
+<li>ssh限制</li>
+</ul>
+<ol>
+<li><p>查看linux操作系统类型<br>&ensp;&ensp;rpm -qf /etc/issuse</p>
+</li>
+<li><p>根据MAC找IP </p>
+</li>
+</ol>
+<ul>
+<li>arp -a</li>
+<li>cat /proc/net/arp | grep ‘…’</li>
+</ul>
+<ol>
+<li><p>SIGINT ctr+c中断<br>&ensp;&ensp;SIGTERM kill软中断</p>
+</li>
+<li><p>调整日志级别<br>&ensp;&ensp;echo 1 1 1 1 /proc/sys/kernel/printk    </p>
+</li>
+<li><p>下载</p>
+</li>
+</ol>
+<ul>
+<li>wget</li>
+<li>curl</li>
+<li>git clone</li>
+</ul>
+<ol>
+<li>跟踪网络路径：tracepath</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/21/C语言基础/" itemprop="url">
                   C语言基础
                 </a>
@@ -294,6 +695,25 @@
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -325,8 +745,13 @@
 
       
         
-          <p>1 为字符串使用固定大小栈缓冲区，而不是动态分配，创建资源库，以减少分配对象的开销</p>
-<p>2 c语言中实现C++作用：</p>
+          <p>不定时更新……</p>
+<ol>
+<li><p>为字符串使用固定大小栈缓冲区，而不是动态分配，创建资源库，以减少分配对象的开销。池的思想。</p>
+</li>
+<li><p>c语言中实现C++作用：</p>
+</li>
+</ol>
 <p>&ensp;&ensp;模块内部使用的接口一个文件，对外接口单独头文件</p>
 <p>&ensp;&ensp;static全局变量相当于类的私有变量，可以通过一个对外接口访问，以此限制对其直接操作</p>
 <p>&ensp;&ensp;static函数不需要放在头文件中，因为它只在本文件内可见，最好在c文件的头部声明</p>
@@ -403,6 +828,25 @@
           </span>
 
           
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
 
           
             
@@ -433,11 +877,18 @@
 
       
         
-          <p>1 char * strchr(str, ch);//查找ch第一次出现的指针偏移</p>
+          <ol>
+<li>char * strchr(str, ch);//查找ch第一次出现的指针偏移</li>
+</ol>
 <p>&ensp;&ensp;strrchr</p>
-<p>2 char * strcat(des, src);//拼接</p>
-<p>3 strncmp, strncpy, strnicmp–不区分大小写的比较</p>
-<p>4 char * strnset(str, ch, n); //设置前n个字符<br>&ensp;&ensp;strnset//全设</p>
+<ol>
+<li><p>char * strcat(des, src);//拼接</p>
+</li>
+<li><p>strncmp, strncpy, strnicmp–不区分大小写的比较</p>
+</li>
+<li><p>char * strnset(str, ch, n); //设置前n个字符<br>&ensp;&ensp;strnset//全设</p>
+</li>
+</ol>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/08/13/string库/#more" rel="contents">
               阅读全文 &raquo;
@@ -518,8 +969,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/分布式系统/" itemprop="url" rel="index">
-                    <span itemprop="name">分布式系统</span>
+                  <a href="/categories/Linux开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux开发</span>
                   </a>
                 </span>
 
@@ -614,7 +1065,7 @@
               
                 
                 <a class="post-title-link" href="/2016/05/04/宿主机上修改虚拟机镜像/" itemprop="url">
-                  宿主机上编辑虚拟机镜像
+                  挂载虚拟机镜像
                 </a>
               
             
@@ -737,8 +1188,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/04/30/KVM虚拟机设置/" itemprop="url">
-                  KVM虚拟机设置
+                <a class="post-title-link" href="/2016/04/30/虚拟机操作/" itemprop="url">
+                  虚拟机操作
                 </a>
               
             
@@ -781,8 +1232,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/30/KVM虚拟机设置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/30/KVM虚拟机设置/" itemprop="commentsCount"></span>
+                <a href="/2016/04/30/虚拟机操作/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/30/虚拟机操作/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -809,7 +1260,7 @@
           <p><strong>最有用的文档是官方文档!</strong><br><strong>最有用的文档是官方文档!</strong><br><strong>最有用的文档是官方文档!</strong><br>重要的事情说三遍!!!</p>
 <h2 id="1-虚拟机安装"><a href="#1-虚拟机安装" class="headerlink" title="1 虚拟机安装"></a>1 虚拟机安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum -y install qemu-kvm libvirt python-virtinst bridge-utils</span></span><br><span class="line"><span class="comment"># qemu-img create -f qcow2 vm1.img 50G </span></span><br><span class="line"><span class="comment"># virt-install --name=vm$1 --boot cdrom,menu=on --ram=8192 --vcpus=8 --os-type=linux -c /root/dvd/CentOS-7.0-1406-x86_64-DVD.iso --disk path=/root/dvd/vm1.img,size=50,format=qcow2,bus=ide --network bridge=br0 --force --graphics vnc,listen=0.0.0.0,port=5901</span></span><br></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/30/KVM虚拟机设置/#more" rel="contents">
+            <a class="btn" href="/2016/04/30/虚拟机操作/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -860,8 +1311,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/04/29/十分钟学会bash shell编程/" itemprop="url">
-                  十分钟学会bash shell编程
+                <a class="post-title-link" href="/2016/04/29/shell编程技巧/" itemprop="url">
+                  shell编程技巧
                 </a>
               
             
@@ -904,8 +1355,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/29/十分钟学会bash shell编程/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/29/十分钟学会bash shell编程/" itemprop="commentsCount"></span>
+                <a href="/2016/04/29/shell编程技巧/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/29/shell编程技巧/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -929,11 +1380,14 @@
 
       
         
-          <h3 id="1-变量命名规则"><a href="#1-变量命名规则" class="headerlink" title="1 变量命名规则"></a>1 变量命名规则</h3><p>双引号内的特殊字符，如$，会被翻译；而单引号内的所有字符保持不变。</p>
+          <p>不定时更新……</p>
+<h3 id="1-变量命名规则"><a href="#1-变量命名规则" class="headerlink" title="1 变量命名规则"></a>1 变量命名规则</h3><p>双引号内的特殊字符，如$，会被翻译；而单引号内的所有字符保持不变。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">d=8</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'$d'</span>   //display: <span class="variable">$d</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$d</span>"</span>   //display: 8</span><br></pre></td></tr></table></figure>
 <p>使用命令给变量赋值方式：$(命令)或者`命令`<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span>=<span class="string">`ls ./`</span></span><br></pre></td></tr></table></figure></p>
+<p>复杂的带变量的变量字符串可以用下面的方式确保它是字符串，这样在sed等里面就不会出错了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arg=`<span class="built_in">echo</span> <span class="variable">$arg</span>`</span><br><span class="line">//sed <span class="string">"<span class="variable">$&#123;num&#125;</span>a <span class="variable">$&#123;arg&#125;</span>"</span> ...</span><br></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/29/十分钟学会bash shell编程/#more" rel="contents">
+            <a class="btn" href="/2016/04/29/shell编程技巧/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1012,8 +1466,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/编程之美/" itemprop="url" rel="index">
-                    <span itemprop="name">编程之美</span>
+                  <a href="/categories/Linux开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux开发</span>
                   </a>
                 </span>
 
@@ -1058,374 +1512,6 @@
 <p>第一步当然是先打开美拍首页，点击进入舞蹈相关页面。在视频多列模式下，美拍一页只能容纳24个视频，<strong>如果需要看到更多的视频需要把页面往下拉</strong>，这时会触发ajax异步刷新机制，实现页面的局部刷新，从而get到更多的视频。当页面连续刷新6次时，就达到了页面底部，这时不再刷新更多的视频，也就是说一个页面所列出的视频是有限的，最多为6*24个。但是页面底部会出现第一页、第二页的选项。所以，<strong>如果要继续看到更多的视频需要点击下一页按钮</strong>。只要重复上面的操作就可以欣赏到美拍上的所有舞蹈视频。这一章节虽然全都是废话，却是一个爬虫成形最关键的地方。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/04/28/Python爬取美拍视频/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/27/位操作技巧/" itemprop="url">
-                  位操作技巧
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-27T15:56:20+08:00" content="2016-04-27">
-              2016-04-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/编程之美/" itemprop="url" rel="index">
-                    <span itemprop="name">编程之美</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/27/位操作技巧/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/27/位操作技巧/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>　　位操作使用得当可以达到代码优化和性能加速的目的。下面将介绍一些可读性比较不错的位操作技巧。对于那些可读性差的位操作技巧，本文不做描述。</p>
-<p>开始之前先介绍点基础知识。计算机中的数据用补码表示。正数的符号位为0，负数的符号位为1。对于正数，补码、反码和原码的表示相同。对于负数，反码是原码逐位取反，符号位保持不变；补码是反码加1。+0与-0补码形式一样。</p>
-<h2 id="1-判断整数正负"><a href="#1-判断整数正负" class="headerlink" title="1 判断整数正负"></a>1 判断整数正负</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> v;</span><br><span class="line"><span class="keyword">int</span> sign;</span><br><span class="line"><span class="comment">//省去了if，else的代码，看起来更简洁</span></span><br><span class="line">sign = -(v &lt; <span class="number">0</span>);</span><br><span class="line"><span class="comment">//右移31位或者63位，省去了条件判断，效率更高</span></span><br><span class="line">sign = v &gt;&gt; (sizeof(int) * <span class="number">8</span> - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//下面的操作相当于：if v &lt; 0 then -1, else +1</span></span><br><span class="line">sign = +<span class="number">1</span> | v &gt;&gt; (sizeof(int) * <span class="number">8</span> - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//if v = 0 then 0, else if v &lt; 0 then -1, else +1</span></span><br><span class="line">sign = (v != <span class="number">0</span>) | v &gt;&gt; (sizeof(int) * <span class="number">8</span> - <span class="number">1</span>);</span><br><span class="line"><span class="comment">//下面等价于上面，但可读性更好</span></span><br><span class="line">sign = (v &gt; <span class="number">0</span>) - (v &lt; <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/27/位操作技巧/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/26/Linux模块编程/" itemprop="url">
-                  Linux模块编程
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-26T19:52:52+08:00" content="2016-04-26">
-              2016-04-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux开发/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux开发</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/26/Linux模块编程/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/26/Linux模块编程/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>　　我第一次使用linux模块编程的主要目的是想在内核态读取eth0网卡的数据信息。linux模块要实现两个关键函数：模块加载函数和模块注销函数。具体的形式如下面代码所示：<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/26/Linux模块编程/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/26/Linux系统调用/" itemprop="url">
-                  Linux系统调用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-26T19:17:17+08:00" content="2016-04-26">
-              2016-04-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux开发/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux开发</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/26/Linux系统调用/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/26/Linux系统调用/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="1-跟踪系统调用"><a href="#1-跟踪系统调用" class="headerlink" title="1 跟踪系统调用"></a>1 跟踪系统调用</h2><p>系统调用是linux用户态和内核态信息交互的通道。运行机理主要是通过用户态触发CPU软中断进入内核态，在内核中调用系统调用号对应的相关函数。对于用户程序，可以使用strace命令追踪底层使用了哪些系统调用：<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/26/Linux系统调用/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1500,7 +1586,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1508,7 +1594,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1517,7 +1603,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>

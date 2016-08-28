@@ -80,22 +80,31 @@
 
 
 
-<meta name="description" content="1 变量命名规则双引号内的特殊字符，如$，会被翻译；而单引号内的所有字符保持不变。
+<meta name="description" content="不定时更新……
+1 变量命名规则双引号内的特殊字符，如$，会被翻译；而单引号内的所有字符保持不变。
 123d=8echo &apos;$d&apos;   //display: $decho &quot;$d&quot;   //display: 8
-使用命令给变量赋值方式：$(命令)或者`命令`1var=`ls ./`">
+使用命令给变量赋值方式：$(命令)或者`命令`1var=`ls ./`
+复杂的带变量的变量字符串可以用下面的方式确保它是字符串，这样在sed等里面就不会出错了
+12arg=`echo $a">
 <meta property="og:type" content="article">
-<meta property="og:title" content="十分钟学会bash shell编程">
-<meta property="og:url" content="http://davi.space/2016/04/29/十分钟学会bash shell编程/index.html">
+<meta property="og:title" content="shell编程技巧">
+<meta property="og:url" content="http://davi.space/2016/04/29/shell编程技巧/index.html">
 <meta property="og:site_name" content="Davi">
-<meta property="og:description" content="1 变量命名规则双引号内的特殊字符，如$，会被翻译；而单引号内的所有字符保持不变。
+<meta property="og:description" content="不定时更新……
+1 变量命名规则双引号内的特殊字符，如$，会被翻译；而单引号内的所有字符保持不变。
 123d=8echo &apos;$d&apos;   //display: $decho &quot;$d&quot;   //display: 8
-使用命令给变量赋值方式：$(命令)或者`命令`1var=`ls ./`">
-<meta property="og:updated_time" content="2016-05-08T06:01:33.000Z">
+使用命令给变量赋值方式：$(命令)或者`命令`1var=`ls ./`
+复杂的带变量的变量字符串可以用下面的方式确保它是字符串，这样在sed等里面就不会出错了
+12arg=`echo $a">
+<meta property="og:updated_time" content="2016-08-28T07:43:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="十分钟学会bash shell编程">
-<meta name="twitter:description" content="1 变量命名规则双引号内的特殊字符，如$，会被翻译；而单引号内的所有字符保持不变。
+<meta name="twitter:title" content="shell编程技巧">
+<meta name="twitter:description" content="不定时更新……
+1 变量命名规则双引号内的特殊字符，如$，会被翻译；而单引号内的所有字符保持不变。
 123d=8echo &apos;$d&apos;   //display: $decho &quot;$d&quot;   //display: 8
-使用命令给变量赋值方式：$(命令)或者`命令`1var=`ls ./`">
+使用命令给变量赋值方式：$(命令)或者`命令`1var=`ls ./`
+复杂的带变量的变量字符串可以用下面的方式确保它是字符串，这样在sed等里面就不会出错了
+12arg=`echo $a">
 
 
 
@@ -113,7 +122,7 @@
   };
 </script>
 
-  <title> 十分钟学会bash shell编程 | Davi </title>
+  <title> shell编程技巧 | Davi </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -279,7 +288,7 @@
             
             
               
-                十分钟学会bash shell编程
+                shell编程技巧
               
             
           </h1>
@@ -321,8 +330,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/29/十分钟学会bash shell编程/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/29/十分钟学会bash shell编程/" itemprop="commentsCount"></span>
+                <a href="/2016/04/29/shell编程技巧/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/29/shell编程技巧/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -345,12 +354,15 @@
       
 
       
-        <h3 id="1-变量命名规则"><a href="#1-变量命名规则" class="headerlink" title="1 变量命名规则"></a>1 变量命名规则</h3><p>双引号内的特殊字符，如$，会被翻译；而单引号内的所有字符保持不变。</p>
+        <p>不定时更新……</p>
+<h3 id="1-变量命名规则"><a href="#1-变量命名规则" class="headerlink" title="1 变量命名规则"></a>1 变量命名规则</h3><p>双引号内的特殊字符，如$，会被翻译；而单引号内的所有字符保持不变。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">d=8</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'$d'</span>   //display: <span class="variable">$d</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$d</span>"</span>   //display: 8</span><br></pre></td></tr></table></figure>
 <p>使用命令给变量赋值方式：$(命令)或者`命令`<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span>=<span class="string">`ls ./`</span></span><br></pre></td></tr></table></figure></p>
+<p>复杂的带变量的变量字符串可以用下面的方式确保它是字符串，这样在sed等里面就不会出错了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arg=`<span class="built_in">echo</span> <span class="variable">$arg</span>`</span><br><span class="line">//sed <span class="string">"<span class="variable">$&#123;num&#125;</span>a <span class="variable">$&#123;arg&#125;</span>"</span> ...</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>为变量增加变量内容可以使用:<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PATH=<span class="string">"$PATH"</span>:/<span class="built_in">home</span>/bin</span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line">PATH=$&#123;PATH&#125;:/<span class="built_in">home</span>/bin</span><br></pre></td></tr></table></figure></p>
-<p>变量默认是字符串，整数的定义<code>declare -i var</code>；常量的定义：<code>declare -r var</code><br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">declare</span> -i <span class="built_in">sum</span>=<span class="number">100</span>+<span class="number">300</span></span><br><span class="line">echo $<span class="built_in">sum</span>   //<span class="built_in">display</span>: <span class="number">400</span></span><br><span class="line"><span class="built_in">declare</span> -r <span class="built_in">sum</span>  //<span class="built_in">sum</span>变为只读属性</span><br></pre></td></tr></table></figure></p>
+<p>变量默认是字符串，整数的定义<code>declare -i var</code>；常量的定义：<code>declare -r var</code><br><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">declare -i <span class="keyword">sum</span>=<span class="number">100</span>+<span class="number">300</span></span><br><span class="line">echo <span class="symbol">$</span><span class="keyword">sum</span>   <span class="comment">//display: 400</span></span><br><span class="line">declare -r <span class="keyword">sum</span>  <span class="comment">//sum变为只读属性</span></span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line">let <span class="keyword">sum</span>=<span class="number">100</span>+<span class="number">300</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">sum</span>=<span class="symbol">$</span>( (<span class="symbol">$</span><span class="keyword">sum</span>+<span class="symbol">$</span>i) )</span><br><span class="line">let <span class="keyword">sum</span>=<span class="keyword">sum</span>+i</span><br></pre></td></tr></table></figure></p>
 <h3 id="2-输入输出"><a href="#2-输入输出" class="headerlink" title="2 输入输出"></a>2 输入输出</h3><p>变量输入：<code>read var</code><br>提示输入：<code>read -p &quot;input&quot; filename</code></p>
 <p>echo -e 解释转义字符。<br><figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"ok\n"</span>     <span class="comment">//display: ok\n</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"ok\n"</span>  <span class="comment">//display: ok然后换行</span></span><br></pre></td></tr></table></figure></p>
 <p><code>echo -n</code>等价于<code>echo -e &quot;\c&quot;</code>不换行输出。</p>
@@ -490,6 +502,9 @@
 </tr>
 </tbody>
 </table>
+<p>其中’s/old/new/g’可以是’s#lod#new#g’中间的分隔符随意，默认是’/‘。但是如果old字符串或者new字符串里面有’/‘则会出错，这时要用其他字符(比如’#’)替代’/‘。</p>
+<p>sed里面加变量的方式：<br>sed “s/$a/$b/g” …<br>eval sed ‘s/$a/$b/g’ …<br>sed ‘s/‘’$a’’/‘’$b’’/g’ …</p>
+<p>添加一行的方式：<br>‘2a …’ 是第二行后面添加  append<br>‘2i …’ 是第二行前面添加  insert</p>
 <p>正则表达式使用方法和grep一样</p>
 <h3 id="8-awk"><a href="#8-awk" class="headerlink" title="8 awk"></a>8 awk</h3><figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">awk '条件类型1</span><span class="template-variable">&#123;动作1&#125;</span><span class="xml">条件类型2</span><span class="template-variable">&#123;动作2&#125;</span><span class="xml">...' filename</span></span><br></pre></td></tr></table></figure>
 <table>
@@ -522,7 +537,7 @@
 </tr>
 </tbody>
 </table>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一行不会被特殊处理，第一行的分隔符是“ ”</span></span><br><span class="line"><span class="keyword">cat</span> /etc/passwd | awk '&#123;FS=<span class="string">":"</span>&#125; <span class="variable">$3</span> &lt; 10 &#123;<span class="keyword">print</span> <span class="variable">$1</span> <span class="string">"\t"</span> <span class="variable">$3&#125;</span>'</span><br><span class="line"><span class="comment">//第一行会被特殊处理</span></span><br><span class="line"><span class="keyword">cat</span> /etc/passwd | awk 'BEGIN &#123;FS=<span class="string">":"</span>&#125; <span class="variable">$3</span> &lt; 10 &#123;<span class="keyword">print</span> <span class="variable">$1</span> <span class="string">"\t"</span> <span class="variable">$3&#125;</span>'</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">cat</span> diff.txt | awk 'NR==1&#123;printf <span class="string">"%10s %10s\n"</span>, <span class="variable">$1</span>, <span class="variable">$2&#125;</span></span><br><span class="line">NR&gt;=2&#123;<span class="keyword">total</span> = <span class="variable">$2</span> + <span class="variable">$3</span> + <span class="variable">$4</span> </span><br><span class="line">printf <span class="string">"%10s %10s\n"</span>, <span class="variable">$2</span>, <span class="keyword">total</span>&#125;'</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">cat</span> diff.txt | awk '&#123;<span class="keyword">if</span> (NR==1) printf <span class="string">"%10s %10s\n"</span>, <span class="variable">$1</span>, <span class="variable">$2&#125;</span></span><br><span class="line">&#123;<span class="keyword">if</span> (NR&gt;=2) <span class="keyword">total</span> = <span class="variable">$2</span> + <span class="variable">$3</span> + <span class="variable">$4</span> </span><br><span class="line">printf <span class="string">"%10s %10s\n"</span>, <span class="variable">$2</span>, <span class="keyword">total</span>&#125;'</span><br></pre></td></tr></table></figure>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一行不会被特殊处理，第一行的分隔符是“ ”</span></span><br><span class="line"><span class="keyword">cat</span> /etc/passwd | awk '&#123;FS=<span class="string">":"</span>&#125; <span class="variable">$3</span> &lt; 10 &#123;<span class="keyword">print</span> <span class="variable">$1</span> <span class="string">"\t"</span> <span class="variable">$3&#125;</span>'</span><br><span class="line"><span class="comment">//第一行会被特殊处理</span></span><br><span class="line"><span class="keyword">cat</span> /etc/passwd | awk 'BEGIN &#123;FS=<span class="string">":"</span>&#125; <span class="variable">$3</span> &lt; 10 &#123;<span class="keyword">print</span> <span class="variable">$1</span> <span class="string">"\t"</span> <span class="variable">$3&#125;</span>'</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">cat</span> diff.txt | awk 'NR==1&#123;printf <span class="string">"%10s %10s\n"</span>, <span class="variable">$1</span>, <span class="variable">$2&#125;</span></span><br><span class="line">NR&gt;=2&#123;<span class="keyword">total</span> = <span class="variable">$2</span> + <span class="variable">$3</span> + <span class="variable">$4</span> </span><br><span class="line">printf <span class="string">"%10s %10s\n"</span>, <span class="variable">$2</span>, <span class="keyword">total</span>&#125;'</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">cat</span> diff.txt | awk '&#123;<span class="keyword">if</span> (NR==1) printf <span class="string">"%10s %10s\n"</span>, <span class="variable">$1</span>, <span class="variable">$2&#125;</span></span><br><span class="line">&#123;<span class="keyword">if</span> (NR&gt;=2) <span class="keyword">total</span> = <span class="variable">$2</span> + <span class="variable">$3</span> + <span class="variable">$4</span> </span><br><span class="line">printf <span class="string">"%10s %10s\n"</span>, <span class="variable">$2</span>, <span class="keyword">total</span>&#125;'</span><br><span class="line"><span class="comment">//脚本第二个参数开始的所有参数</span></span><br><span class="line">echo $* | awk '&#123;<span class="keyword">for</span>(i=2; i&lt;NF; i++) <span class="keyword">print</span> <span class="variable">$i&#125;</span>'</span><br></pre></td></tr></table></figure>
 <h3 id="9-shell-script编程"><a href="#9-shell-script编程" class="headerlink" title="9 shell script编程"></a>9 shell script编程</h3><ul>
 <li><p><strong>计算</strong></p>
 <figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var=<span class="symbol">$</span>((运算内容))</span><br><span class="line">echo <span class="symbol">$</span>(( <span class="number">13</span> % <span class="number">3</span> ))</span><br><span class="line"><span class="keyword">sum</span>=<span class="symbol">$</span>((<span class="symbol">$</span><span class="number">1</span> * <span class="symbol">$</span><span class="number">2</span>))</span><br></pre></td></tr></table></figure>
@@ -622,6 +637,11 @@
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function <span class="function"><span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">    程序</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<p>###10 eval<br>eval首先扫描命令行进行所有的置换，然后再执行该命令。该命令适用于那些一次扫描无法实现其功能的变量。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">i=j</span><br><span class="line">j=<span class="number">5</span></span><br><span class="line"><span class="keyword">eval</span> <span class="keyword">echo</span> \$$i <span class="comment">//结果为5</span></span><br><span class="line"><span class="keyword">eval</span> <span class="keyword">echo</span> \$$<span class="comment"># //显示脚本的最后一个参数</span></span><br></pre></td></tr></table></figure>
+<h3 id="11"><a href="#11" class="headerlink" title="11"></a>11</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">i=`ls`</span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> <span class="variable">$i</span>     显示列表</span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> <span class="string">"<span class="variable">$i</span>"</span>   显示字符串</span><br></pre></td></tr></table></figure>
+<h3 id="12-cut、wc、sort、uniq、xargs"><a href="#12-cut、wc、sort、uniq、xargs" class="headerlink" title="12 cut、wc、sort、uniq、xargs"></a>12 cut、wc、sort、uniq、xargs</h3><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">cut -d ':' -f 1  //-f 3,5  ; -f </span><br><span class="line">cut -c 12-</span><br><span class="line"></span><br><span class="line">wc </span><br><span class="line">-<span class="ruby">l行 </span><br><span class="line"></span>-<span class="ruby">w英文单词</span><br><span class="line"></span>-<span class="ruby">m字符</span><br><span class="line"></span></span><br><span class="line">uniq</span><br><span class="line">-<span class="ruby">c 统计</span><br><span class="line"></span>-<span class="ruby">i 忽略大小写</span><br><span class="line"></span></span><br><span class="line">sort</span><br><span class="line">-<span class="ruby">f忽略大小写</span><br><span class="line"></span>-<span class="ruby">b忽略前面空格</span><br><span class="line"></span>-<span class="ruby">u和uniq一个作用</span><br><span class="line"></span></span><br><span class="line">ls | xargs cat</span><br></pre></td></tr></table></figure>
+<h3 id="13"><a href="#13" class="headerlink" title="13 $$ $? $@ $* $"></a>13 $$ $? $@ $* $</h3><p>$$  进程PID<br>$?  命令执行返回值     ./test ; ret=$?<br>$#  参数个数<br>$@  所有参数独立显示<br>$*  所有参数字符串出现</p>
 
       
     </div>
@@ -663,8 +683,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/04/30/KVM虚拟机设置/" rel="prev" title="KVM虚拟机设置">
-                KVM虚拟机设置 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/04/30/虚拟机操作/" rel="prev" title="虚拟机操作">
+                虚拟机操作 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -691,8 +711,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/29/十分钟学会bash shell编程/"
-           data-title="十分钟学会bash shell编程" data-url="http://davi.space/2016/04/29/十分钟学会bash shell编程/">
+      <div class="ds-thread" data-thread-key="2016/04/29/shell编程技巧/"
+           data-title="shell编程技巧" data-url="http://davi.space/2016/04/29/shell编程技巧/">
       </div>
     
   </div>
@@ -737,7 +757,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -745,7 +765,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -754,7 +774,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -808,7 +828,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-变量命名规则"><span class="nav-text">1 变量命名规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-输入输出"><span class="nav-text">2 输入输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-ulimit限制资源使用"><span class="nav-text">3 ulimit限制资源使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-bash通配符"><span class="nav-text">4 bash通配符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-数据流重定向"><span class="nav-text">5 数据流重定向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-grep"><span class="nav-text">6 grep</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-sed"><span class="nav-text">7 sed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-awk"><span class="nav-text">8 awk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-shell-script编程"><span class="nav-text">9 shell script编程</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-变量命名规则"><span class="nav-text">1 变量命名规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-输入输出"><span class="nav-text">2 输入输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-ulimit限制资源使用"><span class="nav-text">3 ulimit限制资源使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-bash通配符"><span class="nav-text">4 bash通配符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-数据流重定向"><span class="nav-text">5 数据流重定向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-grep"><span class="nav-text">6 grep</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-sed"><span class="nav-text">7 sed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-awk"><span class="nav-text">8 awk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-shell-script编程"><span class="nav-text">9 shell script编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11"><span class="nav-text">11</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-cut、wc、sort、uniq、xargs"><span class="nav-text">12 cut、wc、sort、uniq、xargs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13"><span class="nav-text">13 $$ $? $@ $* $</span></a></li></ol></div>
             
           </div>
         </section>

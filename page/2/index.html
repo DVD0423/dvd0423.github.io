@@ -275,6 +275,374 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/27/位操作技巧/" itemprop="url">
+                  位操作技巧
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-27T15:56:20+08:00" content="2016-04-27">
+              2016-04-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/编程之美/" itemprop="url" rel="index">
+                    <span itemprop="name">编程之美</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/27/位操作技巧/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/27/位操作技巧/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>　　位操作使用得当可以达到代码优化和性能加速的目的。下面将介绍一些可读性比较不错的位操作技巧。对于那些可读性差的位操作技巧，本文不做描述。</p>
+<p>开始之前先介绍点基础知识。计算机中的数据用补码表示。正数的符号位为0，负数的符号位为1。对于正数，补码、反码和原码的表示相同。对于负数，反码是原码逐位取反，符号位保持不变；补码是反码加1。+0与-0补码形式一样。</p>
+<h2 id="1-判断整数正负"><a href="#1-判断整数正负" class="headerlink" title="1 判断整数正负"></a>1 判断整数正负</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> v;</span><br><span class="line"><span class="keyword">int</span> sign;</span><br><span class="line"><span class="comment">//省去了if，else的代码，看起来更简洁</span></span><br><span class="line">sign = -(v &lt; <span class="number">0</span>);</span><br><span class="line"><span class="comment">//右移31位或者63位，省去了条件判断，效率更高</span></span><br><span class="line">sign = v &gt;&gt; (sizeof(int) * <span class="number">8</span> - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//下面的操作相当于：if v &lt; 0 then -1, else +1</span></span><br><span class="line">sign = +<span class="number">1</span> | v &gt;&gt; (sizeof(int) * <span class="number">8</span> - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//if v = 0 then 0, else if v &lt; 0 then -1, else +1</span></span><br><span class="line">sign = (v != <span class="number">0</span>) | v &gt;&gt; (sizeof(int) * <span class="number">8</span> - <span class="number">1</span>);</span><br><span class="line"><span class="comment">//下面等价于上面，但可读性更好</span></span><br><span class="line">sign = (v &gt; <span class="number">0</span>) - (v &lt; <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/27/位操作技巧/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/26/Linux模块编程/" itemprop="url">
+                  Linux模块编程
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-26T19:52:52+08:00" content="2016-04-26">
+              2016-04-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/26/Linux模块编程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/26/Linux模块编程/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>　　我第一次使用linux模块编程的主要目的是想在内核态读取eth0网卡的数据信息。linux模块要实现两个关键函数：模块加载函数和模块注销函数。具体的形式如下面代码所示：<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/26/Linux模块编程/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/26/Linux系统调用/" itemprop="url">
+                  Linux系统调用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-26T19:17:17+08:00" content="2016-04-26">
+              2016-04-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/26/Linux系统调用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/26/Linux系统调用/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="1-跟踪系统调用"><a href="#1-跟踪系统调用" class="headerlink" title="1 跟踪系统调用"></a>1 跟踪系统调用</h2><p>系统调用是linux用户态和内核态信息交互的通道。运行机理主要是通过用户态触发CPU软中断进入内核态，在内核中调用系统调用号对应的相关函数。对于用户程序，可以使用strace命令追踪底层使用了哪些系统调用：<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/26/Linux系统调用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/26/Python自动登录模拟器/" itemprop="url">
                   Python自动登录模拟器
                 </a>
@@ -303,8 +671,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/编程之趣/" itemprop="url" rel="index">
-                    <span itemprop="name">编程之趣</span>
+                  <a href="/categories/Linux开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux开发</span>
                   </a>
                 </span>
 
@@ -668,7 +1036,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -676,7 +1044,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -685,7 +1053,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
