@@ -275,6 +275,131 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/15/回调函数/" itemprop="url">
+                  回调函数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-15T19:23:00+08:00" content="2016-09-15">
+              2016-09-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/软件架构/" itemprop="url" rel="index">
+                    <span itemprop="name">软件架构</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/15/回调函数/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/15/回调函数/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>回调函数，顾名思义就是A1调用函数B，B还要返回来调用A2，其中A1和A2都是A的一部分。那B是怎么返回来调用A2的呢？就是通过A1传递给B的函数指针。那回调函数的作用是什么呢？为什幺用回调函数呢？我的理解是增加灵活性，如果没有回调机制那STL中的sort等算法作用就不会这么强大了。</p>
+<h3 id="1-基本用法"><a href="#1-基本用法" class="headerlink" title="1 基本用法"></a>1 基本用法</h3><p>回调函数的基本用法如下代码所示，通过函数指针做B的参数，然后传递A2的函数地址，在B中调用A2实现回调，执行A1最终返回的是2。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">int B(int (*func)())</span><br><span class="line">&#123;</span><br><span class="line">    return func();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int A2()</span><br><span class="line">&#123;</span><br><span class="line">    return 2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int A1()</span><br><span class="line">&#123;</span><br><span class="line">    return B(&amp;A2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-仿函数"><a href="#2-仿函数" class="headerlink" title="2 仿函数"></a>2 仿函数</h3><p>C++中常见的谓词函数/仿函数（functor）就是回调函数的一种实现：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> comp &#123;</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		return a &lt; b;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;my_comp_object;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">my_comp_function</span><span class="params">(<span class="keyword">long</span> i, <span class="keyword">long</span> j)</span> </span>&#123; return (i &lt; j); &#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::sort(my_vector.begin(), my_vector.end(), my_comp_function);</span><br><span class="line"><span class="built_in">std</span>::sort(my_vector.begin(), my_vector.end(), my_comp_object);</span><br></pre></td></tr></table></figure>
+<h3 id="3-结构体封装函数指针"><a href="#3-结构体封装函数指针" class="headerlink" title="3 结构体封装函数指针"></a>3 结构体封装函数指针</h3><p>在Linux内核源码中经常会用到这种回调函数形式。具体如下列代码所示，其中A1就是main函数，B是call_back函数，A2是device结构体（本质上是A2的成员call_fun）。过程就是main调用call_back，call_back回调main传给它的dev中的call_fun。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">int</span> <span class="params">(*callback)</span> <span class="params">(<span class="keyword">void</span> *opaque)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> device </span><br><span class="line">&#123;</span><br><span class="line">  	<span class="keyword">char</span> name[<span class="number">10</span>];</span><br><span class="line">  	callback call_fun;</span><br><span class="line">&#125; device;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">call_name</span><span class="params">(<span class="keyword">void</span> *args)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"device name is %s\n"</span>, (char*)args);</span><br><span class="line">  	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> device my_device = &#123;</span><br><span class="line"> 	.name = <span class="string">"fuckDW"</span>,</span><br><span class="line">	.call_fun = call_name,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">call_back</span><span class="params">(device *dev)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"my name is : %s\n"</span>, __func__)</span><br><span class="line">  	dev-&gt;call_fun(dev-&gt;name);</span><br><span class="line">  	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	device your_device = &#123; </span><br><span class="line">	 	.name = <span class="string">"fuckDVD"</span>,</span><br><span class="line"> 		.call_fun = call_name,</span><br><span class="line">	&#125;;</span><br><span class="line">	call_back(&amp;your_device);</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/28/入职后解决的第一个疑难问题/" itemprop="url">
                   入职后解决的第一个疑难问题
                 </a>
@@ -489,6 +614,127 @@
               阅读全文 &raquo;
             </a>
           </div>
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/28/软件架构——解耦/" itemprop="url">
+                  解耦
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-28T12:58:40+08:00" content="2016-08-28">
+              2016-08-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/软件架构/" itemprop="url" rel="index">
+                    <span itemprop="name">软件架构</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/28/软件架构——解耦/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/28/软件架构——解耦/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>面对对象编程3大特点：封装、继承、多态</p>
+<p>下面的程序也是回调函数的实现，具体的</p>
+
+          
         
       
     </div>
@@ -1264,257 +1510,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/29/shell编程技巧/" itemprop="url">
-                  shell编程技巧
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-29T14:49:45+08:00" content="2016-04-29">
-              2016-04-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux开发/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux开发</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/29/shell编程技巧/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/29/shell编程技巧/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>不定时更新……</p>
-<h3 id="1-变量命名规则"><a href="#1-变量命名规则" class="headerlink" title="1 变量命名规则"></a>1 变量命名规则</h3><p>双引号内的特殊字符，如$，会被翻译；而单引号内的所有字符保持不变。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">d=8</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'$d'</span>   //display: <span class="variable">$d</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$d</span>"</span>   //display: 8</span><br></pre></td></tr></table></figure>
-<p>使用命令给变量赋值方式：$(命令)或者`命令`<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span>=<span class="string">`ls ./`</span></span><br></pre></td></tr></table></figure></p>
-<p>复杂的带变量的变量字符串可以用下面的方式确保它是字符串，这样在sed等里面就不会出错了</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arg=`<span class="built_in">echo</span> <span class="variable">$arg</span>`</span><br><span class="line">//sed <span class="string">"<span class="variable">$&#123;num&#125;</span>a <span class="variable">$&#123;arg&#125;</span>"</span> ...</span><br></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/29/shell编程技巧/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/28/Python爬取美拍视频/" itemprop="url">
-                  Python爬取美拍视频
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-28T12:30:34+08:00" content="2016-04-28">
-              2016-04-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/28/Python爬取美拍视频/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/28/Python爬取美拍视频/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>　　前段时间看到美拍上有很多hiphop街舞视频，所以想下载下来学习一下。于是就产生了用python批量下载的想法。花了一个下午分析了美拍网站的html信息和视频加载机制。成功实现了爬取带“hiphop”关键字的视频。</p>
-<h2 id="1-用美拍看视频的过程"><a href="#1-用美拍看视频的过程" class="headerlink" title="1 用美拍看视频的过程"></a>1 用美拍看视频的过程</h2><p>首先我们要明白：爬虫的目的就是用机器模仿人工操作，实现web的自动化请求（Request）与响应（Response）。因此我们首先要做的是熟悉人工操作的执行流程。</p>
-<p>第一步当然是先打开美拍首页，点击进入舞蹈相关页面。在视频多列模式下，美拍一页只能容纳24个视频，<strong>如果需要看到更多的视频需要把页面往下拉</strong>，这时会触发ajax异步刷新机制，实现页面的局部刷新，从而get到更多的视频。当页面连续刷新6次时，就达到了页面底部，这时不再刷新更多的视频，也就是说一个页面所列出的视频是有限的，最多为6*24个。但是页面底部会出现第一页、第二页的选项。所以，<strong>如果要继续看到更多的视频需要点击下一页按钮</strong>。只要重复上面的操作就可以欣赏到美拍上的所有舞蹈视频。这一章节虽然全都是废话，却是一个爬虫成形最关键的地方。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/28/Python爬取美拍视频/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1560,7 +1555,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1568,7 +1563,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1577,7 +1572,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
