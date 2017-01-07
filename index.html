@@ -275,6 +275,263 @@
             
               
                 
+                <a class="post-title-link" href="/2017/01/07/存储硬件基础/" itemprop="url">
+                  存储硬件基础
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-07T20:38:38+08:00" content="2017-01-07">
+              2017-01-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/云存储/" itemprop="url" rel="index">
+                    <span itemprop="name">云存储</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/07/存储硬件基础/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/07/存储硬件基础/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-ROM"><a href="#1-ROM" class="headerlink" title="1 ROM"></a>1 ROM</h2><p>Read Only Memory是只读存储器；<br>断电信息不丢失；<br>只能读，不能写；<br>如BIOS</p>
+<h2 id="2-RAM"><a href="#2-RAM" class="headerlink" title="2 RAM"></a>2 RAM</h2><p>RamdomAccessMemory是随机访问存储器；<br>读写时间相同；<br>断电数据丢失；<br>内存</p>
+<h3 id="2-1-DRAM"><a href="#2-1-DRAM" class="headerlink" title="2.1 DRAM"></a>2.1 DRAM</h3><p>DRAM是动态随机访问存储器；<br>电容式，每隔一段时间需要刷新一次；<br>速度较慢，价格较低，容量较大；<br>现代计算机内存</p>
+<h3 id="2-2-SRAM"><a href="#2-2-SRAM" class="headerlink" title="2.2 SRAM"></a>2.2 SRAM</h3><p>不需要刷新，速度快，价格高，容量小；<br>存储器件较多，所以存储密度低（集成度低）<br>CPU与内存之间的高速缓存<br>老式计算机内存</p>
+<h2 id="3-闪存"><a href="#3-闪存" class="headerlink" title="3 闪存"></a>3 闪存</h2><p>闪存是一种长寿命的非易失性存储器，提供数据的断电保护。数据删除以固定的区块为单位而不是以字节为单位。写入操作必须在存储单元为空或者已擦除的状态下进行，所以除第一次外每次写都要擦除。</p>
+<p>闪存是电子可擦除只读存储器（EEPROM）的变种，不同点在于EEPROM能在字节水平上进行删除和重写，而闪存需要块擦除。</p>
+<p>闪存和内存在性能上还是有很大差距：一般来说，CPU通过I/O Bus访问PCIe NAND Flash的响应时间在100微秒（1微秒=1000纳秒）这一数量级，而CPU通过Memory Bus与内存之间的响应时间数量级在100纳秒左右（部分DDR4-3000内存可以做到60纳秒左右）。</p>
+<h3 id="3-1-NOR型闪存"><a href="#3-1-NOR型闪存" class="headerlink" title="3.1 NOR型闪存"></a>3.1 NOR型闪存</h3><p><strong>特点</strong>：<br>偏向“内存”，有独立的地址线和数据线，传输效率高；<br>擦除操作要将目标内所有位都置为0，以64~128KB的块为单位，擦除操作时间5s，所以写速度慢；<br>读速度比NAND稍快；<br>价格较高，容量较小；<br>可以直接使用；<br>每个块的最大擦写次数是十万次</p>
+<p><strong>应用场合</strong>：通常用于存储程序代码并直接在闪存内运行，手机用NOR，所以存储容量通常不大；</p>
+<h3 id="3-2-NAND型闪存"><a href="#3-2-NAND型闪存" class="headerlink" title="3.2 NAND型闪存"></a>3.2 NAND型闪存</h3><p><strong>特点 ：</strong><br>偏向“硬盘”，地址线和数据线共用一条线；<br>擦除不需要置0，以8~32KB的块为单位，耗时最多4ms。<br>写速度比NOR快很多；<br>高存储密度，单元尺寸几乎是NOR的一半，所以价格较低，容量较大；<br>需要I/O接口和响应驱动才能使用；<br>每个块的最大擦写次数是一百万次</p>
+<p><strong>应用场合 ：</strong>：主要用来存储资料，如数码存储卡</p>
+<h2 id="4-NVDIMM"><a href="#4-NVDIMM" class="headerlink" title="4 NVDIMM"></a>4 NVDIMM</h2><p>一种集成了DRAM + 非易失性内存芯片的内存条规格，能够在完全断电的时候依然保存完整内存数据。NVDIMM也就是以内存插槽接入非易失性存储介质的存储方案的统称。</p>
+<h2 id="5-硬盘"><a href="#5-硬盘" class="headerlink" title="5 硬盘"></a>5 硬盘</h2><p>固态硬盘SSD（Solid State Drives）存储介质分为两种：闪存（主流）和DRAM（非主流）</p>
+<p>机械硬盘HDD也就是传统盘片、磁头等组成的存储设备。</p>
+<h2 id="6-硬盘数据接口"><a href="#6-硬盘数据接口" class="headerlink" title="6 硬盘数据接口"></a>6 硬盘数据接口</h2><h3 id="6-1-SATA标准"><a href="#6-1-SATA标准" class="headerlink" title="6.1 SATA标准"></a>6.1 SATA标准</h3><p>Serial Advanced Technology Attachment（Serial ATA）；<br><strong>SATA接口带宽与速度：</strong><br>SATA1.0， 带宽1GB/s，速度150MB/s<br>SATA2.0， 带宽3GB/s，速度300MB/s<br>SATA3.0， 带宽6GB/s，速度600MB/s</p>
+<p>SATA接口已经难以满足速率更高的SSD需求。</p>
+<h3 id="6-2-PCI-e标准"><a href="#6-2-PCI-e标准" class="headerlink" title="6.2 PCI-e标准"></a>6.2 PCI-e标准</h3><p>PCI-Express是最新的总线和接口标准；性能更好</p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/17/设计模式/" itemprop="url">
+                  设计模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-17T23:14:27+08:00" content="2016-09-17">
+              2016-09-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/软件架构/" itemprop="url" rel="index">
+                    <span itemprop="name">软件架构</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/17/设计模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/17/设计模式/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本文参考了《大话设计模式》，为了得到这本书我不得不做了一回公司三营培训的班长。我发现如果我们以游戏人生的态度做事，就会把事情的结果看的很淡，这样做起事来更轻松，这个经验用来处理人际关系屡试不爽。</p>
+<p>回归正题，曾经大学只会编程的时候，我写的代码就是一锅粥，什么解耦了、分块了都不知道怎么实现，对面对对象的理解也只是理论上知道类、继承、多态等是什么，对于怎么做还是缺乏实践。看了设计模式才知道一点点眉目，第一次接触到设计模式，相见恨晚，不禁感慨原来程序界的大神早已把我们凡人的困惑解决了。</p>
+<h3 id="1-简单工厂模式"><a href="#1-简单工厂模式" class="headerlink" title="1 简单工厂模式"></a>1 简单工厂模式</h3>
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/15/回调函数/" itemprop="url">
                   回调函数
                 </a>
@@ -344,13 +601,134 @@
 
       
         
-          <p>回调函数，顾名思义就是A1调用函数B，B还要返回来调用A2，其中A1和A2都是A的一部分。那B是怎么返回来调用A2的呢？就是通过A1传递给B的函数指针。那回调函数的作用是什么呢？为什幺用回调函数呢？我的理解是增加灵活性，如果没有回调机制那STL中的sort等算法作用就不会这么强大了。</p>
-<h3 id="1-基本用法"><a href="#1-基本用法" class="headerlink" title="1 基本用法"></a>1 基本用法</h3><p>回调函数的基本用法如下代码所示，通过函数指针做B的参数，然后传递A2的函数地址，在B中调用A2实现回调，执行A1最终返回的是2。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">int B(int (*func)())</span><br><span class="line">&#123;</span><br><span class="line">    return func();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int A2()</span><br><span class="line">&#123;</span><br><span class="line">    return 2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int A1()</span><br><span class="line">&#123;</span><br><span class="line">    return B(&amp;A2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+          <p>回调函数，顾名思义就是A1调用函数B，B还要返回来调用A2，其中A1和A2都是A的一部分。那B是怎么返回来调用A2的呢？就是通过A1传递给B的函数指针。形式上来说，回调函数都包含两个部分：函数指针赋值、函数指针执行。那回调函数的作用是什么呢？为什幺用回调函数呢？我的理解是增加灵活性，如果没有回调机制那STL中的sort等算法作用就不会这么强大了。</p>
+<h3 id="1-基本用法"><a href="#1-基本用法" class="headerlink" title="1 基本用法"></a>1 基本用法</h3><p>回调函数的基本用法如下代码所示，通过函数指针做B的参数，然后传递A2的函数地址，在B中调用A2实现回调，执行A1最终返回的是2。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">int B(int (*func)())</span><br><span class="line">&#123;</span><br><span class="line">    return func();		//函数指针执行</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int A2()</span><br><span class="line">&#123;</span><br><span class="line">    return 2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int A1()</span><br><span class="line">&#123;</span><br><span class="line">    return B(&amp;A2);		//函数指针赋值</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/09/15/回调函数/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/10/软件架构——解耦/" itemprop="url">
+                  解耦
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-10T12:58:40+08:00" content="2016-09-10">
+              2016-09-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/软件架构/" itemprop="url" rel="index">
+                    <span itemprop="name">软件架构</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/10/软件架构——解耦/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/10/软件架构——解耦/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>面对对象编程3大特点：封装、继承、多态</p>
+<p>下面的程序也是回调函数的实现，具体的</p>
+
+          
         
       
     </div>
@@ -659,127 +1037,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/08/28/软件架构——解耦/" itemprop="url">
-                  解耦
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-28T12:58:40+08:00" content="2016-08-28">
-              2016-08-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/软件架构/" itemprop="url" rel="index">
-                    <span itemprop="name">软件架构</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/28/软件架构——解耦/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/28/软件架构——解耦/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>面对对象编程3大特点：封装、继承、多态</p>
-<p>下面的程序也是回调函数的实现，具体的</p>
-
-          
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/08/28/Linux操作技巧/" itemprop="url">
                   Linux操作技巧
                 </a>
@@ -978,7 +1235,7 @@
           <p>不定时更新……</p>
 <p>1 为字符串使用固定大小栈缓冲区，而不是动态分配，创建资源库，以减少分配对象的开销。池的思想。</p>
 <p>2 c语言中实现C++作用：</p>
-<p>&ensp;&ensp;模块内部使用的接口一个文件，对外接口单独头文件</p>
+<p>&ensp;&ensp;模块内部使用的接口一个头文件，对外接口单独头文件，头文件应该能够独立编译</p>
 <p>&ensp;&ensp;static全局变量相当于类的私有变量，可以通过一个对外接口访问，以此限制对其直接操作</p>
 <p>&ensp;&ensp;static函数不需要放在头文件中，因为它只在本文件内可见，最好在c文件的头部声明</p>
 <p>&ensp;&ensp;回调函数实现方法.</p>
@@ -1261,253 +1518,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/04/宿主机上修改虚拟机镜像/" itemprop="url">
-                  宿主机上修改虚拟机镜像
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-04T13:03:41+08:00" content="2016-05-04">
-              2016-05-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/云计算/" itemprop="url" rel="index">
-                    <span itemprop="name">云计算</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/04/宿主机上修改虚拟机镜像/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/04/宿主机上修改虚拟机镜像/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在宿主机上编辑虚拟机镜像中的内容有多种方法，我知道的有以下三种：</p>
-<h2 id="1-使用qemu-nbd命令"><a href="#1-使用qemu-nbd命令" class="headerlink" title="1 使用qemu-nbd命令"></a>1 使用qemu-nbd命令</h2><p>使用qemu-nbd挂载镜像到宿主机目录中。先查看linux内核的nbd模块是否加载。命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># modinfo nbd</span></span><br></pre></td></tr></table></figure></p>
-<p>如果nbd没有加载，则先安装nbd模块：<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/04/宿主机上修改虚拟机镜像/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/30/虚拟机操作/" itemprop="url">
-                  虚拟机操作
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-30T13:03:41+08:00" content="2016-04-30">
-              2016-04-30
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/云计算/" itemprop="url" rel="index">
-                    <span itemprop="name">云计算</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/30/虚拟机操作/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/30/虚拟机操作/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><strong>最有用的文档是官方文档!</strong><br><strong>最有用的文档是官方文档!</strong><br><strong>最有用的文档是官方文档!</strong><br>重要的事情说三遍!!!</p>
-<h2 id="1-虚拟机安装"><a href="#1-虚拟机安装" class="headerlink" title="1 虚拟机安装"></a>1 虚拟机安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum -y install qemu-kvm libvirt python-virtinst bridge-utils</span></span><br><span class="line"><span class="comment"># qemu-img create -f qcow2 vm1.img 50G </span></span><br><span class="line"><span class="comment"># virt-install --name=vm$1 --boot cdrom,menu=on --ram=8192 --vcpus=8 --os-type=linux -c /root/dvd/CentOS-7.0-1406-x86_64-DVD.iso --disk path=/root/dvd/vm1.img,size=50,format=qcow2,bus=ide --network bridge=br0 --force --graphics vnc,listen=0.0.0.0,port=5901</span></span><br></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/30/虚拟机操作/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1553,7 +1563,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1561,7 +1571,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1570,7 +1580,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">39</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -1632,7 +1642,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

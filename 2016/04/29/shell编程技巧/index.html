@@ -96,7 +96,7 @@
 使用命令给变量赋值方式：$(命令)或者`命令`1var=`ls ./`
 复杂的带变量的变量字符串可以用下面的方式确保它是字符串，这样在sed等里面就不会出错了
 12arg=`echo $a">
-<meta property="og:updated_time" content="2016-08-28T12:46:43.000Z">
+<meta property="og:updated_time" content="2016-12-18T14:07:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="shell编程技巧">
 <meta name="twitter:description" content="不定时更新……
@@ -537,7 +537,7 @@
 </tr>
 </tbody>
 </table>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一行不会被特殊处理，第一行的分隔符是“ ”</span></span><br><span class="line"><span class="keyword">cat</span> /etc/passwd | awk '&#123;FS=<span class="string">":"</span>&#125; <span class="variable">$3</span> &lt; 10 &#123;<span class="keyword">print</span> <span class="variable">$1</span> <span class="string">"\t"</span> <span class="variable">$3&#125;</span>'</span><br><span class="line"><span class="comment">//第一行会被特殊处理</span></span><br><span class="line"><span class="keyword">cat</span> /etc/passwd | awk 'BEGIN &#123;FS=<span class="string">":"</span>&#125; <span class="variable">$3</span> &lt; 10 &#123;<span class="keyword">print</span> <span class="variable">$1</span> <span class="string">"\t"</span> <span class="variable">$3&#125;</span>'</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">cat</span> diff.txt | awk 'NR==1&#123;printf <span class="string">"%10s %10s\n"</span>, <span class="variable">$1</span>, <span class="variable">$2&#125;</span></span><br><span class="line">NR&gt;=2&#123;<span class="keyword">total</span> = <span class="variable">$2</span> + <span class="variable">$3</span> + <span class="variable">$4</span> </span><br><span class="line">printf <span class="string">"%10s %10s\n"</span>, <span class="variable">$2</span>, <span class="keyword">total</span>&#125;'</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">cat</span> diff.txt | awk '&#123;<span class="keyword">if</span> (NR==1) printf <span class="string">"%10s %10s\n"</span>, <span class="variable">$1</span>, <span class="variable">$2&#125;</span></span><br><span class="line">&#123;<span class="keyword">if</span> (NR&gt;=2) <span class="keyword">total</span> = <span class="variable">$2</span> + <span class="variable">$3</span> + <span class="variable">$4</span> </span><br><span class="line">printf <span class="string">"%10s %10s\n"</span>, <span class="variable">$2</span>, <span class="keyword">total</span>&#125;'</span><br><span class="line"><span class="comment">//脚本第二个参数开始的所有参数</span></span><br><span class="line">echo $* | awk '&#123;<span class="keyword">for</span>(i=2; i&lt;=NF; i++) <span class="keyword">print</span> <span class="variable">$i&#125;</span>'</span><br></pre></td></tr></table></figure>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一行不会被特殊处理，第一行的分隔符是“ ”</span></span><br><span class="line"><span class="keyword">cat</span> /etc/passwd | awk '&#123;FS=<span class="string">":"</span>&#125; <span class="variable">$3</span> &lt; 10 &#123;<span class="keyword">print</span> <span class="variable">$1</span> <span class="string">"\t"</span> <span class="variable">$3&#125;</span>'</span><br><span class="line"><span class="comment">//第一行会被特殊处理</span></span><br><span class="line"><span class="keyword">cat</span> /etc/passwd | awk 'BEGIN &#123;FS=<span class="string">":"</span>&#125; <span class="variable">$3</span> &lt; 10 &#123;<span class="keyword">print</span> <span class="variable">$1</span> <span class="string">"\t"</span> <span class="variable">$3&#125;</span>'</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">cat</span> diff.txt | awk 'NR==1&#123;printf <span class="string">"%10s %10s\n"</span>, <span class="variable">$1</span>, <span class="variable">$2&#125;</span></span><br><span class="line">NR&gt;=2&#123;<span class="keyword">total</span> = <span class="variable">$2</span> + <span class="variable">$3</span> + <span class="variable">$4</span> </span><br><span class="line">printf <span class="string">"%10s %10s\n"</span>, <span class="variable">$2</span>, <span class="keyword">total</span>&#125;'</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">cat</span> diff.txt | awk '&#123;<span class="keyword">if</span> (NR==1) printf <span class="string">"%10s %10s\n"</span>, <span class="variable">$1</span>, <span class="variable">$2&#125;</span></span><br><span class="line">&#123;<span class="keyword">if</span> (NR&gt;=2) <span class="keyword">total</span> = <span class="variable">$2</span> + <span class="variable">$3</span> + <span class="variable">$4</span> </span><br><span class="line">printf <span class="string">"%10s %10s\n"</span>, <span class="variable">$2</span>, <span class="keyword">total</span>&#125;'</span><br><span class="line"><span class="comment">//脚本第二个参数开始的所有参数</span></span><br><span class="line">echo $* | awk '&#123;<span class="keyword">for</span>(i=2; i&lt;=NF; i++) <span class="keyword">print</span> <span class="variable">$i&#125;</span>'</span><br><span class="line"></span><br><span class="line"><span class="comment">//字典功能</span></span><br><span class="line">awk '\</span><br><span class="line">&#123; <span class="keyword">for</span> (i=1; i&lt;=NF; i++) &#123; ++<span class="keyword">D</span>[<span class="variable">$i</span>]; &#125; &#125;\</span><br><span class="line">END &#123; <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="keyword">D</span>) &#123; <span class="keyword">print</span> i, <span class="keyword">D</span>[i] &#125; &#125;\</span><br><span class="line">' words.txt | <span class="keyword">sort</span> -nr -k 2</span><br></pre></td></tr></table></figure>
 <h3 id="9-shell-script编程"><a href="#9-shell-script编程" class="headerlink" title="9 shell script编程"></a>9 shell script编程</h3><ul>
 <li><p><strong>计算</strong></p>
 <figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var=<span class="symbol">$</span>((运算内容))</span><br><span class="line">echo <span class="symbol">$</span>(( <span class="number">13</span> % <span class="number">3</span> ))</span><br><span class="line"><span class="keyword">sum</span>=<span class="symbol">$</span>((<span class="symbol">$</span><span class="number">1</span> * <span class="symbol">$</span><span class="number">2</span>))</span><br></pre></td></tr></table></figure>
@@ -763,7 +763,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -771,7 +771,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -780,7 +780,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">39</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -853,7 +853,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

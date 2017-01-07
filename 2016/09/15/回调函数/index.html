@@ -80,19 +80,19 @@
 
 
 
-<meta name="description" content="回调函数，顾名思义就是A1调用函数B，B还要返回来调用A2，其中A1和A2都是A的一部分。那B是怎么返回来调用A2的呢？就是通过A1传递给B的函数指针。那回调函数的作用是什么呢？为什幺用回调函数呢？我的理解是增加灵活性，如果没有回调机制那STL中的sort等算法作用就不会这么强大了。
-1 基本用法回调函数的基本用法如下代码所示，通过函数指针做B的参数，然后传递A2的函数地址，在B中调用A2实现回调">
+<meta name="description" content="回调函数，顾名思义就是A1调用函数B，B还要返回来调用A2，其中A1和A2都是A的一部分。那B是怎么返回来调用A2的呢？就是通过A1传递给B的函数指针。形式上来说，回调函数都包含两个部分：函数指针赋值、函数指针执行。那回调函数的作用是什么呢？为什幺用回调函数呢？我的理解是增加灵活性，如果没有回调机制那STL中的sort等算法作用就不会这么强大了。
+1 基本用法回调函数的基本用法如下代码所示，通过函">
 <meta property="og:type" content="article">
 <meta property="og:title" content="回调函数">
 <meta property="og:url" content="http://davi.space/2016/09/15/回调函数/index.html">
 <meta property="og:site_name" content="Davi">
-<meta property="og:description" content="回调函数，顾名思义就是A1调用函数B，B还要返回来调用A2，其中A1和A2都是A的一部分。那B是怎么返回来调用A2的呢？就是通过A1传递给B的函数指针。那回调函数的作用是什么呢？为什幺用回调函数呢？我的理解是增加灵活性，如果没有回调机制那STL中的sort等算法作用就不会这么强大了。
-1 基本用法回调函数的基本用法如下代码所示，通过函数指针做B的参数，然后传递A2的函数地址，在B中调用A2实现回调">
-<meta property="og:updated_time" content="2016-09-17T14:55:20.000Z">
+<meta property="og:description" content="回调函数，顾名思义就是A1调用函数B，B还要返回来调用A2，其中A1和A2都是A的一部分。那B是怎么返回来调用A2的呢？就是通过A1传递给B的函数指针。形式上来说，回调函数都包含两个部分：函数指针赋值、函数指针执行。那回调函数的作用是什么呢？为什幺用回调函数呢？我的理解是增加灵活性，如果没有回调机制那STL中的sort等算法作用就不会这么强大了。
+1 基本用法回调函数的基本用法如下代码所示，通过函">
+<meta property="og:updated_time" content="2016-10-22T02:54:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="回调函数">
-<meta name="twitter:description" content="回调函数，顾名思义就是A1调用函数B，B还要返回来调用A2，其中A1和A2都是A的一部分。那B是怎么返回来调用A2的呢？就是通过A1传递给B的函数指针。那回调函数的作用是什么呢？为什幺用回调函数呢？我的理解是增加灵活性，如果没有回调机制那STL中的sort等算法作用就不会这么强大了。
-1 基本用法回调函数的基本用法如下代码所示，通过函数指针做B的参数，然后传递A2的函数地址，在B中调用A2实现回调">
+<meta name="twitter:description" content="回调函数，顾名思义就是A1调用函数B，B还要返回来调用A2，其中A1和A2都是A的一部分。那B是怎么返回来调用A2的呢？就是通过A1传递给B的函数指针。形式上来说，回调函数都包含两个部分：函数指针赋值、函数指针执行。那回调函数的作用是什么呢？为什幺用回调函数呢？我的理解是增加灵活性，如果没有回调机制那STL中的sort等算法作用就不会这么强大了。
+1 基本用法回调函数的基本用法如下代码所示，通过函">
 
 
 
@@ -342,13 +342,13 @@
       
 
       
-        <p>回调函数，顾名思义就是A1调用函数B，B还要返回来调用A2，其中A1和A2都是A的一部分。那B是怎么返回来调用A2的呢？就是通过A1传递给B的函数指针。那回调函数的作用是什么呢？为什幺用回调函数呢？我的理解是增加灵活性，如果没有回调机制那STL中的sort等算法作用就不会这么强大了。</p>
-<h3 id="1-基本用法"><a href="#1-基本用法" class="headerlink" title="1 基本用法"></a>1 基本用法</h3><p>回调函数的基本用法如下代码所示，通过函数指针做B的参数，然后传递A2的函数地址，在B中调用A2实现回调，执行A1最终返回的是2。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">int B(int (*func)())</span><br><span class="line">&#123;</span><br><span class="line">    return func();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int A2()</span><br><span class="line">&#123;</span><br><span class="line">    return 2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int A1()</span><br><span class="line">&#123;</span><br><span class="line">    return B(&amp;A2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <p>回调函数，顾名思义就是A1调用函数B，B还要返回来调用A2，其中A1和A2都是A的一部分。那B是怎么返回来调用A2的呢？就是通过A1传递给B的函数指针。形式上来说，回调函数都包含两个部分：函数指针赋值、函数指针执行。那回调函数的作用是什么呢？为什幺用回调函数呢？我的理解是增加灵活性，如果没有回调机制那STL中的sort等算法作用就不会这么强大了。</p>
+<h3 id="1-基本用法"><a href="#1-基本用法" class="headerlink" title="1 基本用法"></a>1 基本用法</h3><p>回调函数的基本用法如下代码所示，通过函数指针做B的参数，然后传递A2的函数地址，在B中调用A2实现回调，执行A1最终返回的是2。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">int B(int (*func)())</span><br><span class="line">&#123;</span><br><span class="line">    return func();		//函数指针执行</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int A2()</span><br><span class="line">&#123;</span><br><span class="line">    return 2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int A1()</span><br><span class="line">&#123;</span><br><span class="line">    return B(&amp;A2);		//函数指针赋值</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
 <h3 id="2-仿函数"><a href="#2-仿函数" class="headerlink" title="2 仿函数"></a>2 仿函数</h3><p>C++中常见的谓词函数/仿函数（functor）就是回调函数的一种实现：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> comp &#123;</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		return a &lt; b;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;my_comp_object;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">my_comp_function</span><span class="params">(<span class="keyword">long</span> i, <span class="keyword">long</span> j)</span> </span>&#123; return (i &lt; j); &#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::sort(my_vector.begin(), my_vector.end(), my_comp_function);</span><br><span class="line"><span class="built_in">std</span>::sort(my_vector.begin(), my_vector.end(), my_comp_object);</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> comp &#123;</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		return a &lt; b;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;my_comp_object;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">my_comp_function</span><span class="params">(<span class="keyword">long</span> i, <span class="keyword">long</span> j)</span> </span>&#123; return (i &lt; j); &#125;			<span class="comment">//函数指针执行</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::sort(my_vector.begin(), my_vector.end(), my_comp_function);    <span class="comment">//函数指针赋值</span></span><br><span class="line"><span class="built_in">std</span>::sort(my_vector.begin(), my_vector.end(), my_comp_object);</span><br></pre></td></tr></table></figure>
 <h3 id="3-结构体封装函数指针"><a href="#3-结构体封装函数指针" class="headerlink" title="3 结构体封装函数指针"></a>3 结构体封装函数指针</h3><p>在Linux内核源码中经常会用到这种回调函数形式。具体如下列代码所示，其中A1就是main函数，B是call_back函数，A2是device结构体（本质上是A2的成员call_fun）。过程就是main调用call_back，call_back回调main传给它的dev中的call_fun。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">int</span> <span class="params">(*callback)</span> <span class="params">(<span class="keyword">void</span> *opaque)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> device </span><br><span class="line">&#123;</span><br><span class="line">  	<span class="keyword">char</span> name[<span class="number">10</span>];</span><br><span class="line">  	callback call_fun;</span><br><span class="line">&#125; device;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">call_name</span><span class="params">(<span class="keyword">void</span> *args)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"device name is %s\n"</span>, (char*)args);</span><br><span class="line">  	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> device my_device = &#123;</span><br><span class="line"> 	.name = <span class="string">"fuckDW"</span>,</span><br><span class="line">	.call_fun = call_name,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">call_back</span><span class="params">(device *dev)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"my name is : %s\n"</span>, __func__)</span><br><span class="line">  	dev-&gt;call_fun(dev-&gt;name);</span><br><span class="line">  	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	device your_device = &#123; </span><br><span class="line">	 	.name = <span class="string">"fuckDVD"</span>,</span><br><span class="line"> 		.call_fun = call_name,</span><br><span class="line">	&#125;;</span><br><span class="line">	call_back(&amp;your_device);</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">int</span> <span class="params">(*callback)</span> <span class="params">(<span class="keyword">void</span> *opaque)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> device </span><br><span class="line">&#123;</span><br><span class="line">  	<span class="keyword">char</span> name[<span class="number">10</span>];</span><br><span class="line">  	callback call_fun;</span><br><span class="line">&#125; device;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">call_name</span><span class="params">(<span class="keyword">void</span> *args)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"device name is %s\n"</span>, (char*)args);</span><br><span class="line">  	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> device my_device = &#123;</span><br><span class="line"> 	.name = <span class="string">"fuckDW"</span>,</span><br><span class="line">	.call_fun = call_name,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">call_back</span><span class="params">(device *dev)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"my name is : %s\n"</span>, __func__)</span><br><span class="line">  	dev-&gt;call_fun(dev-&gt;name);				<span class="comment">//执行</span></span><br><span class="line">  	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	device your_device = &#123; </span><br><span class="line">	 	.name = <span class="string">"fuckDVD"</span>,</span><br><span class="line"> 		.call_fun = call_name,			<span class="comment">//赋值</span></span><br><span class="line">	&#125;;</span><br><span class="line">	call_back(&amp;your_device);</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//还有一种形式</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	device your_device;</span><br><span class="line">	your_device.call_fun = call_name;	<span class="comment">//赋值</span></span><br><span class="line"></span><br><span class="line">	call_back(&amp;your_device);</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -372,13 +372,17 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/28/入职后解决的第一个疑难问题/" rel="next" title="入职后解决的第一个疑难问题">
-                <i class="fa fa-chevron-left"></i> 入职后解决的第一个疑难问题
+              <a href="/2016/09/10/软件架构——解耦/" rel="next" title="解耦">
+                <i class="fa fa-chevron-left"></i> 解耦
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/17/设计模式/" rel="prev" title="设计模式">
+                设计模式 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -450,7 +454,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -458,7 +462,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -467,7 +471,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">39</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -540,7 +544,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

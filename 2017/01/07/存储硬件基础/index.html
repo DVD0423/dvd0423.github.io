@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="软件架构,程序设计,解耦," />
+  <meta name="keywords" content="SSD,硬盘,存储," />
 
 
 
@@ -80,19 +80,25 @@
 
 
 
-<meta name="description" content="面对对象编程3大特点：封装、继承、多态
-下面的程序也是回调函数的实现，具体的">
+<meta name="description" content="1 ROMRead Only Memory是只读存储器；断电信息不丢失；只能读，不能写；如BIOS
+2 RAMRamdomAccessMemory是随机访问存储器；读写时间相同；断电数据丢失；内存
+2.1 DRAMDRAM是动态随机访问存储器；电容式，每隔一段时间需要刷新一次；速度较慢，价格较低，容量较大；现代计算机内存
+2.2 SRAM不需要刷新，速度快，价格高，容量小；存储器件较多，所以存储密">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解耦">
-<meta property="og:url" content="http://davi.space/2016/08/28/软件架构——解耦/index.html">
+<meta property="og:title" content="存储硬件基础">
+<meta property="og:url" content="http://davi.space/2017/01/07/存储硬件基础/index.html">
 <meta property="og:site_name" content="Davi">
-<meta property="og:description" content="面对对象编程3大特点：封装、继承、多态
-下面的程序也是回调函数的实现，具体的">
-<meta property="og:updated_time" content="2016-09-15T15:26:44.000Z">
+<meta property="og:description" content="1 ROMRead Only Memory是只读存储器；断电信息不丢失；只能读，不能写；如BIOS
+2 RAMRamdomAccessMemory是随机访问存储器；读写时间相同；断电数据丢失；内存
+2.1 DRAMDRAM是动态随机访问存储器；电容式，每隔一段时间需要刷新一次；速度较慢，价格较低，容量较大；现代计算机内存
+2.2 SRAM不需要刷新，速度快，价格高，容量小；存储器件较多，所以存储密">
+<meta property="og:updated_time" content="2017-01-07T12:39:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="解耦">
-<meta name="twitter:description" content="面对对象编程3大特点：封装、继承、多态
-下面的程序也是回调函数的实现，具体的">
+<meta name="twitter:title" content="存储硬件基础">
+<meta name="twitter:description" content="1 ROMRead Only Memory是只读存储器；断电信息不丢失；只能读，不能写；如BIOS
+2 RAMRamdomAccessMemory是随机访问存储器；读写时间相同；断电数据丢失；内存
+2.1 DRAMDRAM是动态随机访问存储器；电容式，每隔一段时间需要刷新一次；速度较慢，价格较低，容量较大；现代计算机内存
+2.2 SRAM不需要刷新，速度快，价格高，容量小；存储器件较多，所以存储密">
 
 
 
@@ -110,7 +116,7 @@
   };
 </script>
 
-  <title> 解耦 | Davi </title>
+  <title> 存储硬件基础 | Davi </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -276,7 +282,7 @@
             
             
               
-                解耦
+                存储硬件基础
               
             
           </h1>
@@ -288,8 +294,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-28T12:58:40+08:00" content="2016-08-28">
-              2016-08-28
+            <time itemprop="dateCreated" datetime="2017-01-07T20:38:38+08:00" content="2017-01-07">
+              2017-01-07
             </time>
           </span>
 
@@ -302,8 +308,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/软件架构/" itemprop="url" rel="index">
-                    <span itemprop="name">软件架构</span>
+                  <a href="/categories/云存储/" itemprop="url" rel="index">
+                    <span itemprop="name">云存储</span>
                   </a>
                 </span>
 
@@ -318,8 +324,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/28/软件架构——解耦/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/28/软件架构——解耦/" itemprop="commentsCount"></span>
+                <a href="/2017/01/07/存储硬件基础/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/07/存储硬件基础/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -342,8 +348,23 @@
       
 
       
-        <p>面对对象编程3大特点：封装、继承、多态</p>
-<p>下面的程序也是回调函数的实现，具体的</p>
+        <h2 id="1-ROM"><a href="#1-ROM" class="headerlink" title="1 ROM"></a>1 ROM</h2><p>Read Only Memory是只读存储器；<br>断电信息不丢失；<br>只能读，不能写；<br>如BIOS</p>
+<h2 id="2-RAM"><a href="#2-RAM" class="headerlink" title="2 RAM"></a>2 RAM</h2><p>RamdomAccessMemory是随机访问存储器；<br>读写时间相同；<br>断电数据丢失；<br>内存</p>
+<h3 id="2-1-DRAM"><a href="#2-1-DRAM" class="headerlink" title="2.1 DRAM"></a>2.1 DRAM</h3><p>DRAM是动态随机访问存储器；<br>电容式，每隔一段时间需要刷新一次；<br>速度较慢，价格较低，容量较大；<br>现代计算机内存</p>
+<h3 id="2-2-SRAM"><a href="#2-2-SRAM" class="headerlink" title="2.2 SRAM"></a>2.2 SRAM</h3><p>不需要刷新，速度快，价格高，容量小；<br>存储器件较多，所以存储密度低（集成度低）<br>CPU与内存之间的高速缓存<br>老式计算机内存</p>
+<h2 id="3-闪存"><a href="#3-闪存" class="headerlink" title="3 闪存"></a>3 闪存</h2><p>闪存是一种长寿命的非易失性存储器，提供数据的断电保护。数据删除以固定的区块为单位而不是以字节为单位。写入操作必须在存储单元为空或者已擦除的状态下进行，所以除第一次外每次写都要擦除。</p>
+<p>闪存是电子可擦除只读存储器（EEPROM）的变种，不同点在于EEPROM能在字节水平上进行删除和重写，而闪存需要块擦除。</p>
+<p>闪存和内存在性能上还是有很大差距：一般来说，CPU通过I/O Bus访问PCIe NAND Flash的响应时间在100微秒（1微秒=1000纳秒）这一数量级，而CPU通过Memory Bus与内存之间的响应时间数量级在100纳秒左右（部分DDR4-3000内存可以做到60纳秒左右）。</p>
+<h3 id="3-1-NOR型闪存"><a href="#3-1-NOR型闪存" class="headerlink" title="3.1 NOR型闪存"></a>3.1 NOR型闪存</h3><p><strong>特点</strong>：<br>偏向“内存”，有独立的地址线和数据线，传输效率高；<br>擦除操作要将目标内所有位都置为0，以64~128KB的块为单位，擦除操作时间5s，所以写速度慢；<br>读速度比NAND稍快；<br>价格较高，容量较小；<br>可以直接使用；<br>每个块的最大擦写次数是十万次</p>
+<p><strong>应用场合</strong>：通常用于存储程序代码并直接在闪存内运行，手机用NOR，所以存储容量通常不大；</p>
+<h3 id="3-2-NAND型闪存"><a href="#3-2-NAND型闪存" class="headerlink" title="3.2 NAND型闪存"></a>3.2 NAND型闪存</h3><p><strong>特点 ：</strong><br>偏向“硬盘”，地址线和数据线共用一条线；<br>擦除不需要置0，以8~32KB的块为单位，耗时最多4ms。<br>写速度比NOR快很多；<br>高存储密度，单元尺寸几乎是NOR的一半，所以价格较低，容量较大；<br>需要I/O接口和响应驱动才能使用；<br>每个块的最大擦写次数是一百万次</p>
+<p><strong>应用场合 ：</strong>：主要用来存储资料，如数码存储卡</p>
+<h2 id="4-NVDIMM"><a href="#4-NVDIMM" class="headerlink" title="4 NVDIMM"></a>4 NVDIMM</h2><p>一种集成了DRAM + 非易失性内存芯片的内存条规格，能够在完全断电的时候依然保存完整内存数据。NVDIMM也就是以内存插槽接入非易失性存储介质的存储方案的统称。</p>
+<h2 id="5-硬盘"><a href="#5-硬盘" class="headerlink" title="5 硬盘"></a>5 硬盘</h2><p>固态硬盘SSD（Solid State Drives）存储介质分为两种：闪存（主流）和DRAM（非主流）</p>
+<p>机械硬盘HDD也就是传统盘片、磁头等组成的存储设备。</p>
+<h2 id="6-硬盘数据接口"><a href="#6-硬盘数据接口" class="headerlink" title="6 硬盘数据接口"></a>6 硬盘数据接口</h2><h3 id="6-1-SATA标准"><a href="#6-1-SATA标准" class="headerlink" title="6.1 SATA标准"></a>6.1 SATA标准</h3><p>Serial Advanced Technology Attachment（Serial ATA）；<br><strong>SATA接口带宽与速度：</strong><br>SATA1.0， 带宽1GB/s，速度150MB/s<br>SATA2.0， 带宽3GB/s，速度300MB/s<br>SATA3.0， 带宽6GB/s，速度600MB/s</p>
+<p>SATA接口已经难以满足速率更高的SSD需求。</p>
+<h3 id="6-2-PCI-e标准"><a href="#6-2-PCI-e标准" class="headerlink" title="6.2 PCI-e标准"></a>6.2 PCI-e标准</h3><p>PCI-Express是最新的总线和接口标准；性能更好</p>
 
       
     </div>
@@ -364,11 +385,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/软件架构/" rel="tag">#软件架构</a>
+            <a href="/tags/SSD/" rel="tag">#SSD</a>
           
-            <a href="/tags/程序设计/" rel="tag">#程序设计</a>
+            <a href="/tags/硬盘/" rel="tag">#硬盘</a>
           
-            <a href="/tags/解耦/" rel="tag">#解耦</a>
+            <a href="/tags/存储/" rel="tag">#存储</a>
           
         </div>
       
@@ -377,17 +398,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/28/Linux操作技巧/" rel="next" title="Linux操作技巧">
-                <i class="fa fa-chevron-left"></i> Linux操作技巧
+              <a href="/2016/09/17/设计模式/" rel="next" title="设计模式">
+                <i class="fa fa-chevron-left"></i> 设计模式
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/28/虚拟机内核crash分析/" rel="prev" title="虚拟机内核crash分析">
-                虚拟机内核crash分析 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -413,8 +430,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/28/软件架构——解耦/"
-           data-title="解耦" data-url="http://davi.space/2016/08/28/软件架构——解耦/">
+      <div class="ds-thread" data-thread-key="2017/01/07/存储硬件基础/"
+           data-title="存储硬件基础" data-url="http://davi.space/2017/01/07/存储硬件基础/">
       </div>
     
   </div>
@@ -459,7 +476,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -467,7 +484,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -476,7 +493,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">39</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -530,7 +547,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-ROM"><span class="nav-text">1 ROM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-RAM"><span class="nav-text">2 RAM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-DRAM"><span class="nav-text">2.1 DRAM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-SRAM"><span class="nav-text">2.2 SRAM</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-闪存"><span class="nav-text">3 闪存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-NOR型闪存"><span class="nav-text">3.1 NOR型闪存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-NAND型闪存"><span class="nav-text">3.2 NAND型闪存</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-NVDIMM"><span class="nav-text">4 NVDIMM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-硬盘"><span class="nav-text">5 硬盘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-硬盘数据接口"><span class="nav-text">6 硬盘数据接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-SATA标准"><span class="nav-text">6.1 SATA标准</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-PCI-e标准"><span class="nav-text">6.2 PCI-e标准</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
@@ -549,7 +566,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

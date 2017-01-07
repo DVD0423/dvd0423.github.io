@@ -83,9 +83,9 @@
 <meta name="description" content="不定时更新……
 1 为字符串使用固定大小栈缓冲区，而不是动态分配，创建资源库，以减少分配对象的开销。池的思想。
 2 c语言中实现C++作用：
-&amp;ensp;&amp;ensp;模块内部使用的接口一个文件，对外接口单独头文件
+&amp;ensp;&amp;ensp;模块内部使用的接口一个头文件，对外接口单独头文件，头文件应该能够独立编译
 &amp;ensp;&amp;ensp;static全局变量相当于类的私有变量，可以通过一个对外接口访问，以此限制对其直接操作
-&amp;ensp;&amp;ensp;static函数不需要放在头文件中，因为它只在本文">
+&amp;ensp;&amp;ensp;static函数不需要放">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C语言基础">
 <meta property="og:url" content="http://davi.space/2016/08/21/C语言基础/index.html">
@@ -93,18 +93,18 @@
 <meta property="og:description" content="不定时更新……
 1 为字符串使用固定大小栈缓冲区，而不是动态分配，创建资源库，以减少分配对象的开销。池的思想。
 2 c语言中实现C++作用：
-&amp;ensp;&amp;ensp;模块内部使用的接口一个文件，对外接口单独头文件
+&amp;ensp;&amp;ensp;模块内部使用的接口一个头文件，对外接口单独头文件，头文件应该能够独立编译
 &amp;ensp;&amp;ensp;static全局变量相当于类的私有变量，可以通过一个对外接口访问，以此限制对其直接操作
-&amp;ensp;&amp;ensp;static函数不需要放在头文件中，因为它只在本文">
-<meta property="og:updated_time" content="2016-08-31T14:30:57.000Z">
+&amp;ensp;&amp;ensp;static函数不需要放">
+<meta property="og:updated_time" content="2016-10-22T02:39:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言基础">
 <meta name="twitter:description" content="不定时更新……
 1 为字符串使用固定大小栈缓冲区，而不是动态分配，创建资源库，以减少分配对象的开销。池的思想。
 2 c语言中实现C++作用：
-&amp;ensp;&amp;ensp;模块内部使用的接口一个文件，对外接口单独头文件
+&amp;ensp;&amp;ensp;模块内部使用的接口一个头文件，对外接口单独头文件，头文件应该能够独立编译
 &amp;ensp;&amp;ensp;static全局变量相当于类的私有变量，可以通过一个对外接口访问，以此限制对其直接操作
-&amp;ensp;&amp;ensp;static函数不需要放在头文件中，因为它只在本文">
+&amp;ensp;&amp;ensp;static函数不需要放">
 
 
 
@@ -357,7 +357,7 @@
         <p>不定时更新……</p>
 <p>1 为字符串使用固定大小栈缓冲区，而不是动态分配，创建资源库，以减少分配对象的开销。池的思想。</p>
 <p>2 c语言中实现C++作用：</p>
-<p>&ensp;&ensp;模块内部使用的接口一个文件，对外接口单独头文件</p>
+<p>&ensp;&ensp;模块内部使用的接口一个头文件，对外接口单独头文件，头文件应该能够独立编译</p>
 <p>&ensp;&ensp;static全局变量相当于类的私有变量，可以通过一个对外接口访问，以此限制对其直接操作</p>
 <p>&ensp;&ensp;static函数不需要放在头文件中，因为它只在本文件内可见，最好在c文件的头部声明</p>
 <p>&ensp;&ensp;回调函数实现方法.</p>
@@ -372,6 +372,7 @@
 <p>6 __FILE__ 、__LINE__ 、__func__ 、__DATE__ 、__TIME__</p>
 <p>7 c++扩展</p>
 <figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __cplusplus</span></span><br><span class="line">    <span class="keyword">extern</span> <span class="string">"c"</span> &#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">	...</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __cplusplus</span></span><br><span class="line">	&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>extern “c”用于禁止c++的函数重载的编译方式</p>
 <p>8 ptr是具体结构体实体内的成员指针，type是结构体名，member是结构体成员名 </p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> offsetof(type, member) ((size_t) (((char *)&amp;((type *)0)-&gt;member)))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> container_of(ptr, type, member) \</span><br><span class="line">(type *)((char *)(ptr) - (char *) &amp;((type *)0)-&gt;member))</span></span><br><span class="line"><span class="comment">//下面两个用于类似内核中list_head的结构体中。</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> list_entry(ptr, type, member) container_of(ptr, type, member)</span></span><br><span class="line"><span class="comment">//pos结构体实体指针名（是一个变量），head指结构体实体内部的链表结构体指针（上面的ptr），member指链表结构在结构体中的成员名</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> list_for_each_entry(pos, head, member)	\</span><br><span class="line">	for( pos = list_entry((head)-&gt;next, typeof(*pos), member); \</span><br><span class="line">		&amp;pos-&gt;member != (head);	\</span><br><span class="line">		pos = list_entry(pos-&gt;member.next, typeof(*pos), member))</span></span><br></pre></td></tr></table></figure>
 <p>9 定时器</p>
@@ -397,6 +398,11 @@
 <p>21 atof、atoi、atol等是不带进制的转换；strtod、strtol、strtoul等是带进制的转换。</p>
 <p>22 getopt_long参数处理函数</p>
 <p>23 regex.h是c语言正则表达式库</p>
+<p>24 产品依赖平台，平台依赖库；不稳定模块依赖稳定模块</p>
+<p>25 一个模块对外一个.h文件，内部多个.h文件。</p>
+<p>26 每个头文件要用#define保护<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> PATH_FILENAME_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PATH_FILENAME_H</span></span><br><span class="line">...</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure></p>
+<p>27 宏的最优使用方法<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#define XXX <span class="keyword">do</span> &#123;</span><br><span class="line">	<span class="attr">...</span></span><br><span class="line">&#125;<span class="keyword">while</span>(<span class="number">0</span>)</span><br></pre></td></tr></table></figure></p>
+<p>28 每个c文件只对应一个h文件，h文件的目的是提供对外的接口，所以没有h文件的c文件不应该存在<br>&ensp;&ensp;&ensp;将对内的声明放在c文件前面用static声明，对外的声明放在h文件中</p>
 
       
     </div>
@@ -502,7 +508,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -510,7 +516,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -519,7 +525,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">39</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -592,7 +598,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
