@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://davi.space/about/index.html</loc>
+    
+    <lastmod>2017-01-09T15:36:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://davi.space/2016/10/10/%E9%9D%A2%E5%AF%B9%E5%AF%B9%E8%B1%A1/</loc>
     
-    <lastmod>2017-01-07T15:04:32.000Z</lastmod>
+    <lastmod>2017-01-08T13:38:34.000Z</lastmod>
     
   </url>
   
@@ -40,13 +47,6 @@
     <loc>http://davi.space/2016/09/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
     
     <lastmod>2016-09-17T15:45:22.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://davi.space/about/index.html</loc>
-    
-    <lastmod>2016-09-15T16:14:43.000Z</lastmod>
     
   </url>
   
