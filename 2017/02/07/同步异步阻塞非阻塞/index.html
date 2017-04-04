@@ -87,7 +87,12 @@
 <meta property="og:site_name" content="Davi">
 <meta property="og:description" content="记得大学毕业找工作时面试官就问过我：网络编程的IO同步、异步、阻塞、非阻塞各是什么？当时一脸懵逼，我研究生阶段也是改过内核网络模块源码的，socket编程的套路也知道一二，但遗憾的是我对上层业务模型知之甚少，确实不知道答案，于是把socket、select、epoll等乱七八糟的函数接口都说了一遍之后，由于没说到点上跟面试官say good bye。现在工作之后涉及到业务代码，才静下心来好好学习学">
 <meta property="og:image" content="http://7xtdio.com1.z0.glb.clouddn.com/阻塞IO.png">
-<meta property="og:updated_time" content="2017-04-04T02:41:40.000Z">
+<meta property="og:image" content="http://7xtdio.com1.z0.glb.clouddn.com/非阻塞IO.png">
+<meta property="og:image" content="http://7xtdio.com1.z0.glb.clouddn.com/I/O多路复用.png">
+<meta property="og:image" content="http://7xtdio.com1.z0.glb.clouddn.com/异步I/O.png">
+<meta property="og:image" content="http://7xtdio.com1.z0.glb.clouddn.com/同步异步1.png">
+<meta property="og:image" content="http://7xtdio.com1.z0.glb.clouddn.com/同步异步.jpg">
+<meta property="og:updated_time" content="2017-04-04T02:58:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="同步异步阻塞非阻塞">
 <meta name="twitter:description" content="记得大学毕业找工作时面试官就问过我：网络编程的IO同步、异步、阻塞、非阻塞各是什么？当时一脸懵逼，我研究生阶段也是改过内核网络模块源码的，socket编程的套路也知道一二，但遗憾的是我对上层业务模型知之甚少，确实不知道答案，于是把socket、select、epoll等乱七八糟的函数接口都说了一遍之后，由于没说到点上跟面试官say good bye。现在工作之后涉及到业务代码，才静下心来好好学习学">
@@ -351,8 +356,8 @@
 <li>A synchronous I/O operation causes the requesting process to be blocked until that I/O operation completes;</li>
 <li>An asynchronous I/O operation does not cause the requesting process to be blocked;<br>两者的区别就在于synchronous IO做”IO operation”的时候会将process阻塞。按照这个定义，之前所述的blocking IO，non-blocking IO，IO multiplexing都属于synchronous IO。定义中所指的”IO operation”是指真实的IO操作，就是例子中的recvfrom这个系统调用。non-blocking IO在执行recvfrom这个系统调用的时候，如果kernel的数据没有准备好，这时候不会block进程。但是当kernel中数据准备好的时候，recvfrom会将数据从kernel拷贝到用户内存中，这个时候进程是被block了，在这段时间内进程是被block的。而asynchronous IO则不一样，当进程发起IO操作之后，就直接返回再也不理睬了，直到kernel发送一个信号，告诉进程说IO完成。在这整个过程中，进程完全没有被block。</li>
 </ul>
-<p>UNIX有5种I/O模型,阻塞会发生在两个阶段上:<br>1 阻塞式I/O    等待数据时阻塞   数据从内核复制到用户空间时阻塞<br><img src="http://7xtdio.com1.z0.glb.clouddn.com/阻塞IO.png" alt="阻塞I/O"><br>2 非阻塞式I/O 等待数据不阻塞,但是轮询会占用cpu资源 数据从内核复制到用户空间时阻塞<br>![非阻塞I/O](<a href="http://7xtdio.com1.z0.glb.clouddn.com/阻塞IO.png）" target="_blank" rel="external">http://7xtdio.com1.z0.glb.clouddn.com/阻塞IO.png）</a><br>3 I/O复用  考虑到轮询占用cpu资源的问题,阻塞在选择器上,减轻处理器负担 将数据从内核复制到用户空间时阻塞<br>![I/O多路复用](<a href="http://7xtdio.com1.z0.glb.clouddn.com/I:O%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7）" target="_blank" rel="external">http://7xtdio.com1.z0.glb.clouddn.com/I:O%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7）</a><br>4 信号驱动式I/O 等待数据不阻塞,数据准备好时通知接收数据,将数据从内核复制到用户空间时阻塞<br>5.异步I/O 等待数据时不阻塞 将数据从内核复制到用户空间时也不阻塞，数据到了用户空间以后才发信号,就像你在网上下了订单,快递员拿着你的快件站在你家门口才通知你开门签收的样子.<br>![异步I/O](<a href="http://7xtdio.com1.z0.glb.clouddn.com/异步.jpg）" target="_blank" rel="external">http://7xtdio.com1.z0.glb.clouddn.com/异步.jpg）</a><br>前四种或多或少均有阻塞现象存在,它们都是同步I/O模型<br>![同步异步](<a href="http://7xtdio.com1.z0.glb.clouddn.com/%E5%90%8C%E6%AD%A5%E5%BC%82%E6%）" target="_blank" rel="external">http://7xtdio.com1.z0.glb.clouddn.com/%E5%90%8C%E6%AD%A5%E5%BC%82%E6%）</a></p>
-<p>综上所述，一般网络通信函数都是同步，用到特殊库的才可能是异步。<br>![同步异步1](<a href="http://7xtdio.com1.z0.glb.clouddn.com/%E5%90%8C%E6%AD%A5%E5%BC%82%E6%AD%）" target="_blank" rel="external">http://7xtdio.com1.z0.glb.clouddn.com/%E5%90%8C%E6%AD%A5%E5%BC%82%E6%AD%）</a></p>
+<p>UNIX有5种I/O模型,阻塞会发生在两个阶段上:<br>1 阻塞式I/O    等待数据时阻塞   数据从内核复制到用户空间时阻塞<br><img src="http://7xtdio.com1.z0.glb.clouddn.com/阻塞IO.png" alt="阻塞I/O"><br>2 非阻塞式I/O 等待数据不阻塞,但是轮询会占用cpu资源 数据从内核复制到用户空间时阻塞<br><img src="http://7xtdio.com1.z0.glb.clouddn.com/非阻塞IO.png" alt="非阻塞I/O"><br>3 I/O复用  考虑到轮询占用cpu资源的问题,阻塞在选择器上,减轻处理器负担 将数据从内核复制到用户空间时阻塞<br><img src="http://7xtdio.com1.z0.glb.clouddn.com/I/O多路复用.png" alt="I/O复用"><br>4 信号驱动式I/O 等待数据不阻塞,数据准备好时通知接收数据,将数据从内核复制到用户空间时阻塞<br>5.异步I/O 等待数据时不阻塞 将数据从内核复制到用户空间时也不阻塞，数据到了用户空间以后才发信号,就像你在网上下了订单,快递员拿着你的快件站在你家门口才通知你开门签收的样子。<br><img src="http://7xtdio.com1.z0.glb.clouddn.com/异步I/O.png" alt="异步"><br>前四种或多或少均有阻塞现象存在,它们都是同步I/O模型<br><img src="http://7xtdio.com1.z0.glb.clouddn.com/同步异步1.png" alt="同步异步"></p>
+<p>综上所述，一般网络通信函数都是同步，用到特殊库的才可能是异步。<br><img src="http://7xtdio.com1.z0.glb.clouddn.com/同步异步.jpg" alt="同步异步1"></p>
 
       
     </div>
