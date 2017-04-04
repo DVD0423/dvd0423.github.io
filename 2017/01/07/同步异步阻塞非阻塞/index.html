@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="SSD,硬盘,存储," />
+  <meta name="keywords" content="网络IO模型,阻塞非阻塞,同步异步," />
 
 
 
@@ -80,22 +80,18 @@
 
 
 
-<meta name="description" content="1 ROMRead Only Memory是只读存储器；断电信息不丢失；只能读，不能写；如BIOS。
-2 RAMRamdomAccessMemory是随机访问存储器；读写时间相同；断电数据丢失；如内存。
-2.1 DRAMDRAM是动态随机访问存储器；电容式，每隔一段时间需要刷新一次；速度较慢，价格较低，容量较大；现代计算机内存">
+<meta name="description" content="记得大学毕业找工作时面试官就问过我：网络编程的IO同步、异步、阻塞、非阻塞各是什么？当时一脸懵逼，我研究生阶段也是改过内核网络模块源码的，socket编程的套路也知道一二，但遗憾的是我对上层业务模型知之甚少，确实不知道答案，于是把socket、select、epoll等乱七八糟的函数接口都说了一遍之后，由于没说到点上跟面试官say good bye。现在工作之后涉及到业务代码，才静下心来好好学习学">
 <meta property="og:type" content="article">
-<meta property="og:title" content="存储硬件基础">
-<meta property="og:url" content="http://davi.space/2017/01/07/存储硬件基础/index.html">
+<meta property="og:title" content="同步异步阻塞非阻塞">
+<meta property="og:url" content="http://davi.space/2017/01/07/同步异步阻塞非阻塞/index.html">
 <meta property="og:site_name" content="Davi">
-<meta property="og:description" content="1 ROMRead Only Memory是只读存储器；断电信息不丢失；只能读，不能写；如BIOS。
-2 RAMRamdomAccessMemory是随机访问存储器；读写时间相同；断电数据丢失；如内存。
-2.1 DRAMDRAM是动态随机访问存储器；电容式，每隔一段时间需要刷新一次；速度较慢，价格较低，容量较大；现代计算机内存">
-<meta property="og:updated_time" content="2017-01-07T13:11:40.000Z">
+<meta property="og:description" content="记得大学毕业找工作时面试官就问过我：网络编程的IO同步、异步、阻塞、非阻塞各是什么？当时一脸懵逼，我研究生阶段也是改过内核网络模块源码的，socket编程的套路也知道一二，但遗憾的是我对上层业务模型知之甚少，确实不知道答案，于是把socket、select、epoll等乱七八糟的函数接口都说了一遍之后，由于没说到点上跟面试官say good bye。现在工作之后涉及到业务代码，才静下心来好好学习学">
+<meta property="og:image" content="http://7xtdio.com1.z0.glb.clouddn.com/阻塞IO.png">
+<meta property="og:updated_time" content="2017-04-04T02:36:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="存储硬件基础">
-<meta name="twitter:description" content="1 ROMRead Only Memory是只读存储器；断电信息不丢失；只能读，不能写；如BIOS。
-2 RAMRamdomAccessMemory是随机访问存储器；读写时间相同；断电数据丢失；如内存。
-2.1 DRAMDRAM是动态随机访问存储器；电容式，每隔一段时间需要刷新一次；速度较慢，价格较低，容量较大；现代计算机内存">
+<meta name="twitter:title" content="同步异步阻塞非阻塞">
+<meta name="twitter:description" content="记得大学毕业找工作时面试官就问过我：网络编程的IO同步、异步、阻塞、非阻塞各是什么？当时一脸懵逼，我研究生阶段也是改过内核网络模块源码的，socket编程的套路也知道一二，但遗憾的是我对上层业务模型知之甚少，确实不知道答案，于是把socket、select、epoll等乱七八糟的函数接口都说了一遍之后，由于没说到点上跟面试官say good bye。现在工作之后涉及到业务代码，才静下心来好好学习学">
+<meta name="twitter:image" content="http://7xtdio.com1.z0.glb.clouddn.com/阻塞IO.png">
 
 
 
@@ -113,7 +109,7 @@
   };
 </script>
 
-  <title> 存储硬件基础 | Davi </title>
+  <title> 同步异步阻塞非阻塞 | Davi </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -279,7 +275,7 @@
             
             
               
-                存储硬件基础
+                同步异步阻塞非阻塞
               
             
           </h1>
@@ -297,32 +293,13 @@
           </span>
 
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/云存储/" itemprop="url" rel="index">
-                    <span itemprop="name">云存储</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2017/01/07/存储硬件基础/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/07/存储硬件基础/" itemprop="commentsCount"></span>
+                <a href="/2017/01/07/同步异步阻塞非阻塞/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/07/同步异步阻塞非阻塞/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -345,24 +322,18 @@
       
 
       
-        <h2 id="1-ROM"><a href="#1-ROM" class="headerlink" title="1 ROM"></a>1 ROM</h2><p>Read Only Memory是只读存储器；断电信息不丢失；只能读，不能写；如BIOS。</p>
-<h2 id="2-RAM"><a href="#2-RAM" class="headerlink" title="2 RAM"></a>2 RAM</h2><p>RamdomAccessMemory是随机访问存储器；读写时间相同；断电数据丢失；如内存。</p>
-<h3 id="2-1-DRAM"><a href="#2-1-DRAM" class="headerlink" title="2.1 DRAM"></a>2.1 DRAM</h3><p>DRAM是动态随机访问存储器；电容式，每隔一段时间需要刷新一次；速度较慢，价格较低，容量较大；现代计算机内存</p>
+        <p>记得大学毕业找工作时面试官就问过我：网络编程的IO同步、异步、阻塞、非阻塞各是什么？<br>当时一脸懵逼，我研究生阶段也是改过内核网络模块源码的，socket编程的套路也知道一二，但遗憾的是我对上层业务模型知之甚少，确实不知道答案，于是把socket、select、epoll等乱七八糟的函数接口都说了一遍之后，由于没说到点上跟面试官say good bye。<br>现在工作之后涉及到业务代码，才静下心来好好学习学习理论。</p>
 <a id="more"></a>
-<h3 id="2-2-SRAM"><a href="#2-2-SRAM" class="headerlink" title="2.2 SRAM"></a>2.2 SRAM</h3><p>不需要刷新，速度快，价格高，容量小；存储器件较多，所以存储密度低（集成度低）；CPU与内存之间的高速缓存；老式计算机内存</p>
-<h2 id="3-闪存"><a href="#3-闪存" class="headerlink" title="3 闪存"></a>3 闪存</h2><p>闪存是一种长寿命的非易失性存储器，提供数据的断电保护。数据删除以固定的区块为单位而不是以字节为单位。写入操作必须在存储单元为空或者已擦除的状态下进行，所以除第一次外每次写都要擦除。</p>
-<p>闪存是电子可擦除只读存储器（EEPROM）的变种，不同点在于EEPROM能在字节水平上进行删除和重写，而闪存需要块擦除。</p>
-<p>闪存和内存在性能上还是有很大差距：一般来说，CPU通过I/O Bus访问PCIe NAND Flash的响应时间在100微秒（1微秒=1000纳秒）这一数量级，而CPU通过Memory Bus与内存之间的响应时间数量级在100纳秒左右（部分DDR4-3000内存可以做到60纳秒左右）。</p>
-<h3 id="3-1-NOR型闪存"><a href="#3-1-NOR型闪存" class="headerlink" title="3.1 NOR型闪存"></a>3.1 NOR型闪存</h3><p><strong>特点</strong>：<br>偏向“内存”，有独立的地址线和数据线，传输效率高；<br>擦除操作要将目标内所有位都置为0，以64~128KB的块为单位，擦除操作时间5s，所以写速度慢；<br>读速度比NAND稍快；<br>价格较高，容量较小；<br>可以直接使用；<br>每个块的最大擦写次数是十万次</p>
-<p><strong>应用场合</strong>：通常用于存储程序代码并直接在闪存内运行，手机用NOR，所以存储容量通常不大；</p>
-<h3 id="3-2-NAND型闪存"><a href="#3-2-NAND型闪存" class="headerlink" title="3.2 NAND型闪存"></a>3.2 NAND型闪存</h3><p><strong>特点 ：</strong><br>偏向“硬盘”，地址线和数据线共用一条线；<br>擦除不需要置0，以8~32KB的块为单位，耗时最多4ms。<br>写速度比NOR快很多；<br>高存储密度，单元尺寸几乎是NOR的一半，所以价格较低，容量较大；<br>需要I/O接口和响应驱动才能使用；<br>每个块的最大擦写次数是一百万次</p>
-<p><strong>应用场合 ：</strong>：主要用来存储资料，如数码存储卡</p>
-<h2 id="4-NVDIMM"><a href="#4-NVDIMM" class="headerlink" title="4 NVDIMM"></a>4 NVDIMM</h2><p>一种集成了DRAM + 非易失性内存芯片的内存条规格，能够在完全断电的时候依然保存完整内存数据。NVDIMM也就是以内存插槽接入非易失性存储介质的存储方案的统称。</p>
-<h2 id="5-硬盘"><a href="#5-硬盘" class="headerlink" title="5 硬盘"></a>5 硬盘</h2><p>固态硬盘SSD（Solid State Drives）存储介质分为两种：闪存（主流）和DRAM（非主流）</p>
-<p>机械硬盘HDD也就是传统盘片、磁头等组成的存储设备。</p>
-<h2 id="6-硬盘数据接口"><a href="#6-硬盘数据接口" class="headerlink" title="6 硬盘数据接口"></a>6 硬盘数据接口</h2><h3 id="6-1-SATA标准"><a href="#6-1-SATA标准" class="headerlink" title="6.1 SATA标准"></a>6.1 SATA标准</h3><p>Serial Advanced Technology Attachment（Serial ATA）；<br><strong>SATA接口带宽与速度：</strong><br>SATA1.0， 带宽1GB/s，速度150MB/s<br>SATA2.0， 带宽3GB/s，速度300MB/s<br>SATA3.0， 带宽6GB/s，速度600MB/s</p>
-<p>SATA接口已经难以满足速率更高的SSD需求。</p>
-<h3 id="6-2-PCI-e标准"><a href="#6-2-PCI-e标准" class="headerlink" title="6.2 PCI-e标准"></a>6.2 PCI-e标准</h3><p>PCI-Express是最新的总线和接口标准；性能比SATA更好</p>
+<p>看了好多网上的答案，觉得最好的是知乎上一个网友的评论：同步就是烧开水，要自己来看开没开；异步就是水开了，然后水壶响了通知你水开了。阻塞是烧开水的过程中，你不能干其他事情（即你被阻塞住了）；非阻塞是烧开水的过程里可以干其他事情。同步与异步说的是你获得水开了的方式不同。阻塞与非阻塞说的是你得到结果之前能不能干其他事情。两组概念描述的是不同的内容。</p>
+<p>linux的socket默认都是阻塞的，拿recvfrom为例，如果设置为非阻塞模式可以把flags设置为MSG_DONTWAIT实现；I/O 多路复用有三种方法select、poll、epoll。他们的作用是提高网络并发量，也是阻塞的，阻塞在跟同步异步无关。而且当用户使用了select，整个进程会被阻塞，kernel会扫描所有的监听端口，然后select返回时才解阻塞，而之后的具体IO的处理还会涉及阻塞和非阻塞的选择，不过实际上对于每一个socket，一般都设置成为非阻塞模式。</p>
+<p>同时linux中的read、write、recv、send、select等函数都是同步的，同步过程中进程触发IO操作并等待或者轮询的去查看IO操作是否完成。在异步模型下，用户进程发起read操作之后，立刻就可以开始去做其它的事。而另一方面，从kernel的角度，当它受到一个asynchronous read之后，首先它会立刻返回，所以不会对用户进程产生任何block。然后，kernel会等待数据准备完成，然后将数据拷贝到用户内存，当这一切都完成之后，kernel会给用户进程发送一个signal，告诉它read操作完成了。linux提供的异步I/O有函数aio_read、aio_write等，也有开源异步I/O库libevent、libev等。异步一般带有回调函数。</p>
+<p>Stevens给出的关于同步异步的定义（其实是POSIX的定义）是这样子的：</p>
+<ul>
+<li>A synchronous I/O operation causes the requesting process to be blocked until that I/O operation completes;</li>
+<li>An asynchronous I/O operation does not cause the requesting process to be blocked;<br>两者的区别就在于synchronous IO做”IO operation”的时候会将process阻塞。按照这个定义，之前所述的blocking IO，non-blocking IO，IO multiplexing都属于synchronous IO。定义中所指的”IO operation”是指真实的IO操作，就是例子中的recvfrom这个系统调用。non-blocking IO在执行recvfrom这个系统调用的时候，如果kernel的数据没有准备好，这时候不会block进程。但是当kernel中数据准备好的时候，recvfrom会将数据从kernel拷贝到用户内存中，这个时候进程是被block了，在这段时间内进程是被block的。而asynchronous IO则不一样，当进程发起IO操作之后，就直接返回再也不理睬了，直到kernel发送一个信号，告诉进程说IO完成。在这整个过程中，进程完全没有被block。</li>
+</ul>
+<p>UNIX有5种I/O模型,阻塞会发生在两个阶段上:<br>1 阻塞式I/O    等待数据时阻塞   数据从内核复制到用户空间时阻塞<br><img src="http://7xtdio.com1.z0.glb.clouddn.com/阻塞IO.png" alt="阻塞I/O"><br>2 非阻塞式I/O 等待数据不阻塞,但是轮询会占用cpu资源 数据从内核复制到用户空间时阻塞<br>![非阻塞I/O](<a href="http://7xtdio.com1.z0.glb.clouddn.com/阻塞IO.png）" target="_blank" rel="external">http://7xtdio.com1.z0.glb.clouddn.com/阻塞IO.png）</a><br>3 I/O复用  考虑到轮询占用cpu资源的问题,阻塞在选择器上,减轻处理器负担 将数据从内核复制到用户空间时阻塞<br>![I/O多路复用](<a href="http://7xtdio.com1.z0.glb.clouddn.com/I:O%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7）" target="_blank" rel="external">http://7xtdio.com1.z0.glb.clouddn.com/I:O%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7）</a><br>4 信号驱动式I/O 等待数据不阻塞,数据准备好时通知接收数据,将数据从内核复制到用户空间时阻塞<br>5.异步I/O 等待数据时不阻塞 将数据从内核复制到用户空间时也不阻塞，数据到了用户空间以后才发信号,就像你在网上下了订单,快递员拿着你的快件站在你家门口才通知你开门签收的样子.<br>![异步I/O](<a href="http://7xtdio.com1.z0.glb.clouddn.com/异步.jpg）" target="_blank" rel="external">http://7xtdio.com1.z0.glb.clouddn.com/异步.jpg）</a><br>前四种或多或少均有阻塞现象存在,它们都是同步I/O模型<br>![同步异步](<a href="http://7xtdio.com1.z0.glb.clouddn.com/%E5%90%8C%E6%AD%A5%E5%BC%82%E6%）" target="_blank" rel="external">http://7xtdio.com1.z0.glb.clouddn.com/%E5%90%8C%E6%AD%A5%E5%BC%82%E6%）</a></p>
+<p>综上所述，一般网络通信函数都是同步，用到特殊库的才可能是异步。<br>![同步异步1](<a href="http://7xtdio.com1.z0.glb.clouddn.com/%E5%90%8C%E6%AD%A5%E5%BC%82%E6%AD%）" target="_blank" rel="external">http://7xtdio.com1.z0.glb.clouddn.com/%E5%90%8C%E6%AD%A5%E5%BC%82%E6%AD%）</a></p>
 
       
     </div>
@@ -383,11 +354,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/SSD/" rel="tag">#SSD</a>
+            <a href="/tags/网络IO模型/" rel="tag">#网络IO模型</a>
           
-            <a href="/tags/硬盘/" rel="tag">#硬盘</a>
+            <a href="/tags/阻塞非阻塞/" rel="tag">#阻塞非阻塞</a>
           
-            <a href="/tags/存储/" rel="tag">#存储</a>
+            <a href="/tags/同步异步/" rel="tag">#同步异步</a>
           
         </div>
       
@@ -396,17 +367,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/10/面对对象/" rel="next" title="面对对象">
-                <i class="fa fa-chevron-left"></i> 面对对象
+              <a href="/2017/01/07/存储硬件基础/" rel="next" title="存储硬件基础">
+                <i class="fa fa-chevron-left"></i> 存储硬件基础
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/01/07/同步异步阻塞非阻塞/" rel="prev" title="同步异步阻塞非阻塞">
-                同步异步阻塞非阻塞 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -432,8 +399,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/01/07/存储硬件基础/"
-           data-title="存储硬件基础" data-url="http://davi.space/2017/01/07/存储硬件基础/">
+      <div class="ds-thread" data-thread-key="2017/01/07/同步异步阻塞非阻塞/"
+           data-title="同步异步阻塞非阻塞" data-url="http://davi.space/2017/01/07/同步异步阻塞非阻塞/">
       </div>
     
   </div>
@@ -549,7 +516,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-ROM"><span class="nav-text">1 ROM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-RAM"><span class="nav-text">2 RAM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-DRAM"><span class="nav-text">2.1 DRAM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-SRAM"><span class="nav-text">2.2 SRAM</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-闪存"><span class="nav-text">3 闪存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-NOR型闪存"><span class="nav-text">3.1 NOR型闪存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-NAND型闪存"><span class="nav-text">3.2 NAND型闪存</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-NVDIMM"><span class="nav-text">4 NVDIMM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-硬盘"><span class="nav-text">5 硬盘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-硬盘数据接口"><span class="nav-text">6 硬盘数据接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-SATA标准"><span class="nav-text">6.1 SATA标准</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-PCI-e标准"><span class="nav-text">6.2 PCI-e标准</span></a></li></ol></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>

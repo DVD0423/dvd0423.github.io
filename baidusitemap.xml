@@ -4,8 +4,29 @@
 
     
   <url>
+    <loc>http://davi.space/2017/01/07/%E5%90%8C%E6%AD%A5%E5%BC%82%E6%AD%A5%E9%98%BB%E5%A1%9E%E9%9D%9E%E9%98%BB%E5%A1%9E/</loc>
+    <lastmod>2017-04-04T02:36:50.000Z</lastmod>
+    <data>
+        <display>
+        <title>同步异步阻塞非阻塞</title>
+        <pubTime>2017-01-07T12:38:38.000Z</pubTime>
+        
+        <tag>网络IO模型</tag>
+         
+        <tag>阻塞非阻塞</tag>
+         
+        <tag>同步异步</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://davi.space/2016/10/10/%E9%9D%A2%E5%AF%B9%E5%AF%B9%E8%B1%A1/</loc>
-    <lastmod>2017-01-09T15:45:39.000Z</lastmod>
+    <lastmod>2017-01-20T14:23:51.000Z</lastmod>
     <data>
         <display>
         <title>面对对象</title>
@@ -17,24 +38,6 @@
          
         <tag>解耦</tag>
          
-         
-           
-             
-              <breadCrumb title="软件架构" url="http://davi.space/categories/%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://davi.space/2016/09/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2017-01-09T15:45:25.000Z</lastmod>
-    <data>
-        <display>
-        <title>设计模式</title>
-        <pubTime>2016-09-17T15:14:27.000Z</pubTime>
-        
          
            
              
