@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="virsh,虚拟机," />
+  <meta name="keywords" content="解耦,设计模式,事件驱动," />
 
 
 
@@ -80,19 +80,19 @@
 
 
 
-<meta name="description" content="最有用的文档是官方文档!最有用的文档是官方文档!最有用的文档是官方文档!重要的事情说三遍!!!
-1 虚拟机安装123# yum -y install qemu-kvm libvirt python-virtinst bridge-utils# qemu-img create -f qcow2 vm1.img 50G # virt-install --name=vm$1 --boot cdrom,m">
+<meta name="description" content="依赖注入（Dependency Injection，DI）是控制反转（Inversion of Control，IoC）的一种实现方式。实现面对对象的解耦作用。123456789class B;class A&amp;#123;public:    B b;    func()&amp;#123;        this-&amp;gt;b = new B();        &amp;#125;    &amp;#125;;
+上述代码">
 <meta property="og:type" content="article">
-<meta property="og:title" content="虚拟机操作">
-<meta property="og:url" content="http://davi.space/2016/04/30/虚拟机操作/index.html">
+<meta property="og:title" content="设计模式之依赖注入">
+<meta property="og:url" content="http://davi.space/2016/12/15/设计模式之依赖注入/index.html">
 <meta property="og:site_name" content="Davi">
-<meta property="og:description" content="最有用的文档是官方文档!最有用的文档是官方文档!最有用的文档是官方文档!重要的事情说三遍!!!
-1 虚拟机安装123# yum -y install qemu-kvm libvirt python-virtinst bridge-utils# qemu-img create -f qcow2 vm1.img 50G # virt-install --name=vm$1 --boot cdrom,m">
-<meta property="og:updated_time" content="2016-08-28T08:43:23.000Z">
+<meta property="og:description" content="依赖注入（Dependency Injection，DI）是控制反转（Inversion of Control，IoC）的一种实现方式。实现面对对象的解耦作用。123456789class B;class A&amp;#123;public:    B b;    func()&amp;#123;        this-&amp;gt;b = new B();        &amp;#125;    &amp;#125;;
+上述代码">
+<meta property="og:updated_time" content="2017-04-09T12:20:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="虚拟机操作">
-<meta name="twitter:description" content="最有用的文档是官方文档!最有用的文档是官方文档!最有用的文档是官方文档!重要的事情说三遍!!!
-1 虚拟机安装123# yum -y install qemu-kvm libvirt python-virtinst bridge-utils# qemu-img create -f qcow2 vm1.img 50G # virt-install --name=vm$1 --boot cdrom,m">
+<meta name="twitter:title" content="设计模式之依赖注入">
+<meta name="twitter:description" content="依赖注入（Dependency Injection，DI）是控制反转（Inversion of Control，IoC）的一种实现方式。实现面对对象的解耦作用。123456789class B;class A&amp;#123;public:    B b;    func()&amp;#123;        this-&amp;gt;b = new B();        &amp;#125;    &amp;#125;;
+上述代码">
 
 
 
@@ -110,7 +110,7 @@
   };
 </script>
 
-  <title> 虚拟机操作 | Davi </title>
+  <title> 设计模式之依赖注入 | Davi </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -276,7 +276,7 @@
             
             
               
-                虚拟机操作
+                设计模式之依赖注入
               
             
           </h1>
@@ -288,8 +288,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-30T13:03:41+08:00" content="2016-04-30">
-              2016-04-30
+            <time itemprop="dateCreated" datetime="2016-12-15T23:14:27+08:00" content="2016-12-15">
+              2016-12-15
             </time>
           </span>
 
@@ -302,8 +302,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/云计算/" itemprop="url" rel="index">
-                    <span itemprop="name">云计算</span>
+                  <a href="/categories/软件架构/" itemprop="url" rel="index">
+                    <span itemprop="name">软件架构</span>
                   </a>
                 </span>
 
@@ -318,8 +318,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/30/虚拟机操作/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/30/虚拟机操作/" itemprop="commentsCount"></span>
+                <a href="/2016/12/15/设计模式之依赖注入/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/15/设计模式之依赖注入/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -342,22 +342,11 @@
       
 
       
-        <p><strong>最有用的文档是官方文档!</strong><br><strong>最有用的文档是官方文档!</strong><br><strong>最有用的文档是官方文档!</strong><br>重要的事情说三遍!!!</p>
-<h2 id="1-虚拟机安装"><a href="#1-虚拟机安装" class="headerlink" title="1 虚拟机安装"></a>1 虚拟机安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum -y install qemu-kvm libvirt python-virtinst bridge-utils</span></span><br><span class="line"><span class="comment"># qemu-img create -f qcow2 vm1.img 50G </span></span><br><span class="line"><span class="comment"># virt-install --name=vm$1 --boot cdrom,menu=on --ram=8192 --vcpus=8 --os-type=linux -c /root/dvd/CentOS-7.0-1406-x86_64-DVD.iso --disk path=/root/dvd/vm1.img,size=50,format=qcow2,bus=ide --network bridge=br0 --force --graphics vnc,listen=0.0.0.0,port=5901</span></span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h2 id="2-基础命令"><a href="#2-基础命令" class="headerlink" title="2 基础命令"></a>2 基础命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">virsh define vm1</span><br><span class="line">virsh start vm1</span><br><span class="line">virsh stop vm1</span><br><span class="line">virsh undefine vm1</span><br><span class="line">virsh edit vm1</span><br></pre></td></tr></table></figure>
-<h2 id="3-设置vCPU亲和性："><a href="#3-设置vCPU亲和性：" class="headerlink" title="3 设置vCPU亲和性："></a>3 设置vCPU亲和性：</h2><h3 id="3-1-编辑xml文件添加如下内容"><a href="#3-1-编辑xml文件添加如下内容" class="headerlink" title="3.1 编辑xml文件添加如下内容"></a>3.1 编辑xml文件添加如下内容</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">cputune</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">vcpupin</span> <span class="attr">vcpu</span>=<span class="string">"0"</span> <span class="attr">cpuset</span>=<span class="string">"0-1,4-6"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">cputune</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="3-2-使用命令"><a href="#3-2-使用命令" class="headerlink" title="3.2 使用命令:"></a>3.2 使用命令:</h3><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virsh vcpupin vm<span class="number">1 0 0-1</span>,<span class="number">4</span>-<span class="number">6</span></span><br></pre></td></tr></table></figure>
-<h3 id="3-3-使用taskset设置整个虚拟机的亲和性"><a href="#3-3-使用taskset设置整个虚拟机的亲和性" class="headerlink" title="3.3 使用taskset设置整个虚拟机的亲和性"></a>3.3 使用taskset设置整个虚拟机的亲和性</h3><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr"># taskset -cp 0</span><span class="number">-8</span> v<span class="name">m1</span>_pid</span><br></pre></td></tr></table></figure>
-<h3 id="3-4-cgroup设置"><a href="#3-4-cgroup设置" class="headerlink" title="3.4 cgroup设置"></a>3.4 cgroup设置</h3><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># yum install libcgroup</span></span><br><span class="line"><span class="meta"># yum install libvirt</span></span><br><span class="line"><span class="meta"># service cgconfig restart</span></span><br><span class="line"><span class="meta"># service libvirtd restart</span></span><br><span class="line"><span class="meta"># echo 0-1 &gt; /cgroup/cpuset/libvirt/qemu/vm1/vcpu0/cpuset.cpus</span></span><br></pre></td></tr></table></figure>
-<h2 id="4-虚拟机快照"><a href="#4-虚拟机快照" class="headerlink" title="4 虚拟机快照"></a>4 虚拟机快照</h2><p>产生：<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virsh snapshot-<span class="built_in">create</span>-<span class="keyword">as</span> vm1 vm1-<span class="keyword">before</span></span><br></pre></td></tr></table></figure></p>
-<p>显示：</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virsh snapshot-<span class="built_in">list</span></span><br></pre></td></tr></table></figure>
-<p>恢复：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virsh snapshot-revert vm1 vm1-<span class="keyword">before</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="5-虚拟机迁移"><a href="#5-虚拟机迁移" class="headerlink" title="5 虚拟机迁移"></a>5 虚拟机迁移</h2><p>先测试是否能迁移：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virsh -c qemu+<span class="string">ssh:</span><span class="comment">//node90/system</span></span><br></pre></td></tr></table></figure></p>
-<p>再使用如下命令迁移：<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virsh --live migrate v<span class="name">m1</span> qemu+ssh:<span class="comment">//node90/system</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="6-虚拟机克隆"><a href="#6-虚拟机克隆" class="headerlink" title="6 虚拟机克隆"></a>6 虚拟机克隆</h2><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">virt-<span class="keyword">clone</span> <span class="title">-o</span> vm1 -n vm2 -f /root/dvd/vm2.img</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"><span class="comment">## 7 添加网卡</span></span><br><span class="line">找到xml里网卡设置的位置，直接拷贝，然后改mac地址</span><br><span class="line"></span><br><span class="line"><span class="comment">## 8 dump虚拟机信息</span></span><br></pre></td></tr></table></figure>
-<p>virsh dump vmX file<br>```</p>
+        <p>依赖注入（Dependency Injection，DI）是控制反转（Inversion of Control，IoC）的一种实现方式。实现面对对象的解耦作用。<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">B</span>;</span><br><span class="line"><span class="keyword">class</span> <span class="title">A</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    B b;</span><br><span class="line">    func()&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;b = <span class="keyword">new</span> B();    </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>上述代码没有使用依赖注入，若需求改变，B类的构造函数需要添加参数时，A类的func函数也需要改变。这样导致A和B紧耦合，不利于软件解耦。而依赖注入就是解决这个问题，具体的方法有三种：<br>1 set方法注入<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class <span class="keyword">B;</span><br><span class="line"></span>class A&#123;</span><br><span class="line">    <span class="keyword">B </span><span class="keyword">b;</span><br><span class="line"></span>    setB(<span class="keyword">B </span>c)&#123;</span><br><span class="line">        this-&gt;<span class="keyword">b </span>= c<span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<p>通过传入B的形参实现b的赋值，这样A类就不关心B类如何构造。<br>2 构造器注入<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class <span class="keyword">B;</span><br><span class="line"></span>class A&#123;</span><br><span class="line">    <span class="keyword">B </span><span class="keyword">b;</span><br><span class="line"></span>    A(<span class="keyword">B </span>c):<span class="keyword">b(c)&#123;</span><br><span class="line"></span>    &#125;</span><br><span class="line">&#125;<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<p>构造器注入和set方法注入大同小异<br>3 工厂方法注入<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span></span>&#123;</span><br><span class="line">    B b;</span><br><span class="line">    getB()&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;b = new B();</span><br><span class="line">        ....</span><br><span class="line">        <span class="keyword">return</span> b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    C c;</span><br><span class="line">    getB()&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;c.getB();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>工厂方法注入就是中间多一层工厂类C来具体实现B的构造函数，而A只需要调用C的接口，不需要关心B的具体实现。具体参考spring的IoC容器。</p>
 
       
     </div>
@@ -378,9 +367,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/virsh/" rel="tag">#virsh</a>
+            <a href="/tags/解耦/" rel="tag">#解耦</a>
           
-            <a href="/tags/虚拟机/" rel="tag">#虚拟机</a>
+            <a href="/tags/设计模式/" rel="tag">#设计模式</a>
+          
+            <a href="/tags/事件驱动/" rel="tag">#事件驱动</a>
           
         </div>
       
@@ -389,16 +380,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/29/shell编程技巧/" rel="next" title="shell编程技巧">
-                <i class="fa fa-chevron-left"></i> shell编程技巧
+              <a href="/2016/10/10/面对对象/" rel="next" title="面对对象">
+                <i class="fa fa-chevron-left"></i> 面对对象
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/05/04/宿主机上修改虚拟机镜像/" rel="prev" title="宿主机上修改虚拟机镜像">
-                宿主机上修改虚拟机镜像 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/01/07/存储硬件基础/" rel="prev" title="存储硬件基础">
+                存储硬件基础 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -425,8 +416,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/30/虚拟机操作/"
-           data-title="虚拟机操作" data-url="http://davi.space/2016/04/30/虚拟机操作/">
+      <div class="ds-thread" data-thread-key="2016/12/15/设计模式之依赖注入/"
+           data-title="设计模式之依赖注入" data-url="http://davi.space/2016/12/15/设计模式之依赖注入/">
       </div>
     
   </div>
@@ -542,7 +533,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-虚拟机安装"><span class="nav-text">1 虚拟机安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-基础命令"><span class="nav-text">2 基础命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-设置vCPU亲和性："><span class="nav-text">3 设置vCPU亲和性：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-编辑xml文件添加如下内容"><span class="nav-text">3.1 编辑xml文件添加如下内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-使用命令"><span class="nav-text">3.2 使用命令:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-使用taskset设置整个虚拟机的亲和性"><span class="nav-text">3.3 使用taskset设置整个虚拟机的亲和性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-cgroup设置"><span class="nav-text">3.4 cgroup设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-虚拟机快照"><span class="nav-text">4 虚拟机快照</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-虚拟机迁移"><span class="nav-text">5 虚拟机迁移</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-虚拟机克隆"><span class="nav-text">6 虚拟机克隆</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>

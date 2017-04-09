@@ -648,6 +648,130 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/15/设计模式之依赖注入/" itemprop="url">
+                  设计模式之依赖注入
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-15T23:14:27+08:00" content="2016-12-15">
+              2016-12-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/软件架构/" itemprop="url" rel="index">
+                    <span itemprop="name">软件架构</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/15/设计模式之依赖注入/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/15/设计模式之依赖注入/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>依赖注入（Dependency Injection，DI）是控制反转（Inversion of Control，IoC）的一种实现方式。实现面对对象的解耦作用。<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">B</span>;</span><br><span class="line"><span class="keyword">class</span> <span class="title">A</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    B b;</span><br><span class="line">    func()&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;b = <span class="keyword">new</span> B();    </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>上述代码没有使用依赖注入，若需求改变，B类的构造函数需要添加参数时，A类的func函数也需要改变。这样导致A和B紧耦合，不利于软件解耦。而依赖注入就是解决这个问题，具体的方法有三种：<br>1 set方法注入<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class <span class="keyword">B;</span><br><span class="line"></span>class A&#123;</span><br><span class="line">    <span class="keyword">B </span><span class="keyword">b;</span><br><span class="line"></span>    setB(<span class="keyword">B </span>c)&#123;</span><br><span class="line">        this-&gt;<span class="keyword">b </span>= c<span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<p>通过传入B的形参实现b的赋值，这样A类就不关心B类如何构造。<br>2 构造器注入<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class <span class="keyword">B;</span><br><span class="line"></span>class A&#123;</span><br><span class="line">    <span class="keyword">B </span><span class="keyword">b;</span><br><span class="line"></span>    A(<span class="keyword">B </span>c):<span class="keyword">b(c)&#123;</span><br><span class="line"></span>    &#125;</span><br><span class="line">&#125;<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<p>构造器注入和set方法注入大同小异<br>3 工厂方法注入<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span></span>&#123;</span><br><span class="line">    B b;</span><br><span class="line">    getB()&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;b = new B();</span><br><span class="line">        ....</span><br><span class="line">        <span class="keyword">return</span> b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    C c;</span><br><span class="line">    getB()&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;c.getB();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>工厂方法注入就是中间多一层工厂类C来具体实现B的构造函数，而A只需要调用C的接口，不需要关心B的具体实现。具体参考spring的IoC容器。</p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/10/面对对象/" itemprop="url">
                   面对对象
                 </a>
@@ -1389,131 +1513,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/13/string库/" itemprop="url">
-                  string库
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-13T22:13:21+08:00" content="2016-08-13">
-              2016-08-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux开发/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux开发</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/13/string库/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/13/string库/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>1 char * strchr(str, ch);//查找ch第一次出现的指针偏移<br>&ensp;&ensp;strrchr</p>
-<p>2 char * strcat(des, src);//拼接</p>
-<p>3 strncmp, strncpy, strnicmp–不区分大小写的比较</p>
-<p>4 char * strnset(str, ch, n); //设置前n个字符<br>&ensp;&ensp;strnset//全设</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/13/string库/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1559,7 +1558,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1576,7 +1575,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
