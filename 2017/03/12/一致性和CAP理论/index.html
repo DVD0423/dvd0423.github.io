@@ -1,0 +1,718 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="一致性,Quorum,CAP,分布式系统,最终一致性," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="一致性一致性就是从分布式系统的任意副本读取的数据都相同。分布式系统最常用的两种是强一致性和最终一致性。
+
+强一致性要求写过的数据能被后续的所有读请求看到
+最终一致性要求一段时间后写过的数据能被后续的所有读请求看到
+
+强一致性的实现方式就是同步更新，好像没有其他方法了吧？而最终一致性的种类和实现更多样。根据更新数据后各请求访问到数据的时间和方式的不同，最终一致性又可以区分为：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一致性和CAP理论">
+<meta property="og:url" content="http://davi.space/2017/03/12/一致性和CAP理论/index.html">
+<meta property="og:site_name" content="Davi">
+<meta property="og:description" content="一致性一致性就是从分布式系统的任意副本读取的数据都相同。分布式系统最常用的两种是强一致性和最终一致性。
+
+强一致性要求写过的数据能被后续的所有读请求看到
+最终一致性要求一段时间后写过的数据能被后续的所有读请求看到
+
+强一致性的实现方式就是同步更新，好像没有其他方法了吧？而最终一致性的种类和实现更多样。根据更新数据后各请求访问到数据的时间和方式的不同，最终一致性又可以区分为：">
+<meta property="og:updated_time" content="2017-04-09T12:16:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一致性和CAP理论">
+<meta name="twitter:description" content="一致性一致性就是从分布式系统的任意副本读取的数据都相同。分布式系统最常用的两种是强一致性和最终一致性。
+
+强一致性要求写过的数据能被后续的所有读请求看到
+最终一致性要求一段时间后写过的数据能被后续的所有读请求看到
+
+强一致性的实现方式就是同步更新，好像没有其他方法了吧？而最终一致性的种类和实现更多样。根据更新数据后各请求访问到数据的时间和方式的不同，最终一致性又可以区分为：">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 一致性和CAP理论 | Davi </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s11.cnzz.com/z_stat.php?id=1258885771&web_id=1258885771" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Davi</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">记录工作与生活</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'umBxWx-jxqcZ2as51Akz','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                一致性和CAP理论
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-12T22:58:38+08:00" content="2017-03-12">
+              2017-03-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/分布式系统/" itemprop="url" rel="index">
+                    <span itemprop="name">分布式系统</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/03/12/一致性和CAP理论/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/12/一致性和CAP理论/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="一致性"><a href="#一致性" class="headerlink" title="一致性"></a>一致性</h3><p>一致性就是从分布式系统的任意副本读取的数据都相同。分布式系统最常用的两种是强一致性和最终一致性。</p>
+<ul>
+<li>强一致性要求写过的数据能被后续的所有读请求看到</li>
+<li>最终一致性要求一段时间后写过的数据能被后续的所有读请求看到</li>
+</ul>
+<p>强一致性的实现方式就是同步更新，好像没有其他方法了吧？而最终一致性的种类和实现更多样。根据更新数据后各请求访问到数据的时间和方式的不同，最终一致性又可以区分为：</p>
+<a id="more"></a>
+<ul>
+<li>因果一致性。如果进程A通知进程B它已更新了一个数据项，那么进程B的后续访问将返回更新后的值，且一次写入将保证取代前一次写入。与进程A无因果关系的进程C的访问遵守一般的最终一致性规则。</li>
+<li>“读己之所写（read-your-writes）”一致性。当进程A自己更新一个数据项之后，它总是访问到更新过的值，绝不会看到旧值。这是因果一致性模型的一个特例。</li>
+<li>会话（Session）一致性。这是上一个模型的实用版本，它把访问存储系统的进程放到会话的上下文中。只要会话还存在，系统就保证“读己之所写”一致性。如果由于某些失败情形令会话终止，就要建立新的会话，而且系统的保证不会延续到新的会话。</li>
+<li>单调（Monotonic）读一致性。如果进程已经看到过数据对象的某个值，那么任何后续访问都不会返回在那个值之前的值。</li>
+<li>单调写一致性。系统保证来自同一个进程的写操作顺序执行。要是系统不能保证这种程度的一致性，就非常难以编程了。</li>
+</ul>
+<p>而最终一致性的实现就要涉及Quorum算法，即<strong>W + R &gt; N</strong>。意思是说为了保证请求能够得到最新数据，写副本数和读副本总和要大于副本总数。比如：<br>5副本的系统，如果写请求保证2副本有效，则至少要读4个副本才能读到最新数据，即始终保持有一个副本能同时被读写，而不需要同步数据。</p>
+<h3 id="CAP理论"><a href="#CAP理论" class="headerlink" title="CAP理论"></a>CAP理论</h3><p>CAP理论只适用于原子读写的场景，不适用于数据库事物场景。CAP理论是分布式系统的经典理论，指导我们的分布式系统设计，具体是指分布式系统设计时，C、A、P只能满足其中两项，不能三者兼顾。其中：</p>
+<ul>
+<li><strong>C（consistency，一致性）</strong>是指系统所有节点数据保持一致，任意时刻从任何副本读取的值都是一样的；</li>
+<li><strong>A（Availability，可用性）</strong>每个请求都会得到一个及时响应，即使一部分节点故障；</li>
+<li><strong>P（Partition tolerance，分区容忍性）</strong>即使有分区的存在，系统也能持续提供服务。</li>
+</ul>
+<p>根据我的理解C就是系统达到最终一致性的时间属性；A就是响应一个请求的快慢程度，也是时间属性；P其实没啥意义，因为它是一种网络属性，必须满足，因为分布式系统分区是必然存在的，而且必然是能提供服务的，如果P不满足分布式系统就无意义。所以CAP理论应该是在保证<strong>P</strong>的情况下选择快速实现最终一致还是快速响应请求。</p>
+<ul>
+<li>如果选择CP，放弃A，则系统强一致，也就是写请求进来的时候，所有副本都写成功。但是为了保证所有副本的强一致就需要数据同步，而为了保证同步消息发送成功就需要重试。如果网络故障导致消息发送失败，就会一直重试下去，从而消耗时间，请求得不到及时响应，不能满足A；</li>
+<li>如果选择AP，放弃C，则同步消息可能失败导致系统不是强一致；</li>
+</ul>
+<p>一般对于C和A的选择不是绝对的，如果是强一致性的系统，可以在副本同步时设置消息超时重试次数，比如10秒钟重试一次，重试6次就返回错误。如果是最终一致性的系统，只要保证 W &gt; N - R，则可用性大大提高。</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/一致性/" rel="tag">#一致性</a>
+          
+            <a href="/tags/Quorum/" rel="tag">#Quorum</a>
+          
+            <a href="/tags/CAP/" rel="tag">#CAP</a>
+          
+            <a href="/tags/分布式系统/" rel="tag">#分布式系统</a>
+          
+            <a href="/tags/最终一致性/" rel="tag">#最终一致性</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/07/同步异步阻塞非阻塞/" rel="next" title="同步异步阻塞非阻塞">
+                <i class="fa fa-chevron-left"></i> 同步异步阻塞非阻塞
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/12/一致性和CAP理论/"
+           data-title="一致性和CAP理论" data-url="http://davi.space/2017/03/12/一致性和CAP理论/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Davi" />
+          <p class="site-author-name" itemprop="name">Davi</p>
+          <p class="site-description motion-element" itemprop="description">程序人生</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/DVD0423" target="_blank" title="github">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element">
+            <div class="links-of-blogroll-title">
+              <i class="fa fa-globe fa-fw"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="dvd0423.github.io" title="Test" target="_blank">Test</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一致性"><span class="nav-text">一致性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CAP理论"><span class="nav-text">CAP理论</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Davi</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"dvd0423"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
