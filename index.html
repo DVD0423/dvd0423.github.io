@@ -275,6 +275,290 @@
             
               
                 
+                <a class="post-title-link" href="/2017/05/29/数据一致性方法综述/" itemprop="url">
+                  数据一致性方法综述
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-29T14:58:34+08:00" content="2017-05-29">
+              2017-05-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/云存储/" itemprop="url" rel="index">
+                    <span itemprop="name">云存储</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/05/29/数据一致性方法综述/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/29/数据一致性方法综述/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-向量时钟"><a href="#1-向量时钟" class="headerlink" title="1 向量时钟"></a>1 向量时钟</h3><p>时间戳虽然可以保证数据一致性，但是系统存在时间跳变的风险<br>向量时钟的一种思路：<br>1 每个消息带一个时钟向量，显示整个系统各节点的执行顺序，可以是时间戳也可以是顺序递增的整数；<br>2 节点i消息发送成功，对应vector[i][i]的counter+1；<br>3 节点j消息接收成功，对应的vector[j][i]的counter+1；<br>4 如果数据一致，则二维数组中应该有一行和所有其他行有偏序关系，即该行是所有其他行的“与”。</p>
+<h3 id="2-Paxos协议"><a href="#2-Paxos协议" class="headerlink" title="2 Paxos协议"></a>2 Paxos协议</h3><p>算法刚接触很难理解，但是只需要记住两个阶段：</p>
+<ul>
+<li>阶段1 发送prepare请求阶段：</li>
+</ul>
+<p>　　a) 提议者选择一个议案编号n，向议员的多数派发送编号为n的prepare请求。<br>　　b) 议员：如果接收到的prepare请求的编号n大于他已经回应的任何prepare请求，则回应已经批准的编号最高的议案{m,k}，并承诺不再回应任何编号小于n的议案.</p>
+<ul>
+<li>阶段2 发送accept请求阶段:<br>　　a) 提议者：如果收到了多数议员对prepare请求（编号为n）的回应，就向这些议员发送议案{n,v}的accept请求，其中v是所有回应中编号最高的议案的决议内容即阶段1的k，如果议员回应说还没有议案，则v是提议者自己的议案内容。<br>　　b) 议员：如果收到了议案{n,v}的accept请求，它就批准该议案，除非它已经回应了一个编号大于n的议案。</li>
+</ul>
+<p>那一个群众如何知道一个议案已经通过呢？两种方法：</p>
+<ul>
+<li>一种是通过议会的会长发布（发布订阅模式），这里会长可能死了，所以为了保证可靠性，需要多个会长；</li>
+<li>一种是群众自己构造一个prepare请求，等待大多数议员的回应。</li>
+</ul>
+<h3 id="3-两阶段提交协议"><a href="#3-两阶段提交协议" class="headerlink" title="3 两阶段提交协议"></a>3 两阶段提交协议</h3><p>多用于分布式事物，用于保证分布式系统的强一致性，要么全成功，要么全失败。2PC通过日志实现，日志降低了可用性但是提高了一致性。</p>
+<ul>
+<li><p>阶段1：<br>  1 协调者通知所有参与者开始执行2PC，并等待响应<br>  2 每个参与者收到通知后，获取行锁，在本地节点写本地undo和redo日志（持久化），同时通知协调者“同意”（成功）或者“终止”（失败）事物，其中undo日志用于回滚操作，redo日志保证第二阶段的提交事物必能成功，有了redo则阶段一若成功阶段二的本地提交事务必然成功。</p>
+</li>
+<li><p>阶段2：<br>  如果协调者收到了所有参与者的“同意”消息：<br>  1 协调者持久化事物状态，并发送一个commit消息给所有参与者<br>  2 参与者收到commit消息执行提交本地事务操作（持久化一条commit日志），并释放所有锁住的资源<br>  3 参与者回复ack给协调者<br>  4 协调者收到所有回复后，完成事务</p>
+<p>  如果协调者收到一个“终止”消息或者未收到某个参与者的消息：<br>  1 协调者持久化事务状态，并发送一个rollback消息给所有参与者<br>  2 参与者收到rollback消息会根据本地undo日志执行回滚操作，并释放所有锁住的资源<br>  3 参与者回复ack给协调者<br>  4 协调者收到所有参与者的回复后取消事务</p>
+</li>
+</ul>
+<p>两阶段缺点：</p>
+<ul>
+<li>2PC是阻塞型协议。在阻塞期间会造成资源浪费，如果在阶段2，协调者故障会导致参与者一直阻塞，直到协调者恢复或产生新的协调者，造成资源浪费。</li>
+<li>耗时太长。一个事物执行成功要经过太多步骤</li>
+</ul>
+<p>可能出现的问题：<br>1 参与者宕机。当在事务进行中参与者宕机，他重启以后可以通过询问其他参与者或者协调者的日志从而知道这个事务提交了没有<br>2 协调者宕机。启一个新的协调者，用paxos算法。然后查询参与者是否有commit的状态，如果有commit的则继续commit<br>3 协调者和参与者都宕机</p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>[1] The part-time parliament, Lamport, ACM Transactions on Computer Systems 16(2):133-169, 1998<br>[2] Paxos made simple, Lamport, SIGACT News 32(4):18-25, 2001.</p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/14/事件驱动模型原理与实现/" itemprop="url">
+                  事件驱动模型与实现
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-14T20:20:12+08:00" content="2017-05-14">
+              2017-05-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/云存储/" itemprop="url" rel="index">
+                    <span itemprop="name">云存储</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/05/14/事件驱动模型原理与实现/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/14/事件驱动模型原理与实现/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>事件驱动模型的基本原理是构件并不直接调用过程，而是触发一个或多个事件。系统中的其他构件可以注册相关的事件，触发一个事件时，系统会自动调用注册了该事件的构件过程，即触发事件会导致另一构件中过程的调用。<br>事件驱动模式的主要特点是事件的触发者并不知道哪些构件会受到事件的影响，且不能假定构件的处理顺序，甚至不知道会调用哪些过程，使用事件驱动模式的典型系统包括各种图形界面工具。<br>事件驱动模式的优点如下：</p>
+<ul>
+<li>支持软件重用，容易实现并发处理。 </li>
+<li>具有良好的可扩展性，通过注册可引入新的构件，而不影响现有构件。 </li>
+<li>可以简化客户代码。 </li>
+</ul>
+<p>事件驱动模式的缺点如下：</p>
+<ul>
+<li>构件削弱了自身对系统的控制能力。一个构件触笈事件时，并不能确定响应该事件的其他构件及各构件的执行顺序。 </li>
+<li>不能很好地解决数据交换问题。 </li>
+<li>使系统中各构件的逻辑关系变得更加复杂。</li>
+</ul>
+<p>对于分布式存储系统来说可以这样实现：</p>
+<ul>
+<li>消息系统使用epoll模型，当有外部事件时把消息加入消息队列，消息系统主进程执行while循环根据外部事件触发的fd的不同决定进入哪个消息分支（控制消息、io消息、管理消息等等）。</li>
+<li>不同的消息分支各自维护相应的消息队列，并执行队列里的消息所注册的方法。一般的消息类都有dispatch方法和handle方法。dispatch方法在消息系统执行，实现消息分发到某一个执行模块。而具体的执行模块里会调用handle方法实现事件的真正响应。</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/03/12/一致性和CAP理论/" itemprop="url">
                   一致性和CAP理论
                 </a>
@@ -1259,260 +1543,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/28/Linux操作技巧/" itemprop="url">
-                  Linux操作技巧
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-28T12:56:16+08:00" content="2016-08-28">
-              2016-08-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux开发/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux开发</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/28/Linux操作技巧/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/28/Linux操作技巧/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>不定时更新……</p>
-<p>1 rpm -ivh … –oldpackage    安装老版本并保留新版(也就是回退的功能)，<br>&ensp;&ensp;rpm -Uvh …更新软件<br>&ensp;&ensp;rpm -qa | grep …<br>&ensp;&ensp;rpm -e …</p>
-<p>2 modprobe 智能解决模块依赖问题；insmod只加载单个模块</p>
-<p>3 内核问题定位工具：虚拟机串口输出、crash工具、objdump反汇编</p>
-<p>4 性能分析工具：<br>&ensp;&ensp;进程树结构<br>&ensp;&ensp;lsof通过进程找文件<br>&ensp;&ensp;pidof通过进程名找pid<br>&ensp;&ensp;fuser通过文件找进程<br>&ensp;&ensp;free内存<br>&ensp;&ensp;vmstat系统资源<br>&ensp;&ensp;netstat网络</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/28/Linux操作技巧/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/21/C语言基础/" itemprop="url">
-                  C语言基础
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-21T15:06:52+08:00" content="2016-08-21">
-              2016-08-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux开发/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux开发</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/21/C语言基础/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/21/C语言基础/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>不定时更新……</p>
-<p>1 为字符串使用固定大小栈缓冲区，而不是动态分配，创建资源库，以减少分配对象的开销。池的思想。</p>
-<p>2 c语言中实现C++作用：</p>
-<p>&ensp;&ensp;模块内部使用的接口一个头文件，对外接口单独头文件，头文件应该能够独立编译</p>
-<p>&ensp;&ensp;static全局变量相当于类的私有变量，可以通过一个对外接口访问，以此限制对其直接操作</p>
-<p>&ensp;&ensp;static函数不需要放在头文件中，因为它只在本文件内可见，最好在c文件的头部声明</p>
-<p>&ensp;&ensp;回调函数实现方法.</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/21/C语言基础/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1558,7 +1588,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-count">24</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1575,7 +1605,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-count">56</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>

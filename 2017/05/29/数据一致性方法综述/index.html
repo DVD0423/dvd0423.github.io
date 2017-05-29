@@ -1,0 +1,703 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="一致性,paxos,时钟向量,量阶段提交," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="1 向量时钟时间戳虽然可以保证数据一致性，但是系统存在时间跳变的风险向量时钟的一种思路：1 每个消息带一个时钟向量，显示整个系统各节点的执行顺序，可以是时间戳也可以是顺序递增的整数；2 节点i消息发送成功，对应vector[i][i]的counter+1；3 节点j消息接收成功，对应的vector[j][i]的counter+1；4 如果数据一致，则二维数组中应该有一行和所有其他行有偏序关系，即该">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据一致性方法综述">
+<meta property="og:url" content="http://davi.space/2017/05/29/数据一致性方法综述/index.html">
+<meta property="og:site_name" content="Davi">
+<meta property="og:description" content="1 向量时钟时间戳虽然可以保证数据一致性，但是系统存在时间跳变的风险向量时钟的一种思路：1 每个消息带一个时钟向量，显示整个系统各节点的执行顺序，可以是时间戳也可以是顺序递增的整数；2 节点i消息发送成功，对应vector[i][i]的counter+1；3 节点j消息接收成功，对应的vector[j][i]的counter+1；4 如果数据一致，则二维数组中应该有一行和所有其他行有偏序关系，即该">
+<meta property="og:updated_time" content="2017-05-29T07:06:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据一致性方法综述">
+<meta name="twitter:description" content="1 向量时钟时间戳虽然可以保证数据一致性，但是系统存在时间跳变的风险向量时钟的一种思路：1 每个消息带一个时钟向量，显示整个系统各节点的执行顺序，可以是时间戳也可以是顺序递增的整数；2 节点i消息发送成功，对应vector[i][i]的counter+1；3 节点j消息接收成功，对应的vector[j][i]的counter+1；4 如果数据一致，则二维数组中应该有一行和所有其他行有偏序关系，即该">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 数据一致性方法综述 | Davi </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s11.cnzz.com/z_stat.php?id=1258885771&web_id=1258885771" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Davi</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">记录工作与生活</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'umBxWx-jxqcZ2as51Akz','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                数据一致性方法综述
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-29T14:58:34+08:00" content="2017-05-29">
+              2017-05-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/云存储/" itemprop="url" rel="index">
+                    <span itemprop="name">云存储</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/05/29/数据一致性方法综述/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/29/数据一致性方法综述/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1-向量时钟"><a href="#1-向量时钟" class="headerlink" title="1 向量时钟"></a>1 向量时钟</h3><p>时间戳虽然可以保证数据一致性，但是系统存在时间跳变的风险<br>向量时钟的一种思路：<br>1 每个消息带一个时钟向量，显示整个系统各节点的执行顺序，可以是时间戳也可以是顺序递增的整数；<br>2 节点i消息发送成功，对应vector[i][i]的counter+1；<br>3 节点j消息接收成功，对应的vector[j][i]的counter+1；<br>4 如果数据一致，则二维数组中应该有一行和所有其他行有偏序关系，即该行是所有其他行的“与”。</p>
+<h3 id="2-Paxos协议"><a href="#2-Paxos协议" class="headerlink" title="2 Paxos协议"></a>2 Paxos协议</h3><p>算法刚接触很难理解，但是只需要记住两个阶段：</p>
+<ul>
+<li>阶段1 发送prepare请求阶段：</li>
+</ul>
+<p>　　a) 提议者选择一个议案编号n，向议员的多数派发送编号为n的prepare请求。<br>　　b) 议员：如果接收到的prepare请求的编号n大于他已经回应的任何prepare请求，则回应已经批准的编号最高的议案{m,k}，并承诺不再回应任何编号小于n的议案.</p>
+<ul>
+<li>阶段2 发送accept请求阶段:<br>　　a) 提议者：如果收到了多数议员对prepare请求（编号为n）的回应，就向这些议员发送议案{n,v}的accept请求，其中v是所有回应中编号最高的议案的决议内容即阶段1的k，如果议员回应说还没有议案，则v是提议者自己的议案内容。<br>　　b) 议员：如果收到了议案{n,v}的accept请求，它就批准该议案，除非它已经回应了一个编号大于n的议案。</li>
+</ul>
+<p>那一个群众如何知道一个议案已经通过呢？两种方法：</p>
+<ul>
+<li>一种是通过议会的会长发布（发布订阅模式），这里会长可能死了，所以为了保证可靠性，需要多个会长；</li>
+<li>一种是群众自己构造一个prepare请求，等待大多数议员的回应。</li>
+</ul>
+<h3 id="3-两阶段提交协议"><a href="#3-两阶段提交协议" class="headerlink" title="3 两阶段提交协议"></a>3 两阶段提交协议</h3><p>多用于分布式事物，用于保证分布式系统的强一致性，要么全成功，要么全失败。2PC通过日志实现，日志降低了可用性但是提高了一致性。</p>
+<ul>
+<li><p>阶段1：<br>  1 协调者通知所有参与者开始执行2PC，并等待响应<br>  2 每个参与者收到通知后，获取行锁，在本地节点写本地undo和redo日志（持久化），同时通知协调者“同意”（成功）或者“终止”（失败）事物，其中undo日志用于回滚操作，redo日志保证第二阶段的提交事物必能成功，有了redo则阶段一若成功阶段二的本地提交事务必然成功。</p>
+</li>
+<li><p>阶段2：<br>  如果协调者收到了所有参与者的“同意”消息：<br>  1 协调者持久化事物状态，并发送一个commit消息给所有参与者<br>  2 参与者收到commit消息执行提交本地事务操作（持久化一条commit日志），并释放所有锁住的资源<br>  3 参与者回复ack给协调者<br>  4 协调者收到所有回复后，完成事务</p>
+<p>  如果协调者收到一个“终止”消息或者未收到某个参与者的消息：<br>  1 协调者持久化事务状态，并发送一个rollback消息给所有参与者<br>  2 参与者收到rollback消息会根据本地undo日志执行回滚操作，并释放所有锁住的资源<br>  3 参与者回复ack给协调者<br>  4 协调者收到所有参与者的回复后取消事务</p>
+</li>
+</ul>
+<p>两阶段缺点：</p>
+<ul>
+<li>2PC是阻塞型协议。在阻塞期间会造成资源浪费，如果在阶段2，协调者故障会导致参与者一直阻塞，直到协调者恢复或产生新的协调者，造成资源浪费。</li>
+<li>耗时太长。一个事物执行成功要经过太多步骤</li>
+</ul>
+<p>可能出现的问题：<br>1 参与者宕机。当在事务进行中参与者宕机，他重启以后可以通过询问其他参与者或者协调者的日志从而知道这个事务提交了没有<br>2 协调者宕机。启一个新的协调者，用paxos算法。然后查询参与者是否有commit的状态，如果有commit的则继续commit<br>3 协调者和参与者都宕机</p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>[1] The part-time parliament, Lamport, ACM Transactions on Computer Systems 16(2):133-169, 1998<br>[2] Paxos made simple, Lamport, SIGACT News 32(4):18-25, 2001.</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/一致性/" rel="tag">#一致性</a>
+          
+            <a href="/tags/paxos/" rel="tag">#paxos</a>
+          
+            <a href="/tags/时钟向量/" rel="tag">#时钟向量</a>
+          
+            <a href="/tags/量阶段提交/" rel="tag">#量阶段提交</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/14/事件驱动模型原理与实现/" rel="next" title="事件驱动模型与实现">
+                <i class="fa fa-chevron-left"></i> 事件驱动模型与实现
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/05/29/数据一致性方法综述/"
+           data-title="数据一致性方法综述" data-url="http://davi.space/2017/05/29/数据一致性方法综述/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Davi" />
+          <p class="site-author-name" itemprop="name">Davi</p>
+          <p class="site-description motion-element" itemprop="description">程序人生</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">56</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/DVD0423" target="_blank" title="github">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element">
+            <div class="links-of-blogroll-title">
+              <i class="fa fa-globe fa-fw"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="dvd0423.github.io" title="Test" target="_blank">Test</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-向量时钟"><span class="nav-text">1 向量时钟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Paxos协议"><span class="nav-text">2 Paxos协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-两阶段提交协议"><span class="nav-text">3 两阶段提交协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文献"><span class="nav-text">参考文献</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Davi</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"dvd0423"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

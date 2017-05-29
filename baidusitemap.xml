@@ -4,6 +4,80 @@
 
     
   <url>
+    <loc>http://davi.space/2017/05/14/%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/</loc>
+    <lastmod>2017-05-29T07:24:33.000Z</lastmod>
+    <data>
+        <display>
+        <title>事件驱动模型与实现</title>
+        <pubTime>2017-05-14T12:20:12.000Z</pubTime>
+        
+        <tag>事件驱动</tag>
+         
+        <tag>异步架构</tag>
+         
+        <tag>分布式系统</tag>
+         
+         
+           
+             
+              <breadCrumb title="云存储" url="http://davi.space/categories/%E4%BA%91%E5%AD%98%E5%82%A8/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://davi.space/2017/05/29/%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/</loc>
+    <lastmod>2017-05-29T07:06:11.000Z</lastmod>
+    <data>
+        <display>
+        <title>数据一致性方法综述</title>
+        <pubTime>2017-05-29T06:58:34.000Z</pubTime>
+        
+        <tag>一致性</tag>
+         
+        <tag>paxos</tag>
+         
+        <tag>时钟向量</tag>
+         
+        <tag>量阶段提交</tag>
+         
+         
+           
+             
+              <breadCrumb title="云存储" url="http://davi.space/categories/%E4%BA%91%E5%AD%98%E5%82%A8/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://davi.space/2016/10/10/%E9%9D%A2%E5%AF%B9%E5%AF%B9%E8%B1%A1/</loc>
+    <lastmod>2017-05-07T07:41:55.000Z</lastmod>
+    <data>
+        <display>
+        <title>面对对象</title>
+        <pubTime>2016-10-10T04:58:40.000Z</pubTime>
+        
+        <tag>解耦</tag>
+         
+        <tag>软件架构</tag>
+         
+        <tag>面对对象</tag>
+         
+         
+           
+             
+              <breadCrumb title="软件架构" url="http://davi.space/categories/%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://davi.space/2016/12/15/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/</loc>
     <lastmod>2017-04-09T12:20:34.000Z</lastmod>
     <data>
@@ -11,11 +85,11 @@
         <title>设计模式之依赖注入</title>
         <pubTime>2016-12-15T15:14:27.000Z</pubTime>
         
-        <tag>解耦</tag>
+        <tag>事件驱动</tag>
          
         <tag>设计模式</tag>
          
-        <tag>事件驱动</tag>
+        <tag>解耦</tag>
          
          
            
@@ -35,13 +109,13 @@
         <title>一致性和CAP理论</title>
         <pubTime>2017-03-12T14:58:38.000Z</pubTime>
         
+        <tag>分布式系统</tag>
+         
         <tag>一致性</tag>
          
         <tag>Quorum</tag>
          
         <tag>CAP</tag>
-         
-        <tag>分布式系统</tag>
          
         <tag>最终一致性</tag>
          
@@ -73,30 +147,6 @@
            
              
               <breadCrumb title="Linux开发" url="http://davi.space/categories/Linux%E5%BC%80%E5%8F%91/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://davi.space/2016/10/10/%E9%9D%A2%E5%AF%B9%E5%AF%B9%E8%B1%A1/</loc>
-    <lastmod>2017-01-20T14:23:51.000Z</lastmod>
-    <data>
-        <display>
-        <title>面对对象</title>
-        <pubTime>2016-10-10T04:58:40.000Z</pubTime>
-        
-        <tag>软件架构</tag>
-         
-        <tag>面对对象</tag>
-         
-        <tag>解耦</tag>
-         
-         
-           
-             
-              <breadCrumb title="软件架构" url="http://davi.space/categories/%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84/"/>
           
         </display>
     </data>
@@ -294,9 +344,9 @@
         <title>Python爬取美拍视频</title>
         <pubTime>2016-04-28T04:30:34.000Z</pubTime>
         
-        <tag>爬虫</tag>
-         
         <tag>python</tag>
+         
+        <tag>爬虫</tag>
          
         <tag>美拍</tag>
          

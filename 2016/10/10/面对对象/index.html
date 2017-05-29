@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="软件架构,面对对象,解耦," />
+  <meta name="keywords" content="解耦,软件架构,面对对象," />
 
 
 
@@ -90,7 +90,7 @@
 <meta property="og:description" content="面对对象编程3大特性：封装、继承、多态；五大原则：单一职责、开放封闭、里氏替换、依赖倒置、接口分离。最终目的是可维护、可扩展、可复用、灵活性好。
 1.1 封装讲到封装，我们先要想想什么是封装？为什么要封装？如何封装？
 封装就是用一个类来描述“一个物”、“一个行为”，这个类起到隔离作用，对外提供访问接口，内部运行机制对用户透明。这样做有什么好处呢？这也是第二个问题的答案，这样做有以下优点：1 隔离作">
-<meta property="og:updated_time" content="2017-01-20T14:23:51.000Z">
+<meta property="og:updated_time" content="2017-05-07T07:41:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面对对象">
 <meta name="twitter:description" content="面对对象编程3大特性：封装、继承、多态；五大原则：单一职责、开放封闭、里氏替换、依赖倒置、接口分离。最终目的是可维护、可扩展、可复用、灵活性好。
@@ -359,7 +359,7 @@
 <h3 id="2-1-单一职责原则"><a href="#2-1-单一职责原则" class="headerlink" title="2.1 单一职责原则"></a>2.1 单一职责原则</h3><p>单一职责原则（SRP：Single responsibility principle）就是指一个类或者模块应该有且只有一个改变的原因。职责就是类变化的原因，也就是一个类只有一个职责的功能。记得我刚写C++的时候会把一个类写的功能很“全”，恨不得什么都有，感觉这样挺好的，但当时不知道这种耦合会导致脆弱的设计，违背了单一职责原则。</p>
 <p>比如设计俄罗斯方块游戏，可以找出哪些是界面，哪些是游戏逻辑，然后将两者分离。这样界面的改变不影响游戏逻辑，有利于复用。而软件设计一个难点在于发现职责并把职责相互分离。分离的判断标准是如果你能想到多于一个的动机去改变一个类，那这个类就具有多于一个的职责。</p>
 <h3 id="2-2-开放封闭原则"><a href="#2-2-开放封闭原则" class="headerlink" title="2.2 开放封闭原则"></a>2.2 开放封闭原则</h3><p>软件实体应该可以扩展，但是不可修改。即对扩展开放，对修改封闭。怎样的设计才能面对需求的改变却可以保持相对稳定，从而使得系统可以在第一个版本以后不断推出新的版本呢？开放封闭原则给了我们答案。<br>比如下面的代码：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//下面的代码就未被了开放封闭原则</span></span><br><span class="line"><span class="keyword">class</span> 生物</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">eat</span><span class="params">(TYPE type)</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (type == <span class="string">"人"</span>)</span><br><span class="line">			...</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> （type == “猪”）</span><br><span class="line">			...</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//如果遵循开放封闭原则应该改为如下 ？</span></span><br><span class="line"><span class="keyword">class</span> shengwu</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">virtual</span> <span class="keyword">void</span> eat() = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> people:<span class="keyword">public</span> shengwu</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> cow:<span class="keyword">public</span> shengwu</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//下面的代码就违背了开放封闭原则</span></span><br><span class="line"><span class="keyword">class</span> 生物</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">eat</span><span class="params">(TYPE type)</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (type == <span class="string">"人"</span>)</span><br><span class="line">			...</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> （type == “猪”）</span><br><span class="line">			...</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//如果遵循开放封闭原则应该改为如下 ？</span></span><br><span class="line"><span class="keyword">class</span> shengwu</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">virtual</span> <span class="keyword">void</span> eat() = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> people:<span class="keyword">public</span> shengwu</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> cow:<span class="keyword">public</span> shengwu</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="2-3-里氏替换原则"><a href="#2-3-里氏替换原则" class="headerlink" title="2.3 里氏替换原则"></a>2.3 里氏替换原则</h3><p>子类型必须能够替换它们的父类型。也就是运行时多态的实现。</p>
 <h3 id="2-4-依赖倒置原则"><a href="#2-4-依赖倒置原则" class="headerlink" title="2.4 依赖倒置原则"></a>2.4 依赖倒置原则</h3><p>1 高层模块不应该依赖于低层模块。两者都应该依赖于抽象。<br>2 抽象不应该依赖于细节。细节应该依赖于抽象。<br>面对对象是对抽象编程，面向过程是对细节编程。比如数据库访问，对于面对对象，高层逻辑不需要知道底层数据库用的是哪个，接口是什么；而对于过程化的设计，则是高层封装底层，依赖底层，如果底层换了，还要重写代码。</p>
 <p>对于c语言来说可以用回调函数实现对抽象编程。</p>
@@ -384,11 +384,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/解耦/" rel="tag">#解耦</a>
+          
             <a href="/tags/软件架构/" rel="tag">#软件架构</a>
           
             <a href="/tags/面对对象/" rel="tag">#面对对象</a>
-          
-            <a href="/tags/解耦/" rel="tag">#解耦</a>
           
         </div>
       
@@ -479,7 +479,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-count">24</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -496,7 +496,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-count">56</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
